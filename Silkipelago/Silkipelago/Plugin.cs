@@ -9,6 +9,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using KaitoKid.ArchipelagoUtilities.Net.Extensions;
+using Silkipelago.HarmonyPatches.Steam;
 using UnityEngine;
 using ILogger = KaitoKid.Utilities.Interfaces.ILogger;
 
@@ -29,14 +30,16 @@ namespace Silkipelago
 
         private void Awake()
         {
+
             // Plugin startup logic
             Logger.LogInfo($"Loading {MyPluginInfo.PLUGIN_GUID}...");
 
             try
             {
                 _logger = new LogHandler(Logger);
-                //_harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);
-                //_harmony.PatchAll();
+                _harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);
+                _harmony.PatchAll();
+                SteamValidationPatch.Initialize(_logger);
             }
             catch (FileNotFoundException fnfe)
             {

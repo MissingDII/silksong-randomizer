@@ -18,6 +18,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="HarmonyPatches\NewFolder\**" />
+	  <EmbeddedResource Remove="HarmonyPatches\NewFolder\**" />
+	  <None Remove="HarmonyPatches\NewFolder\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Archipelago.MultiClient.Net" Version="6.7.0" />
 		<PackageReference Include="Archipelago.MultiClient.Net.Analyzers" Version="2.0.1">
 			<PrivateAssets>all</PrivateAssets>
@@ -33,6 +39,15 @@
 
 	<ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
 		<PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="Assembly-CSharp">
+	    <HintPath>..\..\..\..\..\Programs\Steam\steamapps\common\Hollow Knight Silksong\Hollow Knight Silksong_Data\Managed\Assembly-CSharp.dll</HintPath>
+	  </Reference>
+	  <Reference Include="com.rlabrecque.steamworks.net">
+	    <HintPath>..\..\..\..\..\Programs\Steam\steamapps\common\Hollow Knight Silksong\Hollow Knight Silksong_Data\Managed\com.rlabrecque.steamworks.net.dll</HintPath>
+	  </Reference>
 	</ItemGroup>
 
 	<PropertyGroup Label="UserMacros">
