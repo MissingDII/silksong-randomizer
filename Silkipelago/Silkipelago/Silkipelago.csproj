@@ -41,23 +41,29 @@
 		<PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Reference Include="Assembly-CSharp">
-	    <HintPath>..\..\..\..\..\Programs\Steam\steamapps\common\Hollow Knight Silksong\Hollow Knight Silksong_Data\Managed\Assembly-CSharp.dll</HintPath>
-	  </Reference>
-	  <Reference Include="com.rlabrecque.steamworks.net">
-	    <HintPath>..\..\..\..\..\Programs\Steam\steamapps\common\Hollow Knight Silksong\Hollow Knight Silksong_Data\Managed\com.rlabrecque.steamworks.net.dll</HintPath>
-	  </Reference>
-	</ItemGroup>
-
 	<PropertyGroup Label="UserMacros">
-		<GamePath>D:\Programs\Steam\steamapps\common\Hollow Knight Silksong\</GamePath>
+		<GamePath Condition="'$(GamePath)' == ''">$([System.Environment]::GetEnvironmentVariable('STEAMAPPS_FOLDER'))\common\Hollow Knight Silksong\</GamePath>
+		<LibrariesPath>$(GamePath)Hollow Knight Silksong_Data\Managed\</LibrariesPath>
 		<PluginsPath>$(GamePath)BepInEx\plugins\Silkipelago\</PluginsPath>
 		<BepInExLauncher>Hollow Knight Silksong.exe</BepInExLauncher>
 	</PropertyGroup>
 
-	<Target Name="BeforeBuild">
+  <!--
+	<ItemGroup>
+	  <Reference Include="Assembly-CSharp">
+	    <HintPath>..\..\..\..\Games\SteamLibrary\steamapps\common\Hollow Knight Silksong\Hollow Knight Silksong_Data\Managed\Assembly-CSharp.dll</HintPath>
+	  </Reference>
+	  <Reference Include="com.rlabrecque.steamworks.net">
+	    <HintPath>$(LibrariesPath)com.rlabrecque.steamworks.net.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+  -->
 
+	<Target Name="BeforeBuild">
+    <Message Text="GamePath" Importance="high" />
+    <Message Text="GamePath: $(GamePath)" Importance="high" />
+    <Message Text="PluginsPath: $(PluginsPath)" Importance="high" />
+    <Message Text="LibrariesPath: $(LibrariesPath)" Importance="high" />
 	</Target>
 	<Target Name="Copy mod to debug folder" AfterTargets="Build">
 		<Message Text="Copying the mod to the plugins folder $(OutputPath)$(ProjectName).dll -&gt; $(PluginsPath)" Importance="High" />
