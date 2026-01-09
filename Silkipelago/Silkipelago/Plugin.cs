@@ -150,7 +150,7 @@ namespace Silkipelago
 
         public void Update()
         {
-            Logger.LogInfo($"Update Frame {MyPluginInfo.PLUGIN_GUID}...");
+            Logger.LogInfo($"{MyPluginInfo.PLUGIN_GUID}: Update Frame...");
         }
     }
 }
