@@ -3,9 +3,13 @@ using HarmonyLib;
 using KaitoKid.ArchipelagoUtilities.Net;
 using KaitoKid.ArchipelagoUtilities.Net.Client;
 using Newtonsoft.Json;
-using System.IO;
 using Silkipelago.Logging;
 using Silkipelago.Serialization;
+using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
+using KaitoKid.ArchipelagoUtilities.Net.Extensions;
+using UnityEngine;
 using ILogger = KaitoKid.Utilities.Interfaces.ILogger;
 
 namespace Silkipelago
@@ -45,7 +49,18 @@ namespace Silkipelago
             InitializeAfterConnection();
 
             _logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
+
+            //PlaySoundsAsync(1000).FireAndForget();
         }
+
+        //private async Task PlaySoundsAsync(int numberOfSounds)
+        //{
+        //    for (var i = 0; i < numberOfSounds; i++)
+        //    {
+        //        await Task.Run(() => Thread.Sleep(1000));
+        //        _logger.LogInfo($"Debug Thread #{i}");
+        //    }
+        //}
 
         private void InitializeBeforeConnection()
         {
@@ -128,6 +143,11 @@ namespace Silkipelago
             //}
 
             //_itemManager.ReceiveAllNewItems();
+        }
+
+        public void Update()
+        {
+            Logger.LogInfo($"Loading {MyPluginInfo.PLUGIN_GUID}...");
         }
     }
 }
