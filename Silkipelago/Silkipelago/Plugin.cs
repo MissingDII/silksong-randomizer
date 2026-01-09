@@ -1,16 +1,11 @@
 ﻿using BepInEx;
-using BepInEx.Logging;
 using HarmonyLib;
 using KaitoKid.ArchipelagoUtilities.Net;
 using KaitoKid.ArchipelagoUtilities.Net.Client;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Threading;
 using Silkipelago.Logging;
 using Silkipelago.Serialization;
-using UnityEngine;
 using ILogger = KaitoKid.Utilities.Interfaces.ILogger;
 
 namespace Silkipelago
