@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Silkipelago": {
+      "commandName": "Executable",
+      "executablePath": "..\\Silksong Debug\\Hollow Knight Silksong.exe",
+      "workingDirectory": "..\\..\\..\\Silksong Debug"
+    }
+  }
+}
