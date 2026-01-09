@@ -35,8 +35,8 @@ namespace Silkipelago
             try
             {
                 _logger = new LogHandler(Logger);
-                _harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);
-                _harmony.PatchAll();
+                //_harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);
+                //_harmony.PatchAll();
             }
             catch (FileNotFoundException fnfe)
             {
@@ -44,9 +44,9 @@ namespace Silkipelago
                 throw;
             }
 
-            InitializeBeforeConnection();
-            ConnectToArchipelago();
-            InitializeAfterConnection();
+            //InitializeBeforeConnection();
+            //ConnectToArchipelago();
+            //InitializeAfterConnection();
 
             _logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
 
@@ -147,7 +147,7 @@ namespace Silkipelago
 
         public void Update()
         {
-            Logger.LogInfo($"Loading {MyPluginInfo.PLUGIN_GUID}...");
+            Logger.LogInfo($"Update Frame {MyPluginInfo.PLUGIN_GUID}...");
         }
     }
 }
