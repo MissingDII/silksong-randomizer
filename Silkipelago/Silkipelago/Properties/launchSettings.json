@@ -1,9 +1,0 @@
-{
-  "profiles": {
-    "Silkipelago": {
-      "commandName": "Executable",
-      "executablePath": "D:\\Programs\\Steam\\steamapps\\common\\Hollow Knight Silksong\\Hollow Knight Silksong.exe",
-      "workingDirectory": "D:\\Programs\\Steam\\steamapps\\common\\Hollow Knight Silksong"
-    }
-  }
-}
