@@ -25,7 +25,7 @@ namespace Silkipelago
         //private SilksongArchipelagoClient _archipelago;
         private ArchipelagoConnectionInfo APConnectionInfo { get; set; }
         private LocationChecker _locationChecker;
-        //private KindergartenItemManager _itemManager;
+        //private SilksongItemManager _itemManager;
 
         private void Awake()
         {
