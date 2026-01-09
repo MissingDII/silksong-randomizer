@@ -36,7 +36,7 @@
 	</ItemGroup>
 
 	<PropertyGroup Label="UserMacros">
-		<GamePath>..\..\..\Silksong Debug\</GamePath>
+		<GamePath>..\..\..\Silksong-Debug\</GamePath>
 		<PluginsPath>$(GamePath)BepInEx\plugins\Silkipelago\</PluginsPath>
 		<BepInExLauncher>Hollow Knight Silksong.exe</BepInExLauncher>
 	</PropertyGroup>
