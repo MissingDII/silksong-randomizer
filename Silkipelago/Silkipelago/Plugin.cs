@@ -1,15 +1,16 @@
 ﻿using BepInEx;
+using BepInEx.Configuration;
 using HarmonyLib;
 using KaitoKid.ArchipelagoUtilities.Net;
 using KaitoKid.ArchipelagoUtilities.Net.Client;
+using KaitoKid.ArchipelagoUtilities.Net.Extensions;
 using Newtonsoft.Json;
+using Silkipelago.HarmonyPatches.Steam;
 using Silkipelago.Logging;
 using Silkipelago.Serialization;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using KaitoKid.ArchipelagoUtilities.Net.Extensions;
-using Silkipelago.HarmonyPatches.Steam;
 using UnityEngine;
 using ILogger = KaitoKid.Utilities.Interfaces.ILogger;
 
@@ -21,6 +22,7 @@ namespace Silkipelago
         public static Plugin Instance;
 
         private ILogger _logger;
+        private ConfigEntry<KeyCode>? _addMoneyKey;
         //private PatchInitializer _patcherInitializer;
         private Harmony _harmony;
         //private SilksongArchipelagoClient _archipelago;
@@ -33,7 +35,7 @@ namespace Silkipelago
 
             // Plugin startup logic
             Logger.LogInfo($"Loading {MyPluginInfo.PLUGIN_GUID}...");
-
+            _addMoneyKey = this.Config.Bind<KeyCode>("KeyCode", "addMoneyKey", KeyCode.Keypad0, "key to add money and unlock abilities");
             try
             {
                 _logger = new LogHandler(Logger);
@@ -150,7 +152,15 @@ namespace Silkipelago
 
         public void Update()
         {
-            Logger.LogInfo($"{MyPluginInfo.PLUGIN_GUID}: Update Frame...");
-        }
+            if (!Input.GetKeyDown(_addMoneyKey!.Value))
+            {
+                return;
+            }
+            Logger.LogInfo("Testing after keypress");        
+                    var playerData = PlayerData.instance;
+                    playerData.AddGeo(1000);
+                    playerData.GetAllPowerups();
+                    return;
+         }
     }
 }
