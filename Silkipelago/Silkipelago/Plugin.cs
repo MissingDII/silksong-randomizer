@@ -5,10 +5,13 @@ using KaitoKid.ArchipelagoUtilities.Net;
 using KaitoKid.ArchipelagoUtilities.Net.Client;
 using KaitoKid.ArchipelagoUtilities.Net.Extensions;
 using Newtonsoft.Json;
+using Silkipelago.HarmonyPatches.FsmGarbage;
+using Silkipelago.HarmonyPatches.Item;
 using Silkipelago.HarmonyPatches.Steam;
 using Silkipelago.Logging;
 using Silkipelago.Serialization;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -30,6 +33,7 @@ namespace Silkipelago
         private LocationChecker _locationChecker;
         //private SilksongItemManager _itemManager;
 
+      
         private void Awake()
         {
 
@@ -42,6 +46,8 @@ namespace Silkipelago
                 _harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);
                 _harmony.PatchAll();
                 SteamValidationPatch.Initialize(_logger);
+                PlayerDataPatch.Initialize(_logger);
+                FsmPatcher.Initialize(_logger);
             }
             catch (FileNotFoundException fnfe)
             {
