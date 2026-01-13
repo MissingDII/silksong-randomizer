@@ -2,7 +2,6 @@
 using HutongGames.PlayMaker;
 using KaitoKid.ArchipelagoUtilities.Net.Constants;
 using KaitoKid.Utilities.Interfaces;
-using Silkipelago.HarmonyPatches.Item;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -25,8 +24,7 @@ namespace Silkipelago.HarmonyPatches.FsmGarbage
         {
             if (__instance != null && eventName != null)
             {
-                _logger.LogDebugPatchIsRunning(nameof(PlayerData), nameof(PlayerData.SetBool), nameof(PlayerDataPatch), "LogFSMStates");
-                _logger.LogInfo($"[FSM LOG] FSM: {__instance.FsmName}, GO: {__instance.gameObject.name}, Event: {eventName}");
+                //_logger.LogDebug($"[FSM LOG] FSM: {__instance.FsmName}, GO: {__instance.gameObject.name}, Event: {eventName}");
             }
             return MethodPrefix.RUN_ORIGINAL_METHOD;
         }

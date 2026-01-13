@@ -7,6 +7,9 @@ using KaitoKid.ArchipelagoUtilities.Net.Extensions;
 using Newtonsoft.Json;
 using Silkipelago.HarmonyPatches.FsmGarbage;
 using Silkipelago.HarmonyPatches.Item;
+
+//using Silkipelago.HarmonyPatches.FsmGarbage;
+//using Silkipelago.HarmonyPatches.Item;
 using Silkipelago.HarmonyPatches.Steam;
 using Silkipelago.Logging;
 using Silkipelago.Serialization;
@@ -15,6 +18,7 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using ILogger = KaitoKid.Utilities.Interfaces.ILogger;
 
 namespace Silkipelago
@@ -158,15 +162,35 @@ namespace Silkipelago
 
         public void Update()
         {
-            if (!Input.GetKeyDown(_addMoneyKey!.Value))
+            if (Input.GetKeyDown(_addMoneyKey!.Value))
             {
+                Logger.LogInfo("Enable PowerUp");
+                var playerData = PlayerData.instance;
+                playerData.GetAllPowerups();
+                Logger.LogInfo("here with playerInstance");
                 return;
             }
-            Logger.LogInfo("Testing after keypress");        
-                    var playerData = PlayerData.instance;
-                    playerData.AddGeo(1000);
-                    playerData.GetAllPowerups();
-                    return;
+            if (Input.GetKeyDown(KeyCode.Keypad1))
+            {
+                Logger.LogInfo("Disable PowerUp");
+                var playerData = PlayerData.instance;
+                playerData.hasDash = false;
+                playerData.hasBrolly = false;
+                playerData.hasWalljump = false;
+                playerData.hasDoubleJump = false;
+                Logger.LogInfo("here with playerInstance");
+                return;
+            }
+            if (Input.GetKeyDown(KeyCode.Keypad1))
+            {
+                Logger.LogInfo("Teleport somewhere");
+                var playerData = PlayerData.instance;
+                //SceneManager.LoadScene("Bone_East_04b");
+                Logger.LogInfo("here with playerInstance");
+                return;
+            }
+            return;
+
          }
     }
 }
