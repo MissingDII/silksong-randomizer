@@ -22,5 +22,22 @@ namespace Silkipelago.Utils
                 ForceWaitFetch = false
             });
         }
+
+        // Load with fade effect
+        public static void LoadSceneWithFade(string sceneName, string entryGateName, GatePosition position)
+        {
+            GameManager.instance.BeginSceneTransition(new GameManager.SceneLoadInfo
+            {
+                SceneName = sceneName,
+                EntryGateName = entryGateName,
+                HeroLeaveDirection = position,
+                EntryDelay = 0.5f, // Add delay for fade effect
+                WaitForSceneTransitionCameraFade = true,
+                PreventCameraFadeOut = false,
+                Visualization = GameManager.SceneLoadVisualizations.Default,
+                AlwaysUnloadUnusedAssets = true, // Unload unused assets for performance
+                ForceWaitFetch = false
+            });
+        }
     }
 }
