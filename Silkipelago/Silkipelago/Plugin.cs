@@ -1,5 +1,6 @@
 ﻿using BepInEx;
 using BepInEx.Configuration;
+using GlobalEnums;
 using HarmonyLib;
 using KaitoKid.ArchipelagoUtilities.Net;
 using KaitoKid.ArchipelagoUtilities.Net.Client;
@@ -13,6 +14,7 @@ using Silkipelago.HarmonyPatches.Item;
 using Silkipelago.HarmonyPatches.Steam;
 using Silkipelago.Logging;
 using Silkipelago.Serialization;
+using Silkipelago.Utils;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading;
@@ -181,11 +183,12 @@ namespace Silkipelago
                 Logger.LogInfo("here with playerInstance");
                 return;
             }
-            if (Input.GetKeyDown(KeyCode.Keypad1))
+            if (Input.GetKeyDown(KeyCode.Keypad2))
             {
                 Logger.LogInfo("Teleport somewhere");
                 var playerData = PlayerData.instance;
                 //SceneManager.LoadScene("Bone_East_04b");
+                SceneLoader.LoadScene("Bone_East_04b", "top1", GatePosition.top);
                 Logger.LogInfo("here with playerInstance");
                 return;
             }
