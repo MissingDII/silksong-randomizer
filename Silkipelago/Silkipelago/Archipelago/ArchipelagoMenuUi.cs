@@ -2,14 +2,11 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static System.Net.Mime.MediaTypeNames;
 using UIText = UnityEngine.UI.Text;
 using UIImage = UnityEngine.UI.Image;
-using UIButton = UnityEngine.UI.Button;
-using UIInputField = UnityEngine.UI.InputField;
 
 
-namespace Archipelago
+namespace Silkipelago.Archipelago
 {
     public static class ArchipelagoMenuUI
     {
