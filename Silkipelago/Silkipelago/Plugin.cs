@@ -1,4 +1,5 @@
-﻿using BepInEx;
+﻿using Archipelago;
+using BepInEx;
 using BepInEx.Configuration;
 using GlobalEnums;
 using HarmonyLib;
@@ -49,9 +50,6 @@ namespace Silkipelago
             // Plugin startup logic
             Logger.LogInfo($"Loading {MyPluginInfo.PLUGIN_GUID}...");
             _addMoneyKey = this.Config.Bind<KeyCode>("KeyCode", "addMoneyKey", KeyCode.Keypad0, "key to add money and unlock abilities");
-            _hostName = this.Config.Bind<string>("Archipelago", "hostName","archipelago.gg" , "the host name for the multiworld usually archipelago.gg");
-            _port = this.Config.Bind<string>("Archipelago", "port","1234", "the port used to connect to the archipelago multiword");
-            _slotName = this.Config.Bind<string>("Archipelago", "slotName","Player1", "the slot name / player name displayed on archipelago");
             try
             {
                 _logger = new LogHandler(Logger);
@@ -170,6 +168,7 @@ namespace Silkipelago
 
         public void Update()
         {
+
             if (Input.GetKeyDown(_addMoneyKey!.Value))
             {
                 Logger.LogInfo("Enable PowerUp");
@@ -193,13 +192,18 @@ namespace Silkipelago
             {
                 Logger.LogInfo("Teleport somewhere");
                 var playerData = PlayerData.instance;
-                //SceneManager.LoadScene("Bone_East_04b");
                 SceneLoader.LoadScene("Bone_East_04b", "top1", GatePosition.top);
                 Logger.LogInfo("here with playerInstance");
                 return;
             }
+            if (Input.GetKeyDown(KeyCode.Keypad5))
+            {
+                Logger.LogInfo("Show UI button");
+                ArchipelagoMenuUI.Init(Logger);
+                ArchipelagoMenuUI.Toggle();
+                return;
+            }
             return;
-
-         }
+        }
     }
 }

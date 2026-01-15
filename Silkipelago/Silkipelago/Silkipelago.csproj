@@ -68,6 +68,9 @@
 	  <Reference Include="PlayMaker">
 	    <HintPath>$(LibrariesPath)PlayMaker.dll</HintPath>
 	  </Reference>
+    <Reference Include="UnityEngine.UI.dll">
+      <HintPath>$(LibrariesPath)UnityEngine.UI.dll</HintPath>
+    </Reference>
 	</ItemGroup>
 
 	<Target Name="Copy mod to debug folder" AfterTargets="Build">
