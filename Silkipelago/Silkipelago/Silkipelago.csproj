@@ -37,6 +37,7 @@
 		<PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
 		<PackageReference Include="KaitoKid.ArchipelagoUtilities.Net" Version="3.1.7" />
 		<PackageReference Include="KaitoKid.Utilities.Interfaces" Version="3.1.7" />
+    <PackageReference Include="Silksong.AssetHelper" Version="1.0.1" />
 		<PackageReference Include="UnityEngine.Modules" Version="6000.0.50" IncludeAssets="compile" />
 	</ItemGroup>
 
