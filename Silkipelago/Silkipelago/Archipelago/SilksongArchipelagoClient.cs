@@ -1,25 +1,30 @@
-﻿using Archipelago.MultiClient.Net.BounceFeatures.DeathLink;
+﻿using Archipelago.MultiClient.Net;
+using Archipelago.MultiClient.Net.BounceFeatures.DeathLink;
 using Archipelago.MultiClient.Net.Helpers;
+using Archipelago.MultiClient.Net.MessageLog.Messages;
 using KaitoKid.ArchipelagoUtilities.Net.Client;
+using KaitoKid.Utilities.Interfaces;
+using Silkipelago.IdTables;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Archipelago.MultiClient.Net;
-using Archipelago.MultiClient.Net.MessageLog.Messages;
-using KaitoKid.Utilities.Interfaces;
+using KaitoKid.ArchipelagoUtilities.Net.Interfaces;
+using KaitoKid.ArchipelagoUtilities.Net.Json;
 
 namespace Silkipelago.Archipelago
 {
     public class SilksongArchipelagoClient : ArchipelagoClient
     {
-        public override string GameName => "Dungeon Clawler";
-        public override string ModName => "Clawrchipelago";
+        private static IJsonLoader _jsonLoader = new NewtonsoftJsonLoader();
+
+        public override string GameName => "Silksong";
+        public override string ModName => "Silkipelago";
         public override string ModVersion => MyPluginInfo.PLUGIN_VERSION;
 
         public SilksongSlotData SlotData => (SilksongSlotData)_slotData;
 
         public SilksongArchipelagoClient(ILogger logger, Action<ReceivedItemsHelper> itemReceivedFunction) :
-            base(logger, new DataPackageCache("silksong", "BepInEx", "plugins", "Silkipelago", "IdTables"), itemReceivedFunction)
+            base(logger, new DataPackageCache(new ArchipelagoItemLoader(_jsonLoader), new SilksongLocationLoader(logger, _jsonLoader), "silksong", "BepInEx", "plugins", "Silkipelago", "IdTables"), itemReceivedFunction)
         {
         }
 

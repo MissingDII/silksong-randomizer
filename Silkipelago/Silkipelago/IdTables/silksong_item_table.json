@@ -1,0 +1,96 @@
+{
+    "items": {
+        "Needolin": {
+            "code": 1,
+            "classification": "progression"
+        },
+        "Beastling Call": {
+            "code": 2,
+            "classification": "useful"
+        },
+        "Elegy of the Deep": {
+            "code": 3,
+            "classification": "progression"
+        },
+        "Bind": {
+            "code": 4,
+            "classification": "progression"
+        },
+        "Silkspear": {
+            "code": 5,
+            "classification": "progression"
+        },
+        "Cross Stitch": {
+            "code": 6,
+            "classification": "useful"
+        },
+        "Thread Storm": {
+            "code": 7,
+            "classification": "useful"
+        },
+        "Sharpdart": {
+            "code": 8,
+            "classification": "useful"
+        },
+        "Rune Rage": {
+            "code": 9,
+            "classification": "useful"
+        },
+        "Pale Nails": {
+            "code": 10,
+            "classification": "useful"
+        },
+        "Drifter's Cloak": {
+            "code": 11,
+            "classification": "progression"
+        },
+        "Cling Grip": {
+            "code": 12,
+            "classification": "progression"
+        },
+        "Swift Step": {
+            "code": 13,
+            "classification": "progression"
+        },
+        "Faydown Cloak": {
+            "code": 14,
+            "classification": "progression"
+        },
+        "Clawline": {
+            "code": 15,
+            "classification": "progression"
+        },
+        "Silk Soar": {
+            "code": 16,
+            "classification": "progression"
+        },
+        "Needle Strike": {
+            "code": 17,
+            "classification": "progression"
+        },
+        "Silk Heart": {
+            "code": 18,
+            "classification": "progression"
+        },
+        "Sylphsong": {
+            "code": 19,
+            "classification": "useful"
+        },
+        "Farsight": {
+            "code": 20,
+            "classification": "useful"
+        },
+        "Everbloom": {
+            "code": 21,
+            "classification": "progression"
+        },
+        "50 Rosaries": {
+            "code": 22,
+            "classification": "filler"
+        },
+        "50 Shell Shards": {
+            "code": 23,
+            "classification": "filler"
+        }
+    }
+}

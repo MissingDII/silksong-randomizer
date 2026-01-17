@@ -44,7 +44,7 @@ namespace Silkipelago
         private ConfigEntry<string>? _slotName;
         private PatchInitializer _patcherInitializer;
         private Harmony _harmony;
-        //private SilksongArchipelagoClient _archipelago;
+        private SilksongArchipelagoClient _archipelago;
         private ArchipelagoConnectionInfo APConnectionInfo { get; set; }
         private LocationChecker _locationChecker;
         private SilksongItemManager _itemManager;
@@ -79,17 +79,17 @@ namespace Silkipelago
         {
             _patcherInitializer = new PatchInitializer();
             _patcherInitializer.InitializeEarlyPatches(_logger, _harmony);
-            //_archipelago = new SilksongArchipelagoClient(_logger, OnItemReceived);
+            _archipelago = new SilksongArchipelagoClient(_logger, OnItemReceived);
         }
 
         private void InitializeAfterConnection()
         {
-            //_locationChecker = new LocationChecker(_logger, _archipelago, new List<string>());
-            //_itemManager = new SilksongItemManager(_logger, _archipelago, new List<ReceivedItem>());
+            _locationChecker = new LocationChecker(_logger, _archipelago, new List<string>());
+            _itemManager = new SilksongItemManager(_logger, _archipelago, new List<ReceivedItem>());
 
             _locationChecker.VerifyNewLocationChecksWithArchipelago();
             _locationChecker.SendAllLocationChecks();
-            //_patcherInitializer.InitializeConnectedPatches(_logger, _harmony, _archipelago, _locationChecker);
+            _patcherInitializer.InitializeConnectedPatches(_logger, _harmony, _archipelago, _locationChecker);
             _itemManager.ReceiveAllNewItems();
         }
 
@@ -101,42 +101,40 @@ namespace Silkipelago
                 return;
             }
 
+            if (_archipelago.IsConnected)
+            {
+                Logger.LogMessage($"Tried to connect, but already connected!");
+                return;
+            }
+
+            var connectionResult = _archipelago.ConnectToMultiworld(APConnectionInfo);
+            if (!connectionResult.Success || !_archipelago.IsConnected)
+            {
+                APConnectionInfo = null;
+                var userMessage =
+                    $"Could not connect to archipelago.{Environment.NewLine}Message: {connectionResult.Message}{Environment.NewLine}Please verify the connection info and that the server is available.{Environment.NewLine}";
+                Logger.LogError(userMessage);
+                //const int timeUntilClose = 10;
+                //Logger.LogError($"The Game will close in {timeUntilClose} seconds");
+                //Thread.Sleep(timeUntilClose * 1000);
+                //Application.Quit();
+                return;
+            }
+
+            Logger.LogMessage($"Connected to Archipelago as {_archipelago.SlotData.SlotName}.");
+            actionAfterConnection?.Invoke();
             return;
-
-            //if (_archipelago.IsConnected)
-            //{
-            //    Logger.LogMessage($"Tried to connect, but already connected!");
-            //    return;
-            //}
-
-            //var connectionResult = _archipelago.ConnectToMultiworld(APConnectionInfo);
-            //if (!connectionResult.Success || !_archipelago.IsConnected)
-            //{
-            //    APConnectionInfo = null;
-            //    var userMessage =
-            //        $"Could not connect to archipelago.{Environment.NewLine}Message: {connectionResult.Message}{Environment.NewLine}Please verify the connection info and that the server is available.{Environment.NewLine}";
-            //    Logger.LogError(userMessage);
-            //    //const int timeUntilClose = 10;
-            //    //Logger.LogError($"The Game will close in {timeUntilClose} seconds");
-            //    //Thread.Sleep(timeUntilClose * 1000);
-            //    //Application.Quit();
-            //    return;
-            //}
-
-            //Logger.LogMessage($"Connected to Archipelago as {_archipelago.SlotData.SlotName}.");
-            //actionAfterConnection?.Invoke();
-            //return;
 
         }
 
         private void OnItemReceived(ReceivedItemsHelper receivedItemsHelper)
         {
-            //if (_archipelago == null || _itemManager == null)
-            //{
-            //    return;
-            //}
+            if (_archipelago == null || _itemManager == null || !_archipelago.IsConnected)
+            {
+                return;
+            }
 
-            //_itemManager.ReceiveAllNewItems();
+            _itemManager.ReceiveAllNewItems();
         }
 
         public void Update()

@@ -1,0 +1,188 @@
+{
+    "locations": {
+        "Cheat Console": {
+            "code": -1,
+            "region": "Archipelago"
+        },
+        "Server": {
+            "code": -2,
+            "region": "Archipelago"
+        },
+        "Escape Moss Grotto": {
+            "code": 1,
+            "region": "Bone Bottom"
+        },
+        "Save: The Threadspun Town": {
+            "code": 2,
+            "region": "Citadel"
+        },
+        "Seek: The Great Citadel": {
+            "code": 3,
+            "region": "Citadel"
+        },
+        "Ring The Bell In The Marrow": {
+            "code": 4,
+            "region": "Citadel"
+        },
+        "Ring The Bell In Far Fields": {
+            "code": 5,
+            "region": "Far Fields"
+        },
+        "Ring The Bell In Greymoor": {
+            "code": 6,
+            "region": "Greymoor"
+        },
+        "Ring The Bell In Bellhart": {
+            "code": 7,
+            "region": "Bellhart"
+        },
+        "Ring The Bell In Shellwood": {
+            "code": 8,
+            "region": "Shellwood"
+        },
+        "Search: Silent Halls": {
+            "code": 9,
+            "region": "Citadel"
+        },
+        "Ascend: Pharloom's Crown": {
+            "code": 10,
+            "region": "Citadel"
+        },
+        "Learn: Conductor's Melody": {
+            "code": 11,
+            "region": "Citadel"
+        },
+        "Learn: Architect's Melody": {
+            "code": 12,
+            "region": "Citadel"
+        },
+        "Learn: Vaultkeeper's Melody": {
+            "code": 13,
+            "region": "Citadel"
+        },
+        "Defeat Grand Mother Silk": {
+            "code": 14,
+            "region": "Citadel"
+        },
+        "Seek: After The Fall": {
+            "code": 15,
+            "region": "Choral Chambers"
+        },
+        "Seek: Awaiting The End": {
+            "code": 16,
+            "region": "Moss Grotto"
+        },
+        "Defeat Bell Eater": {
+            "code": 17,
+            "region": "Choral Chambers"
+        },
+        "Seek: The Dark Below": {
+            "code": 18,
+            "region": "The Abyss"
+        },
+        "Ascend: Return To Pharloom": {
+            "code": 19,
+            "region": "The Abyss"
+        },
+        "Seek: Spell Seeker": {
+            "code": 20,
+            "region": "Citadel"
+        },
+        "Seek: The Old Hearts": {
+            "code": 21,
+            "region": "Bone Bottom"
+        },
+        "Defeat Crust King Khann": {
+            "code": 22,
+            "region": "Citadel"
+        },
+        "Defeat Nyleth": {
+            "code": 23,
+            "region": "Citadel"
+        },
+        "Defeat Skarrsinger Karmelita": {
+            "code": 24,
+            "region": "Citadel"
+        },
+        "Defeat Clover Dancers": {
+            "code": 25,
+            "region": "Citadel"
+        },
+        "Defeat Lost Lace": {
+            "code": 26,
+            "region": "Citadel"
+        },
+        "Weaver Spire: Silkspear": {
+            "code": 27,
+            "region": "Bone Bottom"
+        },
+        "Defeat Phantom": {
+            "code": 28,
+            "region": "The Mist"
+        },
+        "Weaver Spire: Thread Storm": {
+            "code": 29,
+            "region": "Greymoor"
+        },
+        "Weaver Spire: Sharpdart": {
+            "code": 30,
+            "region": "Wormways"
+        },
+        "Defeat First Sinner": {
+            "code": 31,
+            "region": "The Slab"
+        },
+        "Acquire Pale Nails": {
+            "code": 32,
+            "region": "The Cradle"
+        },
+        "Grant Flexile Spines": {
+            "code": 33,
+            "region": "Far Fields"
+        },
+        "Weaver Spire: Cling Grip": {
+            "code": 34,
+            "region": "Shellwood"
+        },
+        "Weaver Spire: Swift Step": {
+            "code": 35,
+            "region": "Deep Docks"
+        },
+        "Acquire Faydown Cloak": {
+            "code": 36,
+            "region": "Mount Fay"
+        },
+        "Weaver Spire: Clawline": {
+            "code": 37,
+            "region": "Underworks"
+        },
+        "Weaver Spire: Silk Soar": {
+            "code": 38,
+            "region": "The Abyss"
+        },
+        "Learn Needle Strike": {
+            "code": 39,
+            "region": "Blasted Steps"
+        },
+        "Defeat Bell Beast": {
+            "code": 40,
+            "region": "Bone Bottom"
+        },
+        "Defeat The Unravelled": {
+            "code": 41,
+            "region": "Whiteward"
+        },
+        "Defeat Lace (Cradle)": {
+            "code": 42,
+            "region": "The Cradle"
+        },
+        "Eva: 32 Slots": {
+            "code": 43,
+            "region": "Weavenest Atla"
+        },
+        "Pickup Farsight": {
+            "code": 44,
+            "region": "Weavenest Atla"
+        }
+    }
+}
