@@ -64,6 +64,9 @@
 	  <Reference Include="Assembly-CSharp">
 	    <HintPath>$(LibrariesPath)Assembly-CSharp.dll</HintPath>
 	  </Reference>
+		<Reference Include="Newtonsoft.Json">
+			<HintPath>$(LibrariesPath)Newtonsoft.Json.dll</HintPath>
+		</Reference>
 	  <Reference Include="com.rlabrecque.steamworks.net">
 	    <HintPath>$(LibrariesPath)com.rlabrecque.steamworks.net.dll</HintPath>
 	  </Reference> 

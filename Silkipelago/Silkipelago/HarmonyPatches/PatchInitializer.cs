@@ -21,6 +21,7 @@ namespace Silkipelago.HarmonyPatches
             FsmPatcher.Initialize(logger);
             ArchipelagoPatch.Initialize(logger);
             ArchipelagoPatch2.Initialize(logger);
+            ArchipelagoPatch3.Initialize(logger);
         }
 
         public void InitializeConnectedPatches(ILogger logger, Harmony harmony, SilksongArchipelagoClient archipelago, LocationChecker locationChecker)
