@@ -14,6 +14,7 @@ namespace Silkipelago.HarmonyPatches.Item
     public static class PlayerDataPatch
     {
         private static ILogger _logger;
+        private static List<String> randomizedItem;
 
         public static void Initialize(ILogger logger)
         {

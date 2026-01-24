@@ -11,9 +11,6 @@ using KaitoKid.ArchipelagoUtilities.Net.Extensions;
 using Newtonsoft.Json;
 using Silkipelago.HarmonyPatches.FsmGarbage;
 using Silkipelago.HarmonyPatches.Item;
-
-//using Silkipelago.HarmonyPatches.FsmGarbage;
-//using Silkipelago.HarmonyPatches.Item;
 using Silkipelago.HarmonyPatches.Steam;
 using Silkipelago.Logging;
 using Silkipelago.Serialization;
@@ -37,17 +34,13 @@ namespace Silkipelago
     {
         public static Plugin Instance;
 
-        private ILogger _logger;
-        private ConfigEntry<KeyCode>? _addMoneyKey;
-        private ConfigEntry<string>? _hostName;
-        private ConfigEntry<string>? _port;
-        private ConfigEntry<string>? _slotName;
-        private PatchInitializer _patcherInitializer;
-        private Harmony _harmony;
-        private SilksongArchipelagoClient _archipelago;
-        private ArchipelagoConnectionInfo APConnectionInfo { get; set; }
-        private LocationChecker _locationChecker;
-        private SilksongItemManager _itemManager;
+        static private ILogger _logger;
+        static private ConfigEntry<KeyCode>? _addMoneyKey;
+        static private PatchInitializer _patcherInitializer;
+        static private Harmony _harmony;
+        static private SilksongArchipelagoClient _archipelago;
+        static private LocationChecker _locationChecker;
+        static private SilksongItemManager _itemManager;
 
       
         private void Awake()
@@ -70,61 +63,23 @@ namespace Silkipelago
             }
 
             InitializeBeforeConnection();
-            ConnectToArchipelago(InitializeAfterConnection);
 
             _logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
         }
+
+        
+
 
         private void InitializeBeforeConnection()
         {
             _patcherInitializer = new PatchInitializer();
             _patcherInitializer.InitializeEarlyPatches(_logger, _harmony);
-            _archipelago = new SilksongArchipelagoClient(_logger, OnItemReceived);
-        }
-
-        private void InitializeAfterConnection()
-        {
-            _locationChecker = new LocationChecker(_logger, _archipelago, new List<string>());
-            _itemManager = new SilksongItemManager(_logger, _archipelago, new List<ReceivedItem>());
-
-            _locationChecker.VerifyNewLocationChecksWithArchipelago();
-            _locationChecker.SendAllLocationChecks();
-            _patcherInitializer.InitializeConnectedPatches(_logger, _harmony, _archipelago, _locationChecker);
-            _itemManager.ReceiveAllNewItems();
-        }
-
-        private void ConnectToArchipelago(Action actionAfterConnection)
-        {
-            if (APConnectionInfo == null)
-            {
-                Logger.LogMessage($"Tried to connect, but no information provided!");
-                return;
-            }
-
-            if (_archipelago.IsConnected)
-            {
-                Logger.LogMessage($"Tried to connect, but already connected!");
-                return;
-            }
-
-            var connectionResult = _archipelago.ConnectToMultiworld(APConnectionInfo);
-            if (!connectionResult.Success || !_archipelago.IsConnected)
-            {
-                APConnectionInfo = null;
-                var userMessage =
-                    $"Could not connect to archipelago.{Environment.NewLine}Message: {connectionResult.Message}{Environment.NewLine}Please verify the connection info and that the server is available.{Environment.NewLine}";
-                Logger.LogError(userMessage);
-                //const int timeUntilClose = 10;
-                //Logger.LogError($"The Game will close in {timeUntilClose} seconds");
-                //Thread.Sleep(timeUntilClose * 1000);
-                //Application.Quit();
-                return;
-            }
-
-            Logger.LogMessage($"Connected to Archipelago as {_archipelago.SlotData.SlotName}.");
-            actionAfterConnection?.Invoke();
-            return;
-
+            SilksongArchipelagoClient.Instance = new SilksongArchipelagoClient(_logger, OnItemReceived);
+            _archipelago = SilksongArchipelagoClient.Instance;
+            SilksongLocationChecker.Instance = new SilksongLocationChecker(_logger, _archipelago, new List<string>());
+            _locationChecker = SilksongLocationChecker.Instance;
+            SilksongItemManager.Instance = new SilksongItemManager(_logger, _archipelago, new List<ReceivedItem>());
+            _itemManager = SilksongItemManager.Instance;
         }
 
         private void OnItemReceived(ReceivedItemsHelper receivedItemsHelper)

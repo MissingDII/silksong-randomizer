@@ -19,6 +19,8 @@ namespace Silkipelago.HarmonyPatches
             SteamValidationPatch.Initialize(logger);
             PlayerDataPatch.Initialize(logger);
             FsmPatcher.Initialize(logger);
+            ArchipelagoPatch.Initialize(logger);
+            ArchipelagoPatch2.Initialize(logger);
         }
 
         public void InitializeConnectedPatches(ILogger logger, Harmony harmony, SilksongArchipelagoClient archipelago, LocationChecker locationChecker)

@@ -3,25 +3,43 @@ using Archipelago.MultiClient.Net.BounceFeatures.DeathLink;
 using Archipelago.MultiClient.Net.Helpers;
 using Archipelago.MultiClient.Net.MessageLog.Messages;
 using KaitoKid.ArchipelagoUtilities.Net.Client;
+using KaitoKid.ArchipelagoUtilities.Net.Interfaces;
+using KaitoKid.ArchipelagoUtilities.Net.Json;
 using KaitoKid.Utilities.Interfaces;
 using Silkipelago.IdTables;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using KaitoKid.ArchipelagoUtilities.Net.Interfaces;
-using KaitoKid.ArchipelagoUtilities.Net.Json;
+using UnityEngine.Accessibility;
 
 namespace Silkipelago.Archipelago
 {
     public class SilksongArchipelagoClient : ArchipelagoClient
     {
         private static IJsonLoader _jsonLoader = new NewtonsoftJsonLoader();
+        private static SilksongArchipelagoClient _instance;
 
         public override string GameName => "Silksong";
         public override string ModName => "Silkipelago";
         public override string ModVersion => MyPluginInfo.PLUGIN_VERSION;
 
         public SilksongSlotData SlotData => (SilksongSlotData)_slotData;
+
+
+        public static SilksongArchipelagoClient Instance
+        {
+            set {
+                _instance = value; 
+            }
+            get
+            {
+                if (_instance == null)
+                {
+                    throw new InvalidOperationException("SilksongArchipelagoClient not initialized. Set Instance first.");
+                }
+                return _instance;
+            }
+        }
 
         public SilksongArchipelagoClient(ILogger logger, Action<ReceivedItemsHelper> itemReceivedFunction) :
             base(logger, new DataPackageCache(new ArchipelagoItemLoader(_jsonLoader), new SilksongLocationLoader(logger, _jsonLoader), "silksong", "BepInEx", "plugins", "Silkipelago", "IdTables"), itemReceivedFunction)
@@ -47,7 +65,6 @@ namespace Silkipelago.Archipelago
         protected override void KillPlayerDeathLink(DeathLink deathLinkOptions)
         {
             Logger.LogInfo($"Receiving Death Link from {deathLinkOptions.Source} ({deathLinkOptions.Cause})");
-            // DeathlinkPatches.ReceiveDeathink();
         }
     }
 }

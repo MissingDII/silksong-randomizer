@@ -6,7 +6,10 @@ namespace Silkipelago.Logging
 {
     public class LogHandler : Logger
     {
+
         private readonly ManualLogSource _logger;
+
+
 
         public LogHandler(ManualLogSource logger)
         {
