@@ -18,13 +18,6 @@ namespace Silkipelago.HarmonyPatches.FsmGarbage
             _logger = logger;
         }
 
-        // private void SerializeValue(
-        //   JsonWriter writer,
-        //   object? value,
-        //   JsonContract? valueContract,
-        //   JsonProperty? member,
-        //   JsonContainerContract? containerContract,
-        //   JsonProperty? containerProperty)
         public static bool Prefix(
             object __instance,
             JsonWriter writer,
@@ -36,30 +29,66 @@ namespace Silkipelago.HarmonyPatches.FsmGarbage
         {
             try
             {
-                if (value == null)
+                if (value == null || valueContract == null)
                 {
                     return MethodPrefix.RUN_ORIGINAL_METHOD;
                 }
 
                 var converter = member?.Converter ?? containerProperty?.ItemConverter ?? containerContract?.ItemConverter ?? valueContract.Converter;
 
-                var jsonSerializerInternalWriterType = AccessTools.TypeByName("JsonSerializerInternalWriter");
-                // internal readonly JsonSerializer Serializer;
-                var serializerField = jsonSerializerInternalWriterType.GetField("Serializer", BindingFlags.NonPublic | BindingFlags.Instance);
+                // Get the JsonSerializerInternalWriter type with full assembly name
+                var writerType = AccessTools.TypeByName("Newtonsoft.Json.Serialization.JsonSerializerInternalWriter, Newtonsoft.Json");
+                if (writerType == null)
+                {
+                    _logger.LogWarning("Could not find JsonSerializerInternalWriter type");
+                    return MethodPrefix.RUN_ORIGINAL_METHOD;
+                }
+
+                // Get the Serializer field
+                var serializerField = AccessTools.Field(writerType, "Serializer");
+                if (serializerField == null)
+                {
+                    _logger.LogWarning("Could not find Serializer field");
+                    return MethodPrefix.RUN_ORIGINAL_METHOD;
+                }
+
                 var serializerValue = serializerField.GetValue(__instance);
+                if (serializerValue == null)
+                {
+                    _logger.LogWarning("Serializer field value is null");
+                    return MethodPrefix.RUN_ORIGINAL_METHOD;
+                }
 
-                // internal JsonConverter? GetMatchingConverter(Type type)
+                // Try to get the matching converter method
                 var JsonSerializerType = typeof(JsonSerializer);
-                var getMatchingConverterMethod = JsonSerializerType.GetMethod("GetMatchingConverter", BindingFlags.NonPublic | BindingFlags.Instance, null, new[] { typeof(Type) }, null);
+                var getMatchingConverterMethod = AccessTools.Method(
+                    JsonSerializerType, 
+                    "GetMatchingConverter", 
+                    new[] { typeof(Type) }
+                );
 
-                var matchingConverter = getMatchingConverterMethod.Invoke(serializerValue, new []{valueContract.UnderlyingType}) as JsonConverter;
+                if (getMatchingConverterMethod == null)
+                {
+                    _logger.LogWarning("Could not find GetMatchingConverter method on JsonSerializer");
+                    return MethodPrefix.RUN_ORIGINAL_METHOD;
+                }
 
-                converter = matchingConverter ?? valueContract.InternalConverter;
+                try
+                {
+                    var matchingConverter = getMatchingConverterMethod.Invoke(serializerValue, new object[] { valueContract.UnderlyingType }) as JsonConverter;
+                    converter = matchingConverter ?? valueContract.InternalConverter;
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogWarning($"Failed to invoke GetMatchingConverter: {ex.Message}");
+                    converter = valueContract.InternalConverter;
+                }
 
                 if (converter != null && converter.CanWrite)
                 {
-                    _logger.LogInfo("new value for converter");
-                    _logger.LogInfo(value?.ToString() ?? "null");
+                    _logger.LogInfo("Converter found:");
+                    _logger.LogInfo($"  Type: {converter.GetType().Name}");
+                    _logger.LogInfo($"  Value: {value?.ToString() ?? "null"}");
                     _logger.LogDebugPatchIsRunning(
                         nameof(ArchipelagoPatch3),
                         "SerializeValue",
@@ -72,7 +101,7 @@ namespace Silkipelago.HarmonyPatches.FsmGarbage
             }
             catch (Exception ex)
             {
-                _logger.LogErrorException(nameof(ArchipelagoPatch2), nameof(Prefix), ex);
+                _logger.LogErrorException(nameof(ArchipelagoPatch3), nameof(Prefix), ex);
                 return MethodPrefix.RUN_ORIGINAL_METHOD;
             }
         }
