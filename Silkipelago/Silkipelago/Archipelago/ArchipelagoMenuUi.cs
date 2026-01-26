@@ -2,6 +2,7 @@
 using KaitoKid.ArchipelagoUtilities.Net.Client;
 using Silkipelago.Items;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -45,7 +46,6 @@ namespace Silkipelago.Archipelago
 
         public static void UpdateCursorState()
         {
-            // Call this from Plugin.Update() to keep cursor visible while menu is open
             if (_visible)
             {
                 Cursor.visible = true;
@@ -103,6 +103,9 @@ namespace Silkipelago.Archipelago
             CreateLabeledInput(panel.transform, "Port:", y - 45, out _port);
             CreateLabeledInput(panel.transform, "Slot Name:", y - 90, out _slot);
 
+            // Set up tab navigation between input fields
+            SetupTabNavigation(_hostname, _port, _slot);
+
             CreateButton(
                 panel.transform,
                 "Connect to Archipelago",
@@ -154,6 +157,7 @@ namespace Silkipelago.Archipelago
 
             input = fieldGO.AddComponent<InputField>();
             input.contentType = InputField.ContentType.Standard;
+            input.lineType = InputField.LineType.SingleLine;
 
             // Create input text display
             var textGO = new GameObject("Text");
@@ -181,9 +185,10 @@ namespace Silkipelago.Archipelago
             placeholderGO.transform.SetParent(fieldGO.transform, false);
 
             var placeholder = placeholderGO.AddComponent<UIText>();
-            placeholder.text = "...";
+            placeholder.text = "Enter " + label.ToLower().Replace(":", "");
             placeholder.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
             placeholder.fontSize = 14;
+            placeholder.fontStyle = FontStyle.Italic;
             placeholder.alignment = TextAnchor.MiddleLeft;
             placeholder.color = new Color(0.6f, 0.6f, 0.6f, 0.6f);
             placeholder.horizontalOverflow = HorizontalWrapMode.Overflow;
@@ -196,6 +201,16 @@ namespace Silkipelago.Archipelago
             placeholderRt.offsetMax = new Vector2(-8, 0);
 
             input.placeholder = placeholder;
+        }
+
+        private static void SetupTabNavigation(InputField first, InputField second, InputField third)
+        {
+            // Add custom Tab handler component to each field
+            var inputFields = new List<InputField> { first, second, third };
+
+            first.gameObject.AddComponent<TabNavigationHandler>().Setup(inputFields, 0);
+            second.gameObject.AddComponent<TabNavigationHandler>().Setup(inputFields, 1);
+            third.gameObject.AddComponent<TabNavigationHandler>().Setup(inputFields, 2);
         }
 
         private static UIText CreateText(
@@ -216,21 +231,13 @@ namespace Silkipelago.Archipelago
             txt.alignment = anchor;
             txt.color = new Color(0.9f, 0.85f, 0.75f);
             txt.horizontalOverflow = HorizontalWrapMode.Wrap;
-            txt.verticalOverflow = VerticalWrapMode.Overflow;  // Changed from Truncate
+            txt.verticalOverflow = VerticalWrapMode.Overflow;
 
             var rt = txt.GetComponent<RectTransform>();
-            rt.sizeDelta = new Vector2(400, 80);  // Increased height from 40 to 80
+            rt.sizeDelta = new Vector2(400, 80);
             rt.anchoredPosition = pos;
 
             return txt;
-        }
-
-        private static UIText CreatePlaceholder(Transform parent, string text)
-        {
-            var t = CreateText(parent, text, Vector2.zero, 14, TextAnchor.MiddleLeft);
-            t.color = new Color(0.6f, 0.6f, 0.6f, 0.6f);
-            t.horizontalOverflow = HorizontalWrapMode.Overflow;
-            return t;
         }
 
         private static void CreateButton(
@@ -280,12 +287,7 @@ namespace Silkipelago.Archipelago
             var existingSystem = UnityEngine.Object.FindFirstObjectByType<EventSystem>();
 
             if (existingSystem != null)
-            {
-                _logger.LogInfo($"Found existing EventSystem: {existingSystem.gameObject.name}");
                 return;
-            }
-
-            _logger.LogWarning("No EventSystem found, creating a new one");
 
             var eventSystemGO = new GameObject("EventSystem");
             eventSystemGO.AddComponent<EventSystem>();
@@ -300,7 +302,6 @@ namespace Silkipelago.Archipelago
                 $"Connect requested: {_hostname.text}:{_port.text} ({_slot.text})"
             );
 
-            // Parse connection info from input fields
             if (!int.TryParse(_port.text, out var port))
             {
                 _logger.LogError("Port must be a valid number");
@@ -308,10 +309,7 @@ namespace Silkipelago.Archipelago
             }
 
             APConnectionInfo = new ArchipelagoConnectionInfo(_hostname.text, port, _slot.text, false);
-
-            // Pass action as lambda, not as immediate call
             ConnectToArchipelago(() => InitializeAfterConnection());
-
             Hide();
         }
 
@@ -354,6 +352,43 @@ namespace Silkipelago.Archipelago
 
             _logger.LogMessage($"Connected to Archipelago as {archipelago.SlotData.SlotName}.");
             actionAfterConnection?.Invoke();
+        }
+    }
+
+    /// <summary>
+    /// Helper component to handle Tab navigation for InputFields
+    /// </summary>
+    public class TabNavigationHandler : MonoBehaviour, IUpdateSelectedHandler
+    {
+        private List<InputField> _inputFields;
+        private int _currentIndex;
+
+        public void Setup(List<InputField> inputFields, int currentIndex)
+        {
+            _inputFields = inputFields;
+            _currentIndex = currentIndex;
+        }
+
+        public void OnUpdateSelected(BaseEventData eventData)
+        {
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                int nextIndex;
+                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                {
+                    // Shift+Tab: go to previous
+                    nextIndex = (_currentIndex - 1 + _inputFields.Count) % _inputFields.Count;
+                }
+                else
+                {
+                    // Tab: go to next
+                    nextIndex = (_currentIndex + 1) % _inputFields.Count;
+                }
+
+                var nextField = _inputFields[nextIndex];
+                EventSystem.current.SetSelectedGameObject(nextField.gameObject);
+                nextField.ActivateInputField();
+            }
         }
     }
 }
