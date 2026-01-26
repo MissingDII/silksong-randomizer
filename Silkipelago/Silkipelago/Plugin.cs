@@ -22,13 +22,13 @@ namespace Silkipelago
     {
         public static Plugin Instance;
 
-        static private ILogger _logger;
-        static private ConfigEntry<KeyCode>? _addMoneyKey;
-        static private PatchInitializer _patcherInitializer;
-        static private Harmony _harmony;
-        static private SilksongArchipelagoClient _archipelago;
-        static private LocationChecker _locationChecker;
-        static private SilksongItemManager _itemManager;
+        private static ILogger _logger;
+        private static ConfigEntry<KeyCode>? _addMoneyKey;
+        private static PatchInitializer _patcherInitializer;
+        private static Harmony _harmony;
+        private static SilksongArchipelagoClient _archipelago;
+        private static LocationChecker _locationChecker;
+        private static SilksongItemManager _itemManager;
 
       
         private void Awake()
