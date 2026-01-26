@@ -27,9 +27,7 @@ namespace Silkipelago.Archipelago
 
         public static SilksongArchipelagoClient Instance
         {
-            set {
-                _instance = value; 
-            }
+            set => _instance = value;
             get
             {
                 if (_instance == null)

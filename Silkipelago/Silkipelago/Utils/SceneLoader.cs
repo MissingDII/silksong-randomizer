@@ -2,10 +2,11 @@
 
 namespace Silkipelago.Utils
 {
-    static class SceneLoader
+    internal static class SceneLoader
     {
 
-        public static void LoadScene(string sceneName,string entryGateName, GatePosition position) {
+        public static void LoadScene(string sceneName, string entryGateName, GatePosition position)
+        {
             GameManager.instance.BeginSceneTransition(new GameManager.SceneLoadInfo
             {
                 SceneName = sceneName, // scene you want to go to

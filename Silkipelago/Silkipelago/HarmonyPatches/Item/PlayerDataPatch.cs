@@ -28,7 +28,7 @@ namespace Silkipelago.HarmonyPatches.Item
                 _logger.LogInfo($"Modified value is {boolName}");
                 if (boolName.Equals("hasDash"))
                 {
-                   // _logger.LogInfo(Environment.StackTrace);
+                    // _logger.LogInfo(Environment.StackTrace);
                     return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
                 }
                 else

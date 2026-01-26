@@ -6,16 +6,13 @@ using System.Collections.Generic;
 
 namespace Silkipelago.Archipelago
 {
-    public class SilksongLocationChecker  : LocationChecker
+    public class SilksongLocationChecker : LocationChecker
     {
-        static SilksongLocationChecker _instance;
+        private static SilksongLocationChecker _instance;
 
         public static SilksongLocationChecker Instance
         {
-            set
-            {
-                _instance = value;
-            }
+            set => _instance = value;
             get
             {
                 if (_instance == null)

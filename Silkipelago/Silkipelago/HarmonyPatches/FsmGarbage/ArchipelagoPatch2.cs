@@ -31,9 +31,9 @@ namespace Silkipelago.HarmonyPatches.FsmGarbage
                 _logger.LogInfo("new value for converter");
                 _logger.LogInfo(value?.ToString() ?? "null");
                 _logger.LogDebugPatchIsRunning(
-                    nameof(ArchipelagoPatch2), 
-                    "SerializeConvertable", 
-                    nameof(ArchipelagoPatch2), 
+                    nameof(ArchipelagoPatch2),
+                    "SerializeConvertable",
+                    nameof(ArchipelagoPatch2),
                     nameof(Prefix)
                 );
 

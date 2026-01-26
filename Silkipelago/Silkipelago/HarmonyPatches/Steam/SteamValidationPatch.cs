@@ -1,8 +1,8 @@
-﻿using System;
-using HarmonyLib;
+﻿using HarmonyLib;
 using KaitoKid.ArchipelagoUtilities.Net.Constants;
 using KaitoKid.Utilities.Interfaces;
 using Steamworks;
+using System;
 
 namespace Silkipelago.HarmonyPatches.Steam
 {

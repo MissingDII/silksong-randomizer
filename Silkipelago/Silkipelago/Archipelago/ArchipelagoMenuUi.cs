@@ -79,7 +79,7 @@ namespace Silkipelago.Archipelago
         {
             EnsureEventSystem();
 
-            GameObject canvasGO = new GameObject("ArchipelagoCanvas");
+            var canvasGO = new GameObject("ArchipelagoCanvas");
             _canvas = canvasGO.AddComponent<Canvas>();
             _canvas.renderMode = RenderMode.ScreenSpaceOverlay;
             _canvas.sortingOrder = 10000;
@@ -88,7 +88,7 @@ namespace Silkipelago.Archipelago
                 CanvasScaler.ScaleMode.ScaleWithScreenSize;
             canvasGO.AddComponent<GraphicRaycaster>();
 
-            GameObject panel = CreatePanel(canvasGO.transform);
+            var panel = CreatePanel(canvasGO.transform);
 
             CreateText(
                 panel.transform,
@@ -115,15 +115,15 @@ namespace Silkipelago.Archipelago
 
         private static GameObject CreatePanel(Transform parent)
         {
-            GameObject panel = new GameObject("Panel");
+            var panel = new GameObject("Panel");
             panel.transform.SetParent(parent, false);
 
-            UIImage img = panel.AddComponent<UIImage>();
+            var img = panel.AddComponent<UIImage>();
             img.color = new Color(0.05f, 0.05f, 0.05f, 0.85f);
 
             panel.AddComponent<CanvasGroup>();
 
-            RectTransform rt = panel.GetComponent<RectTransform>();
+            var rt = panel.GetComponent<RectTransform>();
             rt.sizeDelta = new Vector2(520, 360);
             rt.anchoredPosition = Vector2.zero;
 
@@ -139,16 +139,16 @@ namespace Silkipelago.Archipelago
             out InputField input)
         {
             // Create label with appropriate sizing
-            UIText labelText = CreateText(parent, label, new Vector2(-170, y), 16, TextAnchor.MiddleLeft);
+            var labelText = CreateText(parent, label, new Vector2(-170, y), 16, TextAnchor.MiddleLeft);
             labelText.GetComponent<RectTransform>().sizeDelta = new Vector2(150, 32);
 
-            GameObject fieldGO = new GameObject(label + "Input");
+            var fieldGO = new GameObject(label + "Input");
             fieldGO.transform.SetParent(parent, false);
 
-            UIImage bg = fieldGO.AddComponent<UIImage>();
+            var bg = fieldGO.AddComponent<UIImage>();
             bg.color = new Color(0.15f, 0.15f, 0.15f, 1f);
 
-            RectTransform rt = fieldGO.GetComponent<RectTransform>();
+            var rt = fieldGO.GetComponent<RectTransform>();
             rt.sizeDelta = new Vector2(260, 32);
             rt.anchoredPosition = new Vector2(60, y);
 
@@ -156,10 +156,10 @@ namespace Silkipelago.Archipelago
             input.contentType = InputField.ContentType.Standard;
 
             // Create input text display
-            GameObject textGO = new GameObject("Text");
+            var textGO = new GameObject("Text");
             textGO.transform.SetParent(fieldGO.transform, false);
-            
-            UIText text = textGO.AddComponent<UIText>();
+
+            var text = textGO.AddComponent<UIText>();
             text.text = "";
             text.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
             text.fontSize = 14;
@@ -167,8 +167,8 @@ namespace Silkipelago.Archipelago
             text.color = new Color(0.9f, 0.85f, 0.75f);
             text.horizontalOverflow = HorizontalWrapMode.Overflow;
             text.verticalOverflow = VerticalWrapMode.Truncate;
-            
-            RectTransform textRt = text.GetComponent<RectTransform>();
+
+            var textRt = text.GetComponent<RectTransform>();
             textRt.anchorMin = Vector2.zero;
             textRt.anchorMax = Vector2.one;
             textRt.offsetMin = new Vector2(8, 0);
@@ -177,10 +177,10 @@ namespace Silkipelago.Archipelago
             input.textComponent = text;
 
             // Create placeholder
-            GameObject placeholderGO = new GameObject("Placeholder");
+            var placeholderGO = new GameObject("Placeholder");
             placeholderGO.transform.SetParent(fieldGO.transform, false);
-            
-            UIText placeholder = placeholderGO.AddComponent<UIText>();
+
+            var placeholder = placeholderGO.AddComponent<UIText>();
             placeholder.text = "...";
             placeholder.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
             placeholder.fontSize = 14;
@@ -188,8 +188,8 @@ namespace Silkipelago.Archipelago
             placeholder.color = new Color(0.6f, 0.6f, 0.6f, 0.6f);
             placeholder.horizontalOverflow = HorizontalWrapMode.Overflow;
             placeholder.verticalOverflow = VerticalWrapMode.Truncate;
-            
-            RectTransform placeholderRt = placeholder.GetComponent<RectTransform>();
+
+            var placeholderRt = placeholder.GetComponent<RectTransform>();
             placeholderRt.anchorMin = Vector2.zero;
             placeholderRt.anchorMax = Vector2.one;
             placeholderRt.offsetMin = new Vector2(8, 0);
@@ -205,10 +205,10 @@ namespace Silkipelago.Archipelago
             int size,
             TextAnchor anchor)
         {
-            GameObject go = new GameObject("Text");
+            var go = new GameObject("Text");
             go.transform.SetParent(parent, false);
 
-            UIText txt = go.AddComponent<UIText>();
+            var txt = go.AddComponent<UIText>();
             txt.text = content;
             txt.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
             txt.fontSize = size;
@@ -218,7 +218,7 @@ namespace Silkipelago.Archipelago
             txt.horizontalOverflow = HorizontalWrapMode.Wrap;
             txt.verticalOverflow = VerticalWrapMode.Overflow;  // Changed from Truncate
 
-            RectTransform rt = txt.GetComponent<RectTransform>();
+            var rt = txt.GetComponent<RectTransform>();
             rt.sizeDelta = new Vector2(400, 80);  // Increased height from 40 to 80
             rt.anchoredPosition = pos;
 
@@ -227,7 +227,7 @@ namespace Silkipelago.Archipelago
 
         private static UIText CreatePlaceholder(Transform parent, string text)
         {
-            UIText t = CreateText(parent, text, Vector2.zero, 14, TextAnchor.MiddleLeft);
+            var t = CreateText(parent, text, Vector2.zero, 14, TextAnchor.MiddleLeft);
             t.color = new Color(0.6f, 0.6f, 0.6f, 0.6f);
             t.horizontalOverflow = HorizontalWrapMode.Overflow;
             return t;
@@ -239,25 +239,25 @@ namespace Silkipelago.Archipelago
             Vector2 pos,
             System.Action onClick)
         {
-            GameObject btnGO = new GameObject("Button");
+            var btnGO = new GameObject("Button");
             btnGO.transform.SetParent(parent, false);
 
-            UIImage img = btnGO.AddComponent<UIImage>();
+            var img = btnGO.AddComponent<UIImage>();
             img.color = new Color(0.25f, 0.22f, 0.18f);
 
-            Button btn = btnGO.AddComponent<Button>();
+            var btn = btnGO.AddComponent<Button>();
             btn.onClick.AddListener(() => onClick());
             btn.navigation = new Navigation { mode = Navigation.Mode.None };
 
-            RectTransform rt = btnGO.GetComponent<RectTransform>();
+            var rt = btnGO.GetComponent<RectTransform>();
             rt.sizeDelta = new Vector2(280, 42);
             rt.anchoredPosition = pos;
 
             // Create button text with proper sizing
-            GameObject textGO = new GameObject("Text");
+            var textGO = new GameObject("Text");
             textGO.transform.SetParent(btnGO.transform, false);
 
-            UIText txt = textGO.AddComponent<UIText>();
+            var txt = textGO.AddComponent<UIText>();
             txt.text = label;
             txt.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
             txt.fontSize = 14;
@@ -266,7 +266,7 @@ namespace Silkipelago.Archipelago
             txt.horizontalOverflow = HorizontalWrapMode.Overflow;
             txt.verticalOverflow = VerticalWrapMode.Overflow;
 
-            RectTransform textRt = textGO.GetComponent<RectTransform>();
+            var textRt = textGO.GetComponent<RectTransform>();
             textRt.anchorMin = Vector2.zero;
             textRt.anchorMax = Vector2.one;
             textRt.offsetMin = Vector2.zero;
@@ -277,8 +277,8 @@ namespace Silkipelago.Archipelago
 
         private static void EnsureEventSystem()
         {
-            EventSystem existingSystem = UnityEngine.Object.FindFirstObjectByType<EventSystem>();
-            
+            var existingSystem = UnityEngine.Object.FindFirstObjectByType<EventSystem>();
+
             if (existingSystem != null)
             {
                 _logger.LogInfo($"Found existing EventSystem: {existingSystem.gameObject.name}");
@@ -286,8 +286,8 @@ namespace Silkipelago.Archipelago
             }
 
             _logger.LogWarning("No EventSystem found, creating a new one");
-            
-            GameObject eventSystemGO = new GameObject("EventSystem");
+
+            var eventSystemGO = new GameObject("EventSystem");
             eventSystemGO.AddComponent<EventSystem>();
             eventSystemGO.AddComponent<StandaloneInputModule>();
         }
@@ -299,9 +299,9 @@ namespace Silkipelago.Archipelago
             _logger.LogInfo(
                 $"Connect requested: {_hostname.text}:{_port.text} ({_slot.text})"
             );
-            
+
             // Parse connection info from input fields
-            if (!int.TryParse(_port.text, out int port))
+            if (!int.TryParse(_port.text, out var port))
             {
                 _logger.LogError("Port must be a valid number");
                 return;
@@ -329,7 +329,7 @@ namespace Silkipelago.Archipelago
         private static void ConnectToArchipelago(Action actionAfterConnection)
         {
             var archipelago = SilksongArchipelagoClient.Instance;
-            
+
             if (APConnectionInfo == null)
             {
                 _logger.LogMessage($"Tried to connect, but no information provided!");

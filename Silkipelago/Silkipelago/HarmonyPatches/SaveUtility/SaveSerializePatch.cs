@@ -6,7 +6,7 @@ using System.Reflection;
 namespace Silkipelago.HarmonyPatches.SaveUtility
 {
     [HarmonyPatch(typeof(SaveDataUtility), "CreateJsonObjects")]
-    class SaveSerializePatch
+    internal class SaveSerializePatch
     {
         private static ILogger _logger;
 
@@ -14,7 +14,7 @@ namespace Silkipelago.HarmonyPatches.SaveUtility
         {
             _logger = logger;
         }
-        static void Postfix(object __instance)
+        private static void Postfix(object __instance)
         {
             _logger.LogDebugPatchIsRunning(nameof(SaveDataUtility), "CreateJsonObjects", nameof(SaveSerializePatch), nameof(Postfix));
             // Access private static field via reflection
@@ -26,7 +26,7 @@ namespace Silkipelago.HarmonyPatches.SaveUtility
                 return;
 
             var converters = serializer.Converters;
-            for (int i = converters.Count - 1; i >= 0; i--)
+            for (var i = converters.Count - 1; i >= 0; i--)
             {
                 if (converters[i].GetType().Name == "PermissionsEnumConverter")
                 {

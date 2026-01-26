@@ -61,8 +61,8 @@ namespace Silkipelago.HarmonyPatches.FsmGarbage
                 // Try to get the matching converter method
                 var JsonSerializerType = typeof(JsonSerializer);
                 var getMatchingConverterMethod = AccessTools.Method(
-                    JsonSerializerType, 
-                    "GetMatchingConverter", 
+                    JsonSerializerType,
+                    "GetMatchingConverter",
                     new[] { typeof(Type) }
                 );
 

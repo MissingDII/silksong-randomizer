@@ -1,9 +1,9 @@
 ﻿using KaitoKid.ArchipelagoUtilities.Net.Client;
 using KaitoKid.ArchipelagoUtilities.Net.Interfaces;
+using KaitoKid.Utilities.Interfaces;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.IO;
-using KaitoKid.Utilities.Interfaces;
 
 namespace Silkipelago.IdTables
 {
@@ -31,7 +31,7 @@ namespace Silkipelago.IdTables
 
         public ArchipelagoLocation Load(string locationName, JToken locationJson)
         {
-            var id = locationJson[(object)"code"].Value<long>();
+            var id = locationJson["code"].Value<long>();
             return new ArchipelagoLocation(locationName, id);
         }
     }

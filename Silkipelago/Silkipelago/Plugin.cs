@@ -1,17 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using Archipelago.MultiClient.Net.Helpers;
 using BepInEx;
 using BepInEx.Configuration;
 using GlobalEnums;
 using HarmonyLib;
 using KaitoKid.ArchipelagoUtilities.Net;
-using KaitoKid.ArchipelagoUtilities.Net.Client;
-using Silkipelago.Logging;
-using Silkipelago.Utils;
-using System.IO;
-using Archipelago.MultiClient.Net.Helpers;
 using Silkipelago.Archipelago;
 using Silkipelago.HarmonyPatches;
 using Silkipelago.Items;
+using Silkipelago.Logging;
+using Silkipelago.Utils;
+using System.IO;
 using UnityEngine;
 using ILogger = KaitoKid.Utilities.Interfaces.ILogger;
 
@@ -30,7 +28,7 @@ namespace Silkipelago
         private static LocationChecker _locationChecker;
         private static SilksongItemManager _itemManager;
 
-      
+
         private void Awake()
         {
 
@@ -55,7 +53,7 @@ namespace Silkipelago
             _logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
         }
 
-        
+
 
 
         private void InitializeBeforeConnection()
@@ -64,9 +62,9 @@ namespace Silkipelago
             _patcherInitializer.InitializeEarlyPatches(_logger, _harmony);
             SilksongArchipelagoClient.Instance = new SilksongArchipelagoClient(_logger, OnItemReceived);
             _archipelago = SilksongArchipelagoClient.Instance;
-            SilksongLocationChecker.Instance = new SilksongLocationChecker(_logger, _archipelago, new List<string>());
+            SilksongLocationChecker.Instance = new SilksongLocationChecker(_logger, _archipelago, []);
             _locationChecker = SilksongLocationChecker.Instance;
-            SilksongItemManager.Instance = new SilksongItemManager(_logger, _archipelago, new List<ReceivedItem>());
+            SilksongItemManager.Instance = new SilksongItemManager(_logger, _archipelago, []);
             _itemManager = SilksongItemManager.Instance;
         }
 

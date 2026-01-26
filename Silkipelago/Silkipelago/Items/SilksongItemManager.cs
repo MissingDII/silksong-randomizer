@@ -10,14 +10,11 @@ namespace Silkipelago.Items
     public class SilksongItemManager : ItemManager
     {
         private ILogger _logger;
-        static SilksongItemManager _instance;
+        private static SilksongItemManager _instance;
 
         public static SilksongItemManager Instance
         {
-            set
-            {
-                _instance = value;
-            }
+            set => _instance = value;
             get
             {
                 if (_instance == null)
