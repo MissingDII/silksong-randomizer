@@ -2,10 +2,8 @@
 using KaitoKid.ArchipelagoUtilities.Net.Constants;
 using KaitoKid.Utilities.Interfaces;
 using Silkipelago.HarmonyPatches.Steam;
-using Steamworks;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Silkipelago.HarmonyPatches.Item
 {

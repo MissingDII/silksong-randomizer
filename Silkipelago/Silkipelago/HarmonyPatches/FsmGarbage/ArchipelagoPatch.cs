@@ -3,8 +3,6 @@ using HarmonyLib;
 using KaitoKid.ArchipelagoUtilities.Net.Constants;
 using KaitoKid.Utilities.Interfaces;
 using Newtonsoft.Json;
-using Silkipelago.HarmonyPatches.Steam;
-using Steamworks;
 
 namespace Silkipelago.HarmonyPatches.FsmGarbage
 {

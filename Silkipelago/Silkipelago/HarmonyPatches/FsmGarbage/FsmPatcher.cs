@@ -1,11 +1,6 @@
 ﻿using HarmonyLib;
-using HutongGames.PlayMaker;
 using KaitoKid.ArchipelagoUtilities.Net.Constants;
 using KaitoKid.Utilities.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using UnityEngine.UIElements;
 
 namespace Silkipelago.HarmonyPatches.FsmGarbage
 {

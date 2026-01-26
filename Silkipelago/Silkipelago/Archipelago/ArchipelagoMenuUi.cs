@@ -1,10 +1,7 @@
 ﻿using BepInEx.Logging;
-using HarmonyLib;
-using KaitoKid.ArchipelagoUtilities.Net;
 using KaitoKid.ArchipelagoUtilities.Net.Client;
 using Silkipelago.Items;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;

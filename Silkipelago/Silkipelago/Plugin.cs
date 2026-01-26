@@ -1,30 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using Archipelago;
+﻿using System.Collections.Generic;
 using BepInEx;
 using BepInEx.Configuration;
 using GlobalEnums;
 using HarmonyLib;
 using KaitoKid.ArchipelagoUtilities.Net;
 using KaitoKid.ArchipelagoUtilities.Net.Client;
-using KaitoKid.ArchipelagoUtilities.Net.Extensions;
-using Newtonsoft.Json;
-using Silkipelago.HarmonyPatches.FsmGarbage;
-using Silkipelago.HarmonyPatches.Item;
-using Silkipelago.HarmonyPatches.Steam;
 using Silkipelago.Logging;
-using Silkipelago.Serialization;
 using Silkipelago.Utils;
 using System.IO;
-using System.Runtime.CompilerServices;
-using System.Threading;
-using System.Threading.Tasks;
 using Archipelago.MultiClient.Net.Helpers;
 using Silkipelago.Archipelago;
 using Silkipelago.HarmonyPatches;
 using Silkipelago.Items;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using ILogger = KaitoKid.Utilities.Interfaces.ILogger;
 
 namespace Silkipelago

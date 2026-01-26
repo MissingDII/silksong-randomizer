@@ -1,10 +1,8 @@
 ﻿using KaitoKid.ArchipelagoUtilities.Net.Client;
 using KaitoKid.ArchipelagoUtilities.Net.Interfaces;
 using Newtonsoft.Json.Linq;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using KaitoKid.Utilities.Interfaces;
 
 namespace Silkipelago.IdTables

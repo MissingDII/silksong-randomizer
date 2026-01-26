@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Silkipelago.Constants
+﻿namespace Silkipelago.Constants
 {
     /// <summary>
     /// PlayerData string constants for tracking defeated enemies and bosses in Silksong.

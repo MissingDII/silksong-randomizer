@@ -1,11 +1,7 @@
 ﻿using HarmonyLib;
 using KaitoKid.Utilities.Interfaces;
 using Newtonsoft.Json;
-using Silkipelago.HarmonyPatches.Item;
-using System;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 
 namespace Silkipelago.HarmonyPatches.SaveUtility
 {
