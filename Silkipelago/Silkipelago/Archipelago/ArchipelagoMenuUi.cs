@@ -1,7 +1,7 @@
 ﻿using BepInEx.Logging;
-using KaitoKid.ArchipelagoUtilities.Net.Client;
-using Silkipelago.Items;
 using System;
+using Archipelago.MultiClient.Net;
+using Archipelago.MultiClient.Net.Enums;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -301,13 +301,13 @@ namespace Silkipelago.Archipelago
             );
 
             // Parse connection info from input fields
-            if (!int.TryParse(_port.text, out var port))
-            {
-                _logger.LogError("Port must be a valid number");
-                return;
-            }
+            //if (!int.TryParse(_port.text, out var port))
+            //{
+            //    _logger.LogError("Port must be a valid number");
+            //    return;
+            //}
 
-            APConnectionInfo = new ArchipelagoConnectionInfo(_hostname.text, port, _slot.text, false);
+            APConnectionInfo = new ArchipelagoConnectionInfo(_hostname.text, 38281, _slot.text, false);
 
             // Pass action as lambda, not as immediate call
             ConnectToArchipelago(() => InitializeAfterConnection());
@@ -317,18 +317,18 @@ namespace Silkipelago.Archipelago
 
         private static void InitializeAfterConnection()
         {
-            var locationChecker = SilksongLocationChecker.Instance;
-            var itemManager = SilksongItemManager.Instance;
-            var archipelago = SilksongArchipelagoClient.Instance;
+            //var locationChecker = SilksongLocationChecker.Instance;
+            //var itemManager = SilksongItemManager.Instance;
+            //var archipelago = SilksongArchipelagoClient.Instance;
 
-            locationChecker.VerifyNewLocationChecksWithArchipelago();
-            locationChecker.SendAllLocationChecks();
-            itemManager.ReceiveAllNewItems();
+            //locationChecker.VerifyNewLocationChecksWithArchipelago();
+            //locationChecker.SendAllLocationChecks();
+            //itemManager.ReceiveAllNewItems();
         }
 
         private static void ConnectToArchipelago(Action actionAfterConnection)
         {
-            var archipelago = SilksongArchipelagoClient.Instance;
+            // var archipelago = SilksongArchipelagoClient.Instance;
 
             if (APConnectionInfo == null)
             {
@@ -336,23 +336,32 @@ namespace Silkipelago.Archipelago
                 return;
             }
 
-            if (archipelago.IsConnected)
-            {
-                _logger.LogMessage($"Tried to connect, but already connected!");
-                return;
-            }
+            //if (archipelago.IsConnected)
+            //{
+            //    _logger.LogMessage($"Tried to connect, but already connected!");
+            //    return;
+            //}
 
-            var connectionResult = archipelago.ConnectToMultiworld(APConnectionInfo);
-            if (!connectionResult.Success || !archipelago.IsConnected)
+            var _session = ArchipelagoSessionFactory.CreateSession("localhost", 38281);
+
+            var itemsHandling = ItemsHandlingFlags.AllItems;
+            var apVersion = new Version(0, 6, 1);
+            var tags = new[] { "AP" };
+            var game = "Silksong";
+            var slotName = "Hornet";
+            var result = _session.TryConnectAndLogin(game, slotName, itemsHandling, apVersion, tags, null, "");
+
+            //var connectionResult = archipelago.ConnectToMultiworld(APConnectionInfo);
+            if (!result.Successful)// || !archipelago.IsConnected)
             {
                 APConnectionInfo = null;
                 var userMessage =
-                    $"Could not connect to archipelago.{Environment.NewLine}Message: {connectionResult.Message}{Environment.NewLine}Please verify the connection info and that the server is available.{Environment.NewLine}";
+                    $"Could not connect to archipelago.{Environment.NewLine}Message: {result.ToString()}{Environment.NewLine}Please verify the connection info and that the server is available.{Environment.NewLine}";
                 _logger.LogError(userMessage);
                 return;
             }
 
-            _logger.LogMessage($"Connected to Archipelago as {archipelago.SlotData.SlotName}.");
+            _logger.LogMessage($"Connected to Archipelago as {slotName}.");
             actionAfterConnection?.Invoke();
         }
     }

@@ -1,5 +1,4 @@
 ﻿using HarmonyLib;
-using KaitoKid.ArchipelagoUtilities.Net.Constants;
 using KaitoKid.Utilities.Interfaces;
 using Steamworks;
 using System;
@@ -25,12 +24,12 @@ namespace Silkipelago.HarmonyPatches.Steam
                 _logger.LogDebugPatchIsRunning(nameof(SteamAPI), nameof(SteamAPI.RestartAppIfNecessary), nameof(SteamValidationPatch), nameof(Prefix));
 
                 __result = false;
-                return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
+                return false;
             }
             catch (Exception ex)
             {
                 _logger.LogErrorException(nameof(SteamValidationPatch), nameof(Prefix), ex);
-                return MethodPrefix.RUN_ORIGINAL_METHOD;
+                return true;
             }
         }
     }

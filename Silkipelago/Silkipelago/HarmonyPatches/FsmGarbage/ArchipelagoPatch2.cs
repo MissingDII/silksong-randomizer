@@ -1,5 +1,4 @@
 ﻿using HarmonyLib;
-using KaitoKid.ArchipelagoUtilities.Net.Constants;
 using KaitoKid.Utilities.Interfaces;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -28,21 +27,21 @@ namespace Silkipelago.HarmonyPatches.FsmGarbage
         {
             try
             {
-                _logger.LogInfo("new value for converter");
-                _logger.LogInfo(value?.ToString() ?? "null");
-                _logger.LogDebugPatchIsRunning(
-                    nameof(ArchipelagoPatch2),
-                    "SerializeConvertable",
-                    nameof(ArchipelagoPatch2),
-                    nameof(Prefix)
-                );
+                //_logger.LogInfo("new value for converter");
+                //_logger.LogInfo(value?.ToString() ?? "null");
+                //_logger.LogDebugPatchIsRunning(
+                //    nameof(ArchipelagoPatch2),
+                //    "SerializeConvertable",
+                //    nameof(ArchipelagoPatch2),
+                //    nameof(Prefix)
+                //);
 
-                return MethodPrefix.RUN_ORIGINAL_METHOD;
+                return true;
             }
             catch (Exception ex)
             {
                 _logger.LogErrorException(nameof(ArchipelagoPatch2), nameof(Prefix), ex);
-                return MethodPrefix.RUN_ORIGINAL_METHOD;
+                return true;
             }
         }
     }

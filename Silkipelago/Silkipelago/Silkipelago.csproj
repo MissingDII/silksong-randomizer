@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" InitialTargets="Test">
 
 	<PropertyGroup>
-		<TargetFramework>netstandard2.1</TargetFramework>
+		<TargetFramework>net462</TargetFramework>
 		<AssemblyName>Silkipelago</AssemblyName>
 		<Product>Archipelago Silksong Implementation</Product>
 		<Version>1.0.0</Version>
@@ -27,17 +27,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Archipelago.MultiClient.Net" Version="6.7.0" />
-		<PackageReference Include="Archipelago.MultiClient.Net.Analyzers" Version="2.0.1">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
 		<PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
 		<PackageReference Include="BepInEx.Core" Version="5.*" />
 		<PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
-		<PackageReference Include="KaitoKid.ArchipelagoUtilities.Net" Version="3.1.7" />
-		<PackageReference Include="KaitoKid.Utilities.Interfaces" Version="3.1.7" />
-    <PackageReference Include="Silksong.AssetHelper" Version="1.0.1" />
 		<PackageReference Include="UnityEngine.Modules" Version="6000.0.50" IncludeAssets="compile" />
 	</ItemGroup>
 
@@ -61,14 +53,20 @@
 	</Target>
 
 	<ItemGroup>
+	  <Reference Include="Archipelago.MultiClient.Net">
+	    <HintPath>..\..\..\Archipelago.MultiClient.Net\Archipelago.MultiClient.Net\bin\Debug\net462\Archipelago.MultiClient.Net.dll</HintPath>
+	  </Reference>
 	  <Reference Include="Assembly-CSharp">
 	    <HintPath>$(LibrariesPath)Assembly-CSharp.dll</HintPath>
 	  </Reference>
-		<Reference Include="Newtonsoft.Json">
-			<HintPath>$(LibrariesPath)Newtonsoft.Json.dll</HintPath>
-		</Reference>
 	  <Reference Include="com.rlabrecque.steamworks.net">
 	    <HintPath>$(LibrariesPath)com.rlabrecque.steamworks.net.dll</HintPath>
+	  </Reference>
+	  <Reference Include="KaitoKid.Utilities.Interfaces">
+	    <HintPath>..\..\..\ArchipelagoUtilities\KaitoKid.ArchipelagoUtilities.Net\KaitoKid.ArchipelagoUtilities.Net\bin\Debug\net462\KaitoKid.Utilities.Interfaces.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Newtonsoft.Json">
+	    <HintPath>..\..\..\Archipelago.MultiClient.Net\Archipelago.MultiClient.Net\bin\Debug\net45\Newtonsoft.Json.dll</HintPath>
 	  </Reference> 
 	  <Reference Include="PlayMaker">
 	    <HintPath>$(LibrariesPath)PlayMaker.dll</HintPath>
@@ -92,7 +90,6 @@
 		<Copy SourceFiles="$(OutputPath)$(ProjectName).dll" DestinationFolder="$(PluginsPath)" ContinueOnError="false" />
 		<Copy SourceFiles="$(OutputPath)$(ProjectName).pdb" DestinationFolder="$(PluginsPath)" ContinueOnError="false" />
 		<Copy SourceFiles="$(OutputPath)Archipelago.MultiClient.Net.dll" DestinationFolder="$(PluginsPath)" ContinueOnError="false" />
-		<Copy SourceFiles="$(OutputPath)KaitoKid.ArchipelagoUtilities.Net.dll" DestinationFolder="$(PluginsPath)" ContinueOnError="false" />
 		<Copy SourceFiles="$(OutputPath)KaitoKid.Utilities.Interfaces.dll" DestinationFolder="$(PluginsPath)" ContinueOnError="false" />
 		<Copy SourceFiles="$(OutputPath)IdTables\silksong_item_table.json" DestinationFolder="$(PluginsPath)IdTables\" ContinueOnError="false" />
 		<Copy SourceFiles="$(OutputPath)IdTables\silksong_location_table.json" DestinationFolder="$(PluginsPath)IdTables\" ContinueOnError="false" />

@@ -1,5 +1,4 @@
 ﻿using HarmonyLib;
-using KaitoKid.ArchipelagoUtilities.Net;
 using KaitoKid.Utilities.Interfaces;
 using Silkipelago.Archipelago;
 using Silkipelago.HarmonyPatches.FsmGarbage;
@@ -20,14 +19,14 @@ namespace Silkipelago.HarmonyPatches
             SteamValidationPatch.Initialize(logger);
             PlayerDataPatch.Initialize(logger);
             FsmPatcher.Initialize(logger);
-            ArchipelagoPatch.Initialize(logger);
-            ArchipelagoPatch2.Initialize(logger);
-            ArchipelagoPatch3.Initialize(logger);
-            SaveSerializePatch.Initialize(logger);
+            //ArchipelagoPatch.Initialize(logger);
+            //ArchipelagoPatch2.Initialize(logger);
+            //ArchipelagoPatch3.Initialize(logger);
+            //SaveSerializePatch.Initialize(logger);
         }
 
-        public void InitializeConnectedPatches(ILogger logger, Harmony harmony, SilksongArchipelagoClient archipelago, LocationChecker locationChecker)
-        {
-        }
+        //public void InitializeConnectedPatches(ILogger logger, Harmony harmony, SilksongArchipelagoClient archipelago, LocationChecker locationChecker)
+        //{
+        //}
     }
 }

@@ -1,5 +1,4 @@
 ﻿using HarmonyLib;
-using KaitoKid.ArchipelagoUtilities.Net.Constants;
 using KaitoKid.Utilities.Interfaces;
 using Silkipelago.HarmonyPatches.Steam;
 using System;
@@ -29,17 +28,17 @@ namespace Silkipelago.HarmonyPatches.Item
                 if (boolName.Equals("hasDash"))
                 {
                     // _logger.LogInfo(Environment.StackTrace);
-                    return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
+                    return false;
                 }
                 else
                 {
-                    return MethodPrefix.RUN_ORIGINAL_METHOD;
+                    return true;
                 }
             }
             catch (Exception ex)
             {
                 _logger.LogErrorException(nameof(SteamValidationPatch), nameof(Prefix), ex);
-                return MethodPrefix.RUN_ORIGINAL_METHOD;
+                return true;
             }
         }
     }

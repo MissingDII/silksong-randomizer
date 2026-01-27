@@ -1,5 +1,4 @@
 ﻿using HarmonyLib;
-using KaitoKid.ArchipelagoUtilities.Net.Constants;
 using KaitoKid.Utilities.Interfaces;
 
 namespace Silkipelago.HarmonyPatches.FsmGarbage
@@ -21,7 +20,7 @@ namespace Silkipelago.HarmonyPatches.FsmGarbage
             {
                 //_logger.LogDebug($"[FSM LOG] FSM: {__instance.FsmName}, GO: {__instance.gameObject.name}, Event: {eventName}");
             }
-            return MethodPrefix.RUN_ORIGINAL_METHOD;
+            return true;
         }
     }
 }

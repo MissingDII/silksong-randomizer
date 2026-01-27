@@ -3,10 +3,8 @@ using BepInEx;
 using BepInEx.Configuration;
 using GlobalEnums;
 using HarmonyLib;
-using KaitoKid.ArchipelagoUtilities.Net;
 using Silkipelago.Archipelago;
 using Silkipelago.HarmonyPatches;
-using Silkipelago.Items;
 using Silkipelago.Logging;
 using Silkipelago.Utils;
 using System.IO;
@@ -24,9 +22,9 @@ namespace Silkipelago
         private static ConfigEntry<KeyCode>? _addMoneyKey;
         private static PatchInitializer _patcherInitializer;
         private static Harmony _harmony;
-        private static SilksongArchipelagoClient _archipelago;
-        private static LocationChecker _locationChecker;
-        private static SilksongItemManager _itemManager;
+        //private static SilksongArchipelagoClient _archipelago;
+        //private static LocationChecker _locationChecker;
+        //private static SilksongItemManager _itemManager;
 
 
         private void Awake()
@@ -60,22 +58,22 @@ namespace Silkipelago
         {
             _patcherInitializer = new PatchInitializer();
             _patcherInitializer.InitializeEarlyPatches(_logger, _harmony);
-            SilksongArchipelagoClient.Instance = new SilksongArchipelagoClient(_logger, OnItemReceived);
-            _archipelago = SilksongArchipelagoClient.Instance;
-            SilksongLocationChecker.Instance = new SilksongLocationChecker(_logger, _archipelago, []);
-            _locationChecker = SilksongLocationChecker.Instance;
-            SilksongItemManager.Instance = new SilksongItemManager(_logger, _archipelago, []);
-            _itemManager = SilksongItemManager.Instance;
+            //SilksongArchipelagoClient.Instance = new SilksongArchipelagoClient(_logger, OnItemReceived);
+            //_archipelago = SilksongArchipelagoClient.Instance;
+            //SilksongLocationChecker.Instance = new SilksongLocationChecker(_logger, _archipelago, []);
+            //_locationChecker = SilksongLocationChecker.Instance;
+            //SilksongItemManager.Instance = new SilksongItemManager(_logger, _archipelago, []);
+            //_itemManager = SilksongItemManager.Instance;
         }
 
         private void OnItemReceived(ReceivedItemsHelper receivedItemsHelper)
         {
-            if (_archipelago == null || _itemManager == null || !_archipelago.IsConnected)
-            {
-                return;
-            }
+            //if (_archipelago == null || _itemManager == null || !_archipelago.IsConnected)
+            //{
+            //    return;
+            //}
 
-            _itemManager.ReceiveAllNewItems();
+            // _itemManager.ReceiveAllNewItems();
         }
 
         public void Update()
