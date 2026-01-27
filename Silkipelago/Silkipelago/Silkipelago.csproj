@@ -67,9 +67,12 @@
 		<Reference Include="Newtonsoft.Json">
 			<HintPath>$(LibrariesPath)Newtonsoft.Json.dll</HintPath>
 		</Reference>
+    <Reference Include="Newtonsoft.Json.UnityConverters">
+      <HintPath>$(LibrariesPath)Newtonsoft.Json.UnityConverters.dll</HintPath>
+    </Reference>
 	  <Reference Include="com.rlabrecque.steamworks.net">
 	    <HintPath>$(LibrariesPath)com.rlabrecque.steamworks.net.dll</HintPath>
-	  </Reference> 
+	  </Reference>
 	  <Reference Include="PlayMaker">
 	    <HintPath>$(LibrariesPath)PlayMaker.dll</HintPath>
 	  </Reference>

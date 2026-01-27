@@ -4,6 +4,7 @@ using BepInEx.Configuration;
 using GlobalEnums;
 using HarmonyLib;
 using KaitoKid.ArchipelagoUtilities.Net;
+using Newtonsoft.Json.UnityConverters;
 using Silkipelago.Archipelago;
 using Silkipelago.HarmonyPatches;
 using Silkipelago.Items;
@@ -49,6 +50,8 @@ namespace Silkipelago
             }
 
             InitializeBeforeConnection();
+            //refresh settings so that patch will apply from json
+            UnityConverterInitializer.RefreshSettingsFromConfig();
 
             _logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
         }

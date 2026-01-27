@@ -6,6 +6,7 @@ using Silkipelago.HarmonyPatches.FsmGarbage;
 using Silkipelago.HarmonyPatches.Item;
 using Silkipelago.HarmonyPatches.SaveUtility;
 using Silkipelago.HarmonyPatches.Steam;
+using Silkipelago.HarmonyPatches.Unity;
 
 namespace Silkipelago.HarmonyPatches
 {
@@ -20,10 +21,8 @@ namespace Silkipelago.HarmonyPatches
             SteamValidationPatch.Initialize(logger);
             PlayerDataPatch.Initialize(logger);
             FsmPatcher.Initialize(logger);
-            ArchipelagoPatch.Initialize(logger);
-            ArchipelagoPatch2.Initialize(logger);
-            ArchipelagoPatch3.Initialize(logger);
             SaveSerializePatch.Initialize(logger);
+            UnityConverterInitializerPatch.Initialize(logger);
         }
 
         public void InitializeConnectedPatches(ILogger logger, Harmony harmony, SilksongArchipelagoClient archipelago, LocationChecker locationChecker)
