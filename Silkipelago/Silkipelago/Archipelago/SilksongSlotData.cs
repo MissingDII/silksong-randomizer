@@ -1,4 +1,5 @@
-﻿using KaitoKid.ArchipelagoUtilities.Net.Interfaces;
+﻿using BepInEx;
+using KaitoKid.ArchipelagoUtilities.Net.Interfaces;
 using KaitoKid.Utilities.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace Silkipelago.Archipelago
             Goal = GetSlotSetting(GOAL_KEY, Goal.BeatNightmare);
             DeathLink = GetSlotSetting(DEATH_LINK_KEY, false);
             Seed = GetSlotSetting(SEED_KEY, 0);
-            MultiworldVersion = GetSlotSetting(MULTIWORLD_VERSION_KEY, "");
+            MultiworldVersion = GetSlotSetting(MULTIWORLD_VERSION_KEY, MyPluginInfo.PLUGIN_VERSION);
         }
 
         private int GetSlotSetting(IEnumerable<string> keys, int defaultValue)
