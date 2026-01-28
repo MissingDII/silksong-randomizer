@@ -99,9 +99,19 @@ namespace Silkipelago.Archipelago
             );
 
             float y = 40;
-            CreateLabeledInput(panel.transform, "Hostname:", y, out _hostname);
-            CreateLabeledInput(panel.transform, "Port:", y - 45, out _port);
-            CreateLabeledInput(panel.transform, "Slot Name:", y - 90, out _slot);
+
+            var defaultHostname = "archipelago.gg";
+            var defaultPort = "00000";
+            var defaultSlotName = "";
+#if DEBUG
+            defaultHostname = "localhost";
+            defaultPort = "38281";
+            defaultSlotName = "Hornet";
+#endif
+
+            CreateLabeledInput(panel.transform, "Hostname:", y, defaultHostname, out _hostname);
+            CreateLabeledInput(panel.transform, "Port:", y - 45, defaultPort, out _port);
+            CreateLabeledInput(panel.transform, "Slot Name:", y - 90, defaultSlotName, out _slot);
 
             // Set up tab navigation between input fields
             SetupTabNavigation(_hostname, _port, _slot);
@@ -139,6 +149,7 @@ namespace Silkipelago.Archipelago
             Transform parent,
             string label,
             float y,
+            string defaultValue,
             out InputField input)
         {
             // Create label with appropriate sizing
@@ -164,7 +175,7 @@ namespace Silkipelago.Archipelago
             textGO.transform.SetParent(fieldGO.transform, false);
 
             var text = textGO.AddComponent<UIText>();
-            text.text = "";
+            text.text = defaultValue;
             text.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
             text.fontSize = 14;
             text.alignment = TextAnchor.MiddleLeft;
