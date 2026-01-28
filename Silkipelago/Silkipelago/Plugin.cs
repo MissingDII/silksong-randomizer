@@ -56,9 +56,6 @@ namespace Silkipelago
             _logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
         }
 
-
-
-
         private void InitializeBeforeConnection()
         {
             _patcherInitializer = new PatchInitializer();
