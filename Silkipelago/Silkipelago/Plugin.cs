@@ -6,6 +6,7 @@ using HarmonyLib;
 using KaitoKid.ArchipelagoUtilities.Net;
 using Newtonsoft.Json.UnityConverters;
 using Silkipelago.Archipelago;
+using Silkipelago.Archipelago.UI;
 using Silkipelago.HarmonyPatches;
 using Silkipelago.Items;
 using Silkipelago.Logging;
