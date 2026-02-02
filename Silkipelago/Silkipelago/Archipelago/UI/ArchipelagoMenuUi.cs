@@ -169,7 +169,9 @@ namespace Silkipelago.Archipelago.UI
             rt.anchoredPosition = new Vector2(60, y);
 
             input = fieldGO.AddComponent<ClickOnlyInputField>();
+            fieldGO.AddComponent<InputFieldSelectionFix>();
             input.contentType = ClickOnlyInputField.ContentType.Standard;
+
             input.lineType = ClickOnlyInputField.LineType.SingleLine;
 
             var nav = input.navigation;
@@ -385,43 +387,6 @@ namespace Silkipelago.Archipelago.UI
 
             _logger.LogMessage($"Connected to Archipelago as {archipelago.SlotData.SlotName}.");
             actionAfterConnection?.Invoke();
-        }
-    }
-
-    /// <summary>
-    /// Helper component to handle Tab navigation for ClickOnlyInputFields
-    /// </summary>
-    public class TabNavigationHandler : MonoBehaviour, IUpdateSelectedHandler
-    {
-        private List<ClickOnlyInputField> _ClickOnlyInputFields;
-        private int _currentIndex;
-
-        public void Setup(List<ClickOnlyInputField> ClickOnlyInputFields, int currentIndex)
-        {
-            _ClickOnlyInputFields = ClickOnlyInputFields;
-            _currentIndex = currentIndex;
-        }
-
-        public void OnUpdateSelected(BaseEventData eventData)
-        {
-            if (Input.GetKeyDown(KeyCode.Tab))
-            {
-                int nextIndex;
-                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-                {
-                    // Shift+Tab: go to previous
-                    nextIndex = (_currentIndex - 1 + _ClickOnlyInputFields.Count) % _ClickOnlyInputFields.Count;
-                }
-                else
-                {
-                    // Tab: go to next
-                    nextIndex = (_currentIndex + 1) % _ClickOnlyInputFields.Count;
-                }
-
-                var nextField = _ClickOnlyInputFields[nextIndex];
-                EventSystem.current.SetSelectedGameObject(nextField.gameObject);
-                nextField.ActivateInputField();
-            }
         }
     }
 }

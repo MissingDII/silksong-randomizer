@@ -1,47 +1,54 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-namespace Silkipelago.Archipelago.UI
+public class SelectionGuard : MonoBehaviour
 {
-    public class SelectionGuard : MonoBehaviour
+    public static SelectionGuard Instance;
+
+    private InputField _lockedField;
+    private bool _enabledGuard;
+
+    void Awake()
     {
-        public static SelectionGuard Instance;
+        Instance = this;
+    }
 
-        private GameObject _lastAllowedSelection;
-        private bool _enabledGuard;
+    public void EnableGuard()
+    {
+        _enabledGuard = true;
+    }
 
-        void Awake()
-        {
-            Instance = this;
-        }
+    public void DisableGuard()
+    {
+        _enabledGuard = false;
+        _lockedField = null;
+    }
 
-        public void EnableGuard()
-        {
-            _enabledGuard = true;
-        }
+    public void AllowSelection(InputField field)
+    {
+        if (!_enabledGuard) return;
+        _lockedField = field;
+    }
 
-        public void DisableGuard()
-        {
-            _enabledGuard = false;
-            _lastAllowedSelection = null;
-        }
+    void LateUpdate()
+    {
+        if (!_enabledGuard || _lockedField == null)
+            return;
 
-        public void AllowSelection(GameObject go)
-        {
-            if (!_enabledGuard) return;
-            _lastAllowedSelection = go;
-        }
+        var current = EventSystem.current.currentSelectedGameObject;
 
-        void LateUpdate()
-        {
-            if (!_enabledGuard) return;
+        if (current == _lockedField.gameObject)
+            return;
 
-            var current = EventSystem.current.currentSelectedGameObject;
+        // restore focus WITHOUT triggering SelectAll loop
+        EventSystem.current.SetSelectedGameObject(_lockedField.gameObject);
 
-            if (current != null && current != _lastAllowedSelection)
-            {
-                EventSystem.current.SetSelectedGameObject(_lastAllowedSelection);
-            }
-        }
+        if (!_lockedField.isFocused)
+            _lockedField.ActivateInputField();
+
+        // restore caret position instead of selecting all
+        int caret = _lockedField.caretPosition;
+        _lockedField.caretPosition = caret;
     }
 }
