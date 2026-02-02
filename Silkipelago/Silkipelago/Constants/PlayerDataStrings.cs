@@ -1,4 +1,6 @@
-﻿namespace Silkipelago.Constants
+﻿using System.Collections.Generic;
+
+namespace Silkipelago.Constants
 {
     /// <summary>
     /// PlayerData string constants for tracking defeated enemies and bosses in Silksong.
@@ -13,6 +15,17 @@
         public const string HAS_DOUBLE_JUMP = "hasDoubleJump";
         public const string HAS_SUPER_JUMP = "hasSuperJump";
         public const string HAS_HARPOON_DASH = "hasHarpoonDash";
+
+        public static readonly List<string> ABILITIES = new()
+        {
+            HAS_NEEDOLIN,
+            HAS_DASH,
+            HAS_DRIFTER_CLOAK,
+            HAS_WALL_JUMP,
+            HAS_DOUBLE_JUMP,
+            HAS_SUPER_JUMP,
+            HAS_HARPOON_DASH
+        };
 
         // Pilgrims
         public const string DICE_PILGRIM_DEFEATED = "dicePilgrimDefeated";
@@ -89,5 +102,67 @@
         // Cogwork Enemies
         public const string COGWORK_DANCERS_DEFEATED = "defeatedCogworkDancers";
         public const string CLOVER_DANCERS_DEFEATED = "defeatedCloverDancers";
+
+        public static readonly List<string> BOSSES = new()
+        {
+            DICE_PILGRIM_DEFEATED,
+            BONEGRAVE_ROSARY_PILGRIM_DEFEATED,
+            SHELLWOOD_ROSARY_PILGRIM_DEFEATED,
+            GARMOND_LIBRARY_HORNET_DEFEATED,
+            GARMOND_BLACK_THREAD_DEFEATED,
+            MOSS_MOTHHER_DEFEATED,
+            MOSS_EVOLVER_DEFEATED,
+            SKULL_KING_DEFEATED,
+            SKULL_KING_BLACK_THREADED_DEFEATED,
+            BELL_BEAST_DEFEATED,
+            SONG_GOLEM_DEFEATED,
+            LACE_DEFEATED,
+            CROW_COURT_DEFEATED,
+            WISP_PYRE_EFFIGY_DEFEATED,
+            SPINNER_DEFEATED,
+            SPINNER_DEFEATED_AFTER_TIME,
+            SPLINTER_QUEEN_DEFEATED,
+            SETH_DEFEATED,
+            FLOWER_QUEEN_DEFEATED,
+            ROACHKEEPER_CHEF_DEFEATED,
+            PHANTOM_DEFEATED,
+            SWAMP_SHAMAN_DEFEATED,
+            CORAL_KING_DEFEATED,
+            LAST_JUDGE_DEFEATED,
+            GREY_WARRIOR_DEFEATED,
+            FIRST_WEAVER_DEFEATED,
+            BROOD_MOTHER_DEFEATED,
+            SONG_CHEVALIER_BOSS_DEFEATED,
+            WHITE_CLOVER_STAG_DEFEATED,
+            LACE_TOWER_DEFEATED,
+            WARD_BOSS_DEFEATED,
+            COG_7_AUTOMATON_DEFEATED,
+            BONE_TOWN_BOSS_DEFEATED,
+            ROOF_CRAB_DEFEATED,
+            DOCK_FOREMAN_DEFEATED,
+            BONE_FLYER_GIANT_DEFEATED,
+            BONE_FLYER_GIANT_GOLEM_SCENE_DEFEATED,
+            ROCK_ROLLER_BONE_01_DEFEATED,
+            ROCK_ROLLER_BONE_06_DEFEATED,
+            ROCK_ROLLER_BONE_07_DEFEATED,
+            ANT_GUARD_02_DEFEATED,
+            ANT_QUEEN_DEFEATED,
+            ANT_QUEEN_AFTER_RED_MEMORY_DEFEATED,
+            ANT_TRAPPER_DEFEATED,
+            CORAL_DRILLERS_DEFEATED,
+            CORAL_BRIDGE_GUARD_1_DEFEATED,
+            CORAL_BRIDGE_GUARD_2_DEFEATED,
+            CORAL_DRILLER_SOLO_DEFEATED,
+            ZAP_CORE_ENEMY_DEFEATED,
+            ZAP_GUARD_1_DEFEATED,
+            VAMPIRE_GNAT_BOSS_DEFEATED,
+            VAMPIRE_GNAT_DEFEATED_BEFORE_CARAVAN_ARRIVED,
+            GUARD_BONE_EAST_25_DEFEATED,
+            SHELLWOOD_SLABFLY_DEFEATED,
+            TROBBIO_DEFEATED,
+            TORMENTED_TROBBIO_DEFEATED,
+            COGWORK_DANCERS_DEFEATED,
+            CLOVER_DANCERS_DEFEATED
+        };
     }
 }
