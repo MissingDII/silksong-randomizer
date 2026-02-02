@@ -27,11 +27,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Archipelago.MultiClient.Net" Version="6.7.0" />
-		<PackageReference Include="Archipelago.MultiClient.Net.Analyzers" Version="2.0.1">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
+		<PackageReference Include="Archipelago.MultiClient.Net" Version="6.6.0" />
 		<PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
 		<PackageReference Include="BepInEx.Core" Version="5.*" />
 		<PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
@@ -50,6 +46,7 @@
 		<GamePath>$(SteamAppsPath)\common\Hollow Knight Silksong\</GamePath>
 		<LibrariesPath>$(GamePath)Hollow Knight Silksong_Data\Managed\</LibrariesPath>
 		<PluginsPath>$(GamePath)BepInEx\plugins\Silkipelago\</PluginsPath>
+        <MultiClientPath>..\..\..\Archipelago.MultiClient.Net\Archipelago.MultiClient.Net\bin\Debug\netstandard2.0\</MultiClientPath>
 		<BepInExLauncher>Hollow Knight Silksong.exe</BepInExLauncher>
 	</PropertyGroup>
 
@@ -58,9 +55,13 @@
 		<Message Text="GamePath: $(GamePath)" Importance="high" />
 		<Message Text="PluginsPath: $(PluginsPath)" Importance="high" />
 		<Message Text="LibrariesPath: $(LibrariesPath)" Importance="high" />
+        <Message Text="MultiClientPath: $(MultiClientPath)" Importance="high" />
 	</Target>
 
 	<ItemGroup>
+        <Reference Include="Archipelago.MultiClient.Net">
+            <HintPath>..\..\..\Archipelago.MultiClient.Net\Archipelago.MultiClient.Net\bin\Debug\netstandard2.0\Archipelago.MultiClient.Net.dll</HintPath>
+        </Reference>
 	  <Reference Include="Assembly-CSharp">
 	    <HintPath>$(LibrariesPath)Assembly-CSharp.dll</HintPath>
 	  </Reference>
@@ -94,7 +95,7 @@
 		<Message Text="Copying the mod to the plugins folder $(OutputPath)$(ProjectName).dll -&gt; $(PluginsPath)" Importance="High" />
 		<Copy SourceFiles="$(OutputPath)$(ProjectName).dll" DestinationFolder="$(PluginsPath)" ContinueOnError="false" />
 		<Copy SourceFiles="$(OutputPath)$(ProjectName).pdb" DestinationFolder="$(PluginsPath)" ContinueOnError="false" />
-		<Copy SourceFiles="$(OutputPath)Archipelago.MultiClient.Net.dll" DestinationFolder="$(PluginsPath)" ContinueOnError="false" />
+		<Copy SourceFiles="$(MultiClientPath)Archipelago.MultiClient.Net.dll" DestinationFolder="$(PluginsPath)" ContinueOnError="false" />
 		<Copy SourceFiles="$(OutputPath)KaitoKid.ArchipelagoUtilities.Net.dll" DestinationFolder="$(PluginsPath)" ContinueOnError="false" />
 		<Copy SourceFiles="$(OutputPath)KaitoKid.Utilities.Interfaces.dll" DestinationFolder="$(PluginsPath)" ContinueOnError="false" />
 		<Copy SourceFiles="$(OutputPath)IdTables\silksong_item_table.json" DestinationFolder="$(PluginsPath)IdTables\" ContinueOnError="false" />
