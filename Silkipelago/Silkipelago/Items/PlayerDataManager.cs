@@ -6,7 +6,7 @@ namespace Silkipelago.Items
     {
         public static void ChangeBooleanValue(string booleanName, Boolean newValue)
         {
-            PlayerData instance = PlayerData.instance;
+            var instance = PlayerData.instance;
             instance.SetBool(booleanName, newValue);
         }
     }
