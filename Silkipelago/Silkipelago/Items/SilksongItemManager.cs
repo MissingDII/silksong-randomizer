@@ -2,6 +2,7 @@
 using KaitoKid.ArchipelagoUtilities.Net.Client;
 using KaitoKid.Utilities.Interfaces;
 using Silkipelago.Archipelago;
+using Silkipelago.Constants;
 using System;
 using System.Collections.Generic;
 
@@ -33,6 +34,13 @@ namespace Silkipelago.Items
 
         protected override void ProcessItem(ReceivedItem receivedItem, bool immediatelyIfPossible)
         {
+            String inGameName = ArchipelagoIds.GetInGameName(receivedItem.ItemName);
+            if (PlayerDataStrings.ABILITIES.Contains(inGameName) || PlayerDataStrings.BOSSES.Contains(inGameName))
+            {
+                // must be a boss defeated or ability to modifiy on playerData
+                PlayerDataManager.ChangeBooleanValue(inGameName, true);
+            }
+
             //if (TryHandleReceivedPerk(receivedItem))
             //{
             //    return;

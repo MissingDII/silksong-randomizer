@@ -5,7 +5,7 @@ namespace Silkipelago.Constants
     /// <summary>
     /// PlayerData string constants for tracking defeated enemies and bosses in Silksong.
     /// </summary>
-    internal class PlayerDataStrings
+    public static class PlayerDataStrings
     {
         // Abilities
         public const string HAS_NEEDOLIN = "hasNeedolin";
