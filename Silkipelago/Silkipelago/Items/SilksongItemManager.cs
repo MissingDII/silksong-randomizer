@@ -35,9 +35,9 @@ namespace Silkipelago.Items
         protected override void ProcessItem(ReceivedItem receivedItem, bool immediatelyIfPossible)
         {
             var inGameName = ArchipelagoIds.GetInGameName(receivedItem.ItemName);
-            if (PlayerDataStrings.ABILITIES.Contains(inGameName) || PlayerDataStrings.BOSSES.Contains(inGameName))
+            if (PlayerDataStrings.ABILITIES.Contains(inGameName))
             {
-                // must be a boss defeated or ability to modifiy on playerData
+                // must be an ability to modifiy on playerData
                 PlayerDataManager.ChangeBooleanValue(inGameName, true);
             }
 

@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using KaitoKid.ArchipelagoUtilities.Net.Constants;
 using KaitoKid.Utilities.Interfaces;
+using Silkipelago.Constants;
 using Silkipelago.HarmonyPatches.Steam;
 using System;
 using System.Collections.Generic;
@@ -26,9 +27,9 @@ namespace Silkipelago.HarmonyPatches.Item
             {
                 _logger.LogDebugPatchIsRunning(nameof(PlayerData), nameof(PlayerData.SetBool), nameof(PlayerDataPatch), nameof(Prefix));
                 _logger.LogInfo($"Modified value is {boolName}");
-                if (boolName.Equals("hasDash"))
+                if (PlayerDataStrings.BOSSES.Contains(boolName))
                 {
-                    // _logger.LogInfo(Environment.StackTrace);
+                    _logger.LogInfo(boolName);
                     return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
                 }
                 else

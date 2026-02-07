@@ -35,7 +35,7 @@ namespace Silkipelago.Constants
         // Major Bosses
         public const string GARMOND_LIBRARY_HORNET_DEFEATED = "garmondLibraryDefeatedHornet";
         public const string GARMOND_BLACK_THREAD_DEFEATED = "garmondBlackThreadDefeated";
-        public const string MOSS_MOTHHER_DEFEATED = "defeatedMossMother";
+        public const string MOSS_MOTHER_DEFEATED = "defeatedMossMother";
         public const string MOSS_EVOLVER_DEFEATED = "defeatedMossEvolver";
         public const string SKULL_KING_DEFEATED = "skullKingDefeated";
         public const string SKULL_KING_BLACK_THREADED_DEFEATED = "skullKingDefeatedBlackThreaded";
@@ -110,7 +110,7 @@ namespace Silkipelago.Constants
             SHELLWOOD_ROSARY_PILGRIM_DEFEATED,
             GARMOND_LIBRARY_HORNET_DEFEATED,
             GARMOND_BLACK_THREAD_DEFEATED,
-            MOSS_MOTHHER_DEFEATED,
+            MOSS_MOTHER_DEFEATED,
             MOSS_EVOLVER_DEFEATED,
             SKULL_KING_DEFEATED,
             SKULL_KING_BLACK_THREADED_DEFEATED,

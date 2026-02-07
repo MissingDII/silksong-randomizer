@@ -105,8 +105,11 @@ namespace Silkipelago
             {
                 Logger.LogInfo("Teleport somewhere");
                 var playerData = PlayerData.instance;
-                SceneLoader.LoadScene("Bone_East_04b", "top1", GatePosition.top);
-                Logger.LogInfo("here with playerInstance");
+                var location = "Bone_East_04b";
+                var entry = "top1";
+                var gateLocation = GatePosition.top;
+                Logger.LogInfo("about to teleport");
+                SceneLoader.LoadScene(location, entry, gateLocation);
                 return;
             }
             if (Input.GetKeyDown(KeyCode.Keypad5))

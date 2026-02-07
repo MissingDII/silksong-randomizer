@@ -35,6 +35,7 @@
 		<PackageReference Include="KaitoKid.Utilities.Interfaces" Version="3.1.7" />
     <PackageReference Include="Silksong.AssetHelper" Version="1.0.1" />
 		<PackageReference Include="UnityEngine.Modules" Version="6000.0.50" IncludeAssets="compile" />
+    <!-- <PackageReference Include="Silksong.GameLibs" Version="*-*" PrivateAssets="all" /> -->
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
@@ -58,13 +59,10 @@
         <Message Text="MultiClientPath: $(MultiClientPath)" Importance="high" />
 	</Target>
 
-	<ItemGroup>
+  <ItemGroup>
         <Reference Include="Archipelago.MultiClient.Net">
             <HintPath>..\..\..\Archipelago.MultiClient.Net\Archipelago.MultiClient.Net\bin\Debug\netstandard2.0\Archipelago.MultiClient.Net.dll</HintPath>
         </Reference>
-	  <Reference Include="Assembly-CSharp">
-	    <HintPath>$(LibrariesPath)Assembly-CSharp.dll</HintPath>
-	  </Reference>
 		<Reference Include="Newtonsoft.Json">
 			<HintPath>$(LibrariesPath)Newtonsoft.Json.dll</HintPath>
 		</Reference>
@@ -74,9 +72,12 @@
 	  <Reference Include="com.rlabrecque.steamworks.net">
 	    <HintPath>$(LibrariesPath)com.rlabrecque.steamworks.net.dll</HintPath>
 	  </Reference>
-	  <Reference Include="PlayMaker">
-	    <HintPath>$(LibrariesPath)PlayMaker.dll</HintPath>
-	  </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(LibrariesPath)Assembly-CSharp-publicized.dll</HintPath>
+    </Reference>
+    <Reference Include="PlayMaker">
+      <HintPath>$(LibrariesPath)PlayMaker.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI.dll">
       <HintPath>$(LibrariesPath)UnityEngine.UI.dll</HintPath>
     </Reference>
