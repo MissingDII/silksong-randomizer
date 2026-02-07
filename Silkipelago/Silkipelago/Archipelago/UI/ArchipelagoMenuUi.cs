@@ -1,6 +1,7 @@
 ﻿using BepInEx.Logging;
 using KaitoKid.ArchipelagoUtilities.Net.Client;
 using Silkipelago.Items;
+using Silkipelago.Utils;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -57,23 +58,7 @@ namespace Silkipelago.Archipelago.UI
 
         private static void Show()
         {
-            //Force pause on the player
-            var gameManager = GameManager.instance;
-            if (PlayerData.instance.disablePause || GameManager.instance.TimeSlowed ||
-                UIManager.instance.ignoreUnpause && gameManager.GetSceneNameString() != "Menu_Title" &&
-                gameManager.IsGameplayScene())
-            {
-                GameManager.instance.timeSlowedCount = 0;
-                UIManager.instance.ignoreUnpause = false;
-                PlayerData.instance.disablePause = false;
-                UIManager.instance.TogglePauseGame();
-                _logger.LogInfo("Forcing Pause Menu because pause is disabled");
-            }
-            else
-            {
-                _logger.LogInfo("Game does not report that Pause is disabled, requesting it normally.");
-                UIManager.instance.TogglePauseGame();
-            }
+            PauseHelper.TogglePauseGame();
             _canvas.gameObject.SetActive(true);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
@@ -84,6 +69,7 @@ namespace Silkipelago.Archipelago.UI
 
         private static void Hide()
         {
+            PauseHelper.TogglePauseGame();
             SelectionGuard.Instance?.DisableGuard();
             _canvas.gameObject.SetActive(false);
             Cursor.visible = false;
