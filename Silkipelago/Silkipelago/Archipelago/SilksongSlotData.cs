@@ -1,5 +1,4 @@
-﻿using BepInEx;
-using KaitoKid.ArchipelagoUtilities.Net.Interfaces;
+﻿using KaitoKid.ArchipelagoUtilities.Net.Interfaces;
 using KaitoKid.Utilities.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -28,7 +27,7 @@ namespace Silkipelago.Archipelago
             _slotDataFields = slotDataFields;
             _logger = logger;
 
-            Goal = GetSlotSetting(GOAL_KEY, Goal.BeatNightmare);
+            Goal = GetSlotSetting(GOAL_KEY, Goal.GrandMotherSilk);
             DeathLink = GetSlotSetting(DEATH_LINK_KEY, false);
             Seed = GetSlotSetting(SEED_KEY, 0);
             MultiworldVersion = GetSlotSetting(MULTIWORLD_VERSION_KEY, MyPluginInfo.PLUGIN_VERSION);
@@ -95,19 +94,12 @@ namespace Silkipelago.Archipelago
 
     public enum Goal
     {
-        BeatNormal = 0,
-        BeatHard = 1,
-        BeatVery_hard = 2,
-        BeatNightmare = 3,
-        BeatNormalWithAllCharacters = 4,
-        BeatHardWithAllCharacters = 5,
-        BeatVery_hardWithAllCharacters = 6,
-        BeatNightmareWithAllCharacters = 7,
-        BeatFloor25 = 8,
-        BeatFloor30 = 9,
-        BeatFloor35 = 10,
-        BeatFloor40 = 11,
-        BeatFloor45 = 12,
-        BeatFloor50 = 13,
+        Fanatic = 0,
+        Act1 = 1,
+        GrandMotherSilk = 2,
+        SnaredGrandMotherSilk = 3,
+        Allfleas = 4,
+        LostLace = 5,
+        Completion = 6
     }
 }

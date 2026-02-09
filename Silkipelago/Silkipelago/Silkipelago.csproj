@@ -35,7 +35,7 @@
 		<PackageReference Include="KaitoKid.Utilities.Interfaces" Version="3.1.7" />
     <PackageReference Include="Silksong.AssetHelper" Version="1.0.1" />
 		<PackageReference Include="UnityEngine.Modules" Version="6000.0.50" IncludeAssets="compile" />
-    <!-- <PackageReference Include="Silksong.GameLibs" Version="*-*" PrivateAssets="all" /> -->
+    <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.2" PrivateAssets="all" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
@@ -72,9 +72,7 @@
 	  <Reference Include="com.rlabrecque.steamworks.net">
 	    <HintPath>$(LibrariesPath)com.rlabrecque.steamworks.net.dll</HintPath>
 	  </Reference>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>$(LibrariesPath)Assembly-CSharp-publicized.dll</HintPath>
-    </Reference>
+    <Reference Include="$(LibrariesPath)Assembly-CSharp.dll" Publicize="true" />
     <Reference Include="PlayMaker">
       <HintPath>$(LibrariesPath)PlayMaker.dll</HintPath>
     </Reference>

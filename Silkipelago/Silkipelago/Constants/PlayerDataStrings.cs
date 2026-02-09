@@ -62,6 +62,10 @@ namespace Silkipelago.Constants
         public const string LACE_TOWER_DEFEATED = "defeatedLaceTower";
         public const string WARD_BOSS_DEFEATED = "wardBossDefeated";
         public const string COG_7_AUTOMATON_DEFEATED = "cog7_automaton_defeated";
+        public const string TROBBIO_DEFEATED = "defeatedTrobbio";
+        public const string TORMENTED_TROBBIO_DEFEATED = "defeatedTormentedTrobbio";
+        public const string COGWORK_DANCERS_DEFEATED = "defeatedCogworkDancers";
+        public const string CLOVER_DANCERS_DEFEATED = "defeatedCloverDancers";
 
         // Zone Bosses
         public const string BONE_TOWN_BOSS_DEFEATED = "DefeatedBonetownBoss";
@@ -94,14 +98,6 @@ namespace Silkipelago.Constants
         // Guard/Keeper Enemies
         public const string GUARD_BONE_EAST_25_DEFEATED = "defeatedGuardBoneEast25";
         public const string SHELLWOOD_SLABFLY_DEFEATED = "shellwoodSlabflyDefeated";
-
-        // Trobbio Enemies
-        public const string TROBBIO_DEFEATED = "defeatedTrobbio";
-        public const string TORMENTED_TROBBIO_DEFEATED = "defeatedTormentedTrobbio";
-
-        // Cogwork Enemies
-        public const string COGWORK_DANCERS_DEFEATED = "defeatedCogworkDancers";
-        public const string CLOVER_DANCERS_DEFEATED = "defeatedCloverDancers";
 
         public static readonly List<string> BOSSES = new()
         {

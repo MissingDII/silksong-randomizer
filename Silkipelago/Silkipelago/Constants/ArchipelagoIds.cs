@@ -29,11 +29,11 @@ namespace Silkipelago.Constants
         { "Defeat Trobbio", PlayerDataStrings.TROBBIO_DEFEATED },
         { "Defeat Tormented Trobbio", PlayerDataStrings.TORMENTED_TROBBIO_DEFEATED },
         { "Defeat Groal the Great", PlayerDataStrings.SWAMP_SHAMAN_DEFEATED },
-        { "Defeat The Unravelled", PlayerDataStrings.WARD_BOSS_DEFEATED }, // TODO validate
+        { "Defeat The Unravelled", PlayerDataStrings.WARD_BOSS_DEFEATED },
         { "Defeat Disgraced Chef Lugoli", PlayerDataStrings.ROACHKEEPER_CHEF_DEFEATED },
-        { "Defeat Craggler", "" }, //TODO
-        { "Defeat Father of the Flame", PlayerDataStrings.WISP_PYRE_EFFIGY_DEFEATED }, // TODO validate
-        { "Defeat Voltvyrm", PlayerDataStrings.ZAP_CORE_ENEMY_DEFEATED }, // TODO validate
+        { "Defeat Craggler", PlayerDataStrings.ROOF_CRAB_DEFEATED },
+        { "Defeat Father of the Flame", PlayerDataStrings.WISP_PYRE_EFFIGY_DEFEATED },
+        { "Defeat Voltvyrm", PlayerDataStrings.ZAP_CORE_ENEMY_DEFEATED },
         { "Defeat Second Sentinel", PlayerDataStrings.COG_7_AUTOMATON_DEFEATED },
         { "Defeat Broodmother", PlayerDataStrings.BROOD_MOTHER_DEFEATED },
         { "Defeat Plasmified Zango", "" }, // TODO validate
@@ -42,24 +42,23 @@ namespace Silkipelago.Constants
         { "Defeat Lost Garmond", PlayerDataStrings.GARMOND_BLACK_THREAD_DEFEATED },
         { "Defeat Pinstress", "" }, // TODO 
         { "Defeat Gurr the Outcast", PlayerDataStrings.ANT_TRAPPER_DEFEATED }, // TODO validate
-        { "Defeat Watcher at the Edge", ""  }, // TODO 
+        { "Defeat Watcher at the Edge", PlayerDataStrings.GREY_WARRIOR_DEFEATED  },
         { "Defeat Crawfather", PlayerDataStrings.CROW_COURT_DEFEATED },
         { "Defeat Shakra", "" }, // TODO
         { "Defeat Garmond and Zaza", PlayerDataStrings.GARMOND_LIBRARY_HORNET_DEFEATED },
         { "Defeat Savage Beastfly (Beast)", PlayerDataStrings.BONE_FLYER_GIANT_DEFEATED },
-        { "Defeat Savage Beastfly (Wish)", PlayerDataStrings.BONE_FLYER_GIANT_GOLEM_SCENE_DEFEATED }, // TODO validate
-        { "Defeat Skull Tyrant (Wish)", PlayerDataStrings.SKULL_KING_BLACK_THREADED_DEFEATED }, // TODO validate
-        { "Defeat Skull Tyrant (Bone Bottom)", PlayerDataStrings.SKULL_KING_DEFEATED },
-        { "Defeat Phantom", PlayerDataStrings.PHANTOM_DEFEATED }, // TODO
+        { "Defeat Savage Beastfly (Wish)", PlayerDataStrings.BONE_FLYER_GIANT_GOLEM_SCENE_DEFEATED },
+        { "Defeat Skull Tyrant (Wish)", PlayerDataStrings.SKULL_KING_DEFEATED },
+        { "Defeat Skull Tyrant (Bone Bottom)", PlayerDataStrings.ROCK_ROLLER_BONE_01_DEFEATED },
+        { "Defeat Phantom", PlayerDataStrings.PHANTOM_DEFEATED },
         { "Defeat First Sinner", PlayerDataStrings.FIRST_WEAVER_DEFEATED },
         { "Defeat Lace", PlayerDataStrings.LACE_DEFEATED },
         { "Defeat Lace (Cradle)", PlayerDataStrings.LACE_TOWER_DEFEATED },
-        { "Defeat Grand Mother Silk", "" }, // TODO
-        { "Defeat Lost Lace", "" }, // TODO
+        { "Defeat Grand Mother Silk", SaveSlotCompletionIcons.CompletionState.Act2Regular.ToString() }, // TODO
         { "Defeat Bell Eater", "" }, // TODO
         { "Defeat Crust King Khann", PlayerDataStrings.CORAL_KING_DEFEATED },
         { "Defeat Nyleth", PlayerDataStrings.FLOWER_QUEEN_DEFEATED },
-        { "Defeat Skarrsinger Karmelita", PlayerDataStrings.ANT_QUEEN_DEFEATED } // TODO validate
+        { "Defeat Skarrsinger Karmelita", PlayerDataStrings.ANT_QUEEN_DEFEATED }
     };
 
         public static Dictionary<string, string> GameIdsToArchipelagoIds = ArchipelagoIdsToGameIds.ToDictionary(keyValuePair => keyValuePair.Value, keyValuePair => keyValuePair.Key);

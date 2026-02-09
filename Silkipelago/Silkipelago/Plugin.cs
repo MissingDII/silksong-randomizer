@@ -81,6 +81,21 @@ namespace Silkipelago
 
         public void Update()
         {
+            if (Input.GetKeyDown(KeyCode.Keypad1))
+            {
+                var d = PlayerData.instance.Collectables.GetData("Ward Key");
+                d.Amount = 1;
+                PlayerData.instance.Collectables.SetData("Ward Key", d);
+                var test = ToolItemManager.Instance;
+                var test2 = test.toolItems;
+                Logger.LogInfo("List each tool name");
+                foreach (var item in test2.list)
+                {
+                    Logger.LogInfo(item.name);
+                }
+                Logger.LogInfo("test with playerData");
+                return;
+            }
 
             if (Input.GetKeyDown(_addMoneyKey!.Value))
             {

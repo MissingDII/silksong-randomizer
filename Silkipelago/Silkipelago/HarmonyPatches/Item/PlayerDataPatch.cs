@@ -1,10 +1,10 @@
 ﻿using HarmonyLib;
 using KaitoKid.ArchipelagoUtilities.Net.Constants;
 using KaitoKid.Utilities.Interfaces;
+using Silkipelago.Archipelago;
 using Silkipelago.Constants;
 using Silkipelago.HarmonyPatches.Steam;
 using System;
-using System.Collections.Generic;
 
 namespace Silkipelago.HarmonyPatches.Item
 {
@@ -13,11 +13,14 @@ namespace Silkipelago.HarmonyPatches.Item
     public static class PlayerDataPatch
     {
         private static ILogger _logger;
-        private static List<String> randomizedItem;
+        private static SilksongArchipelagoClient _silksongArchipelagoClient;
+        private static SilksongLocationChecker _silksongLocationChecker;
 
-        public static void Initialize(ILogger logger)
+        public static void Initialize(ILogger logger, SilksongArchipelagoClient silksongArchipelagoClient, SilksongLocationChecker silksongLocationChecker)
         {
             _logger = logger;
+            _silksongArchipelagoClient = silksongArchipelagoClient;
+            _silksongLocationChecker = silksongLocationChecker;
         }
 
         // public void SetBool(string boolName, bool value)
@@ -26,10 +29,11 @@ namespace Silkipelago.HarmonyPatches.Item
             try
             {
                 _logger.LogDebugPatchIsRunning(nameof(PlayerData), nameof(PlayerData.SetBool), nameof(PlayerDataPatch), nameof(Prefix));
-                _logger.LogInfo($"Modified value is {boolName}");
-                if (PlayerDataStrings.BOSSES.Contains(boolName))
+                if (PlayerDataStrings.ABILITIES.Contains(boolName) || PlayerDataStrings.BOSSES.Contains(boolName))
                 {
-                    _logger.LogInfo(boolName);
+                    var archipelagoItemName = ArchipelagoIds.GetArchipelagoName(boolName);
+                    _silksongLocationChecker.AddCheckedLocation(archipelagoItemName);
+                    _logger.LogDebug("sending location for" + boolName);
                     return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
                 }
                 else

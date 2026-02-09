@@ -1,5 +1,6 @@
-﻿using BepInEx.Logging;
+﻿using HarmonyLib;
 using KaitoKid.ArchipelagoUtilities.Net.Client;
+using Silkipelago.HarmonyPatches;
 using Silkipelago.Items;
 using Silkipelago.Utils;
 using System;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using ILogger = KaitoKid.Utilities.Interfaces.ILogger;
 using UIImage = UnityEngine.UI.Image;
 using UIText = UnityEngine.UI.Text;
 
@@ -17,8 +19,10 @@ namespace Silkipelago.Archipelago.UI
     {
         private static Canvas _canvas;
         private static bool _visible;
-        private static ManualLogSource _logger;
-
+        private static ILogger _logger;
+        private static Harmony _harmony;
+        private static SilksongArchipelagoClient _archipelagoClient;
+        private static SilksongLocationChecker _silksongLocationChecker;
         private static ClickOnlyInputField _hostname;
         private static ClickOnlyInputField _port;
         private static ClickOnlyInputField _slot;
@@ -26,12 +30,14 @@ namespace Silkipelago.Archipelago.UI
 
         // ---------- Public API ----------
 
-        public static void Init(ManualLogSource logger)
+        public static void Init(ILogger logger, Harmony harmony, SilksongArchipelagoClient archipelagoClient, SilksongLocationChecker silksongLocationChecker)
         {
             if (_canvas != null)
                 return; // already initialized
-
             _logger = logger;
+            _harmony = harmony;
+            _archipelagoClient = archipelagoClient;
+            _silksongLocationChecker = silksongLocationChecker;
             CreateUI();
             Hide();
         }
@@ -360,6 +366,8 @@ namespace Silkipelago.Archipelago.UI
             locationChecker.VerifyNewLocationChecksWithArchipelago();
             locationChecker.SendAllLocationChecks();
             itemManager.ReceiveAllNewItems();
+            var patchInitializer = new PatchInitializer();
+            patchInitializer.InitializeConnectedPatches(_logger, _harmony, _archipelagoClient, _silksongLocationChecker);
         }
 
         private static void ConnectToArchipelago(Action actionAfterConnection)
