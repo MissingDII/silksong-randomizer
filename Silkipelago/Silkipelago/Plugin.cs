@@ -3,7 +3,6 @@ using BepInEx;
 using BepInEx.Configuration;
 using GlobalEnums;
 using HarmonyLib;
-using KaitoKid.ArchipelagoUtilities.Net;
 using Newtonsoft.Json.UnityConverters;
 using Silkipelago.Archipelago;
 using Silkipelago.Archipelago.UI;
@@ -27,7 +26,7 @@ namespace Silkipelago
         private static PatchInitializer _patcherInitializer;
         private static Harmony _harmony;
         private static SilksongArchipelagoClient _archipelago;
-        private static LocationChecker _locationChecker;
+        private static SilksongLocationChecker _locationChecker;
         private static SilksongItemManager _itemManager;
 
 
@@ -67,6 +66,7 @@ namespace Silkipelago
             _locationChecker = SilksongLocationChecker.Instance;
             SilksongItemManager.Instance = new SilksongItemManager(_logger, _archipelago, []);
             _itemManager = SilksongItemManager.Instance;
+            _patcherInitializer.InitializeEarlyPatchesWithArchipelagoData(_logger, _harmony, _archipelago, _locationChecker);
         }
 
         private void OnItemReceived(ReceivedItemsHelper receivedItemsHelper)
@@ -88,18 +88,18 @@ namespace Silkipelago
                 PlayerData.instance.Collectables.SetData("Ward Key", d);
                 var test = ToolItemManager.Instance;
                 var test2 = test.toolItems;
-                Logger.LogInfo("List each tool name");
+                _logger.LogInfo("List each tool name");
                 foreach (var item in test2.list)
                 {
-                    Logger.LogInfo(item.name);
+                    _logger.LogInfo(item.name);
                 }
-                Logger.LogInfo("test with playerData");
+                _logger.LogInfo("test with playerData");
                 return;
             }
 
             if (Input.GetKeyDown(_addMoneyKey!.Value))
             {
-                Logger.LogInfo("Enable PowerUp");
+                _logger.LogInfo("Enable PowerUp");
                 var playerData = PlayerData.instance;
                 playerData.GetAllPowerups();
                 Logger.LogInfo("here with playerInstance");
@@ -107,7 +107,7 @@ namespace Silkipelago
             }
             if (Input.GetKeyDown(KeyCode.Keypad1))
             {
-                Logger.LogInfo("Disable PowerUp");
+                _logger.LogInfo("Disable PowerUp");
                 var playerData = PlayerData.instance;
                 playerData.hasDash = false;
                 playerData.hasBrolly = false;
@@ -118,19 +118,19 @@ namespace Silkipelago
             }
             if (Input.GetKeyDown(KeyCode.Keypad2))
             {
-                Logger.LogInfo("Teleport somewhere");
+                _logger.LogInfo("Teleport somewhere");
                 var playerData = PlayerData.instance;
-                var location = "Bone_East_04b";
-                var entry = "top1";
-                var gateLocation = GatePosition.top;
+                var location = "Cradle_03";
+                var entry = "left1";
+                var gateLocation = GatePosition.left;
                 Logger.LogInfo("about to teleport");
                 SceneLoader.LoadScene(location, entry, gateLocation);
                 return;
             }
             if (Input.GetKeyDown(KeyCode.Keypad5))
             {
-                Logger.LogInfo("Show UI button");
-                ArchipelagoMenuUI.Init(Logger);
+                _logger.LogInfo("Show UI button");
+                ArchipelagoMenuUI.Init(_logger, _harmony, _archipelago, _locationChecker);
                 ArchipelagoMenuUI.Toggle();
                 return;
             }

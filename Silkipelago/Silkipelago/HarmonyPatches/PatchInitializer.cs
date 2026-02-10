@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using Silkipelago.Archipelago;
+using Silkipelago.HarmonyPatches.Ending;
 using Silkipelago.HarmonyPatches.Item;
 using Silkipelago.HarmonyPatches.SaveUtility;
 using Silkipelago.HarmonyPatches.Steam;
@@ -21,9 +22,16 @@ namespace Silkipelago.HarmonyPatches
             UnityConverterInitializerPatch.Initialize(logger);
         }
 
-        public void InitializeConnectedPatches(ILogger logger, Harmony harmony, SilksongArchipelagoClient archipelago, SilksongLocationChecker locationChecker)
+        public void InitializeEarlyPatchesWithArchipelagoData(ILogger logger, Harmony harmony, SilksongArchipelagoClient archipelago, SilksongLocationChecker locationChecker)
         {
             PlayerDataPatch.Initialize(logger, archipelago, locationChecker);
+            EndingCompletedPatch.Initialize(logger, archipelago, locationChecker);
+        }
+
+
+        public void InitializeConnectedPatches(ILogger logger, Harmony harmony, SilksongArchipelagoClient archipelago, SilksongLocationChecker locationChecker)
+        {
+
         }
     }
 }

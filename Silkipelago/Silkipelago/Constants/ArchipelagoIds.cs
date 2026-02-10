@@ -36,15 +36,15 @@ namespace Silkipelago.Constants
         { "Defeat Voltvyrm", PlayerDataStrings.ZAP_CORE_ENEMY_DEFEATED },
         { "Defeat Second Sentinel", PlayerDataStrings.COG_7_AUTOMATON_DEFEATED },
         { "Defeat Broodmother", PlayerDataStrings.BROOD_MOTHER_DEFEATED },
-        { "Defeat Plasmified Zango", "" }, // TODO validate
+        { "Defeat Plasmified Zango", "1" }, // TODO validate
         { "Defeat Shrine Guardian Seth", PlayerDataStrings.SETH_DEFEATED },
         { "Defeat Palestag", PlayerDataStrings.WHITE_CLOVER_STAG_DEFEATED }, // TODO validate
         { "Defeat Lost Garmond", PlayerDataStrings.GARMOND_BLACK_THREAD_DEFEATED },
-        { "Defeat Pinstress", "" }, // TODO 
+        { "Defeat Pinstress", "2" }, // TODO 
         { "Defeat Gurr the Outcast", PlayerDataStrings.ANT_TRAPPER_DEFEATED }, // TODO validate
         { "Defeat Watcher at the Edge", PlayerDataStrings.GREY_WARRIOR_DEFEATED  },
         { "Defeat Crawfather", PlayerDataStrings.CROW_COURT_DEFEATED },
-        { "Defeat Shakra", "" }, // TODO
+        { "Defeat Shakra", "3" }, // TODO
         { "Defeat Garmond and Zaza", PlayerDataStrings.GARMOND_LIBRARY_HORNET_DEFEATED },
         { "Defeat Savage Beastfly (Beast)", PlayerDataStrings.BONE_FLYER_GIANT_DEFEATED },
         { "Defeat Savage Beastfly (Wish)", PlayerDataStrings.BONE_FLYER_GIANT_GOLEM_SCENE_DEFEATED },
@@ -55,7 +55,7 @@ namespace Silkipelago.Constants
         { "Defeat Lace", PlayerDataStrings.LACE_DEFEATED },
         { "Defeat Lace (Cradle)", PlayerDataStrings.LACE_TOWER_DEFEATED },
         { "Defeat Grand Mother Silk", SaveSlotCompletionIcons.CompletionState.Act2Regular.ToString() }, // TODO
-        { "Defeat Bell Eater", "" }, // TODO
+        { "Defeat Bell Eater", "4" }, // TODO
         { "Defeat Crust King Khann", PlayerDataStrings.CORAL_KING_DEFEATED },
         { "Defeat Nyleth", PlayerDataStrings.FLOWER_QUEEN_DEFEATED },
         { "Defeat Skarrsinger Karmelita", PlayerDataStrings.ANT_QUEEN_DEFEATED }

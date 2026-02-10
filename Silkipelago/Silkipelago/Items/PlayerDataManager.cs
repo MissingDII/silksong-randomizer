@@ -7,6 +7,7 @@ namespace Silkipelago.Items
         public static void ChangeBooleanValue(string booleanName, Boolean newValue)
         {
             var instance = PlayerData.instance;
+            SilksongItemManager._itemToReceive++;
             instance.SetBool(booleanName, newValue);
         }
     }

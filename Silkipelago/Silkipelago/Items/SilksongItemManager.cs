@@ -10,6 +10,7 @@ namespace Silkipelago.Items
 {
     public class SilksongItemManager : ItemManager
     {
+        public static int _itemToReceive = 0;
         private ILogger _logger;
         private static SilksongItemManager _instance;
 
@@ -35,6 +36,11 @@ namespace Silkipelago.Items
         protected override void ProcessItem(ReceivedItem receivedItem, bool immediatelyIfPossible)
         {
             var inGameName = ArchipelagoIds.GetInGameName(receivedItem.ItemName);
+            if (inGameName == null)
+            {
+                _logger.LogWarning($"Unrecognised Item name: {receivedItem.ItemName}");
+                return;
+            }
             if (PlayerDataStrings.ABILITIES.Contains(inGameName))
             {
                 // must be an ability to modifiy on playerData
