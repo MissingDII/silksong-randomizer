@@ -2,6 +2,7 @@
 using Silkipelago.Archipelago;
 using Silkipelago.HarmonyPatches.Ending;
 using Silkipelago.HarmonyPatches.Item;
+using Silkipelago.HarmonyPatches.NewGame;
 using Silkipelago.HarmonyPatches.SaveUtility;
 using Silkipelago.HarmonyPatches.Steam;
 using Silkipelago.HarmonyPatches.Unity;
@@ -26,6 +27,8 @@ namespace Silkipelago.HarmonyPatches
         {
             PlayerDataPatch.Initialize(logger, archipelago, locationChecker);
             EndingCompletedPatch.Initialize(logger, archipelago, locationChecker);
+            StartNewGamePatch.Initialize(logger, harmony, archipelago, locationChecker);
+
         }
 
 

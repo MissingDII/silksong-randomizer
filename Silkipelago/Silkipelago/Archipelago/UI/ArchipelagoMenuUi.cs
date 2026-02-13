@@ -1,8 +1,8 @@
 ﻿using HarmonyLib;
 using KaitoKid.ArchipelagoUtilities.Net.Client;
 using Silkipelago.HarmonyPatches;
+using Silkipelago.HarmonyPatches.NewGame;
 using Silkipelago.Items;
-using Silkipelago.Utils;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -64,7 +64,6 @@ namespace Silkipelago.Archipelago.UI
 
         private static void Show()
         {
-            PauseHelper.TogglePauseGame();
             _canvas.gameObject.SetActive(true);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
@@ -75,7 +74,6 @@ namespace Silkipelago.Archipelago.UI
 
         private static void Hide()
         {
-            PauseHelper.TogglePauseGame();
             SelectionGuard.Instance?.DisableGuard();
             _canvas.gameObject.SetActive(false);
             Cursor.visible = false;
@@ -355,6 +353,8 @@ namespace Silkipelago.Archipelago.UI
             APConnectionInfo = new ArchipelagoConnectionInfo(_hostname.text, port, _slot.text, false);
             ConnectToArchipelago(() => InitializeAfterConnection());
             Hide();
+            StartNewGamePatch.SkipMenuNextCall();
+            UIManager.instance.StartNewGame();
         }
 
         private static void InitializeAfterConnection()

@@ -130,7 +130,6 @@ namespace Silkipelago
             if (Input.GetKeyDown(KeyCode.Keypad5))
             {
                 _logger.LogInfo("Show UI button");
-                ArchipelagoMenuUI.Init(_logger, _harmony, _archipelago, _locationChecker);
                 ArchipelagoMenuUI.Toggle();
                 return;
             }
