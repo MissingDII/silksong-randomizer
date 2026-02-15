@@ -31,10 +31,21 @@ namespace Silkipelago.Items
             IEnumerable<ReceivedItem> itemsAlreadyProcessed) : base(archipelago, itemsAlreadyProcessed)
         {
             _logger = logger;
+            PlayerDataManager.Init(logger);
         }
 
         protected override void ProcessItem(ReceivedItem receivedItem, bool immediatelyIfPossible)
         {
+            if (receivedItem.ItemName.Contains("Rosaries"))
+            {
+                PlayerDataManager.addRosary(receivedItem.ItemName);
+                return;
+            }
+            if (receivedItem.ItemName.Contains("Shell Shards"))
+            {
+                PlayerDataManager.addShards(receivedItem.ItemName);
+                return;
+            }
             var inGameName = ArchipelagoIds.GetInGameName(receivedItem.ItemName);
             if (inGameName == null)
             {
@@ -45,6 +56,12 @@ namespace Silkipelago.Items
             {
                 // must be an ability to modifiy on playerData
                 PlayerDataManager.ChangeBooleanValue(inGameName, true);
+                return;
+            }
+            if (CollectablesStrings.TOOLCRESTUPGRADE.Contains(inGameName))
+            {
+                CollectiblesManager.addOneCollectible(inGameName);
+                return;
             }
 
             //if (TryHandleReceivedPerk(receivedItem))

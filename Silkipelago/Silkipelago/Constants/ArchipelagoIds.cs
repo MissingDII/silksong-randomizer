@@ -8,6 +8,9 @@ namespace Silkipelago.Constants
     {
         public static Dictionary<string, string> ArchipelagoIdsToGameIds { get; } = new Dictionary<string, string>
     {
+        // Crest Upgrades
+        { "Memory Locket", CollectablesStrings.MEMORY_LOCKET },
+        { "Craft Metal", CollectablesStrings.CRAFT_METAL },
         //abilities
         { "Drifter's Cloak", PlayerDataStrings.HAS_DRIFTER_CLOAK },
         { "Cling Grip", PlayerDataStrings.HAS_WALL_JUMP },

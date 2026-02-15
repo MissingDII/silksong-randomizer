@@ -28,6 +28,7 @@ namespace Silkipelago.HarmonyPatches
             PlayerDataPatch.Initialize(logger, archipelago, locationChecker);
             EndingCompletedPatch.Initialize(logger, archipelago, locationChecker);
             StartNewGamePatch.Initialize(logger, harmony, archipelago, locationChecker);
+            GameManagerPatch.Initialize(logger, archipelago);
 
         }
 

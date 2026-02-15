@@ -17,6 +17,7 @@ namespace Silkipelago.Archipelago
     {
         private static IJsonLoader _jsonLoader = new NewtonsoftJsonLoader();
         private static SilksongArchipelagoClient _instance;
+        public bool _shouldDoInitialLoad = false;
 
         public override string GameName => "Silksong";
         public override string ModName => "Silkipelago";

@@ -48,7 +48,7 @@ public class SelectionGuard : MonoBehaviour
             _lockedField.ActivateInputField();
 
         // restore caret position instead of selecting all
-        int caret = _lockedField.caretPosition;
+        var caret = _lockedField.caretPosition;
         _lockedField.caretPosition = caret;
     }
 }

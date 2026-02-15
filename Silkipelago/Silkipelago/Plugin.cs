@@ -71,7 +71,7 @@ namespace Silkipelago
 
         private void OnItemReceived(ReceivedItemsHelper receivedItemsHelper)
         {
-            if (_archipelago == null || _itemManager == null || !_archipelago.IsConnected)
+            if (_archipelago == null || _itemManager == null || !_archipelago.IsConnected || !GameManager.instance.IsGameplayScene())
             {
                 return;
             }
