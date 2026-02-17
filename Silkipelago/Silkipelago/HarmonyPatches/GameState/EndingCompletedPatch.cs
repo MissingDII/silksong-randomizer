@@ -5,7 +5,7 @@ using KaitoKid.Utilities.Interfaces;
 using Silkipelago.Archipelago;
 using Silkipelago.Constants;
 
-namespace Silkipelago.HarmonyPatches.Ending
+namespace Silkipelago.HarmonyPatches.GameState
 {
     [HarmonyPatch(typeof(SetEndingCompleted), nameof(SetEndingCompleted.OnEnter))]
     public class EndingCompletedPatch

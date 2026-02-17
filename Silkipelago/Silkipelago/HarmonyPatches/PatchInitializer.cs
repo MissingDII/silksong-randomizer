@@ -1,6 +1,6 @@
 ﻿using HarmonyLib;
 using Silkipelago.Archipelago;
-using Silkipelago.HarmonyPatches.Ending;
+using Silkipelago.HarmonyPatches.GameState;
 using Silkipelago.HarmonyPatches.Item;
 using Silkipelago.HarmonyPatches.NewGame;
 using Silkipelago.HarmonyPatches.SaveUtility;
@@ -21,6 +21,8 @@ namespace Silkipelago.HarmonyPatches
             SteamValidationPatch.Initialize(logger);
             SaveSerializePatch.Initialize(logger);
             UnityConverterInitializerPatch.Initialize(logger);
+            LoadGamePatch.Initialize(logger);
+            SaveGamePatch.Initialize(logger);
         }
 
         public void InitializeEarlyPatchesWithArchipelagoData(ILogger logger, Harmony harmony, SilksongArchipelagoClient archipelago, SilksongLocationChecker locationChecker)

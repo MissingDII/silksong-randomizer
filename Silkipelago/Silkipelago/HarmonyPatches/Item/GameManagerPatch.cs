@@ -2,6 +2,7 @@
 using KaitoKid.Utilities.Interfaces;
 using Silkipelago.Archipelago;
 using Silkipelago.Items;
+using Silkipelago.Settings;
 
 namespace Silkipelago.HarmonyPatches.Item
 {
@@ -19,14 +20,18 @@ namespace Silkipelago.HarmonyPatches.Item
         }
 
         //   public bool IsGameplayScene()
-        public static void Postfix(bool __result)
+        public static void Postfix(GameManager __instance, bool __result)
         {
             if (__result && _silksongArchipelagoClient._shouldDoInitialLoad)
             {
                 // Do something when IsGameplayScene returns true
                 _logger.LogDebug("Entering Gameplay Scene and loading items");
-                var instance = SilksongItemManager.Instance;
-                instance.ReceiveAllNewItems();
+                var itemManager = SilksongItemManager.Instance;
+                itemManager.ReceiveAllNewItems();
+                var slotId = __instance.profileID;
+                var saveSettingsData = GlobalSaveSettingsData.saveSettingsData;
+                SaveSettings.saveGlobalSaveDataSettings(slotId);
+
                 _silksongArchipelagoClient._shouldDoInitialLoad = false;
             }
         }

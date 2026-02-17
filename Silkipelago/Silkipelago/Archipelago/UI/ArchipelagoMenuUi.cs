@@ -3,6 +3,7 @@ using KaitoKid.ArchipelagoUtilities.Net.Client;
 using Silkipelago.HarmonyPatches;
 using Silkipelago.HarmonyPatches.NewGame;
 using Silkipelago.Items;
+using Silkipelago.Settings;
 using System;
 using UnityEngine;
 using ILogger = KaitoKid.Utilities.Interfaces.ILogger;
@@ -151,6 +152,12 @@ namespace Silkipelago.Archipelago.UI
             }
 
             _logger.LogMessage($"Connected to Archipelago as {archipelago.SlotData.SlotName}.");
+            //Saving connection info to global save
+            var saveSettingData = GlobalSaveSettingsData.saveSettingsData != null ? GlobalSaveSettingsData.saveSettingsData : new SaveSettingsData();
+            saveSettingData.HostName = APConnectionInfo.HostUrl;
+            saveSettingData.Port = APConnectionInfo.Port;
+            saveSettingData.SlotName = APConnectionInfo.SlotName;
+            GlobalSaveSettingsData.saveSettingsData = saveSettingData;
             actionAfterConnection?.Invoke();
         }
     }

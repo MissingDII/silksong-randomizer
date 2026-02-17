@@ -1,6 +1,7 @@
 ﻿using KaitoKid.ArchipelagoUtilities.Net;
 using KaitoKid.ArchipelagoUtilities.Net.Client;
 using KaitoKid.Utilities.Interfaces;
+using Silkipelago.Settings;
 using System;
 using System.Collections.Generic;
 
@@ -25,6 +26,15 @@ namespace Silkipelago.Archipelago
 
         public SilksongLocationChecker(ILogger logger, ArchipelagoClient archipelago, List<string> locationsAlreadyChecked) : base(logger, archipelago, locationsAlreadyChecked)
         {
+        }
+
+        public override void AddCheckedLocation(string locationName)
+        {
+            if (!GlobalSaveSettingsData.saveSettingsData.ProcessedLocations.Contains(locationName))
+            {
+                base.AddCheckedLocation(locationName);
+            }
+            GlobalSaveSettingsData.saveSettingsData.ProcessedLocations.Add(locationName);
         }
     }
 }
