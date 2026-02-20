@@ -71,6 +71,7 @@ namespace Silkipelago
             _locationChecker = SilksongLocationChecker.Instance;
             SilksongItemManager.Instance = new SilksongItemManager(_logger, _archipelago, []);
             _itemManager = SilksongItemManager.Instance;
+            ArchipelagoConnectionHandler.Init(_logger, _harmony, _archipelago, _locationChecker);
             _patcherInitializer.InitializeEarlyPatchesWithArchipelagoData(_logger, _harmony, _archipelago, _locationChecker);
         }
 

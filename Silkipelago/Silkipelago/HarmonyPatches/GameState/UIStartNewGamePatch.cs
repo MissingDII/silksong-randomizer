@@ -11,7 +11,7 @@ namespace Silkipelago.HarmonyPatches.NewGame
 {
     [HarmonyPatch(typeof(UIManager))]
     [HarmonyPatch(nameof(UIManager.StartNewGame))]
-    public static class StartNewGamePatch
+    public static class UIStartNewGamePatch
     {
         private static ILogger _logger;
         private static Harmony _harmony;
@@ -37,7 +37,7 @@ namespace Silkipelago.HarmonyPatches.NewGame
         {
             try
             {
-                _logger.LogDebugPatchIsRunning(nameof(UIManager), nameof(UIManager.StartNewGame), nameof(StartNewGamePatch), nameof(Prefix));
+                _logger.LogDebugPatchIsRunning(nameof(UIManager), nameof(UIManager.StartNewGame), nameof(UIStartNewGamePatch), nameof(Prefix));
                 if (_shouldShowArchipelagoMenu)
                 {
                     __instance.StartCoroutine(HideMenusAndShowArchipelagoUI(__instance));
@@ -49,7 +49,7 @@ namespace Silkipelago.HarmonyPatches.NewGame
             }
             catch (Exception ex)
             {
-                _logger.LogErrorException(nameof(StartNewGamePatch), nameof(Prefix), ex);
+                _logger.LogErrorException(nameof(UIStartNewGamePatch), nameof(Prefix), ex);
                 return MethodPrefix.RUN_ORIGINAL_METHOD;
             }
         }

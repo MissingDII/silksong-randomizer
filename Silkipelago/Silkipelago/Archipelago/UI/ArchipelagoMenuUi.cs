@@ -1,10 +1,6 @@
 ﻿using HarmonyLib;
 using KaitoKid.ArchipelagoUtilities.Net.Client;
-using Silkipelago.HarmonyPatches;
 using Silkipelago.HarmonyPatches.NewGame;
-using Silkipelago.Items;
-using Silkipelago.Settings;
-using System;
 using UnityEngine;
 using ILogger = KaitoKid.Utilities.Interfaces.ILogger;
 
@@ -106,59 +102,13 @@ namespace Silkipelago.Archipelago.UI
             }
 
             APConnectionInfo = new ArchipelagoConnectionInfo(_hostInput.text, port, _slotInput.text, false);
-            ConnectToArchipelago(() => InitializeAfterConnection());
-        }
-
-        private static void InitializeAfterConnection()
-        {
-            var locationChecker = SilksongLocationChecker.Instance;
-            var itemManager = SilksongItemManager.Instance;
-            var archipelago = SilksongArchipelagoClient.Instance;
-
-            locationChecker.VerifyNewLocationChecksWithArchipelago();
-            locationChecker.SendAllLocationChecks();
-            var patchInitializer = new PatchInitializer();
-            patchInitializer.InitializeConnectedPatches(_logger, _harmony, _archipelagoClient, _silksongLocationChecker);
-            Hide();
-            _archipelagoClient._shouldDoInitialLoad = true;
-            StartNewGamePatch.SkipMenuNextCall();
-            UIManager.instance.StartNewGame();
-        }
-
-        private static void ConnectToArchipelago(Action actionAfterConnection)
-        {
-            var archipelago = SilksongArchipelagoClient.Instance;
-
-            if (APConnectionInfo == null)
+            var connected = ArchipelagoConnectionHandler.ConnectToArchipelago(APConnectionInfo);
+            if (connected)
             {
-                _logger.LogMessage($"Tried to connect, but no information provided!");
-                return;
+                Hide();
+                UIStartNewGamePatch.SkipMenuNextCall();
+                UIManager.instance.StartNewGame();
             }
-
-            if (archipelago.IsConnected)
-            {
-                _logger.LogMessage($"Tried to connect, but already connected!");
-                return;
-            }
-
-            var connectionResult = archipelago.ConnectToMultiworld(APConnectionInfo);
-            if (!connectionResult.Success || !archipelago.IsConnected)
-            {
-                APConnectionInfo = null;
-                var userMessage =
-                    $"Could not connect to archipelago.{Environment.NewLine}Message: {connectionResult.Message}{Environment.NewLine}Please verify the connection info and that the server is available.{Environment.NewLine}";
-                _logger.LogError(userMessage);
-                return;
-            }
-
-            _logger.LogMessage($"Connected to Archipelago as {archipelago.SlotData.SlotName}.");
-            //Saving connection info to global save
-            var saveSettingData = GlobalSaveSettingsData.saveSettingsData != null ? GlobalSaveSettingsData.saveSettingsData : new SaveSettingsData();
-            saveSettingData.HostName = APConnectionInfo.HostUrl;
-            saveSettingData.Port = APConnectionInfo.Port;
-            saveSettingData.SlotName = APConnectionInfo.SlotName;
-            GlobalSaveSettingsData.saveSettingsData = saveSettingData;
-            actionAfterConnection?.Invoke();
         }
     }
 }

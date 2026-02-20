@@ -63,5 +63,21 @@ namespace Silkipelago.Settings
             }
         }
 
+        public static void ClearSaveData(int saveSlot)
+        {
+            try
+            {
+                var path = DataPaths.SaveDataPath(saveSlot);
+
+
+                IO.File.Delete(path);
+
+            }
+            catch (Exception err)
+            {
+                _logger.LogError($"Error Deleting SaveSettingsData: {err}");
+            }
+        }
+
     }
 }
