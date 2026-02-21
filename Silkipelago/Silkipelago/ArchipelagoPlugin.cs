@@ -6,6 +6,7 @@ using HarmonyLib;
 using Newtonsoft.Json.UnityConverters;
 using Silkipelago.Archipelago;
 using Silkipelago.Archipelago.UI;
+using Silkipelago.context;
 using Silkipelago.HarmonyPatches;
 using Silkipelago.Items;
 using Silkipelago.Logging;
@@ -21,16 +22,10 @@ namespace Silkipelago
     public class ArchipelagoPlugin : BaseUnityPlugin
     {
 
-        public static ArchipelagoPlugin Instance;
-
-        private static ILogger _logger;
         private static ConfigEntry<KeyCode>? _addMoneyKey;
+        private ILogger _logger;
         private static PatchInitializer _patcherInitializer;
-        private static Harmony _harmony;
-        private static SilksongArchipelagoClient _archipelago;
-        private static SilksongLocationChecker _locationChecker;
-        private static SilksongItemManager _itemManager;
-        private static SaveSettingsData _saveSettingsData;
+        public static RandomizerApp App { get; private set; }
 
 
 
@@ -40,11 +35,12 @@ namespace Silkipelago
             // Plugin startup logic
             Logger.LogInfo($"Loading {MyPluginInfo.PLUGIN_GUID}...");
             _addMoneyKey = this.Config.Bind<KeyCode>("KeyCode", "addMoneyKey", KeyCode.Keypad0, "key to add money and unlock abilities");
+            Harmony harmony;
             try
             {
                 _logger = new LogHandler(Logger);
-                _harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);
-                _harmony.PatchAll();
+                harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);
+                harmony.PatchAll();
 
             }
             catch (FileNotFoundException fnfe)
@@ -77,12 +73,12 @@ namespace Silkipelago
 
         private void OnItemReceived(ReceivedItemsHelper receivedItemsHelper)
         {
-            if (_archipelago == null || _itemManager == null || !_archipelago.IsConnected || !GameManager.instance.IsGameplayScene())
+            if (App._archipelagoContext._archipelago == null || App._archipelagoContext._itemManager == null || !App._archipelagoContext._archipelago.IsConnected || !GameManager.instance.IsGameplayScene())
             {
                 return;
             }
 
-            _itemManager.ReceiveAllNewItems();
+            App._archipelagoContext._itemManager.ReceiveAllNewItems();
         }
 
         public void Update()
