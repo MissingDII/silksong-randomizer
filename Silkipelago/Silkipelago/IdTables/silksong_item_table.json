@@ -32,73 +32,73 @@
             "code": 8,
             "classification": "filler"
         },
-        "Conductor's Melody": {
+        "Bone Bottom Wishwall": {
             "code": 9,
             "classification": "progression"
         },
-        "Architect's Melody": {
+        "Grand Gate Bell": {
             "code": 10,
             "classification": "progression"
         },
-        "Vaultkeeper's Melody": {
+        "Conductor's Melody": {
             "code": 11,
             "classification": "progression"
         },
-        "Elegy of the Deep": {
+        "Architect's Melody": {
             "code": 12,
             "classification": "progression"
         },
-        "Silkspear": {
+        "Vaultkeeper's Melody": {
             "code": 13,
             "classification": "progression"
         },
-        "Thread Storm": {
+        "Elegy of the Deep": {
             "code": 14,
-            "classification": "useful"
+            "classification": "progression"
         },
-        "Sharpdart": {
+        "Silkspear": {
             "code": 15,
-            "classification": "useful"
+            "classification": "progression"
         },
-        "Pale Nails": {
+        "Thread Storm": {
             "code": 16,
             "classification": "useful"
         },
-        "Drifter's Cloak": {
+        "Sharpdart": {
             "code": 17,
-            "classification": "progression"
+            "classification": "useful"
         },
-        "Cling Grip": {
+        "Pale Nails": {
             "code": 18,
-            "classification": "progression"
+            "classification": "useful"
         },
-        "Swift Step": {
+        "Drifter's Cloak": {
             "code": 19,
             "classification": "progression"
         },
-        "Faydown Cloak": {
+        "Cling Grip": {
             "code": 20,
             "classification": "progression"
         },
-        "Clawline": {
+        "Swift Step": {
             "code": 21,
             "classification": "progression"
         },
-        "Silk Soar": {
+        "Faydown Cloak": {
             "code": 22,
             "classification": "progression"
         },
-        "Needle Strike": {
+        "Clawline": {
             "code": 23,
             "classification": "progression"
         },
-        "Everbloom": {
+        "Silk Soar": {
             "code": 24,
             "classification": "progression"
         },
-        "Farsight": {
+        "Needle Strike": {
             "code": 25,
-            "classification": "useful"
+            "classification": "progression"
         },
         "Silk Heart": {
             "code": 26,
@@ -108,76 +108,108 @@
             "code": 27,
             "classification": "progression"
         },
-        "Beastfly Defeated": {
+        "Last Judge Defeated": {
             "code": 28,
             "classification": "progression"
         },
-        "Cross Stitch": {
+        "Beastfly Defeated": {
             "code": 29,
-            "classification": "useful"
-        },
-        "Rune Rage": {
-            "code": 30,
-            "classification": "useful"
-        },
-        "Act 3": {
-            "code": 31,
             "classification": "progression"
         },
-        "Beastling Call": {
+        "Skull Tyrant Defeated": {
+            "code": 30,
+            "classification": "progression"
+        },
+        "Cross Stitch": {
+            "code": 31,
+            "classification": "useful"
+        },
+        "Phantom Defeated": {
             "code": 32,
-            "classification": "useful"
+            "classification": "progression"
         },
-        "Progressive Vesticrest": {
+        "Enter Act 2": {
             "code": 33,
-            "classification": "useful"
+            "classification": "progression"
         },
-        "Sylphsong": {
+        "Rune Rage": {
             "code": 34,
             "classification": "useful"
         },
-        "Reaper Crest": {
+        "Act 3": {
             "code": 35,
             "classification": "progression"
         },
-        "Wanderer Crest": {
+        "Beastling Call": {
             "code": 36,
-            "classification": "progression"
+            "classification": "useful"
         },
-        "Beast Crest": {
+        "Progressive Vesticrest": {
             "code": 37,
-            "classification": "progression"
+            "classification": "useful"
         },
-        "Architect Crest": {
+        "Sylphsong": {
             "code": 38,
-            "classification": "progression"
+            "classification": "useful"
         },
-        "Shaman Crest": {
+        "Reaper Crest": {
             "code": 39,
             "classification": "progression"
         },
-        "Memory Locket": {
+        "Wanderer Crest": {
             "code": 40,
             "classification": "progression"
         },
-        "Architect Key": {
+        "Beast Crest": {
             "code": 41,
             "classification": "progression"
         },
-        "Craw Summons": {
+        "Architect Crest": {
             "code": 42,
             "classification": "progression"
         },
-        "Key of Indolent": {
+        "Shaman Crest": {
             "code": 43,
             "classification": "progression"
         },
-        "Key of Heretic": {
+        "Memory Locket": {
             "code": 44,
             "classification": "progression"
         },
-        "Key of Apostate": {
+        "Progressive Tipp and Pill": {
             "code": 45,
+            "classification": "progression"
+        },
+        "Cursed Crest": {
+            "code": 46,
+            "classification": "progression"
+        },
+        "Witch Crest": {
+            "code": 47,
+            "classification": "progression"
+        },
+        "Soul Snare": {
+            "code": 48,
+            "classification": "progression"
+        },
+        "Architect Key": {
+            "code": 49,
+            "classification": "progression"
+        },
+        "Key of Indolent": {
+            "code": 50,
+            "classification": "progression"
+        },
+        "Key of Heretic": {
+            "code": 51,
+            "classification": "progression"
+        },
+        "Key of Apostate": {
+            "code": 52,
+            "classification": "progression"
+        },
+        "Twisted Bud": {
+            "code": 53,
             "classification": "progression"
         }
     }

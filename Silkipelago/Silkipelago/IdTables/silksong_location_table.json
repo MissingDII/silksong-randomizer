@@ -38,334 +38,334 @@
             "region": "Moss Grotto",
             "groups": ["RANDOMIZED_SLASH", "ACT_1"]
         },
-        "Save: The Threadspun Town": {
+        "Enter Deep Docks": {
             "code": 7,
+            "region": "Deep Docks - Entrance",
+            "groups": ["ALWAYS_ACTIVE", "ACT_1"]
+        },
+        "Save: The Threadspun Town": {
+            "code": 8,
             "region": "Citadel",
             "groups": ["OBJECTIVE", "ACT_1"]
         },
         "Seek: The Great Citadel": {
-            "code": 8,
+            "code": 9,
             "region": "Citadel",
             "groups": ["OBJECTIVE", "ACT_2"]
         },
         "Ring The Bell In The Marrow": {
-            "code": 9,
+            "code": 10,
             "region": "The Marrow - Bellway Station",
             "groups": ["OBJECTIVE", "ACT_1"]
         },
         "Ring The Bell In Deep Docks": {
-            "code": 10,
+            "code": 11,
             "region": "Deep Docks - Bell",
             "groups": ["OBJECTIVE", "ACT_1"]
         },
         "Ring The Bell In Greymoor": {
-            "code": 11,
+            "code": 12,
             "region": "Greymoor - Craw Lake",
             "groups": ["OBJECTIVE", "ACT_1"]
         },
         "Ring The Bell In Bellhart": {
-            "code": 12,
+            "code": 13,
             "region": "Bellhart",
             "groups": ["OBJECTIVE", "ACT_1"]
         },
         "Ring The Bell In Shellwood": {
-            "code": 13,
+            "code": 14,
             "region": "Shellwood",
             "groups": ["OBJECTIVE", "ACT_1"]
         },
         "Search: Silent Halls": {
-            "code": 14,
-            "region": "Citadel",
-            "groups": ["OBJECTIVE", "ACT_2"]
-        },
-        "Ascend: Pharloom's Crown": {
             "code": 15,
             "region": "Citadel",
             "groups": ["OBJECTIVE", "ACT_2"]
         },
-        "Learn: Conductor's Melody": {
+        "Ascend: Pharloom's Crown": {
             "code": 16,
             "region": "Citadel",
-            "groups": ["OBJECTIVE", "SONG", "ACT_2"]
+            "groups": ["OBJECTIVE", "ACT_2"]
         },
-        "Learn: Architect's Melody": {
+        "Learn: Conductor's Melody": {
             "code": 17,
             "region": "Citadel",
             "groups": ["OBJECTIVE", "SONG", "ACT_2"]
         },
-        "Learn: Vaultkeeper's Melody": {
+        "Learn: Architect's Melody": {
             "code": 18,
             "region": "Citadel",
             "groups": ["OBJECTIVE", "SONG", "ACT_2"]
         },
-        "Seek: After The Fall": {
+        "Learn: Vaultkeeper's Melody": {
             "code": 19,
+            "region": "Citadel",
+            "groups": ["OBJECTIVE", "SONG", "ACT_2"]
+        },
+        "Seek: After The Fall": {
+            "code": 20,
             "region": "Choral Chambers",
             "groups": ["OBJECTIVE", "ACT_3"]
         },
         "Seek: Awaiting The End": {
-            "code": 20,
-            "region": "Moss Grotto",
+            "code": 21,
+            "region": "Ruined Chapel",
             "groups": ["OBJECTIVE", "ACT_3"]
         },
         "Seek: The Dark Below": {
-            "code": 21,
-            "region": "The Abyss",
-            "groups": ["OBJECTIVE", "ACT_3"]
-        },
-        "Ascend: Return To Pharloom": {
             "code": 22,
             "region": "The Abyss",
             "groups": ["OBJECTIVE", "ACT_3"]
         },
-        "Seek: Spell Seeker": {
+        "Ascend: Return To Pharloom": {
             "code": 23,
+            "region": "The Abyss",
+            "groups": ["OBJECTIVE", "ACT_3"]
+        },
+        "Seek: Spell Seeker": {
+            "code": 24,
             "region": "Citadel",
             "groups": ["OBJECTIVE", "ACT_3"]
         },
         "Weaver Spire: Silkspear": {
-            "code": 24,
+            "code": 25,
             "region": "Bone Bottom",
             "groups": ["SILK_COMBAT_ABILITY", "ACT_1"]
         },
         "Weaver Spire: Thread Storm": {
-            "code": 25,
+            "code": 26,
             "region": "Greymoor - Craw Lake",
             "groups": ["SILK_COMBAT_ABILITY", "ACT_1"]
         },
         "Weaver Spire: Sharpdart": {
-            "code": 26,
+            "code": 27,
             "region": "Weavenest Karn",
             "groups": ["SILK_COMBAT_ABILITY", "ACT_2"]
         },
         "Acquire Pale Nails": {
-            "code": 27,
+            "code": 28,
             "region": "The Cradle",
             "groups": ["SILK_COMBAT_ABILITY", "ACT_3"]
         },
         "Hunt Wish: Flexile Spines": {
-            "code": 28,
+            "code": 29,
             "region": "Far Fields - Seamstress",
             "groups": ["MOVEMENT_ABILITY", "ACT_1"]
         },
         "Weaver Spire: Cling Grip": {
-            "code": 29,
+            "code": 30,
             "region": "Shellwood",
             "groups": ["MOVEMENT_ABILITY", "ACT_1"]
         },
         "Weaver Spire: Swift Step": {
-            "code": 30,
+            "code": 31,
             "region": "Deep Docks - Swift Step",
             "groups": ["MOVEMENT_ABILITY", "ACT_1"]
         },
         "Acquire Faydown Cloak": {
-            "code": 31,
+            "code": 32,
             "region": "Mount Fay",
             "groups": ["MOVEMENT_ABILITY", "ACT_2"]
         },
         "Weaver Spire: Clawline": {
-            "code": 32,
+            "code": 33,
             "region": "Underworks",
             "groups": ["MOVEMENT_ABILITY", "ACT_2"]
         },
         "Weaver Spire: Silk Soar": {
-            "code": 33,
+            "code": 34,
             "region": "The Abyss",
             "groups": ["MOVEMENT_ABILITY", "ACT_3"]
         },
         "Learn Needle Strike": {
-            "code": 34,
+            "code": 35,
             "region": "Blasted Steps - Pinstress",
             "groups": ["COMBAT_ABILITY", "ACT_1"]
         },
-        "Seek: The Old Hearts": {
-            "code": 35,
-            "region": "Ruined Chapel",
-            "groups": ["OBJECTIVE", "ACT_3"]
-        },
-        "Complete Red Memory": {
-            "code": 36,
-            "region": "Ruined Chapel",
-            "groups": ["SILK_OTHER_ABILITY", "OBJECTIVE", "ACT_3"]
-        },
-        "Pickup Farsight": {
-            "code": 37,
-            "region": "Weavenest Absolom",
-            "groups": ["SILK_OTHER_ABILITY", "UNIQUE_PICKUPS", "ACT_3"]
-        },
         "Defeat Moss Mother": {
-            "code": 38,
+            "code": 36,
             "region": "Moss Grotto",
             "groups": ["BOSS_FIGHT", "ACT_1"]
         },
         "Defeat Bell Beast": {
-            "code": 39,
+            "code": 37,
             "region": "The Marrow - Bellway Station",
             "groups": ["SILK_OTHER_ABILITY", "BOSS_FIGHT", "ACT_1"]
         },
         "Defeat Lace": {
-            "code": 40,
+            "code": 38,
             "region": "Deep Docks - Lace",
             "groups": ["BOSS_FIGHT", "ACT_1"]
         },
         "Defeat Fourth Chorus": {
-            "code": 41,
+            "code": 39,
             "region": "Far Fields - Fourth Chorus",
             "groups": ["BOSS_FIGHT", "ACT_1"]
         },
         "Defeat Moorwing": {
-            "code": 42,
+            "code": 40,
             "region": "Greymoor - Spires",
             "groups": ["BOSS_FIGHT", "ACT_1"]
         },
         "Defeat Sister Splinter": {
-            "code": 43,
+            "code": 41,
             "region": "Shellwood",
             "groups": ["BOSS_FIGHT", "ACT_1"]
         },
         "Defeat Widow": {
-            "code": 44,
+            "code": 42,
             "region": "Upper Bellhart",
             "groups": ["BOSS_FIGHT", "ACT_1"]
         },
         "Defeat Great Conchflies": {
-            "code": 45,
+            "code": 43,
             "region": "Blasted Steps",
             "groups": ["BOSS_FIGHT", "ACT_1"]
         },
         "Defeat Last Judge": {
-            "code": 46,
+            "code": 44,
             "region": "Blasted Steps Grand Gate",
             "groups": ["BOSS_FIGHT", "ACT_1"]
         },
+        "Last Judge Defeated": {
+            "code": 45,
+            "region": "Blasted Steps Grand Gate",
+            "groups": ["EVENT_ONLY", "ACT_1"]
+        },
         "Defeat Cogwork Dancers": {
-            "code": 47,
+            "code": 46,
             "region": "Cogwork Core",
             "groups": ["BOSS_FIGHT", "ACT_2"]
         },
         "Defeat Trobbio": {
-            "code": 48,
+            "code": 47,
             "region": "Choral Chambers",
             "groups": ["BOSS_FIGHT", "ACT_2"]
         },
         "Defeat Tormented Trobbio": {
-            "code": 49,
+            "code": 48,
             "region": "Choral Chambers (Act 3)",
             "groups": ["BOSS_FIGHT", "ACT_3"]
         },
         "Defeat Groal the Great": {
-            "code": 50,
+            "code": 49,
             "region": "Upper Bilewater",
             "groups": ["BOSS_FIGHT", "ACT_2"]
         },
         "Defeat The Unraveled": {
-            "code": 51,
+            "code": 50,
             "region": "Whiteward",
-            "groups": ["BOSS_FIGHT", "ACT_2"]
+            "groups": ["SILK_OTHER_ABILITY", "BOSS_FIGHT", "ACT_2"]
         },
         "Defeat Disgraced Chef Lugoli": {
-            "code": 52,
-            "region": "Sinner's Road",
+            "code": 51,
+            "region": "Sinner's Road - Lugoli's Kitchen",
             "groups": ["BOSS_FIGHT", "ACT_2"]
         },
         "Defeat Craggler": {
-            "code": 53,
+            "code": 52,
             "region": "Craggler Cavern",
             "groups": ["BOSS_FIGHT", "ACT_1"]
         },
         "Defeat Father of the Flame": {
-            "code": 54,
+            "code": 53,
             "region": "Wisp Thicket",
             "groups": ["BOSS_FIGHT", "ACT_2"]
         },
         "Defeat Voltvyrm": {
-            "code": 55,
+            "code": 54,
             "region": "Sands Of Karak",
             "groups": ["BOSS_FIGHT", "ACT_2"]
         },
         "Defeat Second Sentinel": {
-            "code": 56,
+            "code": 55,
             "region": "High Halls",
             "groups": ["BOSS_FIGHT", "ACT_2"]
         },
         "Defeat Broodmother": {
-            "code": 57,
+            "code": 56,
             "region": "The Slab",
             "groups": ["BOSS_FIGHT", "ACT_2"]
         },
         "Defeat Plasmified Zango": {
-            "code": 58,
+            "code": 57,
             "region": "Plasmified Wormways",
             "groups": ["BOSS_FIGHT", "ACT_3"]
         },
         "Defeat Shrine Guardian Seth": {
-            "code": 59,
+            "code": 58,
             "region": "Grand Gate",
             "groups": ["BOSS_FIGHT", "ACT_3"]
         },
         "Defeat Palestag": {
-            "code": 60,
+            "code": 59,
             "region": "Verdania",
             "groups": ["BOSS_FIGHT", "ACT_3"]
         },
         "Defeat Lost Garmond": {
-            "code": 61,
+            "code": 60,
             "region": "Blasted Steps (Act 3)",
             "groups": ["BOSS_FIGHT", "ACT_3"]
         },
         "Defeat Pinstress": {
-            "code": 62,
+            "code": 61,
             "region": "Mount Fay (Act 3)",
             "groups": ["BOSS_FIGHT", "ACT_3"]
         },
         "Defeat Gurr the Outcast": {
-            "code": 63,
+            "code": 62,
             "region": "Far Fields - Fields",
             "groups": ["BOSS_FIGHT", "ACT_3"]
         },
         "Defeat Watcher at the Edge": {
-            "code": 64,
+            "code": 63,
             "region": "Sands Of Karak",
             "groups": ["BOSS_FIGHT", "ACT_3"]
         },
         "Defeat Crawfather": {
-            "code": 65,
+            "code": 64,
             "region": "Greymoor - Craw Lake",
             "groups": ["BOSS_FIGHT", "ACT_3"]
         },
         "Defeat Shakra": {
-            "code": 66,
+            "code": 65,
             "region": "Greymoor - Spires",
             "groups": ["BOSS_FIGHT", "ACT_2"]
         },
         "Defeat Garmond and Zaza": {
-            "code": 67,
+            "code": 66,
             "region": "Choral Chambers - Outside",
             "groups": ["BOSS_FIGHT", "ACT_2"]
         },
         "Defeat Savage Beastfly (Beast)": {
-            "code": 68,
+            "code": 67,
             "region": "Chapel of the Beast",
             "groups": ["BOSS_FIGHT", "ACT_1"]
         },
-        "Event: Defeat Savage Beastfly (Beast)": {
-            "code": 69,
+        "Savage Beastfly Defeated (Beast)": {
+            "code": 68,
             "region": "Chapel of the Beast",
             "groups": ["EVENT_ONLY", "ACT_1"]
         },
         "Defeat Savage Beastfly (Wish)": {
-            "code": 70,
+            "code": 69,
             "region": "Far Fields - BeastFly",
             "groups": ["WISH", "BOSS_FIGHT", "ACT_1"]
         },
         "Defeat Skull Tyrant (Wish)": {
-            "code": 71,
-            "region": "The Marrow - East",
+            "code": 70,
+            "region": "The Marrow - East - Skull Tyrant",
             "groups": ["WISH", "BOSS_FIGHT", "ACT_1"]
+        },
+        "Skull Tyrant Defeated (Wish)": {
+            "code": 71,
+            "region": "The Marrow - East - Skull Tyrant",
+            "groups": ["EVENT_ONLY", "ACT_1"]
         },
         "Defeat Skull Tyrant (Bone Bottom)": {
             "code": 72,
-            "region": "Bone Bottom",
+            "region": "Bone Bottom - Skull Tyrant Defeated Once",
             "groups": ["WISH", "BOSS_FIGHT", "ACT_1"]
         },
         "Defeat Phantom": {
@@ -373,404 +373,434 @@
             "region": "Exhaust Organ",
             "groups": ["SILK_COMBAT_ABILITY", "BOSS_FIGHT", "ACT_1"]
         },
-        "Defeat Raging Conchfly": {
+        "Phantom Defeated": {
             "code": 74,
+            "region": "Exhaust Organ",
+            "groups": ["EVENT_ONLY", "ACT_1"]
+        },
+        "Enter Act 2": {
+            "code": 75,
+            "region": "Underworks - Act 2",
+            "groups": ["EVENT_ONLY", "ACT_2"]
+        },
+        "Defeat Raging Conchfly": {
+            "code": 76,
             "region": "Sands Of Karak",
             "groups": ["BOSS_FIGHT", "ACT_2"]
         },
         "Defeat First Sinner": {
-            "code": 75,
+            "code": 77,
             "region": "The Slab - First Sinner Cave",
             "groups": ["SILK_COMBAT_ABILITY", "BOSS_FIGHT", "ACT_2"]
         },
-        "Defeat The Unravelled": {
-            "code": 76,
-            "region": "Whiteward",
-            "groups": ["SILK_OTHER_ABILITY", "BOSS_FIGHT", "ACT_2"]
-        },
         "Defeat Lace (Cradle)": {
-            "code": 77,
+            "code": 78,
             "region": "The Cradle",
             "groups": ["SILK_OTHER_ABILITY", "BOSS_FIGHT", "ACT_2"]
         },
         "Defeat Grand Mother Silk": {
-            "code": 78,
+            "code": 79,
             "region": "The Cradle",
             "groups": ["OBJECTIVE", "BOSS_FIGHT", "ACT_2"]
         },
         "Snare Grand Mother Silk": {
-            "code": 79,
+            "code": 80,
             "region": "The Cradle - Soul Snare",
-            "groups": ["OBJECTIVE", "BOSS_FIGHT", "ACT_2"]
+            "groups": ["OBJECTIVE", "BOSS_FIGHT", "ACT_3"]
         },
         "Defeat Bell Eater": {
-            "code": 80,
+            "code": 81,
             "region": "Choral Chambers",
             "groups": ["OBJECTIVE", "BOSS_FIGHT", "ACT_3"]
         },
         "Defeat Crust King Khann": {
-            "code": 81,
-            "region": "Citadel",
-            "groups": ["OBJECTIVE", "BOSS_FIGHT", "ACT_3"]
-        },
-        "Defeat Nyleth": {
             "code": 82,
             "region": "Citadel",
             "groups": ["OBJECTIVE", "BOSS_FIGHT", "ACT_3"]
         },
-        "Defeat Skarrsinger Karmelita": {
+        "Defeat Nyleth": {
             "code": 83,
             "region": "Citadel",
             "groups": ["OBJECTIVE", "BOSS_FIGHT", "ACT_3"]
         },
-        "Defeat Clover Dancers": {
+        "Defeat Skarrsinger Karmelita": {
             "code": 84,
             "region": "Citadel",
             "groups": ["OBJECTIVE", "BOSS_FIGHT", "ACT_3"]
         },
-        "Defeat Lost Lace": {
+        "Defeat Clover Dancers": {
             "code": 85,
             "region": "Citadel",
             "groups": ["OBJECTIVE", "BOSS_FIGHT", "ACT_3"]
         },
-        "Eva: 0 Slots": {
+        "Defeat Lost Lace": {
             "code": 86,
+            "region": "Citadel",
+            "groups": ["OBJECTIVE", "BOSS_FIGHT", "ACT_3"]
+        },
+        "Eva: 0 Slots": {
+            "code": 87,
             "region": "Meet Eva",
             "groups": ["CREST_UPGRADE", "EVA", "ACT_1"]
         },
         "Eva: 1 Slots": {
-            "code": 87,
+            "code": 88,
             "region": "Eva - 1 Crest Slot",
             "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_1"]
         },
         "Eva: 2 Slots": {
-            "code": 88,
+            "code": 89,
             "region": "Eva - 2 Crest Slot",
             "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_1"]
         },
         "Eva: 3 Slots": {
-            "code": 89,
+            "code": 90,
             "region": "Eva - 3 Crest Slot",
             "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_1"]
         },
         "Eva: 4 Slots": {
-            "code": 90,
+            "code": 91,
             "region": "Eva - 4 Crest Slot",
             "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_1"]
         },
         "Eva: 5 Slots": {
-            "code": 91,
+            "code": 92,
             "region": "Eva - 5 Crest Slot",
             "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_1"]
         },
         "Eva: 6 Slots": {
-            "code": 92,
+            "code": 93,
             "region": "Eva - 6 Crest Slot",
             "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_1"]
         },
         "Eva: 7 Slots": {
-            "code": 93,
+            "code": 94,
             "region": "Eva - 7 Crest Slot",
             "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_1"]
         },
         "Eva: 8 Slots": {
-            "code": 94,
+            "code": 95,
             "region": "Eva - 8 Crest Slot",
             "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_1"]
         },
         "Eva: 9 Slots": {
-            "code": 95,
+            "code": 96,
             "region": "Eva - 9 Crest Slot",
             "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_1"]
         },
         "Eva: 10 Slots": {
-            "code": 96,
+            "code": 97,
             "region": "Eva - 10 Crest Slot",
             "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_1"]
         },
         "Eva: 11 Slots": {
-            "code": 97,
+            "code": 98,
             "region": "Eva - 11 Crest Slot",
             "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_1"]
         },
         "Eva: 12 Slots": {
-            "code": 98,
+            "code": 99,
             "region": "Eva - 12 Crest Slot",
             "groups": ["CREST_UPGRADE", "EVA", "ACT_1"]
         },
         "Eva: 13 Slots": {
-            "code": 99,
+            "code": 100,
             "region": "Eva - 13 Crest Slot",
             "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_1"]
         },
         "Eva: 14 Slots": {
-            "code": 100,
+            "code": 101,
             "region": "Eva - 14 Crest Slot",
             "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_1"]
         },
         "Eva: 15 Slots": {
-            "code": 101,
+            "code": 102,
             "region": "Eva - 15 Crest Slot",
             "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_1"]
         },
         "Eva: 16 Slots": {
-            "code": 102,
+            "code": 103,
             "region": "Eva - 16 Crest Slot",
             "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_1"]
         },
         "Eva: 17 Slots": {
-            "code": 103,
+            "code": 104,
             "region": "Eva - 17 Crest Slot",
             "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_1"]
         },
         "Eva: 18 Slots": {
-            "code": 104,
+            "code": 105,
             "region": "Eva - 18 Crest Slot",
             "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_1"]
         },
         "Eva: 19 Slots": {
-            "code": 105,
+            "code": 106,
             "region": "Eva - 19 Crest Slot",
             "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_1"]
         },
         "Eva: 20 Slots": {
-            "code": 106,
+            "code": 107,
             "region": "Eva - 20 Crest Slot",
             "groups": ["CREST_UPGRADE", "EVA", "ACT_1"]
         },
         "Eva: 21 Slots": {
-            "code": 107,
+            "code": 108,
             "region": "Eva - 21 Crest Slot",
             "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_2"]
         },
         "Eva: 22 Slots": {
-            "code": 108,
+            "code": 109,
             "region": "Eva - 22 Crest Slot",
             "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_2"]
         },
         "Eva: 23 Slots": {
-            "code": 109,
+            "code": 110,
             "region": "Eva - 23 Crest Slot",
             "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_2"]
         },
         "Eva: 24 Slots": {
-            "code": 110,
+            "code": 111,
             "region": "Eva - 24 Crest Slot",
             "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_2"]
         },
         "Eva: 25 Slots": {
-            "code": 111,
+            "code": 112,
             "region": "Eva - 25 Crest Slot",
             "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_2"]
         },
         "Eva: 26 Slots": {
-            "code": 112,
+            "code": 113,
             "region": "Eva - 26 Crest Slot",
             "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_2"]
         },
         "Eva: 27 Slots": {
-            "code": 113,
+            "code": 114,
             "region": "Eva - 27 Crest Slot",
             "groups": ["CREST_UPGRADE", "EVA", "ACT_2"]
         },
         "Eva: 28 Slots": {
-            "code": 114,
+            "code": 115,
             "region": "Eva - 28 Crest Slot",
             "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_2"]
         },
         "Eva: 29 Slots": {
-            "code": 115,
+            "code": 116,
             "region": "Eva - 29 Crest Slot",
             "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_2"]
         },
         "Eva: 30 Slots": {
-            "code": 116,
+            "code": 117,
             "region": "Eva - 30 Crest Slot",
             "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_2"]
         },
         "Eva: 31 Slots": {
-            "code": 117,
+            "code": 118,
             "region": "Eva - 31 Crest Slot",
             "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_2"]
         },
         "Eva: 32 Slots": {
-            "code": 118,
+            "code": 119,
             "region": "Eva - 32 Crest Slot",
             "groups": ["SILK_OTHER_ABILITY", "EVA", "ACT_2"]
         },
         "Eva: 33 Slots": {
-            "code": 119,
+            "code": 120,
             "region": "Eva - 33 Crest Slot",
-            "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_2"]
+            "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_3"]
         },
         "Eva: 34 Slots": {
-            "code": 120,
+            "code": 121,
             "region": "Eva - 34 Crest Slot",
-            "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_2"]
+            "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_3"]
         },
         "Eva: 35 Slots": {
-            "code": 121,
+            "code": 122,
             "region": "Eva - 35 Crest Slot",
-            "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_2"]
+            "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_3"]
         },
         "Eva: 36 Slots": {
-            "code": 122,
+            "code": 123,
             "region": "Eva - 36 Crest Slot",
             "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_3"]
         },
         "Eva: 37 Slots": {
-            "code": 123,
+            "code": 124,
             "region": "Eva - 37 Crest Slot",
             "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_3"]
         },
         "Bound the Crest of Reaper": {
-            "code": 124,
+            "code": 125,
             "region": "Chapel of the Reaper",
             "groups": ["CREST", "ACT_1"]
         },
         "Bound the Crest of Wanderer": {
-            "code": 125,
+            "code": 126,
             "region": "Chapel of the Wanderer",
             "groups": ["CREST", "ACT_1"]
         },
         "Bound the Crest of Beast": {
-            "code": 126,
+            "code": 127,
             "region": "Chapel of the Beast",
             "groups": ["CREST", "ACT_1"]
         },
         "Bound the Crest of Architect": {
-            "code": 127,
+            "code": 128,
             "region": "Chapel of the Architect",
             "groups": ["CREST", "ACT_2"]
         },
         "Bound the Crest of Shaman": {
-            "code": 128,
+            "code": 129,
             "region": "Ruined Chapel",
             "groups": ["CREST", "ACT_3"]
         },
         "Memory locket - Chapel of the Beast": {
-            "code": 129,
+            "code": 130,
             "region": "Chapel of the Beast",
             "groups": ["MEMORY_LOCKET", "ACT_1"]
         },
         "Memory locket - Mort": {
-            "code": 130,
+            "code": 131,
             "region": "Far Fields - Pilgrim's Rest",
             "groups": ["MEMORY_LOCKET", "SHOP", "ACT_1"]
         },
         "Memory locket - Greymoor Bellway": {
-            "code": 131,
+            "code": 132,
             "region": "Greymoor - Bellway",
             "groups": ["MEMORY_LOCKET", "SHOP", "ACT_1"]
         },
         "Memory locket - Volatiles FlintBeetles": {
-            "code": 132,
-            "region": "The Marrow - West",
+            "code": 133,
+            "region": "The Marrow - East - Volatile FlintBeetles",
             "groups": ["MEMORY_LOCKET", "WISH", "ACT_1"]
         },
         "Memory locket - The Marrow": {
-            "code": 133,
+            "code": 134,
             "region": "The Marrow - North Alcove",
             "groups": ["MEMORY_LOCKET", "ACT_1"]
         },
         "Memory locket - Wormways": {
-            "code": 134,
+            "code": 135,
             "region": "Wormways - Bottom Left",
             "groups": ["MEMORY_LOCKET", "ACT_1"]
         },
         "Memory locket - Frey": {
-            "code": 135,
+            "code": 136,
             "region": "Saved Bellhart",
             "groups": ["MEMORY_LOCKET", "SHOP", "ACT_1"]
         },
         "Memory locket - Blasted Steps": {
-            "code": 136,
+            "code": 137,
             "region": "Blasted Steps",
             "groups": ["MEMORY_LOCKET", "ACT_1"]
         },
         "Memory locket - Bilewater": {
-            "code": 137,
+            "code": 138,
             "region": "Bilewater - Bellway",
             "groups": ["MEMORY_LOCKET", "ACT_1"]
         },
         "Memory locket - Choral Chambers": {
-            "code": 138,
+            "code": 139,
             "region": "Choral Chambers - Above Bellway",
             "groups": ["MEMORY_LOCKET", "ACT_2"]
         },
         "Memory locket - Underworks": {
-            "code": 139,
+            "code": 140,
             "region": "Underworks - Confessional",
             "groups": ["MEMORY_LOCKET", "ACT_2"]
         },
         "Memory locket - Deep Docks": {
-            "code": 140,
+            "code": 141,
             "region": "Deep Docks - Diving Bell",
             "groups": ["MEMORY_LOCKET", "ACT_2"]
         },
         "Memory locket - Whispering Vaults": {
-            "code": 141,
+            "code": 142,
             "region": "Whispering Vaults - East",
             "groups": ["MEMORY_LOCKET", "ACT_2"]
         },
         "Memory locket - Sands of Karak": {
-            "code": 142,
+            "code": 143,
             "region": "Sands Of Karak",
             "groups": ["MEMORY_LOCKET", "ACT_2"]
         },
         "Memory locket - Halfway Home": {
-            "code": 143,
+            "code": 144,
             "region": "Halfway Home - Alcove",
             "groups": ["MEMORY_LOCKET", "ACT_2"]
         },
         "Memory locket - Memorium": {
-            "code": 144,
+            "code": 145,
             "region": "Memorium",
             "groups": ["MEMORY_LOCKET", "ACT_2"]
         },
         "Memory locket - The Slab": {
-            "code": 145,
+            "code": 146,
             "region": "The Slab - Shortcut Cave",
             "groups": ["MEMORY_LOCKET", "ACT_2"]
         },
         "Memory locket - Bilewater Upper": {
-            "code": 146,
+            "code": 147,
             "region": "Upper Bilewater",
             "groups": ["MEMORY_LOCKET", "ACT_2"]
         },
         "Memory locket - Bellhart Ceiling": {
-            "code": 147,
+            "code": 148,
             "region": "Bellhart",
             "groups": ["MEMORY_LOCKET", "ACT_3"]
         },
         "Memory locket - Far Fields East": {
-            "code": 148,
+            "code": 149,
             "region": "Far Fields - Fields",
             "groups": ["MEMORY_LOCKET", "ACT_3"]
         },
+        "Wayfarer Wish: My Missing Courier": {
+            "code": 150,
+            "region": "Bellhart Wish - My Missing Courier",
+            "groups": ["WISH", "SHOP", "ACT_1"]
+        },
+        "Wayfarer Wish: My Missing Brother": {
+            "code": 151,
+            "region": "Bellhart Wish - My Missing Brother",
+            "groups": ["WISH", "ACT_2"]
+        },
+        "Wayfarer Wish: Rite Of Rebirth": {
+            "code": 152,
+            "region": "Shellwood - GreyRoot With Twisted Bud",
+            "groups": ["WISH", "ACT_2"]
+        },
+        "Wayfarer Wish: Infestation Operation": {
+            "code": 153,
+            "region": "Greymoor - Yarnaby's Home with Steel Spines",
+            "groups": ["CREST", "WISH", "ACT_2"]
+        },
+        "Wayfarer Wish: Silk and Soul": {
+            "code": 154,
+            "region": "Choral Chambers",
+            "groups": ["WISH", "ACT_2"]
+        },
         "Twelfth Architect: Architect Key": {
-            "code": 149,
+            "code": 155,
             "region": "Underworks - Twelfth Architect",
             "groups": ["SHOP", "ACT_2"]
         },
-        "Receive the Craw Summons": {
-            "code": 150,
-            "region": "Greymoor - Craw Lake (Act 3)",
-            "groups": ["UNIQUE_PICKUPS", "ACT_3"]
-        },
         "Pickup Key of Indolent": {
-            "code": 151,
+            "code": 156,
             "region": "The Slab",
             "groups": ["UNIQUE_PICKUPS", "ACT_1"]
         },
         "Pickup Key of Heretic": {
-            "code": 152,
+            "code": 157,
             "region": "The Slab",
             "groups": ["UNIQUE_PICKUPS", "ACT_1"]
         },
         "Pickup Key of Apostate": {
-            "code": 153,
+            "code": 158,
             "region": "Putrified Ducts",
+            "groups": ["UNIQUE_PICKUPS", "ACT_2"]
+        },
+        "Pickup Twisted Bud": {
+            "code": 159,
+            "region": "Upper Bilewater",
             "groups": ["UNIQUE_PICKUPS", "ACT_2"]
         }
     }
