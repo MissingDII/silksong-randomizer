@@ -196,20 +196,28 @@
             "code": 49,
             "classification": "progression"
         },
-        "Key of Indolent": {
+        "White Key": {
             "code": 50,
             "classification": "progression"
         },
-        "Key of Heretic": {
+        "Key of Indolent": {
             "code": 51,
             "classification": "progression"
         },
-        "Key of Apostate": {
+        "Key of Heretic": {
             "code": 52,
             "classification": "progression"
         },
-        "Twisted Bud": {
+        "Key of Apostate": {
             "code": 53,
+            "classification": "progression"
+        },
+        "Surgeon's Key": {
+            "code": 54,
+            "classification": "progression"
+        },
+        "Twisted Bud": {
+            "code": 55,
             "classification": "progression"
         }
     }
