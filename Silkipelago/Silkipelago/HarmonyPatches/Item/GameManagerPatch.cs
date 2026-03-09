@@ -29,7 +29,7 @@ namespace Silkipelago.HarmonyPatches.Item
                 var itemManager = SilksongItemManager.Instance;
                 itemManager.ReceiveAllNewItems();
                 var slotId = __instance.profileID;
-                var saveSettingsData = GlobalSaveSettingsData.saveSettingsData;
+                var saveSettingsData = ArchipelagoPlugin.App.SettingsContext.saveSettingsData;
                 SaveSettings.saveGlobalSaveDataSettings(slotId);
 
                 _silksongArchipelagoClient._shouldDoInitialLoad = false;

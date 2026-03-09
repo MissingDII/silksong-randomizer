@@ -3,7 +3,6 @@ using HarmonyLib;
 using KaitoKid.ArchipelagoUtilities.Net.Constants;
 using KaitoKid.Utilities.Interfaces;
 using Silkipelago.Archipelago;
-using Silkipelago.Archipelago.UI;
 using System;
 using System.Collections;
 
@@ -60,8 +59,8 @@ namespace Silkipelago.HarmonyPatches.NewGame
                 yield return uiManager.StartCoroutine(uiManager.HideSaveProfileMenu(false));
             else
                 yield return uiManager.StartCoroutine(uiManager.HideCurrentMenu());
-            ArchipelagoMenuUI.Init(_logger, _harmony, _archipelago, _locationChecker);
-            ArchipelagoMenuUI.Toggle();
+            ArchipelagoPlugin.App.UIContext.MenuUI.InitUI();
+            ArchipelagoPlugin.App.UIContext.MenuUI.Toggle();
         }
     }
 }

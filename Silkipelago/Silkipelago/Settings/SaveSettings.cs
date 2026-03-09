@@ -21,7 +21,7 @@ namespace Silkipelago.Settings
         {
             createSaveDataDirectory(saveSlot);
             var dataPath = DataPaths.SaveDataPath(saveSlot);
-            saveDataSettings(dataPath, GlobalSaveSettingsData.saveSettingsData);
+            saveDataSettings(dataPath, ArchipelagoPlugin.App.SettingsContext.saveSettingsData);
         }
 
         private static void saveDataSettings(string path, SaveSettingsData data)

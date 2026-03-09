@@ -4,13 +4,9 @@ using BepInEx.Configuration;
 using GlobalEnums;
 using HarmonyLib;
 using Newtonsoft.Json.UnityConverters;
-using Silkipelago.Archipelago;
-using Silkipelago.Archipelago.UI;
 using Silkipelago.context;
 using Silkipelago.HarmonyPatches;
-using Silkipelago.Items;
 using Silkipelago.Logging;
-using Silkipelago.Settings;
 using Silkipelago.Utils;
 using System.IO;
 using UnityEngine;
@@ -19,11 +15,12 @@ using ILogger = KaitoKid.Utilities.Interfaces.ILogger;
 namespace Silkipelago
 {
     [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
-    public class ArchipelagoPlugin : BaseUnityPlugin
+    public partial class ArchipelagoPlugin : BaseUnityPlugin
     {
 
         private static ConfigEntry<KeyCode>? _addMoneyKey;
         private ILogger _logger;
+        private Harmony _harmony;
         private static PatchInitializer _patcherInitializer;
         public static RandomizerApp App { get; private set; }
 
@@ -35,12 +32,11 @@ namespace Silkipelago
             // Plugin startup logic
             Logger.LogInfo($"Loading {MyPluginInfo.PLUGIN_GUID}...");
             _addMoneyKey = this.Config.Bind<KeyCode>("KeyCode", "addMoneyKey", KeyCode.Keypad0, "key to add money and unlock abilities");
-            Harmony harmony;
             try
             {
                 _logger = new LogHandler(Logger);
-                harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);
-                harmony.PatchAll();
+                _harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);
+                _harmony.PatchAll();
 
             }
             catch (FileNotFoundException fnfe)
@@ -49,36 +45,21 @@ namespace Silkipelago
                 throw;
             }
 
-            InitializeBeforeConnection();
+            initializeApp();
             //refresh settings so that patch will apply from json
             UnityConverterInitializer.RefreshSettingsFromConfig();
 
             _logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
         }
 
-        private void InitializeBeforeConnection()
-        {
-            SaveSettings.initialize(_logger);
-            _patcherInitializer = new PatchInitializer();
-            _patcherInitializer.InitializeEarlyPatches(_logger, _harmony);
-            SilksongArchipelagoClient.Instance = new SilksongArchipelagoClient(_logger, OnItemReceived);
-            _archipelago = SilksongArchipelagoClient.Instance;
-            SilksongLocationChecker.Instance = new SilksongLocationChecker(_logger, _archipelago, []);
-            _locationChecker = SilksongLocationChecker.Instance;
-            SilksongItemManager.Instance = new SilksongItemManager(_logger, _archipelago, []);
-            _itemManager = SilksongItemManager.Instance;
-            ArchipelagoConnectionHandler.Init(_logger, _harmony, _archipelago, _locationChecker);
-            _patcherInitializer.InitializeEarlyPatchesWithArchipelagoData(_logger, _harmony, _archipelago, _locationChecker);
-        }
-
         private void OnItemReceived(ReceivedItemsHelper receivedItemsHelper)
         {
-            if (App._archipelagoContext._archipelago == null || App._archipelagoContext._itemManager == null || !App._archipelagoContext._archipelago.IsConnected || !GameManager.instance.IsGameplayScene())
+            if (App.ArchipelagoClient == null || App.ItemManager == null || !App.ArchipelagoClient.IsConnected || !GameManager.instance.IsGameplayScene())
             {
                 return;
             }
 
-            App._archipelagoContext._itemManager.ReceiveAllNewItems();
+            App.ItemManager.ReceiveAllNewItems();
         }
 
         public void Update()
@@ -132,7 +113,7 @@ namespace Silkipelago
             if (Input.GetKeyDown(KeyCode.Keypad5))
             {
                 _logger.LogInfo("Show UI button");
-                ArchipelagoMenuUI.Toggle();
+                App.UIContext.MenuUI.Toggle();
                 return;
             }
             return;

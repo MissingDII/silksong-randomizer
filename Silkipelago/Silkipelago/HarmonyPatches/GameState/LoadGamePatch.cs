@@ -1,7 +1,6 @@
 ﻿using HarmonyLib;
 using KaitoKid.ArchipelagoUtilities.Net.Client;
 using KaitoKid.Utilities.Interfaces;
-using Silkipelago.Archipelago;
 using Silkipelago.Settings;
 using System;
 
@@ -27,9 +26,10 @@ namespace Silkipelago.HarmonyPatches.GameState
             try
             {
                 _logger.LogDebugPatchIsRunning(nameof(GameManager), nameof(GameManager.SetLoadedGameData), nameof(LoadGamePatch), nameof(Postfix));
-                GlobalSaveSettingsData.saveSettingsData = SaveSettings.LoadSaveDataSettings(saveSlot);
-                var APConnectionInfo = new ArchipelagoConnectionInfo(GlobalSaveSettingsData.saveSettingsData.HostName, GlobalSaveSettingsData.saveSettingsData.Port, GlobalSaveSettingsData.saveSettingsData.SlotName, false);
-                ArchipelagoConnectionHandler.ConnectToArchipelago(APConnectionInfo);
+                ArchipelagoPlugin.App.SettingsContext.saveSettingsData = SaveSettings.LoadSaveDataSettings(saveSlot);
+                var saveSettingsData = ArchipelagoPlugin.App.SettingsContext.saveSettingsData;
+                var APConnectionInfo = new ArchipelagoConnectionInfo(saveSettingsData.HostName, saveSettingsData.Port, saveSettingsData.SlotName, false);
+                ArchipelagoPlugin.App.UIContext.ConnectionHandler.ConnectToArchipelago(APConnectionInfo);
             }
             catch (Exception ex)
             {

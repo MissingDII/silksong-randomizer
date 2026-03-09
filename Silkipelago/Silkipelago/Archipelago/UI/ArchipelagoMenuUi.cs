@@ -1,5 +1,4 @@
-﻿using HarmonyLib;
-using KaitoKid.ArchipelagoUtilities.Net.Client;
+﻿using KaitoKid.ArchipelagoUtilities.Net.Client;
 using Silkipelago.HarmonyPatches.NewGame;
 using UnityEngine;
 using ILogger = KaitoKid.Utilities.Interfaces.ILogger;
@@ -7,33 +6,23 @@ using ILogger = KaitoKid.Utilities.Interfaces.ILogger;
 
 namespace Silkipelago.Archipelago.UI
 {
-    public static class ArchipelagoMenuUI
+    public class ArchipelagoMenuUI
     {
-        private static Canvas _canvas;
-        private static bool _visible;
-        private static ILogger _logger;
-        private static Harmony _harmony;
-        private static SilksongArchipelagoClient _archipelagoClient;
-        private static SilksongLocationChecker _silksongLocationChecker;
-        private static ClickOnlyInputField _hostInput;
-        private static ClickOnlyInputField _portInput;
-        private static ClickOnlyInputField _slotInput;
-        private static ArchipelagoConnectionInfo APConnectionInfo { get; set; }
+        private Canvas _canvas;
+        private bool _visible;
+        private ILogger _logger;
+        private ClickOnlyInputField _hostInput;
+        private ClickOnlyInputField _portInput;
+        private ClickOnlyInputField _slotInput;
 
         // ---------- Public API ----------
 
-        public static void Init(ILogger logger, Harmony harmony, SilksongArchipelagoClient archipelagoClient, SilksongLocationChecker silksongLocationChecker)
+        public ArchipelagoMenuUI(ILogger logger)
         {
-            if (_canvas != null)
-                return; // already initialized
             _logger = logger;
-            _harmony = harmony;
-            _archipelagoClient = archipelagoClient;
-            _silksongLocationChecker = silksongLocationChecker;
-            InitUI();
         }
 
-        public static void InitUI()
+        public void InitUI()
         {
             if (_canvas != null)
                 return;
@@ -54,7 +43,7 @@ namespace Silkipelago.Archipelago.UI
             _portInput.text = "38281";
         }
 
-        public static void Toggle()
+        public void Toggle()
         {
             if (_canvas == null)
                 InitUI();
@@ -65,7 +54,7 @@ namespace Silkipelago.Archipelago.UI
                 Show();
         }
 
-        public static void Show()
+        public void Show()
         {
             if (_canvas == null)
                 InitUI();
@@ -77,7 +66,7 @@ namespace Silkipelago.Archipelago.UI
             _hostInput.ActivateInputField();
         }
 
-        public static void Hide()
+        public void Hide()
         {
             SelectionGuard.Instance?.DisableGuard();
             if (_canvas == null)
@@ -89,7 +78,7 @@ namespace Silkipelago.Archipelago.UI
 
         // ---------- Actions ----------
 
-        private static void OnConnectClicked()
+        private void OnConnectClicked()
         {
             _logger.LogInfo(
                 $"Connect requested: {_hostInput.text}:{_portInput.text} ({_slotInput.text})"
@@ -101,8 +90,8 @@ namespace Silkipelago.Archipelago.UI
                 return;
             }
 
-            APConnectionInfo = new ArchipelagoConnectionInfo(_hostInput.text, port, _slotInput.text, false);
-            var connected = ArchipelagoConnectionHandler.ConnectToArchipelago(APConnectionInfo);
+            var APConnectionInfo = new ArchipelagoConnectionInfo(_hostInput.text, port, _slotInput.text, false);
+            var connected = ArchipelagoPlugin.App.UIContext.ConnectionHandler.ConnectToArchipelago(APConnectionInfo);
             if (connected)
             {
                 Hide();

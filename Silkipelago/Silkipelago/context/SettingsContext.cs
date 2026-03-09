@@ -4,6 +4,6 @@ namespace Silkipelago.context
 {
     public class SettingsContext
     {
-        public static SaveSettingsData saveSettingsData { get; set; }
+        public SaveSettingsData saveSettingsData { get; set; }
     }
 }

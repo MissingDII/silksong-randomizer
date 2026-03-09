@@ -3,7 +3,6 @@ using KaitoKid.ArchipelagoUtilities.Net.Client;
 using KaitoKid.Utilities.Interfaces;
 using Silkipelago.Archipelago;
 using Silkipelago.Constants;
-using Silkipelago.Settings;
 using System;
 using System.Collections.Generic;
 
@@ -37,7 +36,7 @@ namespace Silkipelago.Items
 
         protected override void ProcessItem(ReceivedItem receivedItem, bool immediatelyIfPossible)
         {
-            GlobalSaveSettingsData.saveSettingsData.ProcessedItems.Add(receivedItem);
+            ArchipelagoPlugin.App.SettingsContext.saveSettingsData.ProcessedItems.Add(receivedItem);
             if (receivedItem.ItemName.Contains("Rosaries"))
             {
                 PlayerDataManager.addRosary(receivedItem.ItemName);
