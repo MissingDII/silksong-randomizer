@@ -1,5 +1,4 @@
 ﻿using HarmonyLib;
-using Silkipelago.Archipelago;
 using Silkipelago.Settings;
 
 namespace Silkipelago.HarmonyPatches.GameState
@@ -11,7 +10,7 @@ namespace Silkipelago.HarmonyPatches.GameState
         private static void Prefix(GameManager __instance, ref System.Action<bool> callback)
         {
             SaveSettings.saveGlobalSaveDataSettings(__instance.profileID);
-            var archipelagoClient = SilksongArchipelagoClient.Instance;
+            var archipelagoClient = ArchipelagoPlugin.App.ArchipelagoClient;
             archipelagoClient.DisconnectPermanently();
         }
     }

@@ -23,7 +23,7 @@ namespace Silkipelago.HarmonyPatches
             UnityConverterInitializerPatch.Initialize(logger);
             LoadGamePatch.Initialize(logger);
             SaveGamePatch.Initialize(logger);
-            GmStartNewGamePatch.Initialize(logger);
+            CollectableItemPatch.Initialize(logger);
         }
 
         public void InitializeEarlyPatchesWithArchipelagoData(ILogger logger, Harmony harmony, SilksongArchipelagoClient archipelago, SilksongLocationChecker locationChecker)
@@ -31,7 +31,7 @@ namespace Silkipelago.HarmonyPatches
             PlayerDataPatch.Initialize(logger, archipelago, locationChecker);
             EndingCompletedPatch.Initialize(logger, archipelago, locationChecker);
             UIStartNewGamePatch.Initialize(logger, harmony, archipelago, locationChecker);
-            GameManagerPatch.Initialize(logger, archipelago);
+            GameManagerPatch.Initialize(logger);
 
         }
 

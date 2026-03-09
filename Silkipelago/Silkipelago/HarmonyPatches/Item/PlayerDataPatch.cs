@@ -32,7 +32,7 @@ namespace Silkipelago.HarmonyPatches.Item
                 _logger.LogDebugPatchIsRunning(nameof(PlayerData), nameof(PlayerData.SetBool), nameof(PlayerDataPatch), nameof(Prefix));
                 if (SilksongItemManager._itemToReceive == 0)
                 {
-                    if (PlayerDataStrings.ABILITIES.Contains(boolName) || PlayerDataStrings.BOSSES.Contains(boolName))
+                    if (PlayerDataStrings.ABILITIES.Contains(boolName) || PlayerDataStrings.BOSSES.Contains(boolName) || PlayerDataStrings.KEYS.Contains(boolName))
                     {
                         var archipelagoItemName = ArchipelagoIds.GetArchipelagoName(boolName);
                         _logger.LogInfo("sending location for " + archipelagoItemName);

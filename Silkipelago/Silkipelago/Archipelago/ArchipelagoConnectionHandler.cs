@@ -1,7 +1,6 @@
 ﻿using KaitoKid.ArchipelagoUtilities.Net.Client;
 using KaitoKid.Utilities.Interfaces;
 using Silkipelago.HarmonyPatches;
-using Silkipelago.Items;
 using Silkipelago.Settings;
 using System;
 
@@ -23,9 +22,9 @@ namespace Silkipelago.Archipelago
 
         private void InitializeAfterConnection()
         {
-            var locationChecker = SilksongLocationChecker.Instance;
-            var itemManager = SilksongItemManager.Instance;
-            var archipelago = SilksongArchipelagoClient.Instance;
+            var locationChecker = ArchipelagoPlugin.App.LocationChecker;
+            var itemManager = ArchipelagoPlugin.App.ItemManager;
+            var archipelago = ArchipelagoPlugin.App.ArchipelagoClient;
 
             locationChecker.VerifyNewLocationChecksWithArchipelago();
             locationChecker.SendAllLocationChecks();
@@ -36,7 +35,7 @@ namespace Silkipelago.Archipelago
 
         private bool ConnectToArchipelago(Action actionAfterConnection, ArchipelagoConnectionInfo connectionInfo)
         {
-            var archipelago = SilksongArchipelagoClient.Instance;
+            var archipelago = ArchipelagoPlugin.App.ArchipelagoClient;
 
             if (connectionInfo == null)
             {

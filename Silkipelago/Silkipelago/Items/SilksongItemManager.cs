@@ -3,7 +3,6 @@ using KaitoKid.ArchipelagoUtilities.Net.Client;
 using KaitoKid.Utilities.Interfaces;
 using Silkipelago.Archipelago;
 using Silkipelago.Constants;
-using System;
 using System.Collections.Generic;
 
 namespace Silkipelago.Items
@@ -12,20 +11,7 @@ namespace Silkipelago.Items
     {
         public static int _itemToReceive = 0;
         private ILogger _logger;
-        private static SilksongItemManager _instance;
 
-        public static SilksongItemManager Instance
-        {
-            set => _instance = value;
-            get
-            {
-                if (_instance == null)
-                {
-                    throw new InvalidOperationException("SilksongItemManager not initialized. Set instance first.");
-                }
-                return _instance;
-            }
-        }
 
         public SilksongItemManager(ILogger logger, SilksongArchipelagoClient archipelago,
             IEnumerable<ReceivedItem> itemsAlreadyProcessed) : base(archipelago, itemsAlreadyProcessed)
@@ -37,12 +23,12 @@ namespace Silkipelago.Items
         protected override void ProcessItem(ReceivedItem receivedItem, bool immediatelyIfPossible)
         {
             ArchipelagoPlugin.App.SettingsContext.saveSettingsData.ProcessedItems.Add(receivedItem);
-            if (receivedItem.ItemName.Contains("Rosaries"))
+            if (receivedItem.ItemName.EndsWith("Rosaries"))
             {
                 PlayerDataManager.addRosary(receivedItem.ItemName);
                 return;
             }
-            if (receivedItem.ItemName.Contains("Shell Shards"))
+            if (receivedItem.ItemName.EndsWith("Shell Shards"))
             {
                 PlayerDataManager.addShards(receivedItem.ItemName);
                 return;
@@ -53,13 +39,13 @@ namespace Silkipelago.Items
                 _logger.LogWarning($"Unrecognised Item name: {receivedItem.ItemName}");
                 return;
             }
-            if (PlayerDataStrings.ABILITIES.Contains(inGameName))
+            if (PlayerDataStrings.ABILITIES.Contains(inGameName) || PlayerDataStrings.KEYS.Contains(inGameName))
             {
                 // must be an ability to modifiy on playerData
                 PlayerDataManager.ChangeBooleanValue(inGameName, true);
                 return;
             }
-            if (CollectablesStrings.TOOLCRESTUPGRADE.Contains(inGameName))
+            if (CollectablesStrings.TOOLCRESTUPGRADE.Contains(inGameName) || CollectablesStrings.COLLECTABLESKEYS.Contains(inGameName))
             {
                 CollectiblesManager.addOneCollectible(inGameName);
                 return;

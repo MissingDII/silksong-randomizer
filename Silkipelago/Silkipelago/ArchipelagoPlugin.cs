@@ -3,12 +3,14 @@ using BepInEx;
 using BepInEx.Configuration;
 using GlobalEnums;
 using HarmonyLib;
+using Newtonsoft.Json;
 using Newtonsoft.Json.UnityConverters;
 using Silkipelago.context;
 using Silkipelago.HarmonyPatches;
 using Silkipelago.Logging;
 using Silkipelago.Utils;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using ILogger = KaitoKid.Utilities.Interfaces.ILogger;
 
@@ -103,7 +105,7 @@ namespace Silkipelago
             {
                 _logger.LogInfo("Teleport somewhere");
                 var playerData = PlayerData.instance;
-                var location = "Cradle_03";
+                var location = "Slab_15";
                 var entry = "left1";
                 var gateLocation = GatePosition.left;
                 Logger.LogInfo("about to teleport");
@@ -114,6 +116,17 @@ namespace Silkipelago
             {
                 _logger.LogInfo("Show UI button");
                 App.UIContext.MenuUI.Toggle();
+                return;
+            }
+            if (Input.GetKeyDown(KeyCode.Keypad9))
+            {
+                var items = CollectableRelicManager.Instance.masterList.list
+                    .Select(x => x.name)
+                    .ToList();
+                var json = JsonConvert.SerializeObject(items, Formatting.Indented);
+                var filePath = System.IO.Path.Combine(Paths.PluginPath, "collectables_relic.json");
+                System.IO.File.WriteAllText(filePath, json);
+                _logger.LogInfo($"Collectables exported to: {filePath}");
                 return;
             }
             return;

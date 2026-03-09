@@ -8,10 +8,23 @@ namespace Silkipelago.Constants
         public const string MEMORY_LOCKET = "Crest Socket Unlocker";
         public const string CRAFT_METAL = "Tool Metal";
 
+        //Keys
+        public const string WHITE_KEY = "Ward Key";
+        public const string WHITE_BOSS_KEY = "Ward Boss Key";
+        public const string ARCHITECT_KEY = "Architect Key";
+
         public static readonly List<string> TOOLCRESTUPGRADE = new()
         {
             MEMORY_LOCKET,
             CRAFT_METAL,
         };
+
+        public static readonly List<string> COLLECTABLESKEYS = new()
+        {
+            WHITE_KEY,
+            WHITE_BOSS_KEY,
+            ARCHITECT_KEY
+        };
     }
 }
+

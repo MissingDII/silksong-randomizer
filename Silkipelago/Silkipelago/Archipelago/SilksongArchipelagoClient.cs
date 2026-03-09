@@ -16,7 +16,6 @@ namespace Silkipelago.Archipelago
     public class SilksongArchipelagoClient : ArchipelagoClient
     {
         private static IJsonLoader _jsonLoader = new NewtonsoftJsonLoader();
-        private static SilksongArchipelagoClient _instance;
         public bool _shouldDoInitialLoad = false;
 
         public override string GameName => "Silksong";
@@ -24,20 +23,6 @@ namespace Silkipelago.Archipelago
         public override string ModVersion => MyPluginInfo.PLUGIN_VERSION;
 
         public SilksongSlotData SlotData => (SilksongSlotData)_slotData;
-
-
-        public static SilksongArchipelagoClient Instance
-        {
-            set => _instance = value;
-            get
-            {
-                if (_instance == null)
-                {
-                    throw new InvalidOperationException("SilksongArchipelagoClient not initialized. Set Instance first.");
-                }
-                return _instance;
-            }
-        }
 
         public SilksongArchipelagoClient(ILogger logger, Action<ReceivedItemsHelper> itemReceivedFunction) :
             base(logger, new DataPackageCache(new ArchipelagoItemLoader(_jsonLoader), new SilksongLocationLoader(logger, _jsonLoader), "silksong", "BepInEx", "plugins", "Silkipelago", "IdTables"), itemReceivedFunction)

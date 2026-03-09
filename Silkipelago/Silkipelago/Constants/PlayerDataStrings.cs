@@ -7,6 +7,16 @@ namespace Silkipelago.Constants
     /// </summary>
     public static class PlayerDataStrings
     {
+        // Keys
+        public const string INDOLENT_KEY = "HasSlabKeyA";
+        public const string HERETIC_KEY = "HasSlabKeyB";
+        public const string APOSTATE_KEY = "HasSlabKeyC";
+        public static readonly List<string> KEYS = new()
+        {
+            INDOLENT_KEY,
+            HERETIC_KEY,
+            APOSTATE_KEY,
+        };
         // Abilities
         public const string HAS_NEEDOLIN = "hasNeedolin";
         public const string HAS_DASH = "hasDash";

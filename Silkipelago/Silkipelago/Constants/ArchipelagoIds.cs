@@ -8,6 +8,13 @@ namespace Silkipelago.Constants
     {
         public static Dictionary<string, string> ArchipelagoIdsToGameIds { get; } = new Dictionary<string, string>
     {
+        //keys
+        { "Key of Indolent", PlayerDataStrings.INDOLENT_KEY },
+        { "Key of Heretic", PlayerDataStrings.HERETIC_KEY },
+        { "Key of Apostate", PlayerDataStrings.APOSTATE_KEY },
+        { "Architect Key", CollectablesStrings.ARCHITECT_KEY },
+        { "White Key", CollectablesStrings.WHITE_KEY },
+        { "Surgeon's Key", CollectablesStrings.WHITE_BOSS_KEY },
         // Crest Upgrades
         { "Memory Locket", CollectablesStrings.MEMORY_LOCKET },
         { "Craft Metal", CollectablesStrings.CRAFT_METAL },
