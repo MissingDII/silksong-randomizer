@@ -7,10 +7,37 @@ namespace Silkipelago.Constants
     /// </summary>
     public static class PlayerDataStrings
     {
+        //cutscene
+        public const string BIND_CUTSCENE = "bindCutscenePlayed";
+
+        public static readonly List<string> CUTSCENES = new()
+        {
+            BIND_CUTSCENE
+        };
+
+        //shrine
+        public const string SHRINE_BONE = "bellShrineBoneForest";
+        public const string SHRINE_WILDS = "bellShrineWilds";
+        public const string SHRINE_GREYMOOR = "bellShrineGreymoor";
+        public const string SHRINE_SHELLWOOD = "bellShrineShellwood";
+        public const string SHRINE_BELLHART = "bellShrineBellhart";
+        public const string SHRINE_ENCLAVE = "bellShrineEnclave";
+
+        public static readonly List<string> SHRINES = new()
+        {
+            SHRINE_BONE,
+            SHRINE_WILDS,
+            SHRINE_GREYMOOR,
+            SHRINE_SHELLWOOD,
+            SHRINE_BELLHART,
+            SHRINE_ENCLAVE,
+        };
+
         // Keys
         public const string INDOLENT_KEY = "HasSlabKeyA";
         public const string HERETIC_KEY = "HasSlabKeyB";
         public const string APOSTATE_KEY = "HasSlabKeyC";
+
         public static readonly List<string> KEYS = new()
         {
             INDOLENT_KEY,

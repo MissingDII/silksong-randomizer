@@ -8,6 +8,15 @@ namespace Silkipelago.Constants
     {
         public static Dictionary<string, string> ArchipelagoIdsToGameIds { get; } = new Dictionary<string, string>
     {
+        //Cutscenes
+        { "Bound the Needle", PlayerDataStrings.BIND_CUTSCENE },
+        //Shrines
+        { "Ring The Bell In The Marrow", PlayerDataStrings.SHRINE_BONE },
+        { "Ring The Bell In Deep Docks", PlayerDataStrings.SHRINE_WILDS },
+        { "Ring The Bell In Shellwood", PlayerDataStrings.SHRINE_SHELLWOOD },
+        { "Ring The Bell In Greymoor", PlayerDataStrings.SHRINE_GREYMOOR },
+        { "Ring The Bell In Bellhart", PlayerDataStrings.SHRINE_BELLHART },
+        { "Ring The Bell In Songclave", PlayerDataStrings.SHRINE_ENCLAVE },
         //keys
         { "Key of Indolent", PlayerDataStrings.INDOLENT_KEY },
         { "Key of Heretic", PlayerDataStrings.HERETIC_KEY },

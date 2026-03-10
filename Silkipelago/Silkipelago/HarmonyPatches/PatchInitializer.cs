@@ -4,6 +4,7 @@ using Silkipelago.HarmonyPatches.GameState;
 using Silkipelago.HarmonyPatches.Item;
 using Silkipelago.HarmonyPatches.NewGame;
 using Silkipelago.HarmonyPatches.SaveUtility;
+using Silkipelago.HarmonyPatches.Shrine;
 using Silkipelago.HarmonyPatches.Steam;
 using Silkipelago.HarmonyPatches.Unity;
 using ILogger = KaitoKid.Utilities.Interfaces.ILogger;
@@ -24,6 +25,7 @@ namespace Silkipelago.HarmonyPatches
             LoadGamePatch.Initialize(logger);
             SaveGamePatch.Initialize(logger);
             CollectableItemPatch.Initialize(logger);
+            StateChangeSequencePatch.Initialize(logger);
         }
 
         public void InitializeEarlyPatchesWithArchipelagoData(ILogger logger, Harmony harmony, SilksongArchipelagoClient archipelago, SilksongLocationChecker locationChecker)

@@ -32,12 +32,17 @@ namespace Silkipelago.HarmonyPatches.Item
                 _logger.LogDebugPatchIsRunning(nameof(PlayerData), nameof(PlayerData.SetBool), nameof(PlayerDataPatch), nameof(Prefix));
                 if (SilksongItemManager._itemToReceive == 0)
                 {
-                    if (PlayerDataStrings.ABILITIES.Contains(boolName) || PlayerDataStrings.BOSSES.Contains(boolName) || PlayerDataStrings.KEYS.Contains(boolName))
+                    if (PlayerDataStrings.CUTSCENES.Contains(boolName) || PlayerDataStrings.BOSSES.Contains(boolName))
                     {
                         var archipelagoItemName = ArchipelagoIds.GetArchipelagoName(boolName);
-                        _logger.LogInfo("sending location for " + archipelagoItemName);
                         _silksongLocationChecker.AddCheckedLocation(archipelagoItemName);
-                        _logger.LogInfo("sent location for " + archipelagoItemName);
+                        return MethodPrefix.RUN_ORIGINAL_METHOD;
+                    }
+                    if (PlayerDataStrings.ABILITIES.Contains(boolName) ||
+                        PlayerDataStrings.KEYS.Contains(boolName))
+                    {
+                        var archipelagoItemName = ArchipelagoIds.GetArchipelagoName(boolName);
+                        _silksongLocationChecker.AddCheckedLocation(archipelagoItemName);
                         return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
                     }
                     else

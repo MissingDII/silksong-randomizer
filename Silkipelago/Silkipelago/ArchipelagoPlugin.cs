@@ -105,7 +105,7 @@ namespace Silkipelago
             {
                 _logger.LogInfo("Teleport somewhere");
                 var playerData = PlayerData.instance;
-                var location = "Slab_15";
+                var location = "Bone_05";
                 var entry = "left1";
                 var gateLocation = GatePosition.left;
                 Logger.LogInfo("about to teleport");
@@ -120,13 +120,13 @@ namespace Silkipelago
             }
             if (Input.GetKeyDown(KeyCode.Keypad9))
             {
-                var items = CollectableRelicManager.Instance.masterList.list
+                var items = QuestManager._allFullQuests
                     .Select(x => x.name)
                     .ToList();
                 var json = JsonConvert.SerializeObject(items, Formatting.Indented);
-                var filePath = System.IO.Path.Combine(Paths.PluginPath, "collectables_relic.json");
+                var filePath = System.IO.Path.Combine(Paths.PluginPath, "quests.json");
                 System.IO.File.WriteAllText(filePath, json);
-                _logger.LogInfo($"Collectables exported to: {filePath}");
+                _logger.LogInfo($"quests exported to: {filePath}");
                 return;
             }
             return;
