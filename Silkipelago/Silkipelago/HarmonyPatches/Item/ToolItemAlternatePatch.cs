@@ -26,6 +26,7 @@ namespace Silkipelago.HarmonyPatches.Item
                 {
                     return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
                 }
+
             }
             return MethodPrefix.RUN_ORIGINAL_METHOD;
         }
