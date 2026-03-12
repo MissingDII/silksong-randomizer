@@ -32,6 +32,10 @@ namespace Silkipelago.HarmonyPatches.Item
                 _logger.LogDebugPatchIsRunning(nameof(PlayerData), nameof(PlayerData.SetBool), nameof(PlayerDataPatch), nameof(Prefix));
                 if (SilksongItemManager._itemToReceive == 0)
                 {
+                    if (PlayerDataStrings.SILK_ABILITIES.Contains(boolName))
+                    {
+                        return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
+                    }
                     if (PlayerDataStrings.CUTSCENES.Contains(boolName) || PlayerDataStrings.BOSSES.Contains(boolName))
                     {
                         var archipelagoItemName = ArchipelagoIds.GetArchipelagoName(boolName);

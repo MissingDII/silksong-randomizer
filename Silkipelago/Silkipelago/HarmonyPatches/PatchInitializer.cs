@@ -26,6 +26,9 @@ namespace Silkipelago.HarmonyPatches
             SaveGamePatch.Initialize(logger);
             CollectableItemPatch.Initialize(logger);
             StateChangeSequencePatch.Initialize(logger);
+            ToolItemPatch.Initialize(logger);
+            ToolItemAlternatePatch.Initialize(logger);
+            ToolEquipPatch.Initialize(logger);
         }
 
         public void InitializeEarlyPatchesWithArchipelagoData(ILogger logger, Harmony harmony, SilksongArchipelagoClient archipelago, SilksongLocationChecker locationChecker)

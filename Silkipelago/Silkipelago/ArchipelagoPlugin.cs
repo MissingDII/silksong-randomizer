@@ -120,7 +120,7 @@ namespace Silkipelago
             }
             if (Input.GetKeyDown(KeyCode.Keypad9))
             {
-                var items = QuestManager._allFullQuests
+                var items = ToolItemManager.GetAllTools()
                     .Select(x => x.name)
                     .ToList();
                 var json = JsonConvert.SerializeObject(items, Formatting.Indented);

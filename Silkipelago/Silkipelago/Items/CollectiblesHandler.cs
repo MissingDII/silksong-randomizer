@@ -1,6 +1,6 @@
 ﻿namespace Silkipelago.Items
 {
-    public static class CollectiblesManager
+    public static class CollectiblesHandler
     {
         private static void SetCollectible(string name, int amount)
         {

@@ -8,6 +8,13 @@ namespace Silkipelago.Constants
     {
         public static Dictionary<string, string> ArchipelagoIdsToGameIds { get; } = new Dictionary<string, string>
     {
+        //Tools
+        { "Silkspear", ToolsStrings.SILK_SPEAR },
+        { "Thread Storm",ToolsStrings.THREAD_STORM  },
+        { "Sharpdart", ToolsStrings.SHARP_DART },
+        { "Pale Nails", ToolsStrings.PALE_NAILS },
+        { "Cross Stitch", ToolsStrings.CROSS_STITCH },
+        { "Rune Rage", ToolsStrings.RUNE_RAGE },
         //Cutscenes
         { "Bound the Needle", PlayerDataStrings.BIND_CUTSCENE },
         //Shrines

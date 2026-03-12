@@ -17,49 +17,33 @@ namespace Silkipelago.Items
             IEnumerable<ReceivedItem> itemsAlreadyProcessed) : base(archipelago, itemsAlreadyProcessed)
         {
             _logger = logger;
-            PlayerDataManager.Init(logger);
+            PlayerDataHandler.Init(logger);
         }
 
         protected override void ProcessItem(ReceivedItem receivedItem, bool immediatelyIfPossible)
         {
             ArchipelagoPlugin.App.SettingsContext.saveSettingsData.ProcessedItems.Add(receivedItem);
-            if (receivedItem.ItemName.EndsWith("Rosaries"))
-            {
-                PlayerDataManager.addRosary(receivedItem.ItemName);
-                return;
-            }
-            if (receivedItem.ItemName.EndsWith("Shell Shards"))
-            {
-                PlayerDataManager.addShards(receivedItem.ItemName);
-                return;
-            }
-            var inGameName = ArchipelagoIds.GetInGameName(receivedItem.ItemName);
+
+            var itemName = receivedItem.ItemName;
+
+            if (itemName.EndsWith("Rosaries")) { PlayerDataHandler.addRosary(itemName); return; }
+            if (itemName.EndsWith("Shell Shards")) { PlayerDataHandler.addShards(itemName); return; }
+
+            var inGameName = ArchipelagoIds.GetInGameName(itemName);
             if (inGameName == null)
             {
-                _logger.LogWarning($"Unrecognised Item name: {receivedItem.ItemName}");
+                _logger.LogWarning($"Unrecognised Item name: {itemName}");
                 return;
             }
+
             if (PlayerDataStrings.ABILITIES.Contains(inGameName) || PlayerDataStrings.KEYS.Contains(inGameName))
-            {
-                // must be an ability to modifiy on playerData
-                PlayerDataManager.ChangeBooleanValue(inGameName, true);
-                return;
-            }
-            if (CollectablesStrings.TOOLCRESTUPGRADE.Contains(inGameName) || CollectablesStrings.COLLECTABLESKEYS.Contains(inGameName))
-            {
-                CollectiblesManager.addOneCollectible(inGameName);
-                return;
-            }
-
-            //if (TryHandleReceivedPerk(receivedItem))
-            //{
-            //    return;
-            //}
-
-            //if (_trapExecutor.TryHandleReceivedTrap(receivedItem))
-            //{
-            //    return;
-            //}
+                PlayerDataHandler.ChangeBooleanValue(inGameName, true);
+            else if (ToolsStrings.SILK_ABILITIES.Contains(inGameName))
+                ToolItemHandler.unlockTool(inGameName);
+            else if (CollectablesStrings.TOOLCRESTUPGRADE.Contains(inGameName) || CollectablesStrings.COLLECTABLESKEYS.Contains(inGameName))
+                CollectiblesHandler.addOneCollectible(inGameName);
+            else
+                _logger.LogWarning($"No handler for item: {inGameName}");
         }
     }
 }

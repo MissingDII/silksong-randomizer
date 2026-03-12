@@ -3,7 +3,7 @@ using System;
 
 namespace Silkipelago.Items
 {
-    public static class PlayerDataManager
+    public static class PlayerDataHandler
     {
         static ILogger _logger;
         public static void Init(ILogger logger)

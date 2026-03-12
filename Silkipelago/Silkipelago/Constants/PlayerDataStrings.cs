@@ -7,6 +7,23 @@ namespace Silkipelago.Constants
     /// </summary>
     public static class PlayerDataStrings
     {
+        //silk abilities
+        public const string SILK_SPEAR = "hasNeedleThrow";
+        public const string THREAD_STORM = "hasThreadSphere";
+        public const string CROSS_STITCH = "hasParry";
+        public const string SHARP_DART = "hasSilkCharge";
+        public const string RUNE_RAGE = "hasSilkBomb";
+        public const string PALE_NAILS = "hasSilkBomb";
+        public const string SILK_SPECIAL = "hasSilkSpecial";
+
+        public static readonly List<string> SILK_ABILITIES = new()
+        {
+            SILK_SPEAR,
+            THREAD_STORM,
+            CROSS_STITCH,
+            SHARP_DART,
+            PALE_NAILS
+        };
         //cutscene
         public const string BIND_CUTSCENE = "bindCutscenePlayed";
 
