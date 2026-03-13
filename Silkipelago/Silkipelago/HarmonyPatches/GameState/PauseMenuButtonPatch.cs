@@ -32,38 +32,79 @@ namespace Silkipelago.HarmonyPatches.GameState
                 var menuObject = pauseMenuScreen.gameObject;
                 var containerTransform = menuObject.transform.Find("Container");
                 var controlsTransform = containerTransform.Find("Controls");
-                // Check if we already added the button and remove it so we can create a fresh one
+
+                var firstChildTransform = controlsTransform.GetChild(0);
+                var firstButtonRect = firstChildTransform.GetComponent<RectTransform>();
+                var buttonSpacing = firstButtonRect.sizeDelta.y + 10f;
+
+                // Remove existing custom buttons
                 var existingArchipelagoButton = controlsTransform.Find("ArchipelagoButton");
                 if (existingArchipelagoButton != null)
                 {
                     UnityEngine.Object.Destroy(existingArchipelagoButton.gameObject);
                 }
-                var firstChildTransform = controlsTransform.GetChild(0);
-                var firstButtonRect = firstChildTransform.GetComponent<RectTransform>();
-                // Clone the first button (gets all proper styling automatically)
-                var archipelagoButtonGO = UnityEngine.Object.Instantiate(
-                    firstChildTransform.gameObject,
-                    controlsTransform,
-                    worldPositionStays: false
-                );
-                archipelagoButtonGO.name = "ArchipelagoButton";
 
-                // Update position to be below all existing buttons
-                var newButtonRect = archipelagoButtonGO.GetComponent<RectTransform>();
-                var buttonSpacing = firstButtonRect.sizeDelta.y + 10f;
-                var yOffset = firstButtonRect.anchoredPosition.y - (buttonSpacing * controlsTransform.childCount);
-                newButtonRect.anchoredPosition = new Vector2(firstButtonRect.anchoredPosition.x, yOffset);
-
-                // Update the text to "Archipelago"
-                var textComponent = archipelagoButtonGO.GetComponentInChildren<UnityEngine.UI.Text>();
-                if (textComponent != null)
+                var existingToggleAct3Button = controlsTransform.Find("ToggleAct3Button");
+                if (existingToggleAct3Button != null)
                 {
-                    textComponent.text = "Archipelago";
+                    UnityEngine.Object.Destroy(existingToggleAct3Button.gameObject);
                 }
+
+                // Create Archipelago button
+                CreateCustomButton(
+                    firstChildTransform,
+                    controlsTransform,
+                    "ArchipelagoButton",
+                    "Archipelago",
+                    firstButtonRect,
+                    buttonSpacing,
+                    controlsTransform.childCount
+                );
+
+                // Create Toggle Act 3 button (positioned below Archipelago button)
+                CreateCustomButton(
+                    firstChildTransform,
+                    controlsTransform,
+                    "ToggleAct3Button",
+                    "Toggle Act 3",
+                    firstButtonRect,
+                    buttonSpacing,
+                    controlsTransform.childCount
+                );
             }
             catch (Exception ex)
             {
                 _logger?.LogError($"Error in PauseMenuButtonPatch: {ex.Message}\n{ex.StackTrace}");
+            }
+        }
+
+        private static void CreateCustomButton(
+            Transform templateTransform,
+            Transform parentTransform,
+            string buttonName,
+            string buttonText,
+            RectTransform templateRect,
+            float buttonSpacing,
+            int currentChildCount)
+        {
+            // Clone the button
+            var buttonGO = UnityEngine.Object.Instantiate(
+                templateTransform.gameObject,
+                parentTransform,
+                worldPositionStays: false
+            );
+            buttonGO.name = buttonName;
+
+            // Update position to be below all existing buttons
+            var buttonRect = buttonGO.GetComponent<RectTransform>();
+            var yOffset = templateRect.anchoredPosition.y - (buttonSpacing * currentChildCount);
+            buttonRect.anchoredPosition = new Vector2(templateRect.anchoredPosition.x, yOffset);
+
+            // Update the text
+            var textComponent = buttonGO.GetComponentInChildren<UnityEngine.UI.Text>();
+            if (textComponent != null)
+            {
+                textComponent.text = buttonText;
             }
         }
     }

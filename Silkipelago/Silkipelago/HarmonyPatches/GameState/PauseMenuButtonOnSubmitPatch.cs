@@ -32,6 +32,14 @@ namespace Silkipelago.HarmonyPatches.GameState
                     return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
                 }
 
+                if (__instance.gameObject.name == "ToggleAct3Button")
+                {
+                    PlayerData.instance.blackThreadWorld = !PlayerData.instance.blackThreadWorld;
+                    _logger.LogInfo("Act3 toggled, reload a new room for change to take place");
+                    return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
+
+                }
+
                 return MethodPrefix.RUN_ORIGINAL_METHOD;
             }
             catch (Exception ex)
