@@ -8,6 +8,13 @@ namespace Silkipelago.Constants
     {
         public static Dictionary<string, string> ArchipelagoIdsToGameIds { get; } = new Dictionary<string, string>
     {
+        // needolin and melodies 
+        { "Needolin", PlayerDataStrings.HAS_NEEDOLIN },
+        { "Beastling Call",PlayerDataStrings.BEASTLING_CALL  },
+        { "Elegy of the Deep", PlayerDataStrings.ELEGY_OF_THE_DEEP },
+        { "Conductor's Melody", PlayerDataStrings.CONDUCTOR_MELODY },
+        { "Architect's Melody", PlayerDataStrings.ARCHITECT_MELODY },
+        { "Vaultkeeper's Melody", PlayerDataStrings.VAULTKEEPER_MELODY },
         //Tools
         { "Silkspear", ToolsStrings.SILK_SPEAR },
         { "Thread Storm",ToolsStrings.THREAD_STORM  },

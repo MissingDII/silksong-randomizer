@@ -7,6 +7,23 @@ namespace Silkipelago.Constants
     /// </summary>
     public static class PlayerDataStrings
     {
+        // Needolin and melodies
+        public const string NEEDOLIN = "Needolin";
+        public const string BEASTLING_CALL = "UnlockedFastTravelTeleport";
+        public const string ELEGY_OF_THE_DEEP = "hasNeedolinMemoryPowerup";
+        public const string CONDUCTOR_MELODY = "HasMelodyConductor";
+        public const string ARCHITECT_MELODY = "HasMelodyArchitect";
+        public const string VAULTKEEPER_MELODY = "HasMelodyLibrarian";
+
+        public static readonly List<string> MELODIES = new()
+        {
+            NEEDOLIN,
+            BEASTLING_CALL,
+            ELEGY_OF_THE_DEEP,
+            CONDUCTOR_MELODY,
+            ARCHITECT_MELODY,
+            VAULTKEEPER_MELODY
+        };
         //silk abilities
         public const string SILK_SPEAR = "hasNeedleThrow";
         public const string THREAD_STORM = "hasThreadSphere";

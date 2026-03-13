@@ -43,11 +43,16 @@ namespace Silkipelago.HarmonyPatches.Item
                         return MethodPrefix.RUN_ORIGINAL_METHOD;
                     }
                     if (PlayerDataStrings.ABILITIES.Contains(boolName) ||
-                        PlayerDataStrings.KEYS.Contains(boolName))
+                        PlayerDataStrings.KEYS.Contains(boolName) ||
+                        PlayerDataStrings.MELODIES.Contains(boolName))
                     {
                         var archipelagoItemName = ArchipelagoIds.GetArchipelagoName(boolName);
-                        _silksongLocationChecker.AddCheckedLocation(archipelagoItemName);
-                        return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
+                        var locationChecker = ArchipelagoPlugin.App.LocationChecker;
+                        if (locationChecker.LocationExists(archipelagoItemName))
+                        {
+                            locationChecker.AddCheckedLocation(archipelagoItemName);
+                            return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
+                        }
                     }
                     else
                     {

@@ -36,7 +36,7 @@ namespace Silkipelago.Items
                 return;
             }
 
-            if (PlayerDataStrings.ABILITIES.Contains(inGameName) || PlayerDataStrings.KEYS.Contains(inGameName))
+            if (PlayerDataStrings.ABILITIES.Contains(inGameName) || PlayerDataStrings.KEYS.Contains(inGameName) || PlayerDataStrings.MELODIES.Contains(inGameName))
                 PlayerDataHandler.ChangeBooleanValue(inGameName, true);
             else if (ToolsStrings.SILK_ABILITIES.Contains(inGameName))
                 ToolItemHandler.unlockTool(inGameName);
