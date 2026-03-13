@@ -29,6 +29,8 @@ namespace Silkipelago.HarmonyPatches
             ToolItemPatch.Initialize(logger);
             ToolItemAlternatePatch.Initialize(logger);
             ToolEquipPatch.Initialize(logger);
+            SkillMessagePatch.Initialize(logger);
+            SavaDataSetToNullHook.Initialize(logger);
         }
 
         public void InitializeEarlyPatchesWithArchipelagoData(ILogger logger, Harmony harmony, SilksongArchipelagoClient archipelago, SilksongLocationChecker locationChecker)
@@ -37,7 +39,8 @@ namespace Silkipelago.HarmonyPatches
             EndingCompletedPatch.Initialize(logger, archipelago, locationChecker);
             UIStartNewGamePatch.Initialize(logger, harmony, archipelago, locationChecker);
             GameManagerPatch.Initialize(logger);
-
+            PauseMenuButtonPatch.Initialize(logger, archipelago);
+            PauseMenuButtonOnSubmitPatch.Initialize(logger);
         }
 
 

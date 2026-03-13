@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using KaitoKid.Utilities.Interfaces;
 using Silkipelago.Settings;
+using System;
 
 namespace Silkipelago.HarmonyPatches.Item
 {
@@ -18,17 +19,24 @@ namespace Silkipelago.HarmonyPatches.Item
         //   public bool IsGameplayScene()
         public static void Postfix(GameManager __instance, bool __result)
         {
-            if (__result && ArchipelagoPlugin.App.ArchipelagoClient._shouldDoInitialLoad)
+            try
             {
-                // Do something when IsGameplayScene returns true
-                _logger.LogDebug("Entering Gameplay Scene and loading items");
-                var itemManager = ArchipelagoPlugin.App.ItemManager;
-                itemManager.ReceiveAllNewItems();
-                var slotId = __instance.profileID;
-                var saveSettingsData = ArchipelagoPlugin.App.SettingsContext.saveSettingsData;
-                SaveSettings.saveGlobalSaveDataSettings(slotId);
+                if (__result && ArchipelagoPlugin.App.ArchipelagoClient._shouldDoInitialLoad)
+                {
+                    // Do something when IsGameplayScene returns true
+                    _logger.LogDebug("Entering Gameplay Scene and loading items");
+                    var itemManager = ArchipelagoPlugin.App.ItemManager;
+                    itemManager.ReceiveAllNewItems();
+                    var slotId = __instance.profileID;
+                    var saveSettingsData = ArchipelagoPlugin.App.SettingsContext.saveSettingsData;
+                    SaveSettings.saveGlobalSaveDataSettings(slotId);
 
-                ArchipelagoPlugin.App.ArchipelagoClient._shouldDoInitialLoad = false;
+                    ArchipelagoPlugin.App.ArchipelagoClient._shouldDoInitialLoad = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogErrorException(nameof(GameManagerPatch), nameof(Postfix), ex);
             }
         }
     }

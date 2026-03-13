@@ -2,6 +2,7 @@
 using KaitoKid.ArchipelagoUtilities.Net.Constants;
 using KaitoKid.Utilities.Interfaces;
 using Silkipelago.Constants;
+using System;
 
 namespace Silkipelago.HarmonyPatches.Item
 {
@@ -17,18 +18,25 @@ namespace Silkipelago.HarmonyPatches.Item
 
         static bool Prefix(ToolItem __instance)
         {
-            if (ToolsStrings.SILK_ABILITIES.Contains(__instance.name))
+            try
             {
-                var locationChecker = ArchipelagoPlugin.App.LocationChecker;
-                _logger.LogInfo($"[ToolItem] {nameof(ToolItem.Unlock)} called, item={__instance.name}");
-                var archipelagoId = ArchipelagoIds.GetArchipelagoName(__instance.name);
-                if (locationChecker.LocationExists(archipelagoId))
+                if (ToolsStrings.SILK_ABILITIES.Contains(__instance.name))
                 {
-                    return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
+                    var locationChecker = ArchipelagoPlugin.App.LocationChecker;
+                    _logger.LogInfo($"[ToolItem] {nameof(ToolItem.Unlock)} called, item={__instance.name}");
+                    var archipelagoId = ArchipelagoIds.GetArchipelagoName(__instance.name);
+                    if (locationChecker.LocationExists(archipelagoId))
+                    {
+                        return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
+                    }
                 }
-
+                return MethodPrefix.RUN_ORIGINAL_METHOD;
             }
-            return MethodPrefix.RUN_ORIGINAL_METHOD;
+            catch (Exception ex)
+            {
+                _logger.LogErrorException(nameof(ToolItemAlternatePatch), nameof(Prefix), ex);
+                return MethodPrefix.RUN_ORIGINAL_METHOD;
+            }
         }
     }
 }

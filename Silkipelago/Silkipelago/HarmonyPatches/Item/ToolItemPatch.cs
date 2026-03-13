@@ -18,18 +18,26 @@ namespace Silkipelago.HarmonyPatches.Item
 
         static bool Prefix(ToolItem __instance, Action afterTutorialMsg, ToolItem.PopupFlags popupFlags)
         {
-            if (ToolsStrings.SILK_ABILITIES.Contains(__instance.name))
+            try
             {
-                var locationChecker = ArchipelagoPlugin.App.LocationChecker;
-                _logger.LogInfo($"[ToolItem] {nameof(ToolItem.Unlock)} called, item={__instance.name}");
-                var archipelagoId = ArchipelagoIds.GetArchipelagoName(__instance.name);
-                if (locationChecker.LocationExists(archipelagoId))
+                if (ToolsStrings.SILK_ABILITIES.Contains(__instance.name))
                 {
-                    locationChecker.AddCheckedLocation(archipelagoId);
-                    return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
+                    var locationChecker = ArchipelagoPlugin.App.LocationChecker;
+                    _logger.LogInfo($"[ToolItem] {nameof(ToolItem.Unlock)} called, item={__instance.name}");
+                    var archipelagoId = ArchipelagoIds.GetArchipelagoName(__instance.name);
+                    if (locationChecker.LocationExists(archipelagoId))
+                    {
+                        locationChecker.AddCheckedLocation(archipelagoId);
+                        return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
+                    }
                 }
+                return MethodPrefix.RUN_ORIGINAL_METHOD;
             }
-            return MethodPrefix.RUN_ORIGINAL_METHOD;
+            catch (Exception ex)
+            {
+                _logger.LogErrorException(nameof(ToolItemPatch), nameof(Prefix), ex);
+                return MethodPrefix.RUN_ORIGINAL_METHOD;
+            }
         }
     }
 }

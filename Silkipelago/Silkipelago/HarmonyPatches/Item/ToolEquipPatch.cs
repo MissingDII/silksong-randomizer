@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using KaitoKid.Utilities.Interfaces;
+using System;
 
 namespace Silkipelago.HarmonyPatches.Item
 {
@@ -15,10 +16,18 @@ namespace Silkipelago.HarmonyPatches.Item
 
         static bool Prefix(ToolItem tool)
         {
-            _logger.LogInfo($"[ToolItemManager] AutoEquip called for: {tool.name}");
+            try
+            {
+                _logger.LogInfo($"[ToolItemManager] AutoEquip called for: {tool.name}");
 
-            // return false to block, true to allow
-            return false;
+                // return false to block, true to allow
+                return false;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogErrorException(nameof(ToolEquipPatch), nameof(Prefix), ex);
+                return true;
+            }
         }
     }
 }

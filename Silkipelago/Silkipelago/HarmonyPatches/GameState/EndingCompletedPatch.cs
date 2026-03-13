@@ -4,6 +4,7 @@ using KaitoKid.ArchipelagoUtilities.Net.Constants;
 using KaitoKid.Utilities.Interfaces;
 using Silkipelago.Archipelago;
 using Silkipelago.Constants;
+using System;
 
 namespace Silkipelago.HarmonyPatches.GameState
 {
@@ -26,30 +27,38 @@ namespace Silkipelago.HarmonyPatches.GameState
 
         static bool Prefix(SetEndingCompleted __instance)
         {
-            if (__instance?.EndingType?.Value == null)
-                return MethodPrefix.RUN_ORIGINAL_METHOD;
-
-            var state = (SaveSlotCompletionIcons.CompletionState)__instance.EndingType.Value;
-            var goal = _archipelagoClient.SlotData.Goal;
-
-            switch (state)
+            try
             {
-                case SaveSlotCompletionIcons.CompletionState.Act2Regular:
-                case SaveSlotCompletionIcons.CompletionState.Act2Cursed:
-                    HandleAct2RegularOrCursed(goal);
-                    break;
+                if (__instance?.EndingType?.Value == null)
+                    return MethodPrefix.RUN_ORIGINAL_METHOD;
 
-                case SaveSlotCompletionIcons.CompletionState.Act2SoulSnare:
-                    HandleAct2SoulSnare(goal);
-                    break;
+                var state = (SaveSlotCompletionIcons.CompletionState)__instance.EndingType.Value;
+                var goal = _archipelagoClient.SlotData.Goal;
 
-                case SaveSlotCompletionIcons.CompletionState.Act3Ending:
-                    if (goal == Goal.LostLace)
-                        _archipelagoClient.ReportGoalCompletion();
-                    break;
+                switch (state)
+                {
+                    case SaveSlotCompletionIcons.CompletionState.Act2Regular:
+                    case SaveSlotCompletionIcons.CompletionState.Act2Cursed:
+                        HandleAct2RegularOrCursed(goal);
+                        break;
+
+                    case SaveSlotCompletionIcons.CompletionState.Act2SoulSnare:
+                        HandleAct2SoulSnare(goal);
+                        break;
+
+                    case SaveSlotCompletionIcons.CompletionState.Act3Ending:
+                        if (goal == Goal.LostLace)
+                            _archipelagoClient.ReportGoalCompletion();
+                        break;
+                }
+
+                return MethodPrefix.RUN_ORIGINAL_METHOD;
             }
-
-            return MethodPrefix.RUN_ORIGINAL_METHOD;
+            catch (Exception ex)
+            {
+                _logger.LogErrorException(nameof(EndingCompletedPatch), nameof(Prefix), ex);
+                return MethodPrefix.RUN_ORIGINAL_METHOD;
+            }
         }
 
         private static void HandleAct2RegularOrCursed(Goal goal)

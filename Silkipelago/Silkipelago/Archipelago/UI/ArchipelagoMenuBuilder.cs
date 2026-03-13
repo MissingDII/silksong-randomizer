@@ -12,6 +12,7 @@ namespace Silkipelago.Archipelago.UI
     {
         public static Canvas BuildUI(
             Action onConnectClicked,
+            Action onReturnClicked,
             out ClickOnlyInputField hostInput,
             out ClickOnlyInputField portInput,
             out ClickOnlyInputField slotInput)
@@ -50,6 +51,15 @@ namespace Silkipelago.Archipelago.UI
                 "Connect",
                 new Vector2(0, y),
                 onConnectClicked
+            );
+
+            y -= 55;
+
+            CreateButton(
+                panel,
+                "Return",
+                new Vector2(0, y),
+                onReturnClicked
             );
 
             SetupTabNavigation(hostInput, portInput, slotInput);

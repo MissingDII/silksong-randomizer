@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using KaitoKid.Utilities.Interfaces;
 using Silkipelago.Constants;
+using System;
 
 namespace Silkipelago.HarmonyPatches.Shrine
 {
@@ -16,11 +17,18 @@ namespace Silkipelago.HarmonyPatches.Shrine
         }
         public static void Postfix(StateChangeSequence __instance)
         {
-            _logger.LogInfo(__instance.isCompleteBool);
-            if (PlayerDataStrings.SHRINES.Contains(__instance.isCompleteBool))
+            try
             {
-                var archipelagoItemName = ArchipelagoIds.GetArchipelagoName(__instance.isCompleteBool);
-                ArchipelagoPlugin.App.LocationChecker.AddCheckedLocation(archipelagoItemName);
+                _logger.LogInfo(__instance.isCompleteBool);
+                if (PlayerDataStrings.SHRINES.Contains(__instance.isCompleteBool))
+                {
+                    var archipelagoItemName = ArchipelagoIds.GetArchipelagoName(__instance.isCompleteBool);
+                    ArchipelagoPlugin.App.LocationChecker.AddCheckedLocation(archipelagoItemName);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogErrorException(nameof(StateChangeSequencePatch), nameof(Postfix), ex);
             }
         }
     }

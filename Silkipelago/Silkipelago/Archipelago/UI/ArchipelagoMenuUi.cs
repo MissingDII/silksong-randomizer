@@ -8,6 +8,7 @@ namespace Silkipelago.Archipelago.UI
 {
     public class ArchipelagoMenuUI
     {
+        public bool shouldLaunchStartCutscene { get; set; }
         private Canvas _canvas;
         private bool _visible;
         private ILogger _logger;
@@ -29,6 +30,7 @@ namespace Silkipelago.Archipelago.UI
 
             _canvas = ArchipelagoMenuBuilder.BuildUI(
                 OnConnectClicked,
+                Hide,
                 out _hostInput,
                 out _portInput,
                 out _slotInput
@@ -95,8 +97,11 @@ namespace Silkipelago.Archipelago.UI
             if (connected)
             {
                 Hide();
-                UIStartNewGamePatch.SkipMenuNextCall();
-                UIManager.instance.StartNewGame();
+                if (shouldLaunchStartCutscene)
+                {
+                    UIStartNewGamePatch.SkipMenuNextCall();
+                    UIManager.instance.StartNewGame();
+                }
             }
         }
     }
