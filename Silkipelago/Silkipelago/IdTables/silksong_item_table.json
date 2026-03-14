@@ -1,243 +1,243 @@
 {
     "items": {
         "10 Rosaries": {
-            "code": 1,
+            "code": 972614176311513,
             "classification": "filler"
         },
         "10 Shell Shards": {
-            "code": 2,
+            "code": 319297498435083,
             "classification": "filler"
         },
         "25 Rosaries": {
-            "code": 3,
+            "code": 15028883517145,
             "classification": "filler"
         },
         "25 Shell Shards": {
-            "code": 4,
+            "code": 206230860410379,
             "classification": "filler"
         },
         "50 Rosaries": {
-            "code": 5,
+            "code": 411382652082393,
             "classification": "filler"
         },
         "50 Shell Shards": {
-            "code": 6,
+            "code": 847960960257547,
             "classification": "filler"
         },
         "100 Rosaries": {
-            "code": 7,
+            "code": 587941939154137,
             "classification": "filler"
         },
         "100 Shell Shards": {
-            "code": 8,
+            "code": 1091505608265227,
             "classification": "filler"
         },
         "150 Shell Shards": {
-            "code": 9,
+            "code": 907910005411339,
             "classification": "filler"
         },
         "200 Shell Shards": {
-            "code": 10,
+            "code": 587168436162059,
             "classification": "filler"
         },
         "Bind": {
-            "code": 11,
+            "code": 41604,
             "classification": "useful"
         },
         "Progressive Hunter Crest": {
-            "code": 12,
+            "code": 634340146116406,
             "classification": "useful"
         },
         "Upslash": {
-            "code": 13,
+            "code": 6686227946,
             "classification": "useful"
         },
         "Downslash": {
-            "code": 14,
+            "code": 963065707690,
             "classification": "useful"
         },
         "Leftslash": {
-            "code": 15,
+            "code": 2548183842602,
             "classification": "useful"
         },
         "Rightslash": {
-            "code": 16,
+            "code": 99669450322346,
             "classification": "useful"
         },
         "Grand Gate - Marrow Bell": {
-            "code": 17,
+            "code": 524164951994856,
             "classification": "progression"
         },
         "Grand Gate - Deep Docks Bell": {
-            "code": 18,
+            "code": 286284125096936,
             "classification": "progression"
         },
         "Grand Gate - Greymoor Bell": {
-            "code": 19,
+            "code": 1111887658416968,
             "classification": "progression"
         },
         "Grand Gate - Bellhart Bell": {
-            "code": 20,
+            "code": 712513192576840,
             "classification": "progression"
         },
         "Grand Gate - Shellwood Bell": {
-            "code": 21,
+            "code": 1059446359143560,
             "classification": "progression"
         },
         "Conductor's Melody": {
-            "code": 22,
+            "code": 383464851458797,
             "classification": "progression"
         },
         "Architect's Melody": {
-            "code": 23,
+            "code": 482785518061293,
             "classification": "progression"
         },
         "Vaultkeeper's Melody": {
-            "code": 24,
+            "code": 301044955292397,
             "classification": "progression"
         },
         "Elegy of the Deep": {
-            "code": 25,
+            "code": 434398622507654,
             "classification": "progression"
         },
         "Silkspear": {
-            "code": 26,
+            "code": 4043847170160,
             "classification": "progression"
         },
         "Thread Storm": {
-            "code": 27,
+            "code": 325616371023693,
             "classification": "useful"
         },
         "Sharpdart": {
-            "code": 28,
+            "code": 4032498871980,
             "classification": "useful"
         },
         "Pale Nails": {
-            "code": 29,
+            "code": 87178058242775,
             "classification": "useful"
         },
         "Drifter's Cloak": {
-            "code": 30,
+            "code": 113822024349457,
             "classification": "progression"
         },
         "Cling Grip": {
-            "code": 31,
+            "code": 18871100982906,
             "classification": "progression"
         },
         "Swift Step": {
-            "code": 32,
+            "code": 108037940900698,
             "classification": "progression"
         },
         "Faydown Cloak": {
-            "code": 33,
+            "code": 1085748449629905,
             "classification": "progression"
         },
         "Clawline": {
-            "code": 34,
+            "code": 27825029029,
             "classification": "progression"
         },
         "Silk Soar": {
-            "code": 35,
+            "code": 4043809300640,
             "classification": "progression"
         },
         "Needle Strike": {
-            "code": 36,
+            "code": 629607808219991,
             "classification": "progression"
         },
         "Silk Heart": {
-            "code": 37,
+            "code": 105139036614164,
             "classification": "progression"
         },
         "Needolin": {
-            "code": 38,
+            "code": 114051428128,
             "classification": "progression"
         },
         "Cross Stitch": {
-            "code": 39,
+            "code": 126785638865326,
             "classification": "progression"
         },
         "Rune Rage": {
-            "code": 40,
+            "code": 3931910474575,
             "classification": "useful"
         },
         "Beastling Call": {
-            "code": 41,
+            "code": 1062272192800064,
             "classification": "useful"
         },
         "Progressive Vesticrest": {
-            "code": 42,
+            "code": 70319327820886,
             "classification": "useful"
         },
         "Sylphsong": {
-            "code": 43,
+            "code": 4172410572935,
             "classification": "useful"
         },
         "Reaper Crest": {
-            "code": 44,
+            "code": 352757437862198,
             "classification": "progression"
         },
         "Wanderer Crest": {
-            "code": 45,
+            "code": 195816799659830,
             "classification": "progression"
         },
         "Beast Crest": {
-            "code": 46,
+            "code": 309848560758198,
             "classification": "progression"
         },
         "Architect Crest": {
-            "code": 47,
+            "code": 745673426041782,
             "classification": "progression"
         },
         "Shaman Crest": {
-            "code": 48,
+            "code": 1068243647184694,
             "classification": "progression"
         },
         "Memory Locket": {
-            "code": 49,
+            "code": 966718139888010,
             "classification": "progression"
         },
         "Progressive Tipp and Pill": {
-            "code": 50,
+            "code": 949576945864712,
             "classification": "progression"
         },
         "Cursed Crest": {
-            "code": 51,
+            "code": 566483004018358,
             "classification": "progression"
         },
         "Witch Crest": {
-            "code": 52,
+            "code": 1048111268784566,
             "classification": "progression"
         },
         "Soul Snare": {
-            "code": 53,
+            "code": 106464599393885,
             "classification": "progression"
         },
         "Architect Key": {
-            "code": 54,
+            "code": 960449733388807,
             "classification": "progression"
         },
         "White Key": {
-            "code": 55,
+            "code": 4870296003767,
             "classification": "progression"
         },
         "Key of Indolent": {
-            "code": 56,
+            "code": 883684745298692,
             "classification": "progression"
         },
         "Key of Heretic": {
-            "code": 57,
+            "code": 120595150340165,
             "classification": "progression"
         },
         "Key of Apostate": {
-            "code": 58,
+            "code": 883621241309921,
             "classification": "progression"
         },
         "Surgeon's Key": {
-            "code": 59,
+            "code": 169849911390519,
             "classification": "progression"
         },
         "Twisted Bud": {
-            "code": 60,
+            "code": 698458970400590,
             "classification": "progression"
         }
     }
