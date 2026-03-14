@@ -79,6 +79,9 @@
     <Reference Include="UnityEngine.UI.dll">
       <HintPath>$(LibrariesPath)UnityEngine.UI.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.UI.dll">
+      <HintPath>$(LibrariesPath)TeamCherry.SharedUtils.dll</HintPath>
+    </Reference>
 	</ItemGroup>
 
 	<ItemGroup>

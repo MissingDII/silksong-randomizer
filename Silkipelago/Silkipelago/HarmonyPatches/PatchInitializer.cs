@@ -34,6 +34,7 @@ namespace Silkipelago.HarmonyPatches
             SavaDataSetToNullHook.Initialize(logger);
             ShrineBellHandler.Initialize(logger);
             HealthManagerDiePatch.Initialize(logger);
+            SharedUtilPatch.Initialize(logger);
         }
 
         public void InitializeEarlyPatchesWithArchipelagoData(ILogger logger, Harmony harmony, SilksongArchipelagoClient archipelago, SilksongLocationChecker locationChecker)
