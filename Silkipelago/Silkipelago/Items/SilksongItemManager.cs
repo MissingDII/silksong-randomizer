@@ -44,6 +44,8 @@ namespace Silkipelago.Items
                     ToolItemHandler.unlockTool(inGameName);
                 else if (CollectablesStrings.TOOLCRESTUPGRADE.Contains(inGameName) || CollectablesStrings.COLLECTABLESKEYS.Contains(inGameName))
                     CollectiblesHandler.addOneCollectible(inGameName);
+                else if (PlayerDataStrings.GRAND_GATE_BELL.Equals(inGameName))
+                    ShrineBellHandler.addBell();
                 else
                     _logger.LogWarning($"No handler for item: {inGameName}");
             }

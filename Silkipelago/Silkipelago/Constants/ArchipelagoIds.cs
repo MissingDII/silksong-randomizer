@@ -24,7 +24,8 @@ namespace Silkipelago.Constants
         { "Rune Rage", ToolsStrings.RUNE_RAGE },
         //Cutscenes
         { "Bound the Needle", PlayerDataStrings.BIND_CUTSCENE },
-        //Shrines
+            //Shrines
+        {"Grand Gate Bell",PlayerDataStrings.GRAND_GATE_BELL},
         { "Ring The Bell In The Marrow", PlayerDataStrings.SHRINE_BONE },
         { "Ring The Bell In Deep Docks", PlayerDataStrings.SHRINE_WILDS },
         { "Ring The Bell In Shellwood", PlayerDataStrings.SHRINE_SHELLWOOD },
@@ -49,7 +50,7 @@ namespace Silkipelago.Constants
         { "Clawline", PlayerDataStrings.HAS_HARPOON_DASH },
         //bosses
         { "Defeat Moss Mother", PlayerDataStrings.MOSS_MOTHER_DEFEATED },
-        { "Defeat Bell Beast", PlayerDataStrings.BELL_BEAST_DEFEATED },
+        { "Defeat Bell Beast",BossStrings.BELL_BEAST },
         { "Defeat Fourth Chorus", PlayerDataStrings.SONG_GOLEM_DEFEATED },
         { "Defeat Moorwing", PlayerDataStrings.VAMPIRE_GNAT_BOSS_DEFEATED },
         { "Defeat Sister Splinter", PlayerDataStrings.SPLINTER_QUEEN_DEFEATED },

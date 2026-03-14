@@ -105,7 +105,7 @@ namespace Silkipelago
             {
                 _logger.LogInfo("Teleport somewhere");
                 var playerData = PlayerData.instance;
-                var location = "Bone_05";
+                var location = "Bellshrine_02";
                 var entry = "left1";
                 var gateLocation = GatePosition.left;
                 Logger.LogInfo("about to teleport");

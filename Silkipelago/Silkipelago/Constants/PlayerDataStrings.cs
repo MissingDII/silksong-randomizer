@@ -50,6 +50,7 @@ namespace Silkipelago.Constants
         };
 
         //shrine
+        public const string GRAND_GATE_BELL = "Grand Gate Bell";
         public const string SHRINE_BONE = "bellShrineBoneForest";
         public const string SHRINE_WILDS = "bellShrineWilds";
         public const string SHRINE_GREYMOOR = "bellShrineGreymoor";

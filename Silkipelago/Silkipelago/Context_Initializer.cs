@@ -16,7 +16,7 @@ namespace Silkipelago
             var settingsContext = initializeSettingsContext();
             var uiContext = initializeUIContext();
             _patcherInitializer.InitializeEarlyPatchesWithArchipelagoData(_logger, _harmony, archipelagoContext._archipelago, archipelagoContext._locationChecker);
-
+            SceneEvent.addSceneEvent();
             App = new RandomizerApp(archipelagoContext, settingsContext, uiContext, _logger, _harmony);
         }
 

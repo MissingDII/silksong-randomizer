@@ -23,7 +23,7 @@ namespace Silkipelago.Archipelago.UI
             _logger = logger;
         }
 
-        public void InitUI()
+        public void InitUI(bool returnButton = true)
         {
             if (_canvas != null)
                 return;
@@ -31,6 +31,7 @@ namespace Silkipelago.Archipelago.UI
             _canvas = ArchipelagoMenuBuilder.BuildUI(
                 OnConnectClicked,
                 Hide,
+                returnButton,
                 out _hostInput,
                 out _portInput,
                 out _slotInput

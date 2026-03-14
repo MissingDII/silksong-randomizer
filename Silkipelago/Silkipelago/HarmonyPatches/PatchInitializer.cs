@@ -7,6 +7,7 @@ using Silkipelago.HarmonyPatches.SaveUtility;
 using Silkipelago.HarmonyPatches.Shrine;
 using Silkipelago.HarmonyPatches.Steam;
 using Silkipelago.HarmonyPatches.Unity;
+using Silkipelago.Items;
 using ILogger = KaitoKid.Utilities.Interfaces.ILogger;
 
 namespace Silkipelago.HarmonyPatches
@@ -31,6 +32,8 @@ namespace Silkipelago.HarmonyPatches
             ToolEquipPatch.Initialize(logger);
             SkillMessagePatch.Initialize(logger);
             SavaDataSetToNullHook.Initialize(logger);
+            ShrineBellHandler.Initialize(logger);
+            HealthManagerDiePatch.Initialize(logger);
         }
 
         public void InitializeEarlyPatchesWithArchipelagoData(ILogger logger, Harmony harmony, SilksongArchipelagoClient archipelago, SilksongLocationChecker locationChecker)

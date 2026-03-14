@@ -62,7 +62,9 @@ namespace Silkipelago.HarmonyPatches.NewGame
                 yield return uiManager.StartCoroutine(uiManager.HideCurrentMenu());
             SaveSettings.ClearSaveData(uiManager.gm.profileID);
             ArchipelagoPlugin.App.SettingsContext.saveSettingsData = new SaveSettingsData();
-            ArchipelagoPlugin.App.UIContext.MenuUI.InitUI();
+            ArchipelagoPlugin.App.UIContext.MenuUI.shouldLaunchStartCutscene = true;
+            var returnButtonshown = false;
+            ArchipelagoPlugin.App.UIContext.MenuUI.InitUI(returnButtonshown);
             ArchipelagoPlugin.App.UIContext.MenuUI.Toggle();
         }
     }
