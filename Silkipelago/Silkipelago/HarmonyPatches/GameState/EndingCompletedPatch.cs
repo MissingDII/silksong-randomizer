@@ -71,7 +71,7 @@ namespace Silkipelago.HarmonyPatches.GameState
 
             if (goal == Goal.LostLace)
             {
-                var name = ArchipelagoIds.GetArchipelagoName(
+                var name = ArchipelagoLocationIds.GetArchipelagoName(
                     SaveSlotCompletionIcons.CompletionState.Act2Regular.ToString());
 
                 _locationChecker.AddCheckedLocation(name);

@@ -50,7 +50,6 @@ namespace Silkipelago.Constants
         };
 
         //shrine
-        public const string GRAND_GATE_BELL = "Grand Gate Bell";
         public const string SHRINE_BONE = "bellShrineBoneForest";
         public const string SHRINE_WILDS = "bellShrineWilds";
         public const string SHRINE_GREYMOOR = "bellShrineGreymoor";
@@ -87,6 +86,8 @@ namespace Silkipelago.Constants
         public const string HAS_DOUBLE_JUMP = "hasDoubleJump";
         public const string HAS_SUPER_JUMP = "hasSuperJump";
         public const string HAS_HARPOON_DASH = "hasHarpoonDash";
+        public const string HAS_NEEDLE_STRIKE = "hasChargeSlash";
+
 
         public static readonly List<string> ABILITIES = new()
         {
@@ -96,7 +97,8 @@ namespace Silkipelago.Constants
             HAS_WALL_JUMP,
             HAS_DOUBLE_JUMP,
             HAS_SUPER_JUMP,
-            HAS_HARPOON_DASH
+            HAS_HARPOON_DASH,
+            HAS_NEEDLE_STRIKE
         };
 
         // Pilgrims

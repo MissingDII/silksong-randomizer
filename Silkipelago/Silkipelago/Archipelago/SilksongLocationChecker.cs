@@ -17,8 +17,11 @@ namespace Silkipelago.Archipelago
         {
             if (!ArchipelagoPlugin.App.SettingsContext.saveSettingsData.ProcessedLocations.Contains(locationName))
             {
-                _logger.LogInfo("sending location for " + locationName);
-                base.AddCheckedLocation(locationName);
+                if (ArchipelagoPlugin.App.ArchipelagoClient.LocationExists(locationName))
+                {
+                    _logger.LogInfo("sending location for " + locationName);
+                    base.AddCheckedLocation(locationName);
+                }
             }
             ArchipelagoPlugin.App.SettingsContext.saveSettingsData.ProcessedLocations.Add(locationName);
         }

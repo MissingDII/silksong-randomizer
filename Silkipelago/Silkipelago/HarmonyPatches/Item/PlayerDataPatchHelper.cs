@@ -41,15 +41,18 @@ namespace Silkipelago.HarmonyPatches.Item
             }
             if (PlayerDataStrings.CUTSCENES.Contains(fieldName) || PlayerDataStrings.BOSSES.Contains(fieldName))
             {
-                var archipelagoItemName = ArchipelagoIds.GetArchipelagoName(fieldName);
-                locationChecker.AddCheckedLocation(archipelagoItemName);
+                var archipelagoLocationName = ArchipelagoLocationIds.GetArchipelagoName(fieldName);
+                if (archipelagoLocationName != null)
+                {
+                    locationChecker.AddCheckedLocation(archipelagoLocationName);
+                }
                 return MethodPrefix.RUN_ORIGINAL_METHOD;
             }
             if (PlayerDataStrings.ABILITIES.Contains(fieldName) ||
                 PlayerDataStrings.KEYS.Contains(fieldName) ||
                 PlayerDataStrings.MELODIES.Contains(fieldName))
             {
-                var archipelagoItemName = ArchipelagoIds.GetArchipelagoName(fieldName);
+                var archipelagoItemName = ArchipelagoItemIds.GetArchipelagoName(fieldName);
                 if (locationChecker.LocationExists(archipelagoItemName))
                 {
                     locationChecker.AddCheckedLocation(archipelagoItemName);

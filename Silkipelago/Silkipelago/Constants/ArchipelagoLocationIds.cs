@@ -1,31 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-
 namespace Silkipelago.Constants
 {
-    public static class ArchipelagoIds
+    internal class ArchipelagoLocationIds
     {
         public static Dictionary<string, string> ArchipelagoIdsToGameIds { get; } = new Dictionary<string, string>
     {
         // needolin and melodies 
-        { "Needolin", PlayerDataStrings.HAS_NEEDOLIN },
-        { "Beastling Call",PlayerDataStrings.BEASTLING_CALL  },
-        { "Elegy of the Deep", PlayerDataStrings.ELEGY_OF_THE_DEEP },
-        { "Conductor's Melody", PlayerDataStrings.CONDUCTOR_MELODY },
-        { "Architect's Melody", PlayerDataStrings.ARCHITECT_MELODY },
-        { "Vaultkeeper's Melody", PlayerDataStrings.VAULTKEEPER_MELODY },
-        //Tools
-        { "Silkspear", ToolsStrings.SILK_SPEAR },
-        { "Thread Storm",ToolsStrings.THREAD_STORM  },
-        { "Sharpdart", ToolsStrings.SHARP_DART },
-        { "Pale Nails", ToolsStrings.PALE_NAILS },
-        { "Cross Stitch", ToolsStrings.CROSS_STITCH },
-        { "Rune Rage", ToolsStrings.RUNE_RAGE },
+        { "Learn: Conductor's Melody", PlayerDataStrings.CONDUCTOR_MELODY },
+        { "Learn: Architect's Melody", PlayerDataStrings.ARCHITECT_MELODY },
+        { "Learn: Vaultkeeper's Melody", PlayerDataStrings.VAULTKEEPER_MELODY },
+        //Tools skill
+        { "Weaver Spire: Silkspear", ToolsStrings.SILK_SPEAR },
+        { "Weaver Spire: Thread Storm",ToolsStrings.THREAD_STORM  },
+        { "Weaver Spire: Sharpdart", ToolsStrings.SHARP_DART },
+        { "Acquire Pale Nails", ToolsStrings.PALE_NAILS },
         //Cutscenes
         { "Bound the Needle", PlayerDataStrings.BIND_CUTSCENE },
             //Shrines
-        {"Grand Gate Bell",PlayerDataStrings.GRAND_GATE_BELL},
         { "Ring The Bell In The Marrow", PlayerDataStrings.SHRINE_BONE },
         { "Ring The Bell In Deep Docks", PlayerDataStrings.SHRINE_WILDS },
         { "Ring The Bell In Shellwood", PlayerDataStrings.SHRINE_SHELLWOOD },
@@ -33,21 +26,21 @@ namespace Silkipelago.Constants
         { "Ring The Bell In Bellhart", PlayerDataStrings.SHRINE_BELLHART },
         { "Ring The Bell In Songclave", PlayerDataStrings.SHRINE_ENCLAVE },
         //keys
-        { "Key of Indolent", PlayerDataStrings.INDOLENT_KEY },
-        { "Key of Heretic", PlayerDataStrings.HERETIC_KEY },
-        { "Key of Apostate", PlayerDataStrings.APOSTATE_KEY },
-        { "Architect Key", CollectablesStrings.ARCHITECT_KEY },
-        { "White Key", CollectablesStrings.WHITE_KEY },
-        { "Surgeon's Key", CollectablesStrings.WHITE_BOSS_KEY },
-        // Crest Upgrades
-        { "Memory Locket", CollectablesStrings.MEMORY_LOCKET },
-        { "Craft Metal", CollectablesStrings.CRAFT_METAL },
+        { "Pickup Key of Indolent", PlayerDataStrings.INDOLENT_KEY },
+        { "Pickup Key of Heretic", PlayerDataStrings.HERETIC_KEY },
+        { "Pickup Key of Apostate", PlayerDataStrings.APOSTATE_KEY },
+        { "Twelfth Architect: Architect Key", CollectablesStrings.ARCHITECT_KEY },
+        { "Pickup White Key", CollectablesStrings.WHITE_KEY },
+        { "Pickup Surgeon's Key", CollectablesStrings.WHITE_BOSS_KEY },
         //abilities
-        { "Drifter's Cloak", PlayerDataStrings.HAS_DRIFTER_CLOAK },
-        { "Cling Grip", PlayerDataStrings.HAS_WALL_JUMP },
-        { "Swift Step", PlayerDataStrings.HAS_DASH },
-        { "Faydown Cloak", PlayerDataStrings.HAS_DOUBLE_JUMP },
-        { "Clawline", PlayerDataStrings.HAS_HARPOON_DASH },
+        { "Hunt Wish: Flexile Spines", PlayerDataStrings.HAS_DRIFTER_CLOAK },
+        { "Weaver Spire: Cling Grip", PlayerDataStrings.HAS_WALL_JUMP },
+        { "Weaver Spire: Swift Step", PlayerDataStrings.HAS_DASH },
+        { "Acquire Faydown Cloak", PlayerDataStrings.HAS_DOUBLE_JUMP },
+        { "Weaver Spire: Clawline", PlayerDataStrings.HAS_HARPOON_DASH },
+        { "Weaver Spire: Silk Soar", PlayerDataStrings.HAS_SUPER_JUMP },
+        { "Learn Needle Strike", PlayerDataStrings.HAS_NEEDLE_STRIKE },
+
         //bosses
         { "Defeat Moss Mother", PlayerDataStrings.MOSS_MOTHER_DEFEATED },
         { "Defeat Bell Beast",BossStrings.BELL_BEAST },
@@ -108,3 +101,4 @@ namespace Silkipelago.Constants
         }
     }
 }
+

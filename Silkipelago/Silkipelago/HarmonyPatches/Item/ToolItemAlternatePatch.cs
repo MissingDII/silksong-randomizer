@@ -24,8 +24,8 @@ namespace Silkipelago.HarmonyPatches.Item
                 {
                     var locationChecker = ArchipelagoPlugin.App.LocationChecker;
                     _logger.LogInfo($"[ToolItem] {nameof(ToolItem.Unlock)} called, item={__instance.name}");
-                    var archipelagoId = ArchipelagoIds.GetArchipelagoName(__instance.name);
-                    if (locationChecker.LocationExists(archipelagoId))
+                    var locationId = ArchipelagoLocationIds.GetArchipelagoName(__instance.name);
+                    if (locationChecker.LocationExists(locationId))
                     {
                         return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
                     }

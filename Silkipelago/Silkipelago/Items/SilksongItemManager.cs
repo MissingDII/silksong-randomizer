@@ -31,7 +31,7 @@ namespace Silkipelago.Items
                 if (itemName.EndsWith("Rosaries")) { PlayerDataHandler.addRosary(itemName); return; }
                 if (itemName.EndsWith("Shell Shards")) { PlayerDataHandler.addShards(itemName); return; }
 
-                var inGameName = ArchipelagoIds.GetInGameName(itemName);
+                var inGameName = ArchipelagoItemIds.GetInGameName(itemName);
                 if (inGameName == null)
                 {
                     _logger.LogWarning($"Unrecognised Item name: {itemName}");
@@ -44,8 +44,8 @@ namespace Silkipelago.Items
                     ToolItemHandler.unlockTool(inGameName);
                 else if (CollectablesStrings.TOOLCRESTUPGRADE.Contains(inGameName) || CollectablesStrings.COLLECTABLESKEYS.Contains(inGameName))
                     CollectiblesHandler.addOneCollectible(inGameName);
-                else if (PlayerDataStrings.GRAND_GATE_BELL.Equals(inGameName))
-                    ShrineBellHandler.addBell();
+                else if (PlayerDataStrings.SHRINES.Contains(inGameName))
+                    ShrineBellHandler.addBell(inGameName);
                 else
                     _logger.LogWarning($"No handler for item: {inGameName}");
             }

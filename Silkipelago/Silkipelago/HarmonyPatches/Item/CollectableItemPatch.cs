@@ -25,10 +25,10 @@ namespace Silkipelago.HarmonyPatches.Item
                 _logger.LogDebugPatchIsRunning(nameof(CollectableItemManager), nameof(CollectableItemManager.AddItem), nameof(CollectableItemPatch), nameof(Prefix));
                 if (CollectablesStrings.COLLECTABLESKEYS.Contains(item.name))
                 {
-                    var archipelagoItemName = ArchipelagoIds.GetArchipelagoName(item.name);
-                    _logger.LogInfo("sending location for " + archipelagoItemName);
-                    ArchipelagoPlugin.App.LocationChecker.AddCheckedLocation(archipelagoItemName);
-                    _logger.LogInfo("sent location for " + archipelagoItemName);
+                    var archipelagoLocationName = ArchipelagoLocationIds.GetArchipelagoName(item.name);
+                    _logger.LogInfo("sending location for " + archipelagoLocationName);
+                    ArchipelagoPlugin.App.LocationChecker.AddCheckedLocation(archipelagoLocationName);
+                    _logger.LogInfo("sent location for " + archipelagoLocationName);
                     return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
                 }
                 else

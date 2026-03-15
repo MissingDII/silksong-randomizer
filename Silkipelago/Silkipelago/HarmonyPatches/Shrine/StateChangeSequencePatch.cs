@@ -22,8 +22,8 @@ namespace Silkipelago.HarmonyPatches.Shrine
                 _logger.LogInfo(__instance.isCompleteBool);
                 if (PlayerDataStrings.SHRINES.Contains(__instance.isCompleteBool))
                 {
-                    var archipelagoItemName = ArchipelagoIds.GetArchipelagoName(__instance.isCompleteBool);
-                    ArchipelagoPlugin.App.LocationChecker.AddCheckedLocation(archipelagoItemName);
+                    var locationId = ArchipelagoLocationIds.GetArchipelagoName(__instance.isCompleteBool);
+                    ArchipelagoPlugin.App.LocationChecker.AddCheckedLocation(locationId);
                 }
             }
             catch (Exception ex)
