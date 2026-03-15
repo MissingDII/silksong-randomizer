@@ -1,6 +1,6 @@
 ﻿using KaitoKid.Utilities.Interfaces;
 
-namespace Silkipelago.Items
+namespace Silkipelago.Archipelago.ItemHandlers
 {
     public static class ShrineBellHandler
     {

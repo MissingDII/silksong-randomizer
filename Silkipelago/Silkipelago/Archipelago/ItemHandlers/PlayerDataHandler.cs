@@ -1,7 +1,7 @@
 ﻿using KaitoKid.Utilities.Interfaces;
 using System;
 
-namespace Silkipelago.Items
+namespace Silkipelago.Archipelago.ItemHandlers
 {
     public static class PlayerDataHandler
     {
