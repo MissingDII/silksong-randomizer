@@ -33,15 +33,5 @@ namespace Silkipelago.Items
 
 
         }
-
-        public static void test(string questName)
-        {
-
-            QuestManager.TryGetFullQuestBase(questName, out var fullquestBase2);
-            var completion2 = fullquestBase2.Completion;
-            completion2.IsAccepted = true;
-            completion2.HasBeenSeen = true;
-            fullquestBase2.Completion = completion2;
-        }
     }
 }

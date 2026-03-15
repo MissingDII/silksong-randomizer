@@ -8,6 +8,10 @@ namespace Silkipelago.Constants
     {
         public static Dictionary<string, string> ArchipelagoIdsToGameIds { get; } = new Dictionary<string, string>
     {
+        //Crest
+
+        // items
+         { "Twisted Bud", CollectablesStrings.TWISTED_BUD },
         // needolin and melodies 
         { "Needolin", PlayerDataStrings.HAS_NEEDOLIN },
         { "Beastling Call",PlayerDataStrings.BEASTLING_CALL  },

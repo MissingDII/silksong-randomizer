@@ -35,6 +35,15 @@ namespace Silkipelago.HarmonyPatches.Item
 
         public static bool HandlePlayerDataFieldChange(string fieldName, SilksongLocationChecker locationChecker)
         {
+            if (PlayerDataStrings.CREST.Contains(fieldName))
+            {
+                // check if eva is randomized
+                if (locationChecker.LocationExists("Eva: 0 Slots"))
+                {
+                    return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
+                }
+                return MethodPrefix.RUN_ORIGINAL_METHOD;
+            }
             if (PlayerDataStrings.SILK_ABILITIES.Contains(fieldName))
             {
                 return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
@@ -42,7 +51,7 @@ namespace Silkipelago.HarmonyPatches.Item
             if (PlayerDataStrings.CUTSCENES.Contains(fieldName) || PlayerDataStrings.BOSSES.Contains(fieldName))
             {
                 var archipelagoLocationName = ArchipelagoLocationIds.GetArchipelagoName(fieldName);
-                if (archipelagoLocationName != null)
+                if (locationChecker.LocationExists(archipelagoLocationName))
                 {
                     locationChecker.AddCheckedLocation(archipelagoLocationName);
                 }
@@ -52,10 +61,10 @@ namespace Silkipelago.HarmonyPatches.Item
                 PlayerDataStrings.KEYS.Contains(fieldName) ||
                 PlayerDataStrings.MELODIES.Contains(fieldName))
             {
-                var archipelagoItemName = ArchipelagoItemIds.GetArchipelagoName(fieldName);
-                if (locationChecker.LocationExists(archipelagoItemName))
+                var archipelagoLocationName = ArchipelagoItemIds.GetArchipelagoName(fieldName);
+                if (locationChecker.LocationExists(archipelagoLocationName))
                 {
-                    locationChecker.AddCheckedLocation(archipelagoItemName);
+                    locationChecker.AddCheckedLocation(archipelagoLocationName);
                     return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
                 }
             }

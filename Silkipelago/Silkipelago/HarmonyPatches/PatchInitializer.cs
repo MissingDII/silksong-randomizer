@@ -1,11 +1,13 @@
 ﻿using HarmonyLib;
 using Silkipelago.Archipelago;
+using Silkipelago.HarmonyPatches.FSM;
 using Silkipelago.HarmonyPatches.GameState;
 using Silkipelago.HarmonyPatches.Item;
 using Silkipelago.HarmonyPatches.NewGame;
 using Silkipelago.HarmonyPatches.SaveUtility;
 using Silkipelago.HarmonyPatches.Shrine;
 using Silkipelago.HarmonyPatches.Steam;
+using Silkipelago.HarmonyPatches.Tools;
 using Silkipelago.HarmonyPatches.Unity;
 using Silkipelago.Items;
 using ILogger = KaitoKid.Utilities.Interfaces.ILogger;
@@ -34,6 +36,8 @@ namespace Silkipelago.HarmonyPatches
             SavaDataSetToNullHook.Initialize(logger);
             ShrineBellHandler.Initialize(logger);
             HealthManagerDiePatch.Initialize(logger);
+            SharedUtilPatch.Initialize(logger);
+            FSMUtilityPatch.Initialize(logger);
         }
 
         public void InitializeEarlyPatchesWithArchipelagoData(ILogger logger, Harmony harmony, SilksongArchipelagoClient archipelago, SilksongLocationChecker locationChecker)

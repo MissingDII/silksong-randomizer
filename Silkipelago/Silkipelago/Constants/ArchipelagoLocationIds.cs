@@ -7,6 +7,10 @@ namespace Silkipelago.Constants
     {
         public static Dictionary<string, string> ArchipelagoIdsToGameIds { get; } = new Dictionary<string, string>
     {
+        //crest
+
+        // items
+        { "Pickup Twisted Bud", CollectablesStrings.TWISTED_BUD },
         // needolin and melodies 
         { "Learn: Conductor's Melody", PlayerDataStrings.CONDUCTOR_MELODY },
         { "Learn: Architect's Melody", PlayerDataStrings.ARCHITECT_MELODY },
@@ -43,7 +47,8 @@ namespace Silkipelago.Constants
 
         //bosses
         { "Defeat Moss Mother", PlayerDataStrings.MOSS_MOTHER_DEFEATED },
-        { "Defeat Bell Beast",BossStrings.BELL_BEAST },
+        { "Defeat Bell Beast",PlayerDataStrings.BELL_BEAST_DEFEATED },
+        { "Defeat Bell Eater",PlayerDataStrings.BEASTLING_CALL },
         { "Defeat Fourth Chorus", PlayerDataStrings.SONG_GOLEM_DEFEATED },
         { "Defeat Moorwing", PlayerDataStrings.VAMPIRE_GNAT_BOSS_DEFEATED },
         { "Defeat Sister Splinter", PlayerDataStrings.SPLINTER_QUEEN_DEFEATED },
@@ -82,7 +87,6 @@ namespace Silkipelago.Constants
         { "Defeat Lace", PlayerDataStrings.LACE_DEFEATED },
         { "Defeat Lace (Cradle)", PlayerDataStrings.LACE_TOWER_DEFEATED },
         { "Defeat Grand Mother Silk", SaveSlotCompletionIcons.CompletionState.Act2Regular.ToString() }, // TODO
-        { "Defeat Bell Eater", "4" }, // TODO
         { "Defeat Crust King Khann", PlayerDataStrings.CORAL_KING_DEFEATED },
         { "Defeat Nyleth", PlayerDataStrings.FLOWER_QUEEN_DEFEATED },
         { "Defeat Skarrsinger Karmelita", PlayerDataStrings.ANT_QUEEN_DEFEATED }

@@ -4,6 +4,8 @@ namespace Silkipelago.Constants
 {
     public static class ToolsStrings
     {
+        // Eva Upgrade
+        public const string SYLPHSONG = "White Ring";
         //silk abilities
         public const string SILK_SPEAR = "Silk Spear";
         public const string THREAD_STORM = "Thread Sphere";

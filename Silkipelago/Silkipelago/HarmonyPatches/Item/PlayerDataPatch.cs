@@ -2,9 +2,7 @@
 using KaitoKid.ArchipelagoUtilities.Net.Constants;
 using KaitoKid.Utilities.Interfaces;
 using Silkipelago.Archipelago;
-using Silkipelago.Constants;
 using Silkipelago.Items;
-using System;
 
 namespace Silkipelago.HarmonyPatches.Item
 {
@@ -33,11 +31,7 @@ namespace Silkipelago.HarmonyPatches.Item
 
                 if (SilksongItemManager._itemToReceive == 0)
                 {
-                    var result = PlayerDataPatchHelper.HandlePlayerDataFieldChange(boolName, _silksongLocationChecker);
-                    if (result != MethodPrefix.RUN_ORIGINAL_METHOD)
-                    {
-                        return result;
-                    }
+                    return PlayerDataPatchHelper.HandlePlayerDataFieldChange(boolName, _silksongLocationChecker);
                 }
 
                 SilksongItemManager._itemToReceive--;

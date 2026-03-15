@@ -7,6 +7,15 @@ namespace Silkipelago.Constants
     /// </summary>
     public static class PlayerDataStrings
     {
+        //Crest upgrades
+        public const string YELLOW_VESTICREST = "UnlockedExtraYellowSlot";
+        public const string BLUE_VESTICREST = "UnlockedExtraBlueSlot";
+
+        public static readonly List<string> CREST = new()
+        {
+            YELLOW_VESTICREST,
+            BLUE_VESTICREST
+        };
         // Needolin and melodies
         public const string NEEDOLIN = "Needolin";
         public const string BEASTLING_CALL = "UnlockedFastTravelTeleport";
@@ -107,13 +116,13 @@ namespace Silkipelago.Constants
         public const string SHELLWOOD_ROSARY_PILGRIM_DEFEATED = "defeatedShellwoodRosaryPilgrim";
 
         // Major Bosses
+        public const string BELL_BEAST_DEFEATED = "UnlockedFastTravel";
         public const string GARMOND_LIBRARY_HORNET_DEFEATED = "garmondLibraryDefeatedHornet";
         public const string GARMOND_BLACK_THREAD_DEFEATED = "garmondBlackThreadDefeated";
         public const string MOSS_MOTHER_DEFEATED = "defeatedMossMother";
         public const string MOSS_EVOLVER_DEFEATED = "defeatedMossEvolver";
         public const string SKULL_KING_DEFEATED = "skullKingDefeated";
         public const string SKULL_KING_BLACK_THREADED_DEFEATED = "skullKingDefeatedBlackThreaded";
-        public const string BELL_BEAST_DEFEATED = "defeatedBellBeast";
         public const string SONG_GOLEM_DEFEATED = "defeatedSongGolem";
         public const string LACE_DEFEATED = "defeatedLace1";
         public const string CROW_COURT_DEFEATED = "defeatedCrowCourt";

@@ -68,11 +68,7 @@ namespace Silkipelago
         {
             if (Input.GetKeyDown(KeyCode.Keypad1))
             {
-                var d = PlayerData.instance.Collectables.GetData("Ward Key");
-                d.Amount = 1;
-                PlayerData.instance.Collectables.SetData("Ward Key", d);
-                var test = ToolItemManager.Instance;
-                var test2 = test.toolItems;
+                var test2 = ToolItemManager.Instance.crestList;
                 _logger.LogInfo("List each tool name");
                 foreach (var item in test2.list)
                 {

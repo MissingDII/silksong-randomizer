@@ -1,0 +1,121 @@
+﻿using HarmonyLib;
+using KaitoKid.ArchipelagoUtilities.Net.Constants;
+using KaitoKid.Utilities.Interfaces;
+using Silkipelago.Archipelago;
+using Silkipelago.Constants;
+using System;
+
+namespace Silkipelago.HarmonyPatches.Tools
+{
+    [HarmonyPatch(typeof(SkillGetMsg), "Setup")]
+    public static class SkillMessagePatch
+    {
+        public static ILogger _logger;
+
+        public static void Initialize(ILogger logger)
+        {
+            _logger = logger;
+        }
+
+        static bool Prefix(SkillGetMsg __instance, ToolItemSkill skill)
+        {
+            try
+            {
+                var locationChecker = ArchipelagoPlugin.App.LocationChecker;
+
+                if (ShouldBlockSkillDisplay(skill, locationChecker))
+                {
+                    return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
+                }
+
+                return MethodPrefix.RUN_ORIGINAL_METHOD;
+            }
+            catch (Exception ex)
+            {
+                _logger?.LogErrorException(nameof(SkillMessagePatch), nameof(Prefix), ex);
+                return MethodPrefix.RUN_ORIGINAL_METHOD;
+            }
+        }
+
+        private static bool ShouldBlockSkillDisplay(ToolItemSkill skill, SilksongLocationChecker locationChecker)
+        {
+            if (IsBossLockedSkill(skill) && locationChecker.LocationExists(PlayerDataStrings.FIRST_WEAVER_DEFEATED))
+                return true;
+
+            if (IsSilkAbility(skill))
+            {
+                UnlockAndUnequipSkill(skill);
+                return true;
+            }
+
+            return false;
+        }
+
+        private static bool IsBossLockedSkill(ToolItemSkill skill)
+            => skill.name is ToolsStrings.RUNE_RAGE or ToolsStrings.CROSS_STITCH;
+
+        private static bool IsSilkAbility(ToolItemSkill skill)
+            => ToolsStrings.SILK_ABILITIES.Contains(skill.name);
+
+        private static void UnlockAndUnequipSkill(ToolItemSkill skill)
+        {
+            var data = skill.SavedData;
+            data.IsUnlocked = false;
+            data.AmountLeft = 0;
+            skill.SavedData = data;
+            ToolItemManager.UnequipTool(skill);
+        }
+    }
+
+    [HarmonyPatch(typeof(SkillGetMsg), nameof(SkillGetMsg.Spawn))]
+    public static class SkillGetMsgSpawnPatch
+    {
+        static bool Prefix(SkillGetMsg prefab, ToolItemSkill skill, Action afterMsg)
+        {
+            try
+            {
+                var locationChecker = ArchipelagoPlugin.App.LocationChecker;
+
+                if (ShouldBlockSkillSpawn(skill, locationChecker))
+                {
+                    UnlockAndUnequipSkill(skill);
+                    afterMsg?.Invoke();
+                    return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
+                }
+
+                return MethodPrefix.RUN_ORIGINAL_METHOD;
+            }
+            catch (Exception ex)
+            {
+                SkillMessagePatch._logger?.LogErrorException(nameof(SkillGetMsgSpawnPatch), nameof(Prefix), ex);
+                return MethodPrefix.RUN_ORIGINAL_METHOD;
+            }
+        }
+
+        private static bool ShouldBlockSkillSpawn(ToolItemSkill skill, SilksongLocationChecker locationChecker)
+        {
+            if (IsBossLockedSkill(skill) && locationChecker.LocationExists(PlayerDataStrings.FIRST_WEAVER_DEFEATED))
+                return true;
+
+            if (IsSilkAbility(skill))
+                return true;
+
+            return false;
+        }
+
+        private static bool IsBossLockedSkill(ToolItemSkill skill)
+            => skill.name is ToolsStrings.RUNE_RAGE or ToolsStrings.CROSS_STITCH;
+
+        private static bool IsSilkAbility(ToolItemSkill skill)
+            => ToolsStrings.SILK_ABILITIES.Contains(skill.name);
+
+        private static void UnlockAndUnequipSkill(ToolItemSkill skill)
+        {
+            var data = skill.SavedData;
+            data.IsUnlocked = false;
+            data.AmountLeft = 0;
+            skill.SavedData = data;
+            ToolItemManager.UnequipTool(skill);
+        }
+    }
+}
