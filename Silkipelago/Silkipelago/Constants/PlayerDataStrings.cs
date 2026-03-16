@@ -16,6 +16,23 @@ namespace Silkipelago.Constants
             YELLOW_VESTICREST,
             BLUE_VESTICREST
         };
+        //chapels
+        public const string REAPER_CHAPEL = "chapelClosed_reaper";
+        public const string WANDERER_CHAPEL = "chapelClosed_wanderer";
+        public const string BEAST_CHAPEL = "chapelClosed_beast";
+        public const string WITCH_CHAPEL = "chapelClosed_witch";
+        public const string ARCHITECT_CHAPEL = "chapelClosed_toolmaster";
+        public const string SHAMAN_CHAPEL = "chapelClosed_shaman";
+
+        public static readonly List<string> CHAPELS = new()
+        {
+            REAPER_CHAPEL,
+            WANDERER_CHAPEL,
+            BEAST_CHAPEL,
+            WITCH_CHAPEL,
+            ARCHITECT_CHAPEL,
+            SHAMAN_CHAPEL
+        };
         // Needolin and melodies
         public const string NEEDOLIN = "Needolin";
         public const string BEASTLING_CALL = "UnlockedFastTravelTeleport";

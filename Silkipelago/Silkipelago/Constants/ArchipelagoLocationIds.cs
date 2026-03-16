@@ -8,7 +8,11 @@ namespace Silkipelago.Constants
         public static Dictionary<string, string> ArchipelagoIdsToGameIds { get; } = new Dictionary<string, string>
     {
         //crest
-
+        { "Bound the Crest of Reaper",CrestStrings.REAPER },
+        { "Bound the Crest of Wanderer",CrestStrings.WANDERER },
+        { "Bound the Crest of Beast", CrestStrings.BEAST },
+        { "Bound the Crest of Architect",CrestStrings.ARCHITECT },
+        { "Bound the Crest of Shaman",CrestStrings.SHAMAN },
         // items
         { "Pickup Twisted Bud", CollectablesStrings.TWISTED_BUD },
         // needolin and melodies 

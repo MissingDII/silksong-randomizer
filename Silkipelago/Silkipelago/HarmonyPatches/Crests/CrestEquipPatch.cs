@@ -22,13 +22,15 @@ namespace Silkipelago.HarmonyPatches.Crest
             {
                 var locationChecker = ArchipelagoPlugin.App.LocationChecker;
                 _logger.LogInfo($"[ToolItemManager] AutoEquip called for Crest: {crest.name}");
-
                 // If eva crest upgrades are randomized, don't auto-equip
-                if (locationChecker.LocationExists("Eva: 0 Slots"))
+                if (locationChecker.LocationExists("Eva: 0 Slots") && CrestStrings.CRESTS_UPGRADE.Contains(crest.name))
                 {
                     return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
                 }
-
+                if (CrestStrings.CRESTS.Contains(crest.name))
+                {
+                    return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
+                }
                 return MethodPrefix.RUN_ORIGINAL_METHOD;
             }
             catch (Exception ex)

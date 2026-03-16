@@ -11,64 +11,81 @@ namespace Silkipelago.Archipelago.UI
     public static class ArchipelagoMenuBuilder
     {
         public static Canvas BuildUI(
-            Action onConnectClicked,
-            Action onReturnClicked,
-            bool returnButton,
-            out ClickOnlyInputField hostInput,
-            out ClickOnlyInputField portInput,
-            out ClickOnlyInputField slotInput)
-        {
-            EnsureEventSystem();
-
-            var canvasGO = new GameObject("ArchipelagoCanvas");
-            var canvas = canvasGO.AddComponent<Canvas>();
-            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-            canvas.sortingOrder = 1000;
-
-            canvasGO.AddComponent<CanvasScaler>().uiScaleMode =
-                CanvasScaler.ScaleMode.ScaleWithScreenSize;
-            canvasGO.AddComponent<GraphicRaycaster>();
-
-            // Ensure SelectionGuard exists
-            EnsureSelectionGuard();
-
-            // Root panel
-            var panel = CreatePanel(canvas.transform);
-
-            float y = 110;
-
-            hostInput = CreateLabeledInput(panel, "Host", new Vector2(0, y));
-            y -= 55;
-
-            portInput = CreateLabeledInput(panel, "Port", new Vector2(0, y));
-            y -= 55;
-
-            slotInput = CreateLabeledInput(panel, "Slot", new Vector2(0, y));
-            y -= 55;
-
-
-            CreateButton(
-                panel,
-                "Connect",
-                new Vector2(0, y),
-                onConnectClicked
-            );
-
-            y -= 55;
-            if (returnButton)
+                Action onConnectClicked,
+                Action onReturnClicked,
+                bool returnButton,
+                out ClickOnlyInputField hostInput,
+                out ClickOnlyInputField portInput,
+                out ClickOnlyInputField slotInput)
             {
-                CreateButton(
-                    panel,
-                    "Return",
-                    new Vector2(0, y),
-                    onReturnClicked
-                );
+                EnsureEventSystem();
+                EnsureSelectionGuard();
+
+                var canvas = SetupCanvas();
+                var panel = CreatePanel(canvas.transform);
+
+                CreateInputFields(panel, out hostInput, out portInput, out slotInput);
+                CreateButtonsSection(panel, 0, onConnectClicked, onReturnClicked, returnButton);
+
+                SetupTabNavigation(hostInput, portInput, slotInput);
+
+                return canvas;
             }
 
-            SetupTabNavigation(hostInput, portInput, slotInput);
+            // ---------- CANVAS SETUP ----------
 
-            return canvas;
-        }
+            private static Canvas SetupCanvas()
+            {
+                var canvasGO = new GameObject("ArchipelagoCanvas");
+                var canvas = canvasGO.AddComponent<Canvas>();
+                canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+                canvas.sortingOrder = 1000;
+
+                canvasGO.AddComponent<CanvasScaler>().uiScaleMode =
+                    CanvasScaler.ScaleMode.ScaleWithScreenSize;
+                canvasGO.AddComponent<GraphicRaycaster>();
+
+                return canvas;
+            }
+
+            // ---------- INPUT FIELDS ----------
+
+            private static void CreateInputFields(
+                Transform parent,
+                out ClickOnlyInputField hostInput,
+                out ClickOnlyInputField portInput,
+                out ClickOnlyInputField slotInput)
+            {
+                float y = 110;
+
+                hostInput = CreateLabeledInput(parent, "Host", new Vector2(0, y));
+                y -= 55;
+
+                portInput = CreateLabeledInput(parent, "Port", new Vector2(0, y));
+                y -= 55;
+
+                slotInput = CreateLabeledInput(parent, "Slot", new Vector2(0, y));
+            }
+
+            // ---------- BUTTONS ----------
+
+            private static void CreateButtonsSection(
+                Transform parent,
+                float startY,
+                Action onConnectClicked,
+                Action onReturnClicked,
+                bool returnButton)
+            {
+                float y = 55;
+
+                CreateButton(parent, "Connect", new Vector2(0, -y), onConnectClicked);
+
+                if (returnButton)
+                {
+                    y += 55;
+                    CreateButton(parent, "Return", new Vector2(0, -y), onReturnClicked);
+                }
+            }
 
         // ---------- PANEL ----------
 
@@ -124,6 +141,21 @@ namespace Silkipelago.Archipelago.UI
         {
             CreateText(parent, label, pos + new Vector2(0, 22), 14, TextAnchor.MiddleLeft);
 
+            var inputGO = CreateInputGameObject(parent, label, pos);
+            var input = inputGO.AddComponent<ClickOnlyInputField>();
+
+            SetupInputTextDisplay(inputGO, input);
+            SetupInputPlaceholder(inputGO, input, label);
+
+            inputGO.AddComponent<ClickToSelectInputField>().Setup(input);
+
+            return input;
+        }
+
+        // ---------- INPUT HELPERS ----------
+
+        private static GameObject CreateInputGameObject(Transform parent, string label, Vector2 pos)
+        {
             var go = new GameObject(label + "_Input");
             go.transform.SetParent(parent, false);
 
@@ -134,10 +166,13 @@ namespace Silkipelago.Archipelago.UI
             var img = go.AddComponent<UIImage>();
             img.color = new Color(0.12f, 0.11f, 0.10f, 1f);
 
-            var input = go.AddComponent<ClickOnlyInputField>();
+            return go;
+        }
 
+        private static void SetupInputTextDisplay(GameObject inputGO, ClickOnlyInputField input)
+        {
             var textGO = new GameObject("Text");
-            textGO.transform.SetParent(go.transform, false);
+            textGO.transform.SetParent(inputGO.transform, false);
 
             var txt = textGO.AddComponent<UIText>();
             txt.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
@@ -152,13 +187,16 @@ namespace Silkipelago.Archipelago.UI
             textRT.offsetMax = new Vector2(-8, 0);
 
             input.textComponent = txt;
+        }
 
+        private static void SetupInputPlaceholder(GameObject inputGO, ClickOnlyInputField input, string label)
+        {
             var placeholderGO = new GameObject("Placeholder");
-            placeholderGO.transform.SetParent(go.transform, false);
+            placeholderGO.transform.SetParent(inputGO.transform, false);
 
             var ph = placeholderGO.AddComponent<UIText>();
             ph.text = label;
-            ph.font = txt.font;
+            ph.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
             ph.fontSize = 14;
             ph.color = new Color(0.6f, 0.55f, 0.48f, 0.7f);
             ph.alignment = TextAnchor.MiddleLeft;
@@ -170,11 +208,6 @@ namespace Silkipelago.Archipelago.UI
             phRT.offsetMax = new Vector2(-8, 0);
 
             input.placeholder = ph;
-
-            // Add click-only selection handler
-            go.AddComponent<ClickToSelectInputField>().Setup(input);
-
-            return input;
         }
 
         // ---------- BUTTON ----------
@@ -198,18 +231,33 @@ namespace Silkipelago.Archipelago.UI
             var btn = btnGO.AddComponent<Button>();
             btn.onClick.AddListener(() => onClick());
 
+            SetupButtonColors(btn);
+            SetupButtonStyling(btnGO.transform);
+            SetupButtonText(btnGO.transform, label);
+        }
+
+        // ---------- BUTTON HELPERS ----------
+
+        private static void SetupButtonColors(Button btn)
+        {
             var colors = btn.colors;
             colors.normalColor = ArchipelagoUIStyle.SilksongButtonBackground;
             colors.highlightedColor = ArchipelagoUIStyle.SilksongButtonHover;
             colors.selectedColor = ArchipelagoUIStyle.SilksongButtonHover;
             colors.pressedColor = new Color(0.08f, 0.07f, 0.06f, 1f);
             btn.colors = colors;
+        }
 
-            ArchipelagoUIStyle.CreateRectFrame(btnGO.transform, 3f, 2f);
-            ArchipelagoUIStyle.CreateButtonCornerOrnaments(btnGO.transform);
+        private static void SetupButtonStyling(Transform btnTransform)
+        {
+            ArchipelagoUIStyle.CreateRectFrame(btnTransform, 3f, 2f);
+            ArchipelagoUIStyle.CreateButtonCornerOrnaments(btnTransform);
+        }
 
+        private static void SetupButtonText(Transform btnTransform, string label)
+        {
             var textGO = new GameObject("Text");
-            textGO.transform.SetParent(btnGO.transform, false);
+            textGO.transform.SetParent(btnTransform, false);
 
             var txt = textGO.AddComponent<UIText>();
             txt.text = label;

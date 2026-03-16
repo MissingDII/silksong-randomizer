@@ -35,41 +35,65 @@ namespace Silkipelago.HarmonyPatches.Item
 
         public static bool HandlePlayerDataFieldChange(string fieldName, SilksongLocationChecker locationChecker)
         {
-            if (PlayerDataStrings.CREST.Contains(fieldName))
-            {
-                // check if eva is randomized
-                if (locationChecker.LocationExists("Eva: 0 Slots"))
-                {
-                    return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
-                }
-                return MethodPrefix.RUN_ORIGINAL_METHOD;
-            }
-            if (PlayerDataStrings.SILK_ABILITIES.Contains(fieldName))
-            {
+            // Block crest changes if Eva is randomized
+            if (IsCrestField(fieldName) && locationChecker.LocationExists("Eva: 0 Slots"))
                 return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
-            }
-            if (PlayerDataStrings.CUTSCENES.Contains(fieldName) || PlayerDataStrings.BOSSES.Contains(fieldName))
+
+            // Block chapel changes if  crest are randomized
+            if (IsChapelField(fieldName) && locationChecker.LocationExists(ArchipelagoLocationIds.GetArchipelagoName(CrestStrings.REAPER)))
+                return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
+
+            // Block silk abilities
+            if (IsSilkAbility(fieldName))
+                return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
+
+            // Track cutscenes and bosses
+            if (IsTrackableLocation(fieldName))
             {
-                var archipelagoLocationName = ArchipelagoLocationIds.GetArchipelagoName(fieldName);
-                if (locationChecker.LocationExists(archipelagoLocationName))
-                {
-                    locationChecker.AddCheckedLocation(archipelagoLocationName);
-                }
+                TrackLocation(fieldName, locationChecker, useLocationIds: false);
                 return MethodPrefix.RUN_ORIGINAL_METHOD;
             }
-            if (PlayerDataStrings.ABILITIES.Contains(fieldName) ||
-                PlayerDataStrings.KEYS.Contains(fieldName) ||
-                PlayerDataStrings.MELODIES.Contains(fieldName))
+
+            // Track randomized abilities, keys, melodies
+            if (IsRandomizableContent(fieldName))
             {
-                var archipelagoLocationName = ArchipelagoItemIds.GetArchipelagoName(fieldName);
-                if (locationChecker.LocationExists(archipelagoLocationName))
-                {
-                    locationChecker.AddCheckedLocation(archipelagoLocationName);
+                if (TrackLocation(fieldName, locationChecker, useLocationIds: true))
                     return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
-                }
             }
 
             return MethodPrefix.RUN_ORIGINAL_METHOD;
+        }
+
+        private static bool IsCrestField(string fieldName)
+            => PlayerDataStrings.CREST.Contains(fieldName);
+
+        private static bool IsChapelField(string fieldName)
+            => PlayerDataStrings.CHAPELS.Contains(fieldName);
+
+        private static bool IsSilkAbility(string fieldName)
+            => PlayerDataStrings.SILK_ABILITIES.Contains(fieldName);
+
+        private static bool IsTrackableLocation(string fieldName)
+            => PlayerDataStrings.CUTSCENES.Contains(fieldName) || PlayerDataStrings.BOSSES.Contains(fieldName);
+
+        private static bool IsRandomizableContent(string fieldName)
+            => PlayerDataStrings.ABILITIES.Contains(fieldName) ||
+               PlayerDataStrings.KEYS.Contains(fieldName) ||
+               PlayerDataStrings.MELODIES.Contains(fieldName);
+
+        private static bool TrackLocation(string fieldName, SilksongLocationChecker locationChecker, bool useLocationIds)
+        {
+            var locationId = useLocationIds
+                ? ArchipelagoItemIds.GetArchipelagoName(fieldName)
+                : ArchipelagoLocationIds.GetArchipelagoName(fieldName);
+
+            if (locationChecker.LocationExists(locationId))
+            {
+                locationChecker.AddCheckedLocation(locationId);
+                return true;
+            }
+
+            return false;
         }
     }
 }

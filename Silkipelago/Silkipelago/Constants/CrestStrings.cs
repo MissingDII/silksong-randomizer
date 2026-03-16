@@ -27,5 +27,11 @@ namespace Silkipelago.Constants
         //upgrades
         public const string HUNTER_2 = "Hunter_v2";
         public const string HUNTER_3 = "Hunter_v3";
+
+        public static readonly List<string> CRESTS_UPGRADE = new()
+        {
+            HUNTER_2,
+            HUNTER_3
+        };
     }
 }
