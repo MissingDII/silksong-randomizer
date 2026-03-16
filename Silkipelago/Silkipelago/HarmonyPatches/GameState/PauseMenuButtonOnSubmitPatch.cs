@@ -10,12 +10,7 @@ namespace Silkipelago.HarmonyPatches.GameState
     [HarmonyPatch(nameof(UnityEngine.UI.PauseMenuButton.OnSubmit))]
     public static class PauseMenuButtonOnSubmitPatch
     {
-        private static ILogger _logger;
-
-        public static void Initialize(ILogger logger)
-        {
-            _logger = logger;
-        }
+        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
 
         public static bool Prefix(UnityEngine.UI.PauseMenuButton __instance, BaseEventData eventData)
         {
@@ -35,7 +30,7 @@ namespace Silkipelago.HarmonyPatches.GameState
                 if (__instance.gameObject.name == "ToggleAct3Button")
                 {
                     PlayerData.instance.blackThreadWorld = !PlayerData.instance.blackThreadWorld;
-                    _logger.LogInfo("Act3 toggled, reload a new room for change to take place");
+                    Logger.LogInfo("Act3 toggled, reload a new room for change to take place");
                     return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
 
                 }
@@ -44,7 +39,7 @@ namespace Silkipelago.HarmonyPatches.GameState
             }
             catch (Exception ex)
             {
-                _logger?.LogError($"Error in PauseMenuButtonOnSubmitPatch: {ex.Message}\n{ex.StackTrace}");
+                Logger?.LogError($"Error in PauseMenuButtonOnSubmitPatch: {ex.Message}\n{ex.StackTrace}");
                 return MethodPrefix.RUN_ORIGINAL_METHOD;
             }
         }

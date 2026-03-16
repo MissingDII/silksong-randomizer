@@ -109,8 +109,8 @@ namespace Silkipelago.Constants
         public const string SOUL_SNARE_PRE = "Soul Snare Pre";
         public const string SOUL_SNARE = "Soul Snare";
 
-        public static readonly List<string> ALL_QUESTS = new()
-        {
+        public static readonly List<string> ALL_QUESTS =
+        [
             CITADEL_SEEKER,
             THREADSPUN_TOWN,
             GRAND_GATE_BELLSHRINES,
@@ -193,6 +193,6 @@ namespace Silkipelago.Constants
             DESTROY_THREAD_CORES,
             SPRINTMASTER_PRE,
             SOUL_SNARE_PRE
-        };
+        ];
     }
 }

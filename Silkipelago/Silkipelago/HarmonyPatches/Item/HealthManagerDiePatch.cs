@@ -18,12 +18,7 @@ namespace Silkipelago.HarmonyPatches.Item
     })]
     public static class HealthManagerDiePatch
     {
-        private static ILogger _logger;
-
-        public static void Initialize(ILogger logger)
-        {
-            _logger = logger;
-        }
+        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
 
         static bool Prefix(
             HealthManager __instance,
@@ -39,14 +34,14 @@ namespace Silkipelago.HarmonyPatches.Item
             try
             {
                 // Log enemy death
-                _logger?.LogInfo($"[HealthManager.Die] {__instance.gameObject.name} died from attack type: {attackType}");
+                Logger?.LogInfo($"[HealthManager.Die] {__instance.gameObject.name} died from attack type: {attackType}");
 
                 // TODO: Add check for bosses where setBool is not called
                 return true;
             }
             catch (Exception ex)
             {
-                _logger?.LogErrorException(nameof(HealthManagerDiePatch), nameof(Prefix), ex);
+                Logger?.LogErrorException(nameof(HealthManagerDiePatch), nameof(Prefix), ex);
                 return true;
             }
         }

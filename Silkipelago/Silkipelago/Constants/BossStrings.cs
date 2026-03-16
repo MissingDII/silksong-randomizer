@@ -6,9 +6,9 @@ namespace Silkipelago.Constants
     {
         public const string BELL_BEAST = "Bone Beast";
 
-        public static readonly List<string> BOSSES = new()
-        {
+        public static readonly List<string> BOSSES =
+        [
             BELL_BEAST
-        };
+        ];
     }
 }

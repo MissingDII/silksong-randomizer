@@ -11,17 +11,12 @@ namespace Silkipelago.Archipelago.UI
         public bool shouldLaunchStartCutscene { get; set; }
         private Canvas _canvas;
         private bool _visible;
-        private ILogger _logger;
+        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
         private ClickOnlyInputField _hostInput;
         private ClickOnlyInputField _portInput;
         private ClickOnlyInputField _slotInput;
 
         // ---------- Public API ----------
-
-        public ArchipelagoMenuUI(ILogger logger)
-        {
-            _logger = logger;
-        }
 
         public void InitUI(bool returnButton = true)
         {
@@ -83,13 +78,13 @@ namespace Silkipelago.Archipelago.UI
 
         private void OnConnectClicked()
         {
-            _logger.LogInfo(
+            Logger.LogInfo(
                 $"Connect requested: {_hostInput.text}:{_portInput.text} ({_slotInput.text})"
             );
 
             if (!int.TryParse(_portInput.text, out var port))
             {
-                _logger.LogError("Port must be a valid number");
+                Logger.LogError("Port must be a valid number");
                 return;
             }
 

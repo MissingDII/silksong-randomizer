@@ -10,12 +10,7 @@ namespace Silkipelago.HarmonyPatches.Tools
     [HarmonyPatch(typeof(ToolItem), nameof(ToolItem.SetUnlockedTestsComplete))]
     public static class ToolItemAlternatePatch
     {
-        private static ILogger _logger;
-
-        public static void Initialize(ILogger logger)
-        {
-            _logger = logger;
-        }
+        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
 
         static bool Prefix(ToolItem __instance)
         {
@@ -32,7 +27,7 @@ namespace Silkipelago.HarmonyPatches.Tools
             }
             catch (Exception ex)
             {
-                _logger.LogErrorException(nameof(ToolItemAlternatePatch), nameof(Prefix), ex);
+                Logger.LogErrorException(nameof(ToolItemAlternatePatch), nameof(Prefix), ex);
                 return MethodPrefix.RUN_ORIGINAL_METHOD;
             }
         }

@@ -9,14 +9,12 @@ namespace Silkipelago.Archipelago.ItemHandlers
     public class SilksongItemManager : ItemManager
     {
         public static int _itemToReceive = 0;
-        private ILogger _logger;
+        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
 
 
-        public SilksongItemManager(ILogger logger, SilksongArchipelagoClient archipelago,
+        public SilksongItemManager(SilksongArchipelagoClient archipelago,
             IEnumerable<ReceivedItem> itemsAlreadyProcessed) : base(archipelago, itemsAlreadyProcessed)
         {
-            _logger = logger;
-            PlayerDataHandler.Init(logger);
         }
 
         protected override void ProcessItem(ReceivedItem receivedItem, bool immediatelyIfPossible)
@@ -33,7 +31,7 @@ namespace Silkipelago.Archipelago.ItemHandlers
                 var inGameName = ArchipelagoItemIds.GetInGameName(itemName);
                 if (inGameName == null)
                 {
-                    _logger.LogWarning($"Unrecognised Item name: {itemName}");
+                    Logger.LogWarning($"Unrecognised Item name: {itemName}");
                     return;
                 }
 
@@ -46,7 +44,7 @@ namespace Silkipelago.Archipelago.ItemHandlers
                 else if (PlayerDataStrings.SHRINES.Contains(inGameName))
                     ShrineBellHandler.addBell(inGameName);
                 else
-                    _logger.LogWarning($"No handler for item: {inGameName}");
+                    Logger.LogWarning($"No handler for item: {inGameName}");
             }
         }
     }

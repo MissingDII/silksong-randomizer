@@ -6,7 +6,6 @@ using HarmonyLib;
 using Newtonsoft.Json;
 using Newtonsoft.Json.UnityConverters;
 using Silkipelago.context;
-using Silkipelago.HarmonyPatches;
 using Silkipelago.Logging;
 using Silkipelago.Utils;
 using System.IO;
@@ -20,10 +19,9 @@ namespace Silkipelago
     public partial class ArchipelagoPlugin : BaseUnityPlugin
     {
 
-        private static ConfigEntry<KeyCode>? _addMoneyKey;
+        private static ConfigEntry<KeyCode> _addMoneyKey;
         private ILogger _logger;
         private Harmony _harmony;
-        private static PatchInitializer _patcherInitializer;
         public static RandomizerApp App { get; private set; }
 
 

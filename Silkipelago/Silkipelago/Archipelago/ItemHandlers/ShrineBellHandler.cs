@@ -4,16 +4,11 @@ namespace Silkipelago.Archipelago.ItemHandlers
 {
     public static class ShrineBellHandler
     {
-        static ILogger _logger;
-
-        public static void Initialize(ILogger logger)
-        {
-            _logger = logger;
-        }
+        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
         public static void addBell(string shrineBellName)
         {
             var bellCount = ArchipelagoPlugin.App.ArchipelagoClient.GetReceivedItemCount("Grand Gate Bell");
-            _logger.LogInfo($"Received bell number {bellCount}/5");
+            Logger.LogInfo($"Received bell number {bellCount}/5");
             var test = PlayerData.instance.QuestCompletionData.GetData("Grand Gate Bellshrines");
             PlayerDataHandler.ChangeBooleanValue(shrineBellName, true);
             QuestManager.TryGetFullQuestBase("Grand Gate Bellshrines", out var fullquestBase);

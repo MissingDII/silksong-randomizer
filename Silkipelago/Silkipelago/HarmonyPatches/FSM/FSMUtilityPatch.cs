@@ -10,12 +10,7 @@ namespace Silkipelago.HarmonyPatches.FSM
     [HarmonyPatch(nameof(Fsm.Update))]
     public static class FSMUtilityPatch
     {
-        public static ILogger _logger;
-
-        public static void Initialize(ILogger logger)
-        {
-            _logger = logger;
-        }
+        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
 
         public static void Postfix(Fsm __instance)
         {
@@ -36,12 +31,12 @@ namespace Silkipelago.HarmonyPatches.FSM
                 var currentState = __instance.ActiveStateName ?? "";
 
 
-                FSMUtilityPatch._logger?.LogInfo($"[FSM State Change] Crest Upgrade Shrine Dialogue: {currentState}");
+                Logger.LogInfo($"[FSM State Change] Crest Upgrade Shrine Dialogue: {currentState}");
                 handleEva(currentState);
             }
             catch (Exception ex)
             {
-                FSMUtilityPatch._logger?.LogErrorException(nameof(FSMUtilityPatch), nameof(Postfix), ex);
+                Logger.LogErrorException(nameof(FSMUtilityPatch), nameof(Postfix), ex);
             }
         }
 
@@ -50,7 +45,7 @@ namespace Silkipelago.HarmonyPatches.FSM
             if (!IsDialogueInteractionState(currentState))
                 return;
 
-            _logger?.LogInfo("[FSM Hook] Crest Upgrade Shrine dialogue interaction detected!");
+            Logger.LogInfo("[FSM Hook] Crest Upgrade Shrine dialogue interaction detected!");
 
             var unlockedSlots = CountUnlockedCrestSlots();
 

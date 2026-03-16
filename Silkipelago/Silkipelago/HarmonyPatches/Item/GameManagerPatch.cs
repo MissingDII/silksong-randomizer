@@ -9,12 +9,7 @@ namespace Silkipelago.HarmonyPatches.Item
     [HarmonyPatch(nameof(GameManager.IsGameplayScene))]
     public static class GameManagerPatch
     {
-        private static ILogger _logger;
-
-        public static void Initialize(ILogger logger)
-        {
-            _logger = logger;
-        }
+        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
 
         //   public bool IsGameplayScene()
         public static void Postfix(GameManager __instance, bool __result)
@@ -24,7 +19,7 @@ namespace Silkipelago.HarmonyPatches.Item
                 if (__result && ArchipelagoPlugin.App.ArchipelagoClient._shouldDoInitialLoad)
                 {
                     // Do something when IsGameplayScene returns true
-                    _logger.LogDebug("Entering Gameplay Scene and loading items");
+                    Logger.LogDebug("Entering Gameplay Scene and loading items");
                     var itemManager = ArchipelagoPlugin.App.ItemManager;
                     itemManager.ReceiveAllNewItems();
                     var slotId = __instance.profileID;
@@ -36,7 +31,7 @@ namespace Silkipelago.HarmonyPatches.Item
             }
             catch (Exception ex)
             {
-                _logger.LogErrorException(nameof(GameManagerPatch), nameof(Postfix), ex);
+                Logger.LogErrorException(nameof(GameManagerPatch), nameof(Postfix), ex);
             }
         }
     }

@@ -9,17 +9,12 @@ namespace Silkipelago.HarmonyPatches.Shrine
     [HarmonyPatch(nameof(StateChangeSequence.SetIsCompleteBool))]
     public static class StateChangeSequencePatch
     {
-        private static ILogger _logger;
-
-        public static void Initialize(ILogger logger)
-        {
-            _logger = logger;
-        }
+        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
         public static void Postfix(StateChangeSequence __instance)
         {
             try
             {
-                _logger.LogInfo(__instance.isCompleteBool);
+                Logger.LogInfo(__instance.isCompleteBool);
                 if (PlayerDataStrings.SHRINES.Contains(__instance.isCompleteBool))
                 {
                     var locationId = ArchipelagoLocationIds.GetArchipelagoName(__instance.isCompleteBool);
@@ -28,7 +23,7 @@ namespace Silkipelago.HarmonyPatches.Shrine
             }
             catch (Exception ex)
             {
-                _logger.LogErrorException(nameof(StateChangeSequencePatch), nameof(Postfix), ex);
+                Logger.LogErrorException(nameof(StateChangeSequencePatch), nameof(Postfix), ex);
             }
         }
     }

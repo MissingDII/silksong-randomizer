@@ -9,17 +9,12 @@ namespace Silkipelago.HarmonyPatches.SaveUtility
     [HarmonyPatch(typeof(SaveDataUtility), "CreateJsonObjects")]
     internal class SaveSerializePatch
     {
-        private static ILogger _logger;
-
-        public static void Initialize(ILogger logger)
-        {
-            _logger = logger;
-        }
+        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
         private static void Postfix(object __instance)
         {
             try
             {
-                _logger.LogDebugPatchIsRunning(nameof(SaveDataUtility), "CreateJsonObjects", nameof(SaveSerializePatch), nameof(Postfix));
+                Logger.LogDebugPatchIsRunning(nameof(SaveDataUtility), "CreateJsonObjects", nameof(SaveSerializePatch), nameof(Postfix));
                 // Access private static field via reflection
                 var serializerField = typeof(SaveDataUtility)
                     .GetField("_serializer", BindingFlags.NonPublic | BindingFlags.Static);
@@ -39,7 +34,7 @@ namespace Silkipelago.HarmonyPatches.SaveUtility
             }
             catch (Exception ex)
             {
-                _logger.LogErrorException(nameof(SaveSerializePatch), nameof(Postfix), ex);
+                Logger.LogErrorException(nameof(SaveSerializePatch), nameof(Postfix), ex);
             }
         }
     }

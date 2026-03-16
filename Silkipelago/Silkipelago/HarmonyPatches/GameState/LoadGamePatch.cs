@@ -14,18 +14,13 @@ namespace Silkipelago.HarmonyPatches.GameState
 })]
     public class LoadGamePatch
     {
-        private static ILogger _logger;
-
-        public static void Initialize(ILogger logger)
-        {
-            _logger = logger;
-        }
+        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
         // public void SetLoadedGameData(SaveGameData saveGameData, int saveSlot)
         public static void Postfix(GameManager __instance, SaveGameData saveGameData, int saveSlot)
         {
             try
             {
-                _logger.LogDebugPatchIsRunning(nameof(GameManager), nameof(GameManager.SetLoadedGameData), nameof(LoadGamePatch), nameof(Postfix));
+                Logger.LogDebugPatchIsRunning(nameof(GameManager), nameof(GameManager.SetLoadedGameData), nameof(LoadGamePatch), nameof(Postfix));
                 ArchipelagoPlugin.App.SettingsContext.saveSettingsData = SaveSettings.LoadSaveDataSettings(saveSlot);
                 var saveSettingsData = ArchipelagoPlugin.App.SettingsContext.saveSettingsData;
                 var APConnectionInfo = new ArchipelagoConnectionInfo(saveSettingsData.HostName, saveSettingsData.Port, saveSettingsData.SlotName, false);
@@ -33,7 +28,7 @@ namespace Silkipelago.HarmonyPatches.GameState
             }
             catch (Exception ex)
             {
-                _logger.LogErrorException(nameof(SaveGamePatch), nameof(Postfix), ex);
+                Logger.LogErrorException(nameof(SaveGamePatch), nameof(Postfix), ex);
             }
         }
     }

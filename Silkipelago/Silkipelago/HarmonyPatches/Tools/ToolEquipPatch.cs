@@ -10,19 +10,14 @@ namespace Silkipelago.HarmonyPatches.Tools
     [HarmonyPatch(typeof(ToolItemManager), nameof(ToolItemManager.AutoEquip), typeof(ToolItem))]
     public static class ToolEquipPatch
     {
-        private static ILogger _logger;
-
-        public static void Initialize(ILogger logger)
-        {
-            _logger = logger;
-        }
+        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
 
         static bool Prefix(ToolItem tool)
         {
             try
             {
                 var locationChecker = ArchipelagoPlugin.App.LocationChecker;
-                _logger.LogInfo($"[ToolItemManager] AutoEquip called for: {tool.name}");
+                Logger.LogInfo($"[ToolItemManager] AutoEquip called for: {tool.name}");
 
                 if (ShouldBlockEquip(tool, locationChecker))
                 {
@@ -33,7 +28,7 @@ namespace Silkipelago.HarmonyPatches.Tools
             }
             catch (Exception ex)
             {
-                _logger.LogErrorException(nameof(ToolEquipPatch), nameof(Prefix), ex);
+                Logger.LogErrorException(nameof(ToolEquipPatch), nameof(Prefix), ex);
                 return MethodPrefix.RUN_ORIGINAL_METHOD;
             }
         }

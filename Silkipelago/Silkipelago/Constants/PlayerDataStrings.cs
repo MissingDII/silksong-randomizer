@@ -11,11 +11,11 @@ namespace Silkipelago.Constants
         public const string YELLOW_VESTICREST = "UnlockedExtraYellowSlot";
         public const string BLUE_VESTICREST = "UnlockedExtraBlueSlot";
 
-        public static readonly List<string> CREST = new()
-        {
+        public static readonly List<string> CREST =
+        [
             YELLOW_VESTICREST,
             BLUE_VESTICREST
-        };
+        ];
         //chapels
         public const string REAPER_CHAPEL = "chapelClosed_reaper";
         public const string WANDERER_CHAPEL = "chapelClosed_wanderer";
@@ -24,15 +24,15 @@ namespace Silkipelago.Constants
         public const string ARCHITECT_CHAPEL = "chapelClosed_toolmaster";
         public const string SHAMAN_CHAPEL = "chapelClosed_shaman";
 
-        public static readonly List<string> CHAPELS = new()
-        {
+        public static readonly List<string> CHAPELS =
+        [
             REAPER_CHAPEL,
             WANDERER_CHAPEL,
             BEAST_CHAPEL,
             WITCH_CHAPEL,
             ARCHITECT_CHAPEL,
             SHAMAN_CHAPEL
-        };
+        ];
         // Needolin and melodies
         public const string NEEDOLIN = "Needolin";
         public const string BEASTLING_CALL = "UnlockedFastTravelTeleport";
@@ -41,15 +41,15 @@ namespace Silkipelago.Constants
         public const string ARCHITECT_MELODY = "HasMelodyArchitect";
         public const string VAULTKEEPER_MELODY = "HasMelodyLibrarian";
 
-        public static readonly List<string> MELODIES = new()
-        {
+        public static readonly List<string> MELODIES =
+        [
             NEEDOLIN,
             BEASTLING_CALL,
             ELEGY_OF_THE_DEEP,
             CONDUCTOR_MELODY,
             ARCHITECT_MELODY,
             VAULTKEEPER_MELODY
-        };
+        ];
         //silk abilities
         public const string SILK_SPEAR = "hasNeedleThrow";
         public const string THREAD_STORM = "hasThreadSphere";
@@ -59,21 +59,21 @@ namespace Silkipelago.Constants
         public const string PALE_NAILS = "hasSilkBomb";
         public const string SILK_SPECIAL = "hasSilkSpecial";
 
-        public static readonly List<string> SILK_ABILITIES = new()
-        {
+        public static readonly List<string> SILK_ABILITIES =
+        [
             SILK_SPEAR,
             THREAD_STORM,
             CROSS_STITCH,
             SHARP_DART,
             PALE_NAILS
-        };
+        ];
         //cutscene
         public const string BIND_CUTSCENE = "bindCutscenePlayed";
 
-        public static readonly List<string> CUTSCENES = new()
-        {
+        public static readonly List<string> CUTSCENES =
+        [
             BIND_CUTSCENE
-        };
+        ];
 
         //shrine
         public const string SHRINE_BONE = "bellShrineBoneForest";
@@ -83,27 +83,27 @@ namespace Silkipelago.Constants
         public const string SHRINE_BELLHART = "bellShrineBellhart";
         public const string SHRINE_ENCLAVE = "bellShrineEnclave";
 
-        public static readonly List<string> SHRINES = new()
-        {
+        public static readonly List<string> SHRINES =
+        [
             SHRINE_BONE,
             SHRINE_WILDS,
             SHRINE_GREYMOOR,
             SHRINE_SHELLWOOD,
             SHRINE_BELLHART,
             SHRINE_ENCLAVE,
-        };
+        ];
 
         // Keys
         public const string INDOLENT_KEY = "HasSlabKeyA";
         public const string HERETIC_KEY = "HasSlabKeyB";
         public const string APOSTATE_KEY = "HasSlabKeyC";
 
-        public static readonly List<string> KEYS = new()
-        {
+        public static readonly List<string> KEYS =
+        [
             INDOLENT_KEY,
             HERETIC_KEY,
             APOSTATE_KEY,
-        };
+        ];
         // Abilities
         public const string HAS_NEEDOLIN = "hasNeedolin";
         public const string HAS_DASH = "hasDash";
@@ -115,8 +115,8 @@ namespace Silkipelago.Constants
         public const string HAS_NEEDLE_STRIKE = "hasChargeSlash";
 
 
-        public static readonly List<string> ABILITIES = new()
-        {
+        public static readonly List<string> ABILITIES =
+        [
             HAS_NEEDOLIN,
             HAS_DASH,
             HAS_DRIFTER_CLOAK,
@@ -125,7 +125,7 @@ namespace Silkipelago.Constants
             HAS_SUPER_JUMP,
             HAS_HARPOON_DASH,
             HAS_NEEDLE_STRIKE
-        };
+        ];
 
         // Pilgrims
         public const string DICE_PILGRIM_DEFEATED = "dicePilgrimDefeated";
@@ -199,8 +199,8 @@ namespace Silkipelago.Constants
         public const string GUARD_BONE_EAST_25_DEFEATED = "defeatedGuardBoneEast25";
         public const string SHELLWOOD_SLABFLY_DEFEATED = "shellwoodSlabflyDefeated";
 
-        public static readonly List<string> BOSSES = new()
-        {
+        public static readonly List<string> BOSSES =
+        [
             DICE_PILGRIM_DEFEATED,
             BONEGRAVE_ROSARY_PILGRIM_DEFEATED,
             SHELLWOOD_ROSARY_PILGRIM_DEFEATED,
@@ -259,6 +259,6 @@ namespace Silkipelago.Constants
             TORMENTED_TROBBIO_DEFEATED,
             COGWORK_DANCERS_DEFEATED,
             CLOVER_DANCERS_DEFEATED
-        };
+        ];
     }
 }

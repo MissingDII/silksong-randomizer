@@ -10,12 +10,7 @@ namespace Silkipelago.HarmonyPatches.Tools
     [HarmonyPatch(typeof(ToolItem), nameof(ToolItem.Unlock))]
     public static class ToolItemPatch
     {
-        private static ILogger _logger;
-
-        public static void Initialize(ILogger logger)
-        {
-            _logger = logger;
-        }
+        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
 
         static bool Prefix(ToolItem __instance, Action afterTutorialMsg, ToolItem.PopupFlags popupFlags)
         {
@@ -32,7 +27,7 @@ namespace Silkipelago.HarmonyPatches.Tools
             }
             catch (Exception ex)
             {
-                _logger.LogErrorException(nameof(ToolItemPatch), nameof(Prefix), ex);
+                Logger.LogErrorException(nameof(ToolItemPatch), nameof(Prefix), ex);
                 return MethodPrefix.RUN_ORIGINAL_METHOD;
             }
         }
@@ -66,7 +61,7 @@ namespace Silkipelago.HarmonyPatches.Tools
 
             if (locationChecker.LocationExists(locationId))
             {
-                _logger.LogInfo($"[ToolItem] {nameof(ToolItem.Unlock)} called, item={tool.name}");
+                Logger.LogInfo($"[ToolItem] {nameof(ToolItem.Unlock)} called, item={tool.name}");
                 locationChecker.AddCheckedLocation(locationId);
                 return true;
             }

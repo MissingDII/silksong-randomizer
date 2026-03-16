@@ -9,19 +9,14 @@ namespace Silkipelago.HarmonyPatches.Crest
     [HarmonyPatch(typeof(ToolItemManager), nameof(ToolItemManager.AutoEquip), typeof(ToolCrest), typeof(bool), typeof(bool))]
     public static class CrestEquipPatch
     {
-        private static ILogger _logger;
-
-        public static void Initialize(ILogger logger)
-        {
-            _logger = logger;
-        }
+        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
 
         static bool Prefix(ToolCrest crest, bool markTemp, bool removeTools)
         {
             try
             {
                 var locationChecker = ArchipelagoPlugin.App.LocationChecker;
-                _logger.LogInfo($"[ToolItemManager] AutoEquip called for Crest: {crest.name}");
+                Logger.LogInfo($"[ToolItemManager] AutoEquip called for Crest: {crest.name}");
                 // If eva crest upgrades are randomized, don't auto-equip
                 if (locationChecker.LocationExists("Eva: 0 Slots") && CrestStrings.CRESTS_UPGRADE.Contains(crest.name))
                 {
@@ -35,7 +30,7 @@ namespace Silkipelago.HarmonyPatches.Crest
             }
             catch (Exception ex)
             {
-                _logger.LogErrorException(nameof(CrestEquipPatch), nameof(Prefix), ex);
+                Logger.LogErrorException(nameof(CrestEquipPatch), nameof(Prefix), ex);
                 return true;
             }
         }

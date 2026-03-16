@@ -1,6 +1,5 @@
 using GlobalEnums;
 using HarmonyLib;
-using Silkipelago.Archipelago;
 using System;
 using UnityEngine;
 using ILogger = KaitoKid.Utilities.Interfaces.ILogger;
@@ -11,14 +10,7 @@ namespace Silkipelago.HarmonyPatches.GameState
     [HarmonyPatch(nameof(UIManager.SetMenuState))]
     public static class PauseMenuButtonPatch
     {
-        private static ILogger _logger;
-        private static SilksongArchipelagoClient _archipelago;
-
-        public static void Initialize(ILogger logger, SilksongArchipelagoClient archipelago)
-        {
-            _logger = logger;
-            _archipelago = archipelago;
-        }
+        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
 
         public static void Postfix(UIManager __instance, MainMenuState newState)
         {
@@ -74,7 +66,7 @@ namespace Silkipelago.HarmonyPatches.GameState
             }
             catch (Exception ex)
             {
-                _logger?.LogError($"Error in PauseMenuButtonPatch: {ex.Message}\n{ex.StackTrace}");
+                Logger?.LogError($"Error in PauseMenuButtonPatch: {ex.Message}\n{ex.StackTrace}");
             }
         }
 

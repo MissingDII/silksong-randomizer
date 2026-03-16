@@ -5,11 +5,7 @@ namespace Silkipelago.Archipelago.ItemHandlers
 {
     public static class PlayerDataHandler
     {
-        static ILogger _logger;
-        public static void Init(ILogger logger)
-        {
-            _logger = logger;
-        }
+        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
         public static void ChangeBooleanValue(string booleanName, Boolean newValue)
         {
             var instance = PlayerData.instance;
@@ -29,7 +25,7 @@ namespace Silkipelago.Archipelago.ItemHandlers
             }
             else
             {
-                _logger.LogError($"Could not parse '{rosary.Split(" ")[0]}' to an integer for rosary.");
+                Logger.LogError($"Could not parse '{rosary.Split(" ")[0]}' to an integer for rosary.");
             }
         }
 
@@ -45,7 +41,7 @@ namespace Silkipelago.Archipelago.ItemHandlers
             }
             else
             {
-                _logger.LogError($"Could not parse '{shards.Split(" ")[0]}' to an integer for shards.");
+                Logger.LogError($"Could not parse '{shards.Split(" ")[0]}' to an integer for shards.");
             }
         }
     }

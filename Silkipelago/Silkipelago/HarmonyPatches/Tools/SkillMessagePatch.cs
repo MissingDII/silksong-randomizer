@@ -10,12 +10,7 @@ namespace Silkipelago.HarmonyPatches.Tools
     [HarmonyPatch(typeof(SkillGetMsg), "Setup")]
     public static class SkillMessagePatch
     {
-        public static ILogger _logger;
-
-        public static void Initialize(ILogger logger)
-        {
-            _logger = logger;
-        }
+        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
 
         static bool Prefix(SkillGetMsg __instance, ToolItemSkill skill)
         {
@@ -32,7 +27,7 @@ namespace Silkipelago.HarmonyPatches.Tools
             }
             catch (Exception ex)
             {
-                _logger?.LogErrorException(nameof(SkillMessagePatch), nameof(Prefix), ex);
+                Logger?.LogErrorException(nameof(SkillMessagePatch), nameof(Prefix), ex);
                 return MethodPrefix.RUN_ORIGINAL_METHOD;
             }
         }
@@ -70,6 +65,7 @@ namespace Silkipelago.HarmonyPatches.Tools
     [HarmonyPatch(typeof(SkillGetMsg), nameof(SkillGetMsg.Spawn))]
     public static class SkillGetMsgSpawnPatch
     {
+        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
         static bool Prefix(SkillGetMsg prefab, ToolItemSkill skill, Action afterMsg)
         {
             try
@@ -87,7 +83,7 @@ namespace Silkipelago.HarmonyPatches.Tools
             }
             catch (Exception ex)
             {
-                SkillMessagePatch._logger?.LogErrorException(nameof(SkillGetMsgSpawnPatch), nameof(Prefix), ex);
+                Logger.LogErrorException(nameof(SkillGetMsgSpawnPatch), nameof(Prefix), ex);
                 return MethodPrefix.RUN_ORIGINAL_METHOD;
             }
         }

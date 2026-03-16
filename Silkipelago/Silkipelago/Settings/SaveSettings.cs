@@ -7,11 +7,7 @@ namespace Silkipelago.Settings
 {
     public static class SaveSettings
     {
-        private static ILogger _logger;
-        public static void initialize(ILogger logger)
-        {
-            _logger = logger;
-        }
+        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
         public static void createSaveDataDirectory(int saveSlot)
         {
             IO.Directory.CreateDirectory(DataPaths.SaveSlotDir(saveSlot));
@@ -38,7 +34,7 @@ namespace Silkipelago.Settings
             }
             catch (Exception err)
             {
-                _logger.LogError($"Error saving SaveSettingsData: {err}");
+                Logger.LogError($"Error saving SaveSettingsData: {err}");
             }
         }
 
@@ -58,7 +54,7 @@ namespace Silkipelago.Settings
             }
             catch (Exception err)
             {
-                _logger.LogError($"Error loading SaveSettingsData: {err}");
+                Logger.LogError($"Error loading SaveSettingsData: {err}");
                 return new SaveSettingsData();
             }
         }
@@ -75,7 +71,7 @@ namespace Silkipelago.Settings
             }
             catch (Exception err)
             {
-                _logger.LogError($"Error Deleting SaveSettingsData: {err}");
+                Logger.LogError($"Error Deleting SaveSettingsData: {err}");
             }
         }
 

@@ -9,12 +9,7 @@ namespace Silkipelago.HarmonyPatches
 {
     public static class SceneEventPatch
     {
-        private static ILogger _logger;
-
-        public static void Initialize(ILogger logger)
-        {
-            _logger = logger;
-        }
+        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
 
         public static void addSceneEvent()
         {
@@ -36,7 +31,7 @@ namespace Silkipelago.HarmonyPatches
             }
             catch (Exception ex)
             {
-                _logger?.LogErrorException(nameof(SceneEventPatch), nameof(OnSceneLoaded), ex);
+                Logger?.LogErrorException(nameof(SceneEventPatch), nameof(OnSceneLoaded), ex);
             }
         }
 
@@ -63,14 +58,14 @@ namespace Silkipelago.HarmonyPatches
         {
             try
             {
-                _logger?.LogInfo("[Scene Event] Weave_10 loaded, setting up Crest Upgrade Shrine location tracking...");
+                Logger?.LogInfo("[Scene Event] Weave_10 loaded, setting up Crest Upgrade Shrine location tracking...");
 
                 // Find the "Crest Upgrade Shrine" GameObject in the scene
                 var gameObject = GameObject.Find("Crest Upgrade Shrine");
 
                 if (gameObject == null)
                 {
-                    _logger?.LogInfo("[Scene Event] Could not find 'Crest Upgrade Shrine' GameObject");
+                    Logger?.LogInfo("[Scene Event] Could not find 'Crest Upgrade Shrine' GameObject");
                     return;
                 }
 
@@ -79,15 +74,15 @@ namespace Silkipelago.HarmonyPatches
 
                 if (dialogueFsm == null)
                 {
-                    _logger?.LogInfo("[Scene Event] Could not find 'Dialogue' FSM on Crest Upgrade Shrine");
+                    Logger?.LogInfo("[Scene Event] Could not find 'Dialogue' FSM on Crest Upgrade Shrine");
                     return;
                 }
 
-                _logger?.LogInfo("[Scene Event] Found Dialogue FSM - Crest Upgrade Shrine location tracking will be handled by FsmUpdatePatch");
+                Logger?.LogInfo("[Scene Event] Found Dialogue FSM - Crest Upgrade Shrine location tracking will be handled by FsmUpdatePatch");
             }
             catch (Exception ex)
             {
-                _logger?.LogErrorException(nameof(SceneEventPatch), nameof(HandleWeave10), ex);
+                Logger?.LogErrorException(nameof(SceneEventPatch), nameof(HandleWeave10), ex);
             }
         }
     }

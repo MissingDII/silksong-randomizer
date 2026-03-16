@@ -14,14 +14,14 @@ namespace Silkipelago.Constants
         public const string RUNE_RAGE = "Silk Bomb";
         public const string PALE_NAILS = "Silk Boss Needle";
 
-        public static readonly List<string> SILK_ABILITIES = new()
-        {
+        public static readonly List<string> SILK_ABILITIES =
+        [
             SILK_SPEAR,
             THREAD_STORM,
             CROSS_STITCH,
             SHARP_DART,
             RUNE_RAGE,
             PALE_NAILS
-        };
+        ];
     }
 }

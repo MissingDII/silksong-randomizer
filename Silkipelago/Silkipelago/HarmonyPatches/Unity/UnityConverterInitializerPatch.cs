@@ -10,18 +10,13 @@ namespace Silkipelago.HarmonyPatches.Unity
     [HarmonyPatch(typeof(UnityConverterInitializer), "CreateConverters")]
     internal class UnityConverterInitializerPatch
     {
-        private static ILogger _logger;
-
-        public static void Initialize(ILogger logger)
-        {
-            _logger = logger;
-        }
+        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
 
         private static void Postfix(ref List<JsonConverter> __result)
         {
             try
             {
-                _logger.LogDebugPatchIsRunning(
+                Logger.LogDebugPatchIsRunning(
                     nameof(UnityConverterInitializer),
                     "CreateConverters",
                     nameof(UnityConverterInitializerPatch),
@@ -32,7 +27,7 @@ namespace Silkipelago.HarmonyPatches.Unity
                 var removedNames = new List<string>();
 
                 // Collect names while removing
-                int removed = __result.RemoveAll(c =>
+                var removed = __result.RemoveAll(c =>
                 {
                     var typeName = c.GetType().Name;
                     if (typeName.Equals("PermissionsEnumConverter"))
@@ -46,16 +41,16 @@ namespace Silkipelago.HarmonyPatches.Unity
                 //log removed converters
                 if (removedNames.Count > 0)
                 {
-                    _logger.LogInfo($"Removed {removedNames.Count} converter(s):");
+                    Logger.LogInfo($"Removed {removedNames.Count} converter(s):");
                     foreach (var name in removedNames)
                     {
-                        _logger.LogInfo($"Removed converterName:   - {name}");
+                        Logger.LogInfo($"Removed converterName:   - {name}");
                     }
                 }
             }
             catch (Exception ex)
             {
-                _logger.LogErrorException(nameof(UnityConverterInitializerPatch), nameof(Postfix), ex);
+                Logger.LogErrorException(nameof(UnityConverterInitializerPatch), nameof(Postfix), ex);
             }
         }
     }

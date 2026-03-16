@@ -8,7 +8,9 @@ namespace Silkipelago.HarmonyPatches.Item
 {
     public static class PlayerDataPatchHelper
     {
-        public static void ExecutePatchLogic(ILogger logger, string patchName, string methodName, Action logic)
+        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
+
+        public static void ExecutePatchLogic(string patchName, string methodName, Action logic)
         {
             try
             {
@@ -16,11 +18,11 @@ namespace Silkipelago.HarmonyPatches.Item
             }
             catch (Exception ex)
             {
-                logger?.LogErrorException(patchName, methodName, ex);
+                Logger?.LogErrorException(patchName, methodName, ex);
             }
         }
 
-        public static T ExecutePatchLogic<T>(ILogger logger, string patchName, string methodName, Func<T> logic, T defaultReturn = default)
+        public static T ExecutePatchLogic<T>(string patchName, string methodName, Func<T> logic, T defaultReturn = default)
         {
             try
             {
@@ -28,7 +30,7 @@ namespace Silkipelago.HarmonyPatches.Item
             }
             catch (Exception ex)
             {
-                logger?.LogErrorException(patchName, methodName, ex);
+                Logger?.LogErrorException(patchName, methodName, ex);
                 return defaultReturn;
             }
         }

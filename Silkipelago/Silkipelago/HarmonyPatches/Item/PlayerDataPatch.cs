@@ -1,7 +1,6 @@
 ﻿using HarmonyLib;
 using KaitoKid.ArchipelagoUtilities.Net.Constants;
 using KaitoKid.Utilities.Interfaces;
-using Silkipelago.Archipelago;
 using Silkipelago.Archipelago.ItemHandlers;
 
 namespace Silkipelago.HarmonyPatches.Item
@@ -10,28 +9,19 @@ namespace Silkipelago.HarmonyPatches.Item
     [HarmonyPatch(nameof(PlayerData.SetBool))]
     public static class PlayerDataPatch
     {
-        private static ILogger _logger;
-        private static SilksongArchipelagoClient _silksongArchipelagoClient;
-        private static SilksongLocationChecker _silksongLocationChecker;
-
-        public static void Initialize(ILogger logger, SilksongArchipelagoClient silksongArchipelagoClient, SilksongLocationChecker silksongLocationChecker)
-        {
-            _logger = logger;
-            _silksongArchipelagoClient = silksongArchipelagoClient;
-            _silksongLocationChecker = silksongLocationChecker;
-        }
+        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
 
         // public void SetBool(string boolName, bool value)
         public static bool Prefix(PlayerData __instance, string boolName, bool value)
         {
-            return PlayerDataPatchHelper.ExecutePatchLogic(_logger, nameof(PlayerDataPatch), nameof(Prefix), () =>
+            return PlayerDataPatchHelper.ExecutePatchLogic(nameof(PlayerDataPatch), nameof(Prefix), () =>
             {
-                _logger.LogInfo(boolName);
-                _logger.LogDebugPatchIsRunning(nameof(PlayerData), nameof(PlayerData.SetBool), nameof(PlayerDataPatch), nameof(Prefix));
+                Logger.LogInfo(boolName);
+                Logger.LogDebugPatchIsRunning(nameof(PlayerData), nameof(PlayerData.SetBool), nameof(PlayerDataPatch), nameof(Prefix));
 
                 if (SilksongItemManager._itemToReceive == 0)
                 {
-                    return PlayerDataPatchHelper.HandlePlayerDataFieldChange(boolName, _silksongLocationChecker);
+                    return PlayerDataPatchHelper.HandlePlayerDataFieldChange(boolName, ArchipelagoPlugin.App.LocationChecker);
                 }
 
                 SilksongItemManager._itemToReceive--;

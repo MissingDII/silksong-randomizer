@@ -25,7 +25,7 @@ namespace Silkipelago.Archipelago
         public SilksongSlotData SlotData => (SilksongSlotData)_slotData;
 
         public SilksongArchipelagoClient(ILogger logger, Action<ReceivedItemsHelper> itemReceivedFunction) :
-            base(logger, new DataPackageCache(new ArchipelagoItemLoader(_jsonLoader), new SilksongLocationLoader(logger, _jsonLoader), "silksong", "BepInEx", "plugins", "Silkipelago", "IdTables"), itemReceivedFunction)
+            base(logger, new DataPackageCache(new ArchipelagoItemLoader(_jsonLoader), new SilksongLocationLoader(_jsonLoader), "silksong", "BepInEx", "plugins", "Silkipelago", "IdTables"), itemReceivedFunction)
         {
         }
 

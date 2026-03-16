@@ -9,12 +9,7 @@ namespace Silkipelago.HarmonyPatches.GameState
     [HarmonyPatch(nameof(GameManager.ReturnToMainMenu))]
     public static class SavaDataSetToNullHook
     {
-        private static ILogger _logger;
-
-        public static void Initialize(ILogger logger)
-        {
-            _logger = logger;
-        }
+        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
 
         private static void Prefix(GameManager __instance, ref System.Action<bool> callback)
         {
@@ -26,7 +21,7 @@ namespace Silkipelago.HarmonyPatches.GameState
             }
             catch (Exception ex)
             {
-                _logger?.LogErrorException(nameof(SavaDataSetToNullHook), nameof(Prefix), ex);
+                Logger?.LogErrorException(nameof(SavaDataSetToNullHook), nameof(Prefix), ex);
             }
         }
     }

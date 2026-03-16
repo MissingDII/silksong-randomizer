@@ -10,19 +10,14 @@ namespace Silkipelago.HarmonyPatches.Crests
     [HarmonyPatch(typeof(ToolCrest), nameof(ToolCrest.Unlock))]
     public static class CrestUnlockPatch
     {
-        private static ILogger _logger;
-
-        public static void Initialize(ILogger logger)
-        {
-            _logger = logger;
-        }
+        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
 
         static bool Prefix(ToolCrest __instance)
         {
             try
             {
                 var locationChecker = ArchipelagoPlugin.App.LocationChecker;
-                _logger.LogInfo($"[ToolCrest] Unlock called for Crest: {__instance.name}");
+                Logger.LogInfo($"[ToolCrest] Unlock called for Crest: {__instance.name}");
 
                 if (ShouldBlockUnlock(__instance, locationChecker))
                 {
@@ -33,7 +28,7 @@ namespace Silkipelago.HarmonyPatches.Crests
             }
             catch (Exception ex)
             {
-                _logger.LogErrorException(nameof(CrestUnlockPatch), nameof(Prefix), ex);
+                Logger.LogErrorException(nameof(CrestUnlockPatch), nameof(Prefix), ex);
                 return MethodPrefix.RUN_ORIGINAL_METHOD;
             }
         }

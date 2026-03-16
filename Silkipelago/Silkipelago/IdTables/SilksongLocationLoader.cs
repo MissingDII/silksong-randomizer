@@ -9,12 +9,11 @@ namespace Silkipelago.IdTables
 {
     internal class SilksongLocationLoader : IArchipelagoLoader<ArchipelagoLocation>
     {
-        private ILogger _logger;
+        private ILogger Logger => ArchipelagoPlugin.App.Logger;
         private IJsonLoader _jsonLoader;
 
-        public SilksongLocationLoader(ILogger logger, IJsonLoader jsonLoader)
+        public SilksongLocationLoader(IJsonLoader jsonLoader)
         {
-            _logger = logger;
             _jsonLoader = jsonLoader;
         }
 

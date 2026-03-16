@@ -10,13 +10,9 @@ namespace Silkipelago
     {
         private void initializeApp()
         {
-            _patcherInitializer = new PatchInitializer();
-            _patcherInitializer.InitializeEarlyPatches(_logger, _harmony);
             var archipelagoContext = initializeArchipelagoContext();
             var settingsContext = initializeSettingsContext();
             var uiContext = initializeUIContext();
-            _patcherInitializer.InitializeEarlyPatchesWithArchipelagoData(_logger, _harmony, archipelagoContext._archipelago, archipelagoContext._locationChecker);
-            SceneEventPatch.Initialize(_logger);
             SceneEventPatch.addSceneEvent();
             App = new RandomizerApp(archipelagoContext, settingsContext, uiContext, _logger, _harmony);
         }
@@ -24,8 +20,8 @@ namespace Silkipelago
         private ArchipelagoContext initializeArchipelagoContext()
         {
             var archipelagoClient = new SilksongArchipelagoClient(_logger, OnItemReceived);
-            var locationChecker = new SilksongLocationChecker(_logger, archipelagoClient, []);
-            var itemManager = new SilksongItemManager(_logger, archipelagoClient, []);
+            var locationChecker = new SilksongLocationChecker(archipelagoClient, []);
+            var itemManager = new SilksongItemManager(archipelagoClient, []);
             return new ArchipelagoContext(archipelagoClient, locationChecker, itemManager);
         }
 
@@ -36,8 +32,8 @@ namespace Silkipelago
 
         private UIContext initializeUIContext()
         {
-            var archipelagoMenuUI = new ArchipelagoMenuUI(_logger);
-            var connectionHandler = new ArchipelagoConnectionHandler(_logger);
+            var archipelagoMenuUI = new ArchipelagoMenuUI();
+            var connectionHandler = new ArchipelagoConnectionHandler();
             return new UIContext(archipelagoMenuUI, connectionHandler);
 
         }

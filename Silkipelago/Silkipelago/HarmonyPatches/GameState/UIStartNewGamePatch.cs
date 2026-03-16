@@ -2,7 +2,6 @@
 using HarmonyLib;
 using KaitoKid.ArchipelagoUtilities.Net.Constants;
 using KaitoKid.Utilities.Interfaces;
-using Silkipelago.Archipelago;
 using Silkipelago.Settings;
 using System;
 using System.Collections;
@@ -13,19 +12,8 @@ namespace Silkipelago.HarmonyPatches.NewGame
     [HarmonyPatch(nameof(UIManager.StartNewGame))]
     public static class UIStartNewGamePatch
     {
-        private static ILogger _logger;
-        private static Harmony _harmony;
-        private static SilksongArchipelagoClient _archipelago;
-        private static SilksongLocationChecker _locationChecker;
+        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
         private static bool _shouldShowArchipelagoMenu = true;
-
-        public static void Initialize(ILogger logger, Harmony harmony, SilksongArchipelagoClient silksongArchipelagoClient, SilksongLocationChecker silksongLocationChecker)
-        {
-            _logger = logger;
-            _harmony = harmony;
-            _archipelago = silksongArchipelagoClient;
-            _locationChecker = silksongLocationChecker;
-        }
 
         public static void SkipMenuNextCall()
         {
@@ -37,7 +25,7 @@ namespace Silkipelago.HarmonyPatches.NewGame
         {
             try
             {
-                _logger.LogDebugPatchIsRunning(nameof(UIManager), nameof(UIManager.StartNewGame), nameof(UIStartNewGamePatch), nameof(Prefix));
+                Logger.LogDebugPatchIsRunning(nameof(UIManager), nameof(UIManager.StartNewGame), nameof(UIStartNewGamePatch), nameof(Prefix));
                 if (_shouldShowArchipelagoMenu)
                 {
                     __instance.StartCoroutine(HideMenusAndShowArchipelagoUI(__instance));
@@ -49,7 +37,7 @@ namespace Silkipelago.HarmonyPatches.NewGame
             }
             catch (Exception ex)
             {
-                _logger.LogErrorException(nameof(UIStartNewGamePatch), nameof(Prefix), ex);
+                Logger.LogErrorException(nameof(UIStartNewGamePatch), nameof(Prefix), ex);
                 return MethodPrefix.RUN_ORIGINAL_METHOD;
             }
         }
