@@ -1,8 +1,8 @@
 ﻿using Silkipelago.Archipelago;
+using Silkipelago.Archipelago.ItemHandlers;
 using Silkipelago.Archipelago.UI;
 using Silkipelago.context;
 using Silkipelago.HarmonyPatches;
-using Silkipelago.Items;
 
 namespace Silkipelago
 {

@@ -9,7 +9,7 @@ using Silkipelago.HarmonyPatches.Shrine;
 using Silkipelago.HarmonyPatches.Steam;
 using Silkipelago.HarmonyPatches.Tools;
 using Silkipelago.HarmonyPatches.Unity;
-using Silkipelago.Items;
+using Silkipelago.Archipelago.ItemHandlers;
 using ILogger = KaitoKid.Utilities.Interfaces.ILogger;
 
 namespace Silkipelago.HarmonyPatches

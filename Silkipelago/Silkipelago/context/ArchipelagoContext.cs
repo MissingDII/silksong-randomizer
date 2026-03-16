@@ -1,5 +1,5 @@
 ﻿using Silkipelago.Archipelago;
-using Silkipelago.Items;
+using Silkipelago.Archipelago.ItemHandlers;
 
 namespace Silkipelago.context
 {

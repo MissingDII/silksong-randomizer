@@ -2,7 +2,7 @@
 using KaitoKid.ArchipelagoUtilities.Net.Constants;
 using KaitoKid.Utilities.Interfaces;
 using Silkipelago.Archipelago;
-using Silkipelago.Items;
+using Silkipelago.Archipelago.ItemHandlers;
 
 namespace Silkipelago.HarmonyPatches.Item
 {

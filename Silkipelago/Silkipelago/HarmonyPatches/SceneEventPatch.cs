@@ -1,5 +1,5 @@
 ﻿using Silkipelago.Constants;
-using Silkipelago.Items;
+using Silkipelago.Archipelago.ItemHandlers;
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
