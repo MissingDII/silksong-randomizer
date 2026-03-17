@@ -40,6 +40,58 @@
             "code": 587168436162059,
             "classification": "filler"
         },
+        "Go To Jail Trap": {
+            "code": 486945198361874,
+            "classification": "trap"
+        },
+        "Naked Trap": {
+            "code": 76311791703826,
+            "classification": "trap"
+        },
+        "Frozen Trap": {
+            "code": 948076555210450,
+            "classification": "trap"
+        },
+        "Cursed Trap": {
+            "code": 541433918995986,
+            "classification": "trap"
+        },
+        "Invert Controls Trap": {
+            "code": 721682286108722,
+            "classification": "trap"
+        },
+        "Maggots Trap": {
+            "code": 607444506640690,
+            "classification": "trap"
+        },
+        "Headache Trap": {
+            "code": 571960914329970,
+            "classification": "trap"
+        },
+        "Silk Syphon Trap": {
+            "code": 541669153876818,
+            "classification": "trap"
+        },
+        "Shaw Trap": {
+            "code": 4032522013042,
+            "classification": "trap"
+        },
+        "Encumbered Trap": {
+            "code": 112459257581714,
+            "classification": "trap"
+        },
+        "Swarm Trap": {
+            "code": 107977310255090,
+            "classification": "trap"
+        },
+        "Silk Soar Trap": {
+            "code": 492048476703954,
+            "classification": "trap"
+        },
+        "Void Corruption Trap": {
+            "code": 28230845603794,
+            "classification": "trap"
+        },
         "Bind": {
             "code": 41604,
             "classification": "useful"
@@ -164,8 +216,12 @@
             "code": 1062272192800064,
             "classification": "useful"
         },
-        "Progressive Vesticrest": {
-            "code": 70319327820886,
+        "Yellow Vesticrest": {
+            "code": 1029413110725718,
+            "classification": "useful"
+        },
+        "Blue Vesticrest": {
+            "code": 575460557409366,
             "classification": "useful"
         },
         "Sylphsong": {
@@ -198,10 +254,6 @@
         },
         "Progressive Tipp and Pill": {
             "code": 949576945864712,
-            "classification": "progression"
-        },
-        "Cursed Crest": {
-            "code": 566483004018358,
             "classification": "progression"
         },
         "Witch Crest": {

@@ -405,7 +405,7 @@
         },
         "Defeat Lost Lace": {
             "code": 602080389109655,
-            "region": "Citadel",
+            "region": "The Abyss With Everbloom",
             "groups": ["OBJECTIVE", "BOSS_FIGHT", "ACT_3"]
         },
         "Eva: 0 Slots": {
@@ -731,11 +731,6 @@
         "Wayfarer Wish: My Missing Brother": {
             "code": 204926276253572,
             "region": "Bellhart Wish - My Missing Brother",
-            "groups": ["WISH", "ACT_2"]
-        },
-        "Wayfarer Wish: Rite Of Rebirth": {
-            "code": 139187479075904,
-            "region": "Shellwood - GreyRoot With Twisted Bud",
             "groups": ["WISH", "ACT_2"]
         },
         "Wayfarer Wish: Infestation Operation": {
