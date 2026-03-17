@@ -178,6 +178,16 @@
             "region": "Blasted Steps - Pinstress",
             "groups": ["COMBAT_ABILITY", "ACT_1"]
         },
+        "Seek: The Old Hearts": {
+            "code": 1079061257847963,
+            "region": "Ruined Chapel",
+            "groups": ["OBJECTIVE", "ACT_3"]
+        },
+        "Complete Red Memory": {
+            "code": 801457983993217,
+            "region": "Ruined Chapel",
+            "groups": ["SILK_OTHER_ABILITY", "OBJECTIVE", "ACT_3"]
+        },
         "Defeat Moss Mother": {
             "code": 697635750362724,
             "region": "Moss Grotto",
