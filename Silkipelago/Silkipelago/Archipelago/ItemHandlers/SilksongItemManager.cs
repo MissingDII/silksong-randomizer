@@ -8,7 +8,7 @@ namespace Silkipelago.Archipelago.ItemHandlers
 {
     public class SilksongItemManager : ItemManager
     {
-        public static int _itemToReceive = 0;
+        public static int ItemToReceive = 0;
         private static ILogger Logger => ArchipelagoPlugin.App.Logger;
 
 
@@ -39,6 +39,8 @@ namespace Silkipelago.Archipelago.ItemHandlers
                     PlayerDataHandler.ChangeBooleanValue(inGameName, true);
                 else if (ToolsStrings.SILK_ABILITIES.Contains(inGameName))
                     ToolItemHandler.unlockTool(inGameName);
+                else if (CrestStrings.CRESTS.Contains(inGameName))
+                    CrestHandler.UnlockCrest(inGameName);
                 else if (CollectablesStrings.TOOLCRESTUPGRADE.Contains(inGameName) || CollectablesStrings.COLLECTABLESKEYS.Contains(inGameName))
                     CollectiblesHandler.addOneCollectible(inGameName);
                 else if (PlayerDataStrings.SHRINES.Contains(inGameName))

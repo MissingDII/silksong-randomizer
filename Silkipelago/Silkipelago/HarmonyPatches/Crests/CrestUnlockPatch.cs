@@ -2,6 +2,7 @@
 using KaitoKid.ArchipelagoUtilities.Net.Constants;
 using KaitoKid.Utilities.Interfaces;
 using Silkipelago.Archipelago;
+using Silkipelago.Archipelago.ItemHandlers;
 using Silkipelago.Constants;
 using System;
 
@@ -16,12 +17,15 @@ namespace Silkipelago.HarmonyPatches.Crests
         {
             try
             {
-                var locationChecker = ArchipelagoPlugin.App.LocationChecker;
-                Logger.LogInfo($"[ToolCrest] Unlock called for Crest: {__instance.name}");
-
-                if (ShouldBlockUnlock(__instance, locationChecker))
+                if (SilksongItemManager.ItemToReceive == 0)
                 {
-                    return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
+                    var locationChecker = ArchipelagoPlugin.App.LocationChecker;
+                    Logger.LogInfo($"[ToolCrest] Unlock called for Crest: {__instance.name}");
+
+                    if (ShouldBlockUnlock(__instance, locationChecker))
+                    {
+                        return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
+                    }
                 }
 
                 return MethodPrefix.RUN_ORIGINAL_METHOD;

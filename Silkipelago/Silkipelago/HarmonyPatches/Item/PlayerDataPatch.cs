@@ -19,12 +19,12 @@ namespace Silkipelago.HarmonyPatches.Item
                 Logger.LogInfo(boolName);
                 Logger.LogDebugPatchIsRunning(nameof(PlayerData), nameof(PlayerData.SetBool), nameof(PlayerDataPatch), nameof(Prefix));
 
-                if (SilksongItemManager._itemToReceive == 0)
+                if (SilksongItemManager.ItemToReceive == 0)
                 {
                     return PlayerDataPatchHelper.HandlePlayerDataFieldChange(boolName, ArchipelagoPlugin.App.LocationChecker);
                 }
 
-                SilksongItemManager._itemToReceive--;
+                SilksongItemManager.ItemToReceive--;
                 return MethodPrefix.RUN_ORIGINAL_METHOD;
             }, MethodPrefix.RUN_ORIGINAL_METHOD);
         }

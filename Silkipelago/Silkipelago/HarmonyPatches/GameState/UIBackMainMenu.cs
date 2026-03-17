@@ -18,6 +18,10 @@ namespace Silkipelago.HarmonyPatches.GameState
                 SaveSettings.saveGlobalSaveDataSettings(__instance.profileID);
                 var archipelagoClient = ArchipelagoPlugin.App.ArchipelagoClient;
                 archipelagoClient.DisconnectPermanently();
+                //reset archipelago classes
+                ArchipelagoPlugin.App.ArchipelagoContext._archipelago = null;
+                ArchipelagoPlugin.App.ArchipelagoContext._locationChecker = null;
+                ArchipelagoPlugin.App.ArchipelagoContext._itemManager = null;
             }
             catch (Exception ex)
             {

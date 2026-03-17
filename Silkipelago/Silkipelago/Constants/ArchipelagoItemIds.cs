@@ -8,7 +8,14 @@ namespace Silkipelago.Constants
     {
         public static Dictionary<string, string> ArchipelagoIdsToGameIds { get; } = new Dictionary<string, string>
     {
-        //Crest
+         //Crest
+         { "Progressive Hunter Crest", CrestStrings.HUNTER },
+         { "Reaper Crest", CrestStrings.REAPER },
+         { "Wanderer Crest Crest", CrestStrings.WANDERER },
+         { "Beast Crest", CrestStrings.BEAST },
+         { "Architect Crest", CrestStrings.ARCHITECT },
+         { "Shaman Crest", CrestStrings.SHAMAN },
+         { "Witch Crest", CrestStrings.WITCH },
 
         // items
          { "Twisted Bud", CollectablesStrings.TWISTED_BUD },

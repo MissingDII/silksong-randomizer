@@ -9,7 +9,7 @@ namespace Silkipelago.Archipelago.ItemHandlers
         public static void ChangeBooleanValue(string booleanName, Boolean newValue)
         {
             var instance = PlayerData.instance;
-            SilksongItemManager._itemToReceive++;
+            SilksongItemManager.ItemToReceive++;
             instance.SetBool(booleanName, newValue);
         }
 
@@ -43,6 +43,17 @@ namespace Silkipelago.Archipelago.ItemHandlers
             {
                 Logger.LogError($"Could not parse '{shards.Split(" ")[0]}' to an integer for shards.");
             }
+        }
+
+        public static void keepChapelsOpen()
+        {
+            var instance = PlayerData.instance;
+            instance.chapelClosed_beast = true;
+            instance.chapelClosed_reaper = true;
+            instance.chapelClosed_shaman = true;
+            instance.chapelClosed_toolmaster = true;
+            instance.chapelClosed_wanderer = true;
+            instance.chapelClosed_witch = true;
         }
     }
 }

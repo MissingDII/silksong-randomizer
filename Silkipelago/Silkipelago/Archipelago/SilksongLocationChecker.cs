@@ -7,8 +7,7 @@ namespace Silkipelago.Archipelago
 {
     public class SilksongLocationChecker : LocationChecker
     {
-        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
-        public SilksongLocationChecker(ArchipelagoClient archipelago, List<string> locationsAlreadyChecked) : base(Logger, archipelago, locationsAlreadyChecked)
+        public SilksongLocationChecker(ArchipelagoClient archipelago, ILogger logger, List<string> locationsAlreadyChecked) : base(logger, archipelago, locationsAlreadyChecked)
         {
         }
 

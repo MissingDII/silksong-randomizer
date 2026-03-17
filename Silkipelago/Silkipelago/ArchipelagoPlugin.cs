@@ -1,5 +1,4 @@
-﻿using Archipelago.MultiClient.Net.Helpers;
-using BepInEx;
+﻿using BepInEx;
 using BepInEx.Configuration;
 using GlobalEnums;
 using HarmonyLib;
@@ -50,16 +49,6 @@ namespace Silkipelago
             UnityConverterInitializer.RefreshSettingsFromConfig();
 
             _logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
-        }
-
-        private void OnItemReceived(ReceivedItemsHelper receivedItemsHelper)
-        {
-            if (App.ArchipelagoClient == null || App.ItemManager == null || !App.ArchipelagoClient.IsConnected || !GameManager.instance.IsGameplayScene())
-            {
-                return;
-            }
-
-            App.ItemManager.ReceiveAllNewItems();
         }
 
         public void Update()

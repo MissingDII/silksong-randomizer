@@ -1,5 +1,7 @@
 ﻿using HarmonyLib;
 using KaitoKid.Utilities.Interfaces;
+using Silkipelago.Archipelago.ItemHandlers;
+using Silkipelago.Constants;
 using Silkipelago.Settings;
 using System;
 
@@ -16,17 +18,27 @@ namespace Silkipelago.HarmonyPatches.Item
         {
             try
             {
-                if (__result && ArchipelagoPlugin.App.ArchipelagoClient._shouldDoInitialLoad)
+                var archipelagoClient = ArchipelagoPlugin.App.ArchipelagoClient;
+
+                if (__result && archipelagoClient != null && archipelagoClient._shouldDoInitialLoad)
                 {
-                    // Do something when IsGameplayScene returns true
+                    if (ArchipelagoPlugin.App.SettingsContext.saveSettingsData.ProcessedLocations.IsNullOrEmpty())
+                    {
+                        //in all cases we want to lock hunter crest we always receive a crest from server
+                        var hunterCrest = ToolItemManager.GetCrestByName(CrestStrings.HUNTER);
+                        var saveData = hunterCrest.SaveData;
+                        saveData.IsUnlocked = false;
+                        hunterCrest.SaveData = saveData;
+                        CrestHandler.autoEquipCrest = true;
+                    }
                     Logger.LogDebug("Entering Gameplay Scene and loading items");
                     var itemManager = ArchipelagoPlugin.App.ItemManager;
                     itemManager.ReceiveAllNewItems();
+                    PlayerDataHandler.keepChapelsOpen();
                     var slotId = __instance.profileID;
                     var saveSettingsData = ArchipelagoPlugin.App.SettingsContext.saveSettingsData;
                     SaveSettings.saveGlobalSaveDataSettings(slotId);
-
-                    ArchipelagoPlugin.App.ArchipelagoClient._shouldDoInitialLoad = false;
+                    archipelagoClient._shouldDoInitialLoad = false;
                 }
             }
             catch (Exception ex)

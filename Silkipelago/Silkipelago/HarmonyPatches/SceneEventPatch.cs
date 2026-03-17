@@ -1,5 +1,5 @@
-﻿using Silkipelago.Constants;
-using Silkipelago.Archipelago.ItemHandlers;
+﻿using Silkipelago.Archipelago.ItemHandlers;
+using Silkipelago.Constants;
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -43,7 +43,7 @@ namespace Silkipelago.HarmonyPatches
             {
                 if (i <= bellcount)
                 {
-                    SilksongItemManager._itemToReceive++;
+                    SilksongItemManager.ItemToReceive++;
                     PlayerData.instance.SetBool(shrineName, true);
                 }
                 else

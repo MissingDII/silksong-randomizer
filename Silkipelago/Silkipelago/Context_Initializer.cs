@@ -1,5 +1,4 @@
 ﻿using Silkipelago.Archipelago;
-using Silkipelago.Archipelago.ItemHandlers;
 using Silkipelago.Archipelago.UI;
 using Silkipelago.context;
 using Silkipelago.HarmonyPatches;
@@ -19,10 +18,7 @@ namespace Silkipelago
 
         private ArchipelagoContext initializeArchipelagoContext()
         {
-            var archipelagoClient = new SilksongArchipelagoClient(_logger, OnItemReceived);
-            var locationChecker = new SilksongLocationChecker(archipelagoClient, []);
-            var itemManager = new SilksongItemManager(archipelagoClient, []);
-            return new ArchipelagoContext(archipelagoClient, locationChecker, itemManager);
+            return new ArchipelagoContext();
         }
 
         private SettingsContext initializeSettingsContext()

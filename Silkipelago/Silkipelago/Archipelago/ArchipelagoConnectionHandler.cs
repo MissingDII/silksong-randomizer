@@ -1,5 +1,7 @@
-﻿using KaitoKid.ArchipelagoUtilities.Net.Client;
+﻿using Archipelago.MultiClient.Net.Helpers;
+using KaitoKid.ArchipelagoUtilities.Net.Client;
 using KaitoKid.Utilities.Interfaces;
+using Silkipelago.Archipelago.ItemHandlers;
 using Silkipelago.Settings;
 using System;
 
@@ -10,7 +12,30 @@ namespace Silkipelago.Archipelago
         private static ILogger Logger => ArchipelagoPlugin.App.Logger;
         public bool ConnectToArchipelago(ArchipelagoConnectionInfo connectionInfo)
         {
+            CreateOrOverwriteArchipelagoContext();
             return ConnectToArchipelago(() => InitializeAfterConnection(), connectionInfo);
+        }
+
+        private void CreateOrOverwriteArchipelagoContext()
+        {
+            var archipelagoClient = new SilksongArchipelagoClient(ArchipelagoPlugin.App.Logger, OnItemReceived);
+            var locationChecker = new SilksongLocationChecker(archipelagoClient, ArchipelagoPlugin.App.Logger, []);
+            var itemManager = new SilksongItemManager(archipelagoClient, []);
+            ArchipelagoPlugin.App.ArchipelagoContext._archipelago = archipelagoClient;
+            ArchipelagoPlugin.App.ArchipelagoContext._locationChecker = locationChecker;
+            ArchipelagoPlugin.App.ArchipelagoContext._itemManager = itemManager;
+
+        }
+
+        private void OnItemReceived(ReceivedItemsHelper receivedItemsHelper)
+        {
+            var app = ArchipelagoPlugin.App;
+            if (app.ArchipelagoClient == null || app.ItemManager == null || !app.ArchipelagoClient.IsConnected || !GameManager.instance.IsGameplayScene())
+            {
+                return;
+            }
+
+            app.ItemManager.ReceiveAllNewItems();
         }
 
         private void InitializeAfterConnection()
