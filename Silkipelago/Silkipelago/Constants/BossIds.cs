@@ -2,7 +2,7 @@
 
 namespace Silkipelago.Constants
 {
-    public static class BossStrings
+    public static class BossIds
     {
         public const string BELL_BEAST = "Bone Beast";
 

@@ -2,6 +2,7 @@
 using KaitoKid.ArchipelagoUtilities.Net.Constants;
 using KaitoKid.Utilities.Interfaces;
 using Silkipelago.Archipelago;
+using Silkipelago.Archipelago.ItemHandlers;
 using Silkipelago.Constants;
 using System;
 
@@ -18,11 +19,11 @@ namespace Silkipelago.HarmonyPatches.Tools
             {
                 var locationChecker = ArchipelagoPlugin.App.LocationChecker;
 
-                if (ShouldBlockCompletion(__instance, locationChecker))
+                if (SilksongItemManager.ItemToReceive == 0 && ShouldBlockCompletion(__instance, locationChecker))
                 {
                     return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
                 }
-
+                SilksongItemManager.ItemToReceive--;
                 return MethodPrefix.RUN_ORIGINAL_METHOD;
             }
             catch (Exception ex)
@@ -34,7 +35,7 @@ namespace Silkipelago.HarmonyPatches.Tools
 
         private static bool ShouldBlockCompletion(ToolItem tool, SilksongLocationChecker locationChecker)
         {
-            if (IsBossLockedTool(tool) && locationChecker.LocationExists(PlayerDataStrings.FIRST_WEAVER_DEFEATED))
+            if (IsBossLockedTool(tool) && locationChecker.LocationExists(PlayerDataIds.FIRST_WEAVER_DEFEATED))
                 return true;
 
             if (IsEvaLockedTool(tool) && locationChecker.LocationExists("Eva: 0 Slots"))
@@ -47,12 +48,12 @@ namespace Silkipelago.HarmonyPatches.Tools
         }
 
         private static bool IsBossLockedTool(ToolItem tool)
-            => tool.name is ToolsStrings.RUNE_RAGE or ToolsStrings.CROSS_STITCH;
+            => tool.name is ToolsIds.RUNE_RAGE or ToolsIds.CROSS_STITCH;
 
         private static bool IsEvaLockedTool(ToolItem tool)
-            => tool.name == ToolsStrings.SYLPHSONG;
+            => tool.name == ToolsIds.SYLPHSONG;
 
         private static bool IsSilkAbility(ToolItem tool)
-            => ToolsStrings.SILK_ABILITIES.Contains(tool.name);
+            => ToolsIds.SILK_ABILITIES.Contains(tool.name);
     }
 }

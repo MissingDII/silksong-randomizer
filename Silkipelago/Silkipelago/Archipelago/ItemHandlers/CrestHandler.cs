@@ -9,7 +9,7 @@ namespace Silkipelago.Archipelago.ItemHandlers
         {
             SilksongItemManager.ItemToReceive++;
 
-            var crestToUnlock = crestName == CrestStrings.HUNTER
+            var crestToUnlock = crestName == CrestIds.HUNTER
                 ? GetHunterUpgradeLevel(crestName)
                 : crestName;
 
@@ -24,9 +24,9 @@ namespace Silkipelago.Archipelago.ItemHandlers
 
             return crestCount switch
             {
-                1 => CrestStrings.HUNTER,
-                2 => CrestStrings.HUNTER_2,
-                _ => CrestStrings.HUNTER_3
+                1 => CrestIds.HUNTER,
+                2 => CrestIds.HUNTER_2,
+                _ => CrestIds.HUNTER_3
             };
         }
 

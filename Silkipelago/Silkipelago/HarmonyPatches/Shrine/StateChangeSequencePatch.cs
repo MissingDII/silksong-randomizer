@@ -15,7 +15,7 @@ namespace Silkipelago.HarmonyPatches.Shrine
             try
             {
                 Logger.LogInfo(__instance.isCompleteBool);
-                if (PlayerDataStrings.SHRINES.Contains(__instance.isCompleteBool))
+                if (PlayerDataIds.SHRINES.Contains(__instance.isCompleteBool))
                 {
                     var locationId = ArchipelagoLocationIds.GetArchipelagoName(__instance.isCompleteBool);
                     ArchipelagoPlugin.App.LocationChecker.AddCheckedLocation(locationId);

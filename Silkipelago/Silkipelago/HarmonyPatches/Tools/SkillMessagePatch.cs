@@ -34,7 +34,7 @@ namespace Silkipelago.HarmonyPatches.Tools
 
         private static bool ShouldBlockSkillDisplay(ToolItemSkill skill, SilksongLocationChecker locationChecker)
         {
-            if (IsBossLockedSkill(skill) && locationChecker.LocationExists(PlayerDataStrings.FIRST_WEAVER_DEFEATED))
+            if (IsBossLockedSkill(skill) && locationChecker.LocationExists(PlayerDataIds.FIRST_WEAVER_DEFEATED))
                 return true;
 
             if (IsSilkAbility(skill))
@@ -47,10 +47,10 @@ namespace Silkipelago.HarmonyPatches.Tools
         }
 
         private static bool IsBossLockedSkill(ToolItemSkill skill)
-            => skill.name is ToolsStrings.RUNE_RAGE or ToolsStrings.CROSS_STITCH;
+            => skill.name is ToolsIds.RUNE_RAGE or ToolsIds.CROSS_STITCH;
 
         private static bool IsSilkAbility(ToolItemSkill skill)
-            => ToolsStrings.SILK_ABILITIES.Contains(skill.name);
+            => ToolsIds.SILK_ABILITIES.Contains(skill.name);
 
         private static void UnlockAndUnequipSkill(ToolItemSkill skill)
         {
@@ -90,7 +90,7 @@ namespace Silkipelago.HarmonyPatches.Tools
 
         private static bool ShouldBlockSkillSpawn(ToolItemSkill skill, SilksongLocationChecker locationChecker)
         {
-            if (IsBossLockedSkill(skill) && locationChecker.LocationExists(PlayerDataStrings.FIRST_WEAVER_DEFEATED))
+            if (IsBossLockedSkill(skill) && locationChecker.LocationExists(PlayerDataIds.FIRST_WEAVER_DEFEATED))
                 return true;
 
             if (IsSilkAbility(skill))
@@ -100,10 +100,10 @@ namespace Silkipelago.HarmonyPatches.Tools
         }
 
         private static bool IsBossLockedSkill(ToolItemSkill skill)
-            => skill.name is ToolsStrings.RUNE_RAGE or ToolsStrings.CROSS_STITCH;
+            => skill.name is ToolsIds.RUNE_RAGE or ToolsIds.CROSS_STITCH;
 
         private static bool IsSilkAbility(ToolItemSkill skill)
-            => ToolsStrings.SILK_ABILITIES.Contains(skill.name);
+            => ToolsIds.SILK_ABILITIES.Contains(skill.name);
 
         private static void UnlockAndUnequipSkill(ToolItemSkill skill)
         {

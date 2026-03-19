@@ -2,7 +2,7 @@
 
 namespace Silkipelago.Constants
 {
-    public static class CollectablesStrings
+    public static class CollectablesIds
     {
         // Tool and Crest Upgrades
         public const string MEMORY_LOCKET = "Crest Socket Unlocker";
@@ -28,10 +28,14 @@ namespace Silkipelago.Constants
 
         //Items
         public const string TWISTED_BUD = "Wood Witch Item";
+        public const string EVERBLOOM = "White Flower";
+        public const string SOUL_SNARE = "Soul Snare";
 
         public static readonly List<string> ITEMS =
         [
-            TWISTED_BUD
+            TWISTED_BUD,
+            EVERBLOOM,
+            SOUL_SNARE
         ];
     }
 }

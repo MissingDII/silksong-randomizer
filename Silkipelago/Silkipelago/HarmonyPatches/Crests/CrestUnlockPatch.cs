@@ -27,7 +27,7 @@ namespace Silkipelago.HarmonyPatches.Crests
                         return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
                     }
                 }
-
+                SilksongItemManager.ItemToReceive--;
                 return MethodPrefix.RUN_ORIGINAL_METHOD;
             }
             catch (Exception ex)
@@ -51,11 +51,11 @@ namespace Silkipelago.HarmonyPatches.Crests
         }
 
         private static bool IsEvaUpgradeCrest(ToolCrest crest)
-            => CrestStrings.CRESTS_UPGRADE.Contains(crest.name);
+            => CrestIds.CRESTS_UPGRADE.Contains(crest.name);
 
         private static bool IsRandomizedCrest(ToolCrest crest, SilksongLocationChecker locationChecker)
         {
-            if (!CrestStrings.CRESTS.Contains(crest.name))
+            if (!CrestIds.CRESTS.Contains(crest.name))
                 return false;
 
             var locationId = ArchipelagoLocationIds.GetArchipelagoName(crest.name);

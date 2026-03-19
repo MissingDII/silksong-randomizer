@@ -42,7 +42,7 @@ namespace Silkipelago.HarmonyPatches.Item
                 return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
 
             // Block chapel changes if  crest are randomized
-            if (IsChapelField(fieldName) && locationChecker.LocationExists(ArchipelagoLocationIds.GetArchipelagoName(CrestStrings.REAPER)))
+            if (IsChapelField(fieldName) && locationChecker.LocationExists(ArchipelagoLocationIds.GetArchipelagoName(CrestIds.REAPER)))
                 return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
 
             // Block silk abilities
@@ -67,21 +67,21 @@ namespace Silkipelago.HarmonyPatches.Item
         }
 
         private static bool IsCrestField(string fieldName)
-            => PlayerDataStrings.CREST.Contains(fieldName);
+            => PlayerDataIds.CREST.Contains(fieldName);
 
         private static bool IsChapelField(string fieldName)
-            => PlayerDataStrings.CHAPELS.Contains(fieldName);
+            => PlayerDataIds.CHAPELS.Contains(fieldName);
 
         private static bool IsSilkAbility(string fieldName)
-            => PlayerDataStrings.SILK_ABILITIES.Contains(fieldName);
+            => PlayerDataIds.SILK_ABILITIES.Contains(fieldName);
 
         private static bool IsTrackableLocation(string fieldName)
-            => PlayerDataStrings.CUTSCENES.Contains(fieldName) || PlayerDataStrings.BOSSES.Contains(fieldName);
+            => PlayerDataIds.CUTSCENES.Contains(fieldName) || PlayerDataIds.BOSSES.Contains(fieldName);
 
         private static bool IsRandomizableContent(string fieldName)
-            => PlayerDataStrings.ABILITIES.Contains(fieldName) ||
-               PlayerDataStrings.KEYS.Contains(fieldName) ||
-               PlayerDataStrings.MELODIES.Contains(fieldName);
+            => PlayerDataIds.ABILITIES.Contains(fieldName) ||
+               PlayerDataIds.KEYS.Contains(fieldName) ||
+               PlayerDataIds.MELODIES.Contains(fieldName);
 
         private static bool TrackLocation(string fieldName, SilksongLocationChecker locationChecker, bool useLocationIds)
         {

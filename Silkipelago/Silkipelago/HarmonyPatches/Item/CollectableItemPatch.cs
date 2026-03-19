@@ -18,7 +18,7 @@ namespace Silkipelago.HarmonyPatches.Item
             try
             {
                 Logger.LogDebugPatchIsRunning(nameof(CollectableItemManager), nameof(CollectableItemManager.AddItem), nameof(CollectableItemPatch), nameof(Prefix));
-                if (CollectablesStrings.COLLECTABLESKEYS.Contains(item.name) || CollectablesStrings.ITEMS.Contains(item.name))
+                if (CollectablesIds.COLLECTABLESKEYS.Contains(item.name) || CollectablesIds.ITEMS.Contains(item.name))
                 {
                     var archipelagoLocationName = ArchipelagoLocationIds.GetArchipelagoName(item.name);
                     Logger.LogInfo("sending location for " + archipelagoLocationName);

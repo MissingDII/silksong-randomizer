@@ -5,7 +5,7 @@ namespace Silkipelago.Constants
     /// <summary>
     /// PlayerData string constants for tracking defeated enemies and bosses in Silksong.
     /// </summary>
-    public static class PlayerDataStrings
+    public static class PlayerDataIds
     {
         //Crest upgrades
         public const string YELLOW_VESTICREST = "UnlockedExtraYellowSlot";

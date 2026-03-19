@@ -2,7 +2,7 @@
 
 namespace Silkipelago.Constants
 {
-    public static class ToolsStrings
+    public static class ToolsIds
     {
         // Eva Upgrade
         public const string SYLPHSONG = "White Ring";

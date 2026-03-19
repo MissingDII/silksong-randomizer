@@ -39,7 +39,7 @@ namespace Silkipelago.HarmonyPatches
         {
             var bellcount = ArchipelagoPlugin.App.ArchipelagoClient.GetReceivedItemCount("Grand Gate Bell");
             var i = 1;
-            foreach (var shrineName in PlayerDataStrings.SHRINES)
+            foreach (var shrineName in PlayerDataIds.SHRINES)
             {
                 if (i <= bellcount)
                 {

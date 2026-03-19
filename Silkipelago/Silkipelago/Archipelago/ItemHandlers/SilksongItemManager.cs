@@ -35,15 +35,20 @@ namespace Silkipelago.Archipelago.ItemHandlers
                     return;
                 }
 
-                if (PlayerDataStrings.ABILITIES.Contains(inGameName) || PlayerDataStrings.KEYS.Contains(inGameName) || PlayerDataStrings.MELODIES.Contains(inGameName))
+                if (PlayerDataIds.ABILITIES.Contains(inGameName) ||
+                    PlayerDataIds.KEYS.Contains(inGameName) ||
+                    PlayerDataIds.MELODIES.Contains(inGameName) ||
+                    PlayerDataIds.CREST.Contains(inGameName))
                     PlayerDataHandler.ChangeBooleanValue(inGameName, true);
-                else if (ToolsStrings.SILK_ABILITIES.Contains(inGameName))
+                else if (ToolsIds.SILK_ABILITIES.Contains(inGameName))
                     ToolItemHandler.unlockTool(inGameName);
-                else if (CrestStrings.CRESTS.Contains(inGameName))
+                else if (CrestIds.CRESTS.Contains(inGameName))
                     CrestHandler.UnlockCrest(inGameName);
-                else if (CollectablesStrings.TOOLCRESTUPGRADE.Contains(inGameName) || CollectablesStrings.COLLECTABLESKEYS.Contains(inGameName))
+                else if (CollectablesIds.TOOLCRESTUPGRADE.Contains(inGameName) ||
+                    CollectablesIds.COLLECTABLESKEYS.Contains(inGameName) ||
+                    CollectablesIds.ITEMS.Contains(inGameName))
                     CollectiblesHandler.addOneCollectible(inGameName);
-                else if (PlayerDataStrings.SHRINES.Contains(inGameName))
+                else if (PlayerDataIds.SHRINES.Contains(inGameName))
                     ShrineBellHandler.addBell(inGameName);
                 else
                     Logger.LogWarning($"No handler for item: {inGameName}");

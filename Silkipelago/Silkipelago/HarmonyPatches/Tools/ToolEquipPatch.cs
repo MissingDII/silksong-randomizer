@@ -35,7 +35,7 @@ namespace Silkipelago.HarmonyPatches.Tools
 
         private static bool ShouldBlockEquip(ToolItem tool, SilksongLocationChecker locationChecker)
         {
-            if (IsBossLockedTool(tool) && locationChecker.LocationExists(PlayerDataStrings.FIRST_WEAVER_DEFEATED))
+            if (IsBossLockedTool(tool) && locationChecker.LocationExists(PlayerDataIds.FIRST_WEAVER_DEFEATED))
                 return true;
 
             if (IsEvaLockedTool(tool) && locationChecker.LocationExists("Eva: 0 Slots"))
@@ -48,12 +48,12 @@ namespace Silkipelago.HarmonyPatches.Tools
         }
 
         private static bool IsBossLockedTool(ToolItem tool)
-            => tool.name is ToolsStrings.RUNE_RAGE or ToolsStrings.CROSS_STITCH;
+            => tool.name is ToolsIds.RUNE_RAGE or ToolsIds.CROSS_STITCH;
 
         private static bool IsEvaLockedTool(ToolItem tool)
-            => tool.name == ToolsStrings.SYLPHSONG;
+            => tool.name == ToolsIds.SYLPHSONG;
 
         private static bool IsSilkAbility(ToolItem tool)
-            => ToolsStrings.SILK_ABILITIES.Contains(tool.name);
+            => ToolsIds.SILK_ABILITIES.Contains(tool.name);
     }
 }

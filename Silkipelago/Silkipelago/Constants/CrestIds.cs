@@ -2,7 +2,7 @@
 
 namespace Silkipelago.Constants
 {
-    public static class CrestStrings
+    public static class CrestIds
     {
         //crests
         public const string HUNTER = "Hunter";

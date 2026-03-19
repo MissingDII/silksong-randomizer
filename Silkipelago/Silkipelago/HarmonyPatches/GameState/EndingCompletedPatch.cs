@@ -74,6 +74,13 @@ namespace Silkipelago.HarmonyPatches.GameState
             {
                 archipelagoClient.ReportGoalCompletion();
             }
+            if (goal == Goal.LostLace)
+            {
+                var name = ArchipelagoLocationIds.GetArchipelagoName(
+                    SaveSlotCompletionIcons.CompletionState.Act2SoulSnare.ToString());
+
+                ArchipelagoPlugin.App.LocationChecker.AddCheckedLocation(name);
+            }
         }
     }
 

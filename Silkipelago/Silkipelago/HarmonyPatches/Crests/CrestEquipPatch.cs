@@ -18,8 +18,8 @@ namespace Silkipelago.HarmonyPatches.Crest
                 Logger.LogInfo($"[ToolItemManager] AutoEquip called for Crest: {crest.name}");
 
                 var locationChecker = ArchipelagoPlugin.App.LocationChecker;
-                var isEvaCrestRandomized = locationChecker.LocationExists("Eva: 0 Slots") && CrestStrings.CRESTS_UPGRADE.Contains(crest.name);
-                var isCrest = CrestStrings.CRESTS.Contains(crest.name);
+                var isEvaCrestRandomized = locationChecker.LocationExists("Eva: 0 Slots") && CrestIds.CRESTS_UPGRADE.Contains(crest.name);
+                var isCrest = CrestIds.CRESTS.Contains(crest.name);
 
                 if (isEvaCrestRandomized || isCrest)
                 {

@@ -1,4 +1,5 @@
 ﻿using KaitoKid.Utilities.Interfaces;
+using Silkipelago.Constants;
 
 namespace Silkipelago.Archipelago.ItemHandlers
 {
@@ -9,9 +10,8 @@ namespace Silkipelago.Archipelago.ItemHandlers
         {
             var bellCount = ArchipelagoPlugin.App.ArchipelagoClient.GetReceivedItemCount("Grand Gate Bell");
             Logger.LogInfo($"Received bell number {bellCount}/5");
-            var test = PlayerData.instance.QuestCompletionData.GetData("Grand Gate Bellshrines");
             PlayerDataHandler.ChangeBooleanValue(shrineBellName, true);
-            QuestManager.TryGetFullQuestBase("Grand Gate Bellshrines", out var fullquestBase);
+            var fullquestBase = QuestManager.GetQuest(QuestIds.GRAND_GATE_BELLSHRINES);
             var completion = fullquestBase.Completion;
             if (!completion.IsAccepted)
             {

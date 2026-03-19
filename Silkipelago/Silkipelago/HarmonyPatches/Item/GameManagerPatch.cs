@@ -25,7 +25,7 @@ namespace Silkipelago.HarmonyPatches.Item
                     if (ArchipelagoPlugin.App.SettingsContext.saveSettingsData.ProcessedLocations.IsNullOrEmpty())
                     {
                         //in all cases we want to lock hunter crest we always receive a crest from server
-                        var hunterCrest = ToolItemManager.GetCrestByName(CrestStrings.HUNTER);
+                        var hunterCrest = ToolItemManager.GetCrestByName(CrestIds.HUNTER);
                         var saveData = hunterCrest.SaveData;
                         saveData.IsUnlocked = false;
                         hunterCrest.SaveData = saveData;

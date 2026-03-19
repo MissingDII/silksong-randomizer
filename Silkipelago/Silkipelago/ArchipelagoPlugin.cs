@@ -1,5 +1,4 @@
 ﻿using BepInEx;
-using BepInEx.Configuration;
 using GlobalEnums;
 using HarmonyLib;
 using Newtonsoft.Json;
@@ -17,8 +16,6 @@ namespace Silkipelago
     [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
     public partial class ArchipelagoPlugin : BaseUnityPlugin
     {
-
-        private static ConfigEntry<KeyCode> _addMoneyKey;
         private ILogger _logger;
         private Harmony _harmony;
         public static RandomizerApp App { get; private set; }
@@ -30,7 +27,6 @@ namespace Silkipelago
 
             // Plugin startup logic
             Logger.LogInfo($"Loading {MyPluginInfo.PLUGIN_GUID}...");
-            _addMoneyKey = this.Config.Bind<KeyCode>("KeyCode", "addMoneyKey", KeyCode.Keypad0, "key to add money and unlock abilities");
             try
             {
                 _logger = new LogHandler(Logger);
@@ -55,33 +51,26 @@ namespace Silkipelago
         {
             if (Input.GetKeyDown(KeyCode.Keypad1))
             {
-                var test2 = ToolItemManager.Instance.crestList;
-                _logger.LogInfo("List each tool name");
-                foreach (var item in test2.list)
+                var questName = "Courier Delivery Bonebottom";
+                _logger.LogInfo("trying to add quest");
+                var fullQuestBase = QuestManager.GetQuest(questName);
+                var completion = fullQuestBase.Completion;
+                if (!completion.IsAccepted)
                 {
-                    _logger.LogInfo(item.name);
+                    completion.IsAccepted = true;
+                    completion.HasBeenSeen = true;
                 }
-                _logger.LogInfo("test with playerData");
+                fullQuestBase.Completion = completion;
+                var rewardItem = fullQuestBase.rewardItem;
+                rewardItem.Get();
+                var test = rewardItem.GetSavedAmount();
                 return;
             }
-
-            if (Input.GetKeyDown(_addMoneyKey!.Value))
+            if (Input.GetKeyDown(KeyCode.Keypad3))
             {
-                _logger.LogInfo("Enable PowerUp");
-                var playerData = PlayerData.instance;
-                playerData.GetAllPowerups();
-                Logger.LogInfo("here with playerInstance");
-                return;
-            }
-            if (Input.GetKeyDown(KeyCode.Keypad1))
-            {
-                _logger.LogInfo("Disable PowerUp");
-                var playerData = PlayerData.instance;
-                playerData.hasDash = false;
-                playerData.hasBrolly = false;
-                playerData.hasWalljump = false;
-                playerData.hasDoubleJump = false;
-                Logger.LogInfo("here with playerInstance");
+                var questName = "Courier Delivery Bonebottom";
+                _logger.LogInfo("trying to add quest");
+                var fullQuestBase = QuestManager.GetQuest(questName);
                 return;
             }
             if (Input.GetKeyDown(KeyCode.Keypad2))
