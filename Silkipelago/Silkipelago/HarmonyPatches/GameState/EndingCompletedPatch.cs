@@ -2,7 +2,6 @@
 using HutongGames.PlayMaker.Actions;
 using KaitoKid.ArchipelagoUtilities.Net.Client;
 using KaitoKid.ArchipelagoUtilities.Net.Constants;
-using KaitoKid.Utilities.Interfaces;
 using Silkipelago.Archipelago;
 using Silkipelago.Constants;
 using System;
@@ -12,43 +11,38 @@ namespace Silkipelago.HarmonyPatches.GameState
     [HarmonyPatch(typeof(SetEndingCompleted), nameof(SetEndingCompleted.OnEnter))]
     public class EndingCompletedPatch
     {
-        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
-
         static bool Prefix(SetEndingCompleted __instance)
         {
-            try
-            {
-                if (__instance?.EndingType?.Value == null)
-                    return MethodPrefix.RUN_ORIGINAL_METHOD;
+            return BasePatch.SafeExecute(() => HandleEndingCompleted(__instance), nameof(EndingCompletedPatch), nameof(Prefix));
+        }
 
-                var state = (SaveSlotCompletionIcons.CompletionState)__instance.EndingType.Value;
-                var archipelagoClient = ArchipelagoPlugin.App.ArchipelagoClient;
-                var goal = archipelagoClient.SlotData.Goal;
-
-                switch (state)
-                {
-                    case SaveSlotCompletionIcons.CompletionState.Act2Regular:
-                    case SaveSlotCompletionIcons.CompletionState.Act2Cursed:
-                        HandleAct2RegularOrCursed(goal, archipelagoClient);
-                        break;
-
-                    case SaveSlotCompletionIcons.CompletionState.Act2SoulSnare:
-                        HandleAct2SoulSnare(goal, archipelagoClient);
-                        break;
-
-                    case SaveSlotCompletionIcons.CompletionState.Act3Ending:
-                        if (goal == Goal.LostLace)
-                            archipelagoClient.ReportGoalCompletion();
-                        break;
-                }
-
+        private static bool HandleEndingCompleted(SetEndingCompleted __instance)
+        {
+            if (__instance?.EndingType?.Value == null)
                 return MethodPrefix.RUN_ORIGINAL_METHOD;
-            }
-            catch (Exception ex)
+
+            var state = (SaveSlotCompletionIcons.CompletionState)__instance.EndingType.Value;
+            var archipelagoClient = ArchipelagoPlugin.App.ArchipelagoClient;
+            var goal = archipelagoClient.SlotData.Goal;
+
+            switch (state)
             {
-                Logger.LogErrorException(nameof(EndingCompletedPatch), nameof(Prefix), ex);
-                return MethodPrefix.RUN_ORIGINAL_METHOD;
+                case SaveSlotCompletionIcons.CompletionState.Act2Regular:
+                case SaveSlotCompletionIcons.CompletionState.Act2Cursed:
+                    HandleAct2RegularOrCursed(goal, archipelagoClient);
+                    break;
+
+                case SaveSlotCompletionIcons.CompletionState.Act2SoulSnare:
+                    HandleAct2SoulSnare(goal, archipelagoClient);
+                    break;
+
+                case SaveSlotCompletionIcons.CompletionState.Act3Ending:
+                    if (goal == Goal.LostLace)
+                        archipelagoClient.ReportGoalCompletion();
+                    break;
             }
+
+            return MethodPrefix.RUN_ORIGINAL_METHOD;
         }
 
         private static void HandleAct2RegularOrCursed(Goal goal, ArchipelagoClient archipelagoClient)
@@ -83,6 +77,4 @@ namespace Silkipelago.HarmonyPatches.GameState
             }
         }
     }
-
-
 }

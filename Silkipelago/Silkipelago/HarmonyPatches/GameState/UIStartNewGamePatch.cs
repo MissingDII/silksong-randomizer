@@ -1,7 +1,6 @@
 ﻿using GlobalEnums;
 using HarmonyLib;
 using KaitoKid.ArchipelagoUtilities.Net.Constants;
-using KaitoKid.Utilities.Interfaces;
 using Silkipelago.Settings;
 using System;
 using System.Collections;
@@ -12,7 +11,6 @@ namespace Silkipelago.HarmonyPatches.NewGame
     [HarmonyPatch(nameof(UIManager.StartNewGame))]
     public static class UIStartNewGamePatch
     {
-        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
         private static bool _shouldShowArchipelagoMenu = true;
 
         public static void SkipMenuNextCall()
@@ -23,23 +21,20 @@ namespace Silkipelago.HarmonyPatches.NewGame
         //  public void StartNewGame(bool permaDeath = false, bool bossRush = false)
         public static bool Prefix(UIManager __instance, bool permaDeath, bool bossRush)
         {
-            try
+            return BasePatch.SafeExecute(() => HandleStartNewGame(__instance), nameof(UIStartNewGamePatch), nameof(Prefix));
+        }
+
+        private static bool HandleStartNewGame(UIManager __instance)
+        {
+            BasePatch.Logger.LogDebugPatchIsRunning(nameof(UIManager), nameof(UIManager.StartNewGame), nameof(UIStartNewGamePatch), nameof(Prefix));
+            if (_shouldShowArchipelagoMenu)
             {
-                Logger.LogDebugPatchIsRunning(nameof(UIManager), nameof(UIManager.StartNewGame), nameof(UIStartNewGamePatch), nameof(Prefix));
-                if (_shouldShowArchipelagoMenu)
-                {
-                    __instance.StartCoroutine(HideMenusAndShowArchipelagoUI(__instance));
-                    return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
-                }
-                _shouldShowArchipelagoMenu = true;
-                // Allow the original method to run on subsequent calls
-                return MethodPrefix.RUN_ORIGINAL_METHOD;
+                __instance.StartCoroutine(HideMenusAndShowArchipelagoUI(__instance));
+                return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
             }
-            catch (Exception ex)
-            {
-                Logger.LogErrorException(nameof(UIStartNewGamePatch), nameof(Prefix), ex);
-                return MethodPrefix.RUN_ORIGINAL_METHOD;
-            }
+            _shouldShowArchipelagoMenu = true;
+            // Allow the original method to run on subsequent calls
+            return MethodPrefix.RUN_ORIGINAL_METHOD;
         }
 
         private static IEnumerator HideMenusAndShowArchipelagoUI(UIManager uiManager)

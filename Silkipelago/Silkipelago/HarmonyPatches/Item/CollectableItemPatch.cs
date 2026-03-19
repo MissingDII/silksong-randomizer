@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using KaitoKid.ArchipelagoUtilities.Net.Constants;
-using KaitoKid.Utilities.Interfaces;
 using Silkipelago.Constants;
 using System;
 
@@ -10,30 +9,25 @@ namespace Silkipelago.HarmonyPatches.Item
     [HarmonyPatch(nameof(CollectableItemManager.AddItem))]
     public static class CollectableItemPatch
     {
-        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
-
         //   public static void AddItem(CollectableItem item, int amount = 1)
         public static bool Prefix(CollectableItemManager __instance, CollectableItem item, int amount)
         {
-            try
+            return BasePatch.SafeExecute(() => HandleAddItem(item), nameof(CollectableItemPatch), nameof(Prefix));
+        }
+
+        private static bool HandleAddItem(CollectableItem item)
+        {
+            BasePatch.Logger.LogDebugPatchIsRunning(nameof(CollectableItemManager), nameof(CollectableItemManager.AddItem), nameof(CollectableItemPatch), nameof(Prefix));
+            if (CollectablesIds.COLLECTABLESKEYS.Contains(item.name) || CollectablesIds.ITEMS.Contains(item.name))
             {
-                Logger.LogDebugPatchIsRunning(nameof(CollectableItemManager), nameof(CollectableItemManager.AddItem), nameof(CollectableItemPatch), nameof(Prefix));
-                if (CollectablesIds.COLLECTABLESKEYS.Contains(item.name) || CollectablesIds.ITEMS.Contains(item.name))
-                {
-                    var archipelagoLocationName = ArchipelagoLocationIds.GetArchipelagoName(item.name);
-                    Logger.LogInfo("sending location for " + archipelagoLocationName);
-                    ArchipelagoPlugin.App.LocationChecker.AddCheckedLocation(archipelagoLocationName);
-                    Logger.LogInfo("sent location for " + archipelagoLocationName);
-                    return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
-                }
-                else
-                {
-                    return MethodPrefix.RUN_ORIGINAL_METHOD;
-                }
+                var archipelagoLocationName = ArchipelagoLocationIds.GetArchipelagoName(item.name);
+                BasePatch.Logger.LogInfo("sending location for " + archipelagoLocationName);
+                ArchipelagoPlugin.App.LocationChecker.AddCheckedLocation(archipelagoLocationName);
+                BasePatch.Logger.LogInfo("sent location for " + archipelagoLocationName);
+                return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
             }
-            catch (Exception ex)
+            else
             {
-                Logger.LogErrorException(nameof(PlayerDataPatch), nameof(Prefix), ex);
                 return MethodPrefix.RUN_ORIGINAL_METHOD;
             }
         }

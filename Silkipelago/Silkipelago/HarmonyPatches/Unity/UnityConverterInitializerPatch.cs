@@ -1,5 +1,4 @@
 ﻿using HarmonyLib;
-using KaitoKid.Utilities.Interfaces;
 using Newtonsoft.Json;
 using Newtonsoft.Json.UnityConverters;
 using System;
@@ -10,13 +9,11 @@ namespace Silkipelago.HarmonyPatches.Unity
     [HarmonyPatch(typeof(UnityConverterInitializer), "CreateConverters")]
     internal class UnityConverterInitializerPatch
     {
-        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
-
         private static void Postfix(ref List<JsonConverter> __result)
         {
             try
             {
-                Logger.LogDebugPatchIsRunning(
+                BasePatch.Logger.LogDebugPatchIsRunning(
                     nameof(UnityConverterInitializer),
                     "CreateConverters",
                     nameof(UnityConverterInitializerPatch),
@@ -41,16 +38,16 @@ namespace Silkipelago.HarmonyPatches.Unity
                 //log removed converters
                 if (removedNames.Count > 0)
                 {
-                    Logger.LogInfo($"Removed {removedNames.Count} converter(s):");
+                    BasePatch.Logger.LogInfo($"Removed {removedNames.Count} converter(s):");
                     foreach (var name in removedNames)
                     {
-                        Logger.LogInfo($"Removed converterName:   - {name}");
+                        BasePatch.Logger.LogInfo($"Removed converterName:   - {name}");
                     }
                 }
             }
             catch (Exception ex)
             {
-                Logger.LogErrorException(nameof(UnityConverterInitializerPatch), nameof(Postfix), ex);
+                BasePatch.Logger.LogErrorException(nameof(UnityConverterInitializerPatch), nameof(Postfix), ex);
             }
         }
     }

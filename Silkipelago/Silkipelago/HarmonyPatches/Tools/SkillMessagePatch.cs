@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using KaitoKid.ArchipelagoUtilities.Net.Constants;
-using KaitoKid.Utilities.Interfaces;
 using Silkipelago.Archipelago;
 using Silkipelago.Constants;
 using System;
@@ -10,26 +9,21 @@ namespace Silkipelago.HarmonyPatches.Tools
     [HarmonyPatch(typeof(SkillGetMsg), "Setup")]
     public static class SkillMessagePatch
     {
-        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
-
         static bool Prefix(SkillGetMsg __instance, ToolItemSkill skill)
         {
-            try
-            {
-                var locationChecker = ArchipelagoPlugin.App.LocationChecker;
+            return BasePatch.SafeExecute(() => HandleSkillDisplay(skill), nameof(SkillMessagePatch), nameof(Prefix));
+        }
 
-                if (ShouldBlockSkillDisplay(skill, locationChecker))
-                {
-                    return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
-                }
+        private static bool HandleSkillDisplay(ToolItemSkill skill)
+        {
+            var locationChecker = ArchipelagoPlugin.App.LocationChecker;
 
-                return MethodPrefix.RUN_ORIGINAL_METHOD;
-            }
-            catch (Exception ex)
+            if (ShouldBlockSkillDisplay(skill, locationChecker))
             {
-                Logger?.LogErrorException(nameof(SkillMessagePatch), nameof(Prefix), ex);
-                return MethodPrefix.RUN_ORIGINAL_METHOD;
+                return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
             }
+
+            return MethodPrefix.RUN_ORIGINAL_METHOD;
         }
 
         private static bool ShouldBlockSkillDisplay(ToolItemSkill skill, SilksongLocationChecker locationChecker)
@@ -65,27 +59,23 @@ namespace Silkipelago.HarmonyPatches.Tools
     [HarmonyPatch(typeof(SkillGetMsg), nameof(SkillGetMsg.Spawn))]
     public static class SkillGetMsgSpawnPatch
     {
-        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
         static bool Prefix(SkillGetMsg prefab, ToolItemSkill skill, Action afterMsg)
         {
-            try
-            {
-                var locationChecker = ArchipelagoPlugin.App.LocationChecker;
+            return BasePatch.SafeExecute(() => HandleSkillSpawn(skill, afterMsg), nameof(SkillGetMsgSpawnPatch), nameof(Prefix));
+        }
 
-                if (ShouldBlockSkillSpawn(skill, locationChecker))
-                {
-                    UnlockAndUnequipSkill(skill);
-                    afterMsg?.Invoke();
-                    return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
-                }
+        private static bool HandleSkillSpawn(ToolItemSkill skill, Action afterMsg)
+        {
+            var locationChecker = ArchipelagoPlugin.App.LocationChecker;
 
-                return MethodPrefix.RUN_ORIGINAL_METHOD;
-            }
-            catch (Exception ex)
+            if (ShouldBlockSkillSpawn(skill, locationChecker))
             {
-                Logger.LogErrorException(nameof(SkillGetMsgSpawnPatch), nameof(Prefix), ex);
-                return MethodPrefix.RUN_ORIGINAL_METHOD;
+                UnlockAndUnequipSkill(skill);
+                afterMsg?.Invoke();
+                return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
             }
+
+            return MethodPrefix.RUN_ORIGINAL_METHOD;
         }
 
         private static bool ShouldBlockSkillSpawn(ToolItemSkill skill, SilksongLocationChecker locationChecker)

@@ -1,7 +1,6 @@
 using HarmonyLib;
 using System;
 using UnityEngine;
-using ILogger = KaitoKid.Utilities.Interfaces.ILogger;
 
 namespace Silkipelago.HarmonyPatches.Item
 {
@@ -18,8 +17,6 @@ namespace Silkipelago.HarmonyPatches.Item
     })]
     public static class HealthManagerDiePatch
     {
-        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
-
         static bool Prefix(
             HealthManager __instance,
             float? attackDirection,
@@ -31,19 +28,16 @@ namespace Silkipelago.HarmonyPatches.Item
             bool overrideSpecialDeath = false,
             bool disallowDropFling = false)
         {
-            try
-            {
-                // Log enemy death
-                Logger?.LogInfo($"[HealthManager.Die] {__instance.gameObject.name} died from attack type: {attackType}");
+            return BasePatch.SafeExecute(() => HandleDie(__instance, attackType), nameof(HealthManagerDiePatch), nameof(Prefix));
+        }
 
-                // TODO: Add check for bosses where setBool is not called
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Logger?.LogErrorException(nameof(HealthManagerDiePatch), nameof(Prefix), ex);
-                return true;
-            }
+        private static bool HandleDie(HealthManager __instance, AttackTypes attackType)
+        {
+            // Log enemy death
+            BasePatch.Logger?.LogInfo($"[HealthManager.Die] {__instance.gameObject.name} died from attack type: {attackType}");
+
+            // TODO: Add check for bosses where setBool is not called
+            return true;
         }
     }
 }

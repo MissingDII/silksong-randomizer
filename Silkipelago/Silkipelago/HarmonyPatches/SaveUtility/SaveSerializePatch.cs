@@ -1,42 +1,46 @@
 ﻿using HarmonyLib;
-using KaitoKid.Utilities.Interfaces;
 using Newtonsoft.Json;
-using System;
 using System.Reflection;
 
 namespace Silkipelago.HarmonyPatches.SaveUtility
 {
+    /// <summary>
+    /// Patches SaveDataUtility to remove problematic JSON converters.
+    /// </summary>
     [HarmonyPatch(typeof(SaveDataUtility), "CreateJsonObjects")]
     internal class SaveSerializePatch
     {
-        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
+        /// <summary>
+        /// Postfix that removes unsupported JSON converters after serializer creation.
+        /// </summary>
         private static void Postfix(object __instance)
         {
-            try
+            BasePatch.SafeExecuteVoid(
+                () => RemoveUnsupportedConverters(),
+                nameof(SaveSerializePatch),
+                nameof(Postfix)
+            );
+        }
+
+        private static void RemoveUnsupportedConverters()
+        {
+            BasePatch.Logger.LogDebugPatchIsRunning(nameof(SaveDataUtility), "CreateJsonObjects", nameof(SaveSerializePatch), nameof(Postfix));
+
+            var serializerField = typeof(SaveDataUtility)
+                .GetField("_serializer", BindingFlags.NonPublic | BindingFlags.Static);
+
+            var serializer = serializerField?.GetValue(null) as JsonSerializer;
+            if (serializer == null)
+                return;
+
+            var converters = serializer.Converters;
+            for (var i = converters.Count - 1; i >= 0; i--)
             {
-                Logger.LogDebugPatchIsRunning(nameof(SaveDataUtility), "CreateJsonObjects", nameof(SaveSerializePatch), nameof(Postfix));
-                // Access private static field via reflection
-                var serializerField = typeof(SaveDataUtility)
-                    .GetField("_serializer", BindingFlags.NonPublic | BindingFlags.Static);
-
-                var serializer = serializerField?.GetValue(null) as JsonSerializer;
-                if (serializer == null)
-                    return;
-
-                var converters = serializer.Converters;
-                for (var i = converters.Count - 1; i >= 0; i--)
+                if (converters[i].GetType().Name == "PermissionsEnumConverter")
                 {
-                    if (converters[i].GetType().Name == "PermissionsEnumConverter")
-                    {
-                        converters.RemoveAt(i);
-                    }
+                    converters.RemoveAt(i);
                 }
-            }
-            catch (Exception ex)
-            {
-                Logger.LogErrorException(nameof(SaveSerializePatch), nameof(Postfix), ex);
             }
         }
     }
-
 }

@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using KaitoKid.ArchipelagoUtilities.Net.Constants;
-using KaitoKid.Utilities.Interfaces;
 using Silkipelago.Archipelago;
 using Silkipelago.Archipelago.ItemHandlers;
 using Silkipelago.Constants;
@@ -11,26 +10,21 @@ namespace Silkipelago.HarmonyPatches.Tools
     [HarmonyPatch(typeof(ToolItem), nameof(ToolItem.Unlock))]
     public static class ToolItemPatch
     {
-        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
-
         static bool Prefix(ToolItem __instance, Action afterTutorialMsg, ToolItem.PopupFlags popupFlags)
         {
-            try
-            {
-                var locationChecker = ArchipelagoPlugin.App.LocationChecker;
+            return BasePatch.SafeExecute(() => HandleUnlock(__instance), nameof(ToolItemPatch), nameof(Prefix));
+        }
 
-                if (SilksongItemManager.ItemToReceive == 0 && ShouldBlockUnlock(__instance, locationChecker))
-                {
-                    return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
-                }
-                SilksongItemManager.ItemToReceive--;
-                return MethodPrefix.RUN_ORIGINAL_METHOD;
-            }
-            catch (Exception ex)
+        private static bool HandleUnlock(ToolItem __instance)
+        {
+            var locationChecker = ArchipelagoPlugin.App.LocationChecker;
+
+            if (SilksongItemManager.ItemToReceive == 0 && ShouldBlockUnlock(__instance, locationChecker))
             {
-                Logger.LogErrorException(nameof(ToolItemPatch), nameof(Prefix), ex);
-                return MethodPrefix.RUN_ORIGINAL_METHOD;
+                return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
             }
+            SilksongItemManager.ItemToReceive--;
+            return MethodPrefix.RUN_ORIGINAL_METHOD;
         }
 
         private static bool ShouldBlockUnlock(ToolItem tool, SilksongLocationChecker locationChecker)
@@ -38,7 +32,7 @@ namespace Silkipelago.HarmonyPatches.Tools
             if (IsBossLockedTool(tool) && locationChecker.LocationExists(PlayerDataIds.FIRST_WEAVER_DEFEATED))
                 return true;
 
-            if (IsEvaLockedTool(tool) && locationChecker.LocationExists("Eva: 0 Slots"))
+            if (IsEvaLockedTool(tool) && locationChecker.LocationExists(LocationConstants.EvaUpgradeLocation))
                 return true;
 
             if (IsSilkAbility(tool))
@@ -62,7 +56,7 @@ namespace Silkipelago.HarmonyPatches.Tools
 
             if (locationChecker.LocationExists(locationId))
             {
-                Logger.LogInfo($"[ToolItem] {nameof(ToolItem.Unlock)} called, item={tool.name}");
+                BasePatch.Logger.LogInfo($"[ToolItem] {nameof(ToolItem.Unlock)} called, item={tool.name}");
                 locationChecker.AddCheckedLocation(locationId);
                 return true;
             }

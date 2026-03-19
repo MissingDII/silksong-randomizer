@@ -2,7 +2,6 @@ using GlobalEnums;
 using HarmonyLib;
 using System;
 using UnityEngine;
-using ILogger = KaitoKid.Utilities.Interfaces.ILogger;
 
 namespace Silkipelago.HarmonyPatches.GameState
 {
@@ -10,64 +9,60 @@ namespace Silkipelago.HarmonyPatches.GameState
     [HarmonyPatch(nameof(UIManager.SetMenuState))]
     public static class PauseMenuButtonPatch
     {
-        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
-
         public static void Postfix(UIManager __instance, MainMenuState newState)
         {
-            try
+            BasePatch.SafeExecuteVoid(() => HandleSetMenuState(__instance, newState), nameof(PauseMenuButtonPatch), nameof(Postfix));
+        }
+
+        private static void HandleSetMenuState(UIManager __instance, MainMenuState newState)
+        {
+            if (newState != MainMenuState.PAUSE_MENU)
             {
-                if (newState != MainMenuState.PAUSE_MENU)
-                {
-                    return;
-                }
-                var pauseMenuScreen = __instance.pauseMenuScreen;
-                var menuObject = pauseMenuScreen.gameObject;
-                var containerTransform = menuObject.transform.Find("Container");
-                var controlsTransform = containerTransform.Find("Controls");
-
-                var firstChildTransform = controlsTransform.GetChild(0);
-                var firstButtonRect = firstChildTransform.GetComponent<RectTransform>();
-                var buttonSpacing = firstButtonRect.sizeDelta.y + 10f;
-
-                // Remove existing custom buttons
-                var existingArchipelagoButton = controlsTransform.Find("ArchipelagoButton");
-                if (existingArchipelagoButton != null)
-                {
-                    UnityEngine.Object.Destroy(existingArchipelagoButton.gameObject);
-                }
-
-                var existingToggleAct3Button = controlsTransform.Find("ToggleAct3Button");
-                if (existingToggleAct3Button != null)
-                {
-                    UnityEngine.Object.Destroy(existingToggleAct3Button.gameObject);
-                }
-
-                // Create Archipelago button
-                CreateCustomButton(
-                    firstChildTransform,
-                    controlsTransform,
-                    "ArchipelagoButton",
-                    "Archipelago",
-                    firstButtonRect,
-                    buttonSpacing,
-                    controlsTransform.childCount
-                );
-
-                // Create Toggle Act 3 button (positioned below Archipelago button)
-                CreateCustomButton(
-                    firstChildTransform,
-                    controlsTransform,
-                    "ToggleAct3Button",
-                    "Toggle Act 3",
-                    firstButtonRect,
-                    buttonSpacing,
-                    controlsTransform.childCount
-                );
+                return;
             }
-            catch (Exception ex)
+            var pauseMenuScreen = __instance.pauseMenuScreen;
+            var menuObject = pauseMenuScreen.gameObject;
+            var containerTransform = menuObject.transform.Find("Container");
+            var controlsTransform = containerTransform.Find("Controls");
+
+            var firstChildTransform = controlsTransform.GetChild(0);
+            var firstButtonRect = firstChildTransform.GetComponent<RectTransform>();
+            var buttonSpacing = firstButtonRect.sizeDelta.y + 10f;
+
+            // Remove existing custom buttons
+            var existingArchipelagoButton = controlsTransform.Find("ArchipelagoButton");
+            if (existingArchipelagoButton != null)
             {
-                Logger?.LogError($"Error in PauseMenuButtonPatch: {ex.Message}\n{ex.StackTrace}");
+                UnityEngine.Object.Destroy(existingArchipelagoButton.gameObject);
             }
+
+            var existingToggleAct3Button = controlsTransform.Find("ToggleAct3Button");
+            if (existingToggleAct3Button != null)
+            {
+                UnityEngine.Object.Destroy(existingToggleAct3Button.gameObject);
+            }
+
+            // Create Archipelago button
+            CreateCustomButton(
+                firstChildTransform,
+                controlsTransform,
+                "ArchipelagoButton",
+                "Archipelago",
+                firstButtonRect,
+                buttonSpacing,
+                controlsTransform.childCount
+            );
+
+            // Create Toggle Act 3 button (positioned below Archipelago button)
+            CreateCustomButton(
+                firstChildTransform,
+                controlsTransform,
+                "ToggleAct3Button",
+                "Toggle Act 3",
+                firstButtonRect,
+                buttonSpacing,
+                controlsTransform.childCount
+            );
         }
 
         private static void CreateCustomButton(

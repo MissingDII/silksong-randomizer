@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using KaitoKid.ArchipelagoUtilities.Net.Constants;
-using KaitoKid.Utilities.Interfaces;
 using Silkipelago.Archipelago;
 using Silkipelago.Constants;
 using System;
@@ -10,27 +9,22 @@ namespace Silkipelago.HarmonyPatches.Tools
     [HarmonyPatch(typeof(ToolItemManager), nameof(ToolItemManager.AutoEquip), typeof(ToolItem))]
     public static class ToolEquipPatch
     {
-        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
-
         static bool Prefix(ToolItem tool)
         {
-            try
-            {
-                var locationChecker = ArchipelagoPlugin.App.LocationChecker;
-                Logger.LogInfo($"[ToolItemManager] AutoEquip called for: {tool.name}");
+            return BasePatch.SafeExecute(() => HandleAutoEquip(tool), nameof(ToolEquipPatch), nameof(Prefix));
+        }
 
-                if (ShouldBlockEquip(tool, locationChecker))
-                {
-                    return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
-                }
+        private static bool HandleAutoEquip(ToolItem tool)
+        {
+            var locationChecker = ArchipelagoPlugin.App.LocationChecker;
+            BasePatch.Logger.LogInfo($"[ToolItemManager] AutoEquip called for: {tool.name}");
 
-                return MethodPrefix.RUN_ORIGINAL_METHOD;
-            }
-            catch (Exception ex)
+            if (ShouldBlockEquip(tool, locationChecker))
             {
-                Logger.LogErrorException(nameof(ToolEquipPatch), nameof(Prefix), ex);
-                return MethodPrefix.RUN_ORIGINAL_METHOD;
+                return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
             }
+
+            return MethodPrefix.RUN_ORIGINAL_METHOD;
         }
 
         private static bool ShouldBlockEquip(ToolItem tool, SilksongLocationChecker locationChecker)
@@ -38,7 +32,7 @@ namespace Silkipelago.HarmonyPatches.Tools
             if (IsBossLockedTool(tool) && locationChecker.LocationExists(PlayerDataIds.FIRST_WEAVER_DEFEATED))
                 return true;
 
-            if (IsEvaLockedTool(tool) && locationChecker.LocationExists("Eva: 0 Slots"))
+            if (IsEvaLockedTool(tool) && locationChecker.LocationExists(LocationConstants.EvaUpgradeLocation))
                 return true;
 
             if (IsSilkAbility(tool))

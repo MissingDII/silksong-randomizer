@@ -1,47 +1,48 @@
 using HarmonyLib;
 using KaitoKid.ArchipelagoUtilities.Net.Constants;
-using System;
 using UnityEngine.EventSystems;
-using ILogger = KaitoKid.Utilities.Interfaces.ILogger;
 
 namespace Silkipelago.HarmonyPatches.GameState
 {
+    /// <summary>
+    /// Handles custom pause menu button interactions for Archipelago.
+    /// </summary>
     [HarmonyPatch(typeof(UnityEngine.UI.PauseMenuButton))]
     [HarmonyPatch(nameof(UnityEngine.UI.PauseMenuButton.OnSubmit))]
     public static class PauseMenuButtonOnSubmitPatch
     {
-        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
-
+        /// <summary>
+        /// Prefix that intercepts pause menu button submissions.
+        /// </summary>
         public static bool Prefix(UnityEngine.UI.PauseMenuButton __instance, BaseEventData eventData)
         {
-            try
+            return BasePatch.SafeExecute(
+                () => HandlePauseMenuButtonSubmit(__instance),
+                nameof(PauseMenuButtonOnSubmitPatch),
+                nameof(Prefix)
+            );
+        }
+
+        private static bool HandlePauseMenuButtonSubmit(UnityEngine.UI.PauseMenuButton button)
+        {
+            if (button.gameObject.name == "ArchipelagoButton")
             {
-                if (__instance.gameObject.name == "ArchipelagoButton")
+                if (ArchipelagoPlugin.App?.UIContext?.MenuUI != null)
                 {
-                    if (ArchipelagoPlugin.App?.UIContext?.MenuUI != null)
-                    {
-                        ArchipelagoPlugin.App.UIContext.MenuUI.shouldLaunchStartCutscene = false;
-                        ArchipelagoPlugin.App.UIContext.MenuUI.Show();
-                    }
-
-                    return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
+                    ArchipelagoPlugin.App.UIContext.MenuUI.shouldLaunchStartCutscene = false;
+                    ArchipelagoPlugin.App.UIContext.MenuUI.Show();
                 }
-
-                if (__instance.gameObject.name == "ToggleAct3Button")
-                {
-                    PlayerData.instance.blackThreadWorld = !PlayerData.instance.blackThreadWorld;
-                    Logger.LogInfo("Act3 toggled, reload a new room for change to take place");
-                    return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
-
-                }
-
-                return MethodPrefix.RUN_ORIGINAL_METHOD;
+                return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
             }
-            catch (Exception ex)
+
+            if (button.gameObject.name == "ToggleAct3Button")
             {
-                Logger?.LogError($"Error in PauseMenuButtonOnSubmitPatch: {ex.Message}\n{ex.StackTrace}");
-                return MethodPrefix.RUN_ORIGINAL_METHOD;
+                PlayerData.instance.blackThreadWorld = !PlayerData.instance.blackThreadWorld;
+                BasePatch.Logger.LogInfo("Act3 toggled, reload a new room for change to take place");
+                return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
             }
+
+            return MethodPrefix.RUN_ORIGINAL_METHOD;
         }
     }
 }

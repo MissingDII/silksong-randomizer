@@ -1,112 +1,118 @@
 ﻿using HarmonyLib;
 using KaitoKid.ArchipelagoUtilities.Net.Constants;
-using KaitoKid.Utilities.Interfaces;
 using Silkipelago.Constants;
 using System;
 
 namespace Silkipelago.HarmonyPatches.Quest
 {
+    /// <summary>
+    /// Patches for quest completion via TryEndQuest method.
+    /// </summary>
     [HarmonyPatch(typeof(FullQuestBase))]
     [HarmonyPatch(nameof(FullQuestBase.TryEndQuest))]
     public static class QuestManagerPatch
     {
-        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
-
         public static bool Prefix(FullQuestBase __instance, Action afterPrompt, bool consumeCurrency, bool forceEnd = false, bool showPrompt = true)
         {
-            try
+            return BasePatch.SafeExecute(
+                () => HandleQuestCompletion(__instance),
+                nameof(QuestManagerPatch),
+                nameof(Prefix)
+            );
+        }
+
+        private static bool HandleQuestCompletion(FullQuestBase quest)
+        {
+            if (quest.CanComplete)
             {
-                if (__instance.CanComplete)
+                BasePatch.Logger.LogInfo($"[Quest] TryEndQuest called for: {quest.name}");
+                if (QuestIds.ALL_QUESTS.Contains(quest.name))
                 {
-                    Logger.LogInfo($"[Quest] TryEndQuest called for: {__instance.name}");
-                    if (QuestIds.ALL_QUESTS.Contains(__instance.name))
-                    {
-                        __instance.rewardItem = null;
-                        var locationId = ArchipelagoLocationIds.GetArchipelagoName(__instance.name);
-                        ArchipelagoPlugin.App.LocationChecker.AddCheckedLocation(locationId);
-                    }
+                    quest.rewardItem = null;
+                    var locationId = ArchipelagoLocationIds.GetArchipelagoName(quest.name);
+                    ArchipelagoPlugin.App.LocationChecker.AddCheckedLocation(locationId);
                 }
-                return MethodPrefix.RUN_ORIGINAL_METHOD;
             }
-            catch (Exception ex)
-            {
-                Logger.LogErrorException(nameof(QuestManagerSilentPatch), nameof(Prefix), ex);
-                return MethodPrefix.RUN_ORIGINAL_METHOD;
-            }
+            return MethodPrefix.RUN_ORIGINAL_METHOD;
         }
     }
 
+    /// <summary>
+    /// Patches for silent quest completion.
+    /// </summary>
     [HarmonyPatch(typeof(FullQuestBase))]
     [HarmonyPatch(nameof(FullQuestBase.SilentlyComplete))]
     public static class QuestManagerSilentPatch
     {
-        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
-
         public static bool Prefix(FullQuestBase __instance)
         {
-            try
+            return BasePatch.SafeExecute(
+                () => HandleSilentCompletion(__instance),
+                nameof(QuestManagerSilentPatch),
+                nameof(Prefix)
+            );
+        }
+
+        private static bool HandleSilentCompletion(FullQuestBase quest)
+        {
+            BasePatch.Logger.LogInfo($"[Quest] SilentlyComplete called for: {quest.name}");
+            if (QuestIds.ALL_QUESTS.Contains(quest.name))
             {
-                Logger.LogInfo($"[Quest] SilentlyComplete called for: {__instance.name}");
-                if (QuestIds.ALL_QUESTS.Contains(__instance.name))
+                var locationId = ArchipelagoLocationIds.GetArchipelagoName(quest.name);
+                if (locationId == null)
                 {
-                    var locationId = ArchipelagoLocationIds.GetArchipelagoName(__instance.name);
-                    if (locationId == null)
-                    {
-                        Logger.LogWarning($"this quest is not mapped to a location but exists in AllQuest {__instance.name}, please report a bug");
-                    }
-                    else
-                    {
-                        __instance.rewardItem = null;
-                        ArchipelagoPlugin.App.LocationChecker.AddCheckedLocation(locationId);
-                    }
+                    BasePatch.Logger.LogWarning($"this quest is not mapped to a location but exists in AllQuest {quest.name}, please report a bug");
                 }
-                return MethodPrefix.RUN_ORIGINAL_METHOD;
+                else
+                {
+                    quest.rewardItem = null;
+                    ArchipelagoPlugin.App.LocationChecker.AddCheckedLocation(locationId);
+                }
             }
-            catch (Exception ex)
-            {
-                Logger.LogErrorException(nameof(QuestManagerSilentPatch), nameof(Prefix), ex);
-                return MethodPrefix.RUN_ORIGINAL_METHOD;
-            }
+            return MethodPrefix.RUN_ORIGINAL_METHOD;
         }
     }
 
+    /// <summary>
+    /// Patches for quest acceptance/beginning.
+    /// </summary>
     [HarmonyPatch(typeof(FullQuestBase))]
     [HarmonyPatch(nameof(FullQuestBase.BeginQuest))]
     public static class QuestManagerBeginQuestPatch
     {
-        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
-
         public static bool Prefix(FullQuestBase __instance, Action afterPrompt, bool showPrompt = true)
         {
-            try
+            return BasePatch.SafeExecute(
+                () => HandleQuestBegin(__instance),
+                nameof(QuestManagerBeginQuestPatch),
+                nameof(Prefix)
+            );
+        }
+
+        private static bool HandleQuestBegin(FullQuestBase quest)
+        {
+            BasePatch.Logger.LogInfo($"[Quest] BeginQuest called for: {quest.name}");
+            if (QuestIds.LOCKED_QUEST.Contains(quest.name))
             {
-                Logger.LogInfo($"[Quest] BeginQuest called for: {__instance.name}");
-                if (QuestIds.LOCKED_QUEST.Contains(__instance.name))
-                {
-                    return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
-                }
-                return MethodPrefix.RUN_ORIGINAL_METHOD;
+                return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
             }
-            catch (Exception ex)
-            {
-                Logger.LogErrorException(nameof(QuestManagerBeginQuestPatch), nameof(Prefix), ex);
-                return MethodPrefix.RUN_ORIGINAL_METHOD;
-            }
+            return MethodPrefix.RUN_ORIGINAL_METHOD;
         }
     }
 
+    /// <summary>
+    /// Patches for quest completion property setter.
+    /// </summary>
     [HarmonyPatch(typeof(FullQuestBase), nameof(FullQuestBase.Completion), MethodType.Setter)]
     public static class QuestManagerCompletionSetterPatch
     {
-        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
-
         public static bool Prefix(FullQuestBase __instance, ref QuestCompletionData.Completion value)
         {
             try
             {
                 if (value.IsCompleted && QuestIds.ALL_QUESTS.Contains(__instance.name))
                 {
-                    Logger.LogInfo($"[Quest] Completion setter called for: {__instance.name}");
+                    BasePatch.Logger.LogInfo($"[Quest] Completion setter called for: {__instance.name}");
                     var locationId = ArchipelagoLocationIds.GetArchipelagoName(__instance.name);
                     if (locationId != null)
                     {
@@ -114,12 +120,12 @@ namespace Silkipelago.HarmonyPatches.Quest
                         ArchipelagoPlugin.App.LocationChecker.AddCheckedLocation(locationId);
                     }
                 }
-                return MethodPrefix.RUN_ORIGINAL_METHOD;
+                return KaitoKid.ArchipelagoUtilities.Net.Constants.MethodPrefix.RUN_ORIGINAL_METHOD;
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
-                Logger.LogErrorException(nameof(QuestManagerCompletionSetterPatch), nameof(Prefix), ex);
-                return MethodPrefix.RUN_ORIGINAL_METHOD;
+                BasePatch.Logger.LogErrorException(nameof(QuestManagerCompletionSetterPatch), nameof(Prefix), ex);
+                return KaitoKid.ArchipelagoUtilities.Net.Constants.MethodPrefix.RUN_ORIGINAL_METHOD;
             }
         }
     }

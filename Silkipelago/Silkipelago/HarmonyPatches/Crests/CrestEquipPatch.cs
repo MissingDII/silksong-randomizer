@@ -1,38 +1,53 @@
 ﻿using HarmonyLib;
-using KaitoKid.ArchipelagoUtilities.Net.Constants;
-using KaitoKid.Utilities.Interfaces;
 using Silkipelago.Constants;
-using System;
 
 namespace Silkipelago.HarmonyPatches.Crest
 {
+    /// <summary>
+    /// Prevents auto-equipping of crests when they are randomized in Archipelago.
+    /// </summary>
     [HarmonyPatch(typeof(ToolItemManager), nameof(ToolItemManager.AutoEquip), typeof(ToolCrest), typeof(bool), typeof(bool))]
     public static class CrestEquipPatch
     {
-        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
-
+        /// <summary>
+        /// Prefix that blocks auto-equip if the crest is randomized.
+        /// </summary>
         static bool Prefix(ToolCrest crest, bool markTemp, bool removeTools)
         {
-            try
-            {
-                Logger.LogInfo($"[ToolItemManager] AutoEquip called for Crest: {crest.name}");
+            return BasePatch.SafeExecute(
+                () => ShouldBlockCrestAutoEquip(crest) 
+                    ? KaitoKid.ArchipelagoUtilities.Net.Constants.MethodPrefix.DONT_RUN_ORIGINAL_METHOD 
+                    : KaitoKid.ArchipelagoUtilities.Net.Constants.MethodPrefix.RUN_ORIGINAL_METHOD,
+                nameof(CrestEquipPatch),
+                nameof(Prefix)
+            );
+        }
 
-                var locationChecker = ArchipelagoPlugin.App.LocationChecker;
-                var isEvaCrestRandomized = locationChecker.LocationExists("Eva: 0 Slots") && CrestIds.CRESTS_UPGRADE.Contains(crest.name);
-                var isCrest = CrestIds.CRESTS.Contains(crest.name);
+        /// <summary>
+        /// Determines if crest auto-equip should be blocked based on randomization status.
+        /// </summary>
+        private static bool ShouldBlockCrestAutoEquip(ToolCrest crest)
+        {
+            BasePatch.Logger.LogInfo($"[ToolItemManager] AutoEquip called for Crest: {crest.name}");
+            return IsEvaCrestUpgradeRandomized(crest) || IsBasicCrest(crest);
+        }
 
-                if (isEvaCrestRandomized || isCrest)
-                {
-                    return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
-                }
+        /// <summary>
+        /// Checks if Eva crest upgrades are randomized and this is an upgrade crest.
+        /// </summary>
+        private static bool IsEvaCrestUpgradeRandomized(ToolCrest crest)
+        {
+            var locationChecker = ArchipelagoPlugin.App.LocationChecker;
+            return locationChecker.LocationExists(LocationConstants.EvaUpgradeLocation) 
+                && CrestIds.CRESTS_UPGRADE.Contains(crest.name);
+        }
 
-                return MethodPrefix.RUN_ORIGINAL_METHOD;
-            }
-            catch (Exception ex)
-            {
-                Logger.LogErrorException(nameof(CrestEquipPatch), nameof(Prefix), ex);
-                return true;
-            }
+        /// <summary>
+        /// Checks if this is a basic/bound crest (not an upgrade).
+        /// </summary>
+        private static bool IsBasicCrest(ToolCrest crest)
+        {
+            return CrestIds.CRESTS.Contains(crest.name);
         }
     }
 }

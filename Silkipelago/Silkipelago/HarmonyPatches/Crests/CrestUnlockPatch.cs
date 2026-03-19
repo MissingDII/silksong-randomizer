@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using KaitoKid.ArchipelagoUtilities.Net.Constants;
-using KaitoKid.Utilities.Interfaces;
 using Silkipelago.Archipelago;
 using Silkipelago.Archipelago.ItemHandlers;
 using Silkipelago.Constants;
@@ -11,36 +10,31 @@ namespace Silkipelago.HarmonyPatches.Crests
     [HarmonyPatch(typeof(ToolCrest), nameof(ToolCrest.Unlock))]
     public static class CrestUnlockPatch
     {
-        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
-
         static bool Prefix(ToolCrest __instance)
         {
-            try
-            {
-                if (SilksongItemManager.ItemToReceive == 0)
-                {
-                    var locationChecker = ArchipelagoPlugin.App.LocationChecker;
-                    Logger.LogInfo($"[ToolCrest] Unlock called for Crest: {__instance.name}");
+            return BasePatch.SafeExecute(() => HandleCrestUnlock(__instance), nameof(CrestUnlockPatch), nameof(Prefix));
+        }
 
-                    if (ShouldBlockUnlock(__instance, locationChecker))
-                    {
-                        return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
-                    }
-                }
-                SilksongItemManager.ItemToReceive--;
-                return MethodPrefix.RUN_ORIGINAL_METHOD;
-            }
-            catch (Exception ex)
+        private static bool HandleCrestUnlock(ToolCrest __instance)
+        {
+            if (SilksongItemManager.ItemToReceive == 0)
             {
-                Logger.LogErrorException(nameof(CrestUnlockPatch), nameof(Prefix), ex);
-                return MethodPrefix.RUN_ORIGINAL_METHOD;
+                var locationChecker = ArchipelagoPlugin.App.LocationChecker;
+                BasePatch.Logger.LogInfo($"[ToolCrest] Unlock called for Crest: {__instance.name}");
+
+                if (ShouldBlockUnlock(__instance, locationChecker))
+                {
+                    return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
+                }
             }
+            SilksongItemManager.ItemToReceive--;
+            return MethodPrefix.RUN_ORIGINAL_METHOD;
         }
 
         private static bool ShouldBlockUnlock(ToolCrest crest, SilksongLocationChecker locationChecker)
         {
             // Block eva crest upgrades if they're randomized
-            if (IsEvaUpgradeCrest(crest) && locationChecker.LocationExists("Eva: 0 Slots"))
+            if (IsEvaUpgradeCrest(crest) && locationChecker.LocationExists(LocationConstants.EvaUpgradeLocation))
                 return true;
 
             // Block regular crests if they're in the randomizer

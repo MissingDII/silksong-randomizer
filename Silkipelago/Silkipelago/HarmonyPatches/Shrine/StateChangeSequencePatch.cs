@@ -1,5 +1,4 @@
 ﻿using HarmonyLib;
-using KaitoKid.Utilities.Interfaces;
 using Silkipelago.Constants;
 using System;
 
@@ -9,21 +8,18 @@ namespace Silkipelago.HarmonyPatches.Shrine
     [HarmonyPatch(nameof(StateChangeSequence.SetIsCompleteBool))]
     public static class StateChangeSequencePatch
     {
-        private static ILogger Logger => ArchipelagoPlugin.App.Logger;
         public static void Postfix(StateChangeSequence __instance)
         {
-            try
+            BasePatch.SafeExecuteVoid(() => HandleStateChange(__instance), nameof(StateChangeSequencePatch), nameof(Postfix));
+        }
+
+        private static void HandleStateChange(StateChangeSequence __instance)
+        {
+            BasePatch.Logger.LogInfo(__instance.isCompleteBool);
+            if (PlayerDataIds.SHRINES.Contains(__instance.isCompleteBool))
             {
-                Logger.LogInfo(__instance.isCompleteBool);
-                if (PlayerDataIds.SHRINES.Contains(__instance.isCompleteBool))
-                {
-                    var locationId = ArchipelagoLocationIds.GetArchipelagoName(__instance.isCompleteBool);
-                    ArchipelagoPlugin.App.LocationChecker.AddCheckedLocation(locationId);
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.LogErrorException(nameof(StateChangeSequencePatch), nameof(Postfix), ex);
+                var locationId = ArchipelagoLocationIds.GetArchipelagoName(__instance.isCompleteBool);
+                ArchipelagoPlugin.App.LocationChecker.AddCheckedLocation(locationId);
             }
         }
     }
