@@ -1,6 +1,5 @@
 using GlobalEnums;
 using HarmonyLib;
-using System;
 using UnityEngine;
 
 namespace Silkipelago.HarmonyPatches.GameState
@@ -9,6 +8,13 @@ namespace Silkipelago.HarmonyPatches.GameState
     [HarmonyPatch(nameof(UIManager.SetMenuState))]
     public static class PauseMenuButtonPatch
     {
+        private struct ButtonConfig
+        {
+            public Transform TemplateTransform { get; set; }
+            public float ButtonSpacing { get; set; }
+            public int StartChildIndex { get; set; }
+        }
+
         public static void Postfix(UIManager __instance, MainMenuState newState)
         {
             BasePatch.SafeExecuteVoid(() => HandleSetMenuState(__instance, newState), nameof(PauseMenuButtonPatch), nameof(Postfix));
@@ -17,51 +23,80 @@ namespace Silkipelago.HarmonyPatches.GameState
         private static void HandleSetMenuState(UIManager __instance, MainMenuState newState)
         {
             if (newState != MainMenuState.PAUSE_MENU)
-            {
                 return;
-            }
-            var pauseMenuScreen = __instance.pauseMenuScreen;
-            var menuObject = pauseMenuScreen.gameObject;
-            var containerTransform = menuObject.transform.Find("Container");
-            var controlsTransform = containerTransform.Find("Controls");
 
+            if (!TryGetControlsTransform(__instance, out var controlsTransform))
+                return;
+
+            var buttonConfig = GetButtonConfiguration(controlsTransform);
+            RemoveExistingCustomButtons(controlsTransform);
+            CreateArchipelagoButtons(controlsTransform, buttonConfig);
+        }
+
+        private static bool TryGetControlsTransform(UIManager uiManager, out Transform controlsTransform)
+        {
+            try
+            {
+                var pauseMenuScreen = uiManager.pauseMenuScreen;
+                var menuObject = pauseMenuScreen.gameObject;
+                var containerTransform = menuObject.transform.Find("Container");
+                controlsTransform = containerTransform?.Find("Controls");
+                return controlsTransform != null;
+            }
+            catch
+            {
+                controlsTransform = null;
+                return false;
+            }
+        }
+
+        private static ButtonConfig GetButtonConfiguration(Transform controlsTransform)
+        {
             var firstChildTransform = controlsTransform.GetChild(0);
             var firstButtonRect = firstChildTransform.GetComponent<RectTransform>();
             var buttonSpacing = firstButtonRect.sizeDelta.y + 10f;
 
-            // Remove existing custom buttons
-            var existingArchipelagoButton = controlsTransform.Find("ArchipelagoButton");
-            if (existingArchipelagoButton != null)
+            return new ButtonConfig
             {
-                UnityEngine.Object.Destroy(existingArchipelagoButton.gameObject);
-            }
+                TemplateTransform = firstChildTransform,
+                ButtonSpacing = buttonSpacing,
+                StartChildIndex = controlsTransform.childCount
+            };
+        }
 
-            var existingToggleAct3Button = controlsTransform.Find("ToggleAct3Button");
-            if (existingToggleAct3Button != null)
-            {
-                UnityEngine.Object.Destroy(existingToggleAct3Button.gameObject);
-            }
+        private static void RemoveExistingCustomButtons(Transform controlsTransform)
+        {
+            RemoveButtonIfExists(controlsTransform, "ArchipelagoButton");
+            RemoveButtonIfExists(controlsTransform, "ToggleAct3Button");
+        }
 
-            // Create Archipelago button
+        private static void RemoveButtonIfExists(Transform parent, string buttonName)
+        {
+            var existing = parent.Find(buttonName);
+            if (existing != null)
+                UnityEngine.Object.Destroy(existing.gameObject);
+        }
+
+        private static void CreateArchipelagoButtons(Transform controlsTransform, ButtonConfig config)
+        {
             CreateCustomButton(
-                firstChildTransform,
+                config.TemplateTransform,
                 controlsTransform,
                 "ArchipelagoButton",
                 "Archipelago",
-                firstButtonRect,
-                buttonSpacing,
-                controlsTransform.childCount
+                config.TemplateTransform.GetComponent<RectTransform>(),
+                config.ButtonSpacing,
+                config.StartChildIndex
             );
 
-            // Create Toggle Act 3 button (positioned below Archipelago button)
             CreateCustomButton(
-                firstChildTransform,
+                config.TemplateTransform,
                 controlsTransform,
                 "ToggleAct3Button",
                 "Toggle Act 3",
-                firstButtonRect,
-                buttonSpacing,
-                controlsTransform.childCount
+                config.TemplateTransform.GetComponent<RectTransform>(),
+                config.ButtonSpacing,
+                config.StartChildIndex + 1
             );
         }
 
