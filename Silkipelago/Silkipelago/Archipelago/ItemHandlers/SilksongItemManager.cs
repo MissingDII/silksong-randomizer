@@ -25,7 +25,7 @@ namespace Silkipelago.Archipelago.ItemHandlers
 
                 var itemName = receivedItem.ItemName;
 
-                if (itemName.EndsWith("Rosaries")) { PlayerDataHandler.addRosary(itemName); return; }
+                if (itemName.EndsWith("Rosaries")) { PlayerDataHandler.AddRosary(itemName); return; }
                 if (itemName.EndsWith("Shell Shards")) { PlayerDataHandler.addShards(itemName); return; }
 
                 var inGameName = ArchipelagoItemIds.GetInGameName(itemName);
@@ -40,6 +40,8 @@ namespace Silkipelago.Archipelago.ItemHandlers
                     PlayerDataIds.MELODIES.Contains(inGameName) ||
                     PlayerDataIds.CREST.Contains(inGameName))
                     PlayerDataHandler.ChangeBooleanValue(inGameName, true);
+                else if (PlayerDataIds.SILK_HEART.Equals(inGameName))
+                    PlayerDataHandler.AddToIntValue(inGameName);
                 else if (ToolsIds.SILK_ABILITIES.Contains(inGameName))
                     ToolItemHandler.unlockTool(inGameName);
                 else if (CrestIds.CRESTS.Contains(inGameName))

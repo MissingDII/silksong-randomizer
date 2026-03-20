@@ -37,19 +37,20 @@ namespace Silkipelago.HarmonyPatches.Item
 
         public static bool HandlePlayerDataFieldChange(string fieldName, SilksongLocationChecker locationChecker)
         {
-            // Block crest changes if Eva is randomized
+
+            if (IsSilkHeart(fieldName) && locationChecker.LocationExists(ArchipelagoLocationIds.GetArchipelagoName(BossIds.BELL_BEAST)))
+            {
+                return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
+            }
             if (IsCrestField(fieldName) && locationChecker.LocationExists("Eva: 0 Slots"))
                 return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
 
-            // Block chapel changes if  crest are randomized
             if (IsChapelField(fieldName) && locationChecker.LocationExists(ArchipelagoLocationIds.GetArchipelagoName(CrestIds.REAPER)))
                 return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
 
-            // Block silk abilities
             if (IsSilkAbility(fieldName))
                 return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
 
-            // Track cutscenes and bosses
             if (IsTrackableLocation(fieldName))
             {
                 TrackLocation(fieldName, locationChecker, useLocationIds: false);
@@ -65,6 +66,9 @@ namespace Silkipelago.HarmonyPatches.Item
 
             return MethodPrefix.RUN_ORIGINAL_METHOD;
         }
+        private static bool IsSilkHeart(string fieldName)
+            => PlayerDataIds.SILK_HEART.Equals(fieldName);
+
 
         private static bool IsCrestField(string fieldName)
             => PlayerDataIds.CREST.Contains(fieldName);

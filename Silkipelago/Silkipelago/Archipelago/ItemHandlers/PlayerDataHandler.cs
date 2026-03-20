@@ -13,7 +13,14 @@ namespace Silkipelago.Archipelago.ItemHandlers
             instance.SetBool(booleanName, newValue);
         }
 
-        public static void addRosary(string rosary)
+        public static void AddToIntValue(string intName)
+        {
+            var instance = PlayerData.instance;
+            SilksongItemManager.ItemToReceive++;
+            instance.SetInt(intName, instance.GetInt(intName) + 1);
+        }
+
+        public static void AddRosary(string rosary)
         {
             var instance = PlayerData.instance;
             int amount;

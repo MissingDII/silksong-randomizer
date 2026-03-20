@@ -1,4 +1,5 @@
 using HarmonyLib;
+using Silkipelago.Constants;
 using System;
 using UnityEngine;
 
@@ -33,10 +34,14 @@ namespace Silkipelago.HarmonyPatches.Item
 
         private static bool HandleDie(HealthManager __instance, AttackTypes attackType)
         {
-            // Log enemy death
+
             BasePatch.Logger?.LogInfo($"[HealthManager.Die] {__instance.gameObject.name} died from attack type: {attackType}");
 
-            // TODO: Add check for bosses where setBool is not called
+            if (BossIds.BOSSES.Contains(__instance.gameObject.name))
+            {
+                var locationId = ArchipelagoLocationIds.GetArchipelagoName(__instance.gameObject.name);
+                ArchipelagoPlugin.App.LocationChecker.AddCheckedLocation(locationId);
+            }
             return true;
         }
     }

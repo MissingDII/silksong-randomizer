@@ -7,6 +7,7 @@ namespace Silkipelago.Constants
     /// </summary>
     public static class PlayerDataIds
     {
+        public const string SILK_HEART = "silkRegenMax";
         //Crest upgrades
         public const string YELLOW_VESTICREST = "UnlockedExtraYellowSlot";
         public const string BLUE_VESTICREST = "UnlockedExtraBlueSlot";

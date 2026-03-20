@@ -71,7 +71,7 @@ namespace Silkipelago.Constants
 
         //bosses
         { "Defeat Moss Mother", PlayerDataIds.MOSS_MOTHER_DEFEATED },
-        { "Defeat Bell Beast",PlayerDataIds.BELL_BEAST_DEFEATED },
+        { "Defeat Bell Beast",BossIds.BELL_BEAST },
         { "Defeat Bell Eater",PlayerDataIds.BEASTLING_CALL },
         { "Defeat Fourth Chorus", PlayerDataIds.SONG_GOLEM_DEFEATED },
         { "Defeat Moorwing", PlayerDataIds.VAMPIRE_GNAT_BOSS_DEFEATED },
@@ -109,7 +109,7 @@ namespace Silkipelago.Constants
         { "Defeat First Sinner", PlayerDataIds.FIRST_WEAVER_DEFEATED },
         { "Defeat Lace", PlayerDataIds.LACE_DEFEATED },
         { "Defeat Lace (Cradle)", PlayerDataIds.LACE_TOWER_DEFEATED },
-        { "Defeat Grand Mother Silk", SaveSlotCompletionIcons.CompletionState.Act2Regular.ToString() }, // TODO
+        { "Defeat Grand Mother Silk", SaveSlotCompletionIcons.CompletionState.Act2Regular.ToString() },
         { "Defeat Crust King Khann", PlayerDataIds.CORAL_KING_DEFEATED },
         { "Defeat Nyleth", PlayerDataIds.FLOWER_QUEEN_DEFEATED },
         { "Defeat Skarrsinger Karmelita", PlayerDataIds.ANT_QUEEN_DEFEATED }
