@@ -11,7 +11,7 @@ namespace Silkipelago.Constants
          //Crest
          { "Progressive Hunter Crest", CrestIds.HUNTER },
          { "Reaper Crest", CrestIds.REAPER },
-         { "Wanderer Crest Crest", CrestIds.WANDERER },
+         { "Wanderer Crest", CrestIds.WANDERER },
          { "Beast Crest", CrestIds.BEAST },
          { "Architect Crest", CrestIds.ARCHITECT },
          { "Shaman Crest", CrestIds.SHAMAN },

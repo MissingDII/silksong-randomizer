@@ -11,6 +11,7 @@ namespace Silkipelago.HarmonyPatches.GameState
         private struct ButtonConfig
         {
             public Transform TemplateTransform { get; set; }
+            public RectTransform TemplateRect { get; set; }
             public float ButtonSpacing { get; set; }
             public int StartChildIndex { get; set; }
         }
@@ -30,7 +31,7 @@ namespace Silkipelago.HarmonyPatches.GameState
 
             var buttonConfig = GetButtonConfiguration(controlsTransform);
             RemoveExistingCustomButtons(controlsTransform);
-            CreateArchipelagoButtons(controlsTransform, buttonConfig);
+            CreateArchipelagoButtons(controlsTransform, ref buttonConfig);
         }
 
         private static bool TryGetControlsTransform(UIManager uiManager, out Transform controlsTransform)
@@ -59,6 +60,7 @@ namespace Silkipelago.HarmonyPatches.GameState
             return new ButtonConfig
             {
                 TemplateTransform = firstChildTransform,
+                TemplateRect = firstButtonRect,
                 ButtonSpacing = buttonSpacing,
                 StartChildIndex = controlsTransform.childCount
             };
@@ -77,26 +79,31 @@ namespace Silkipelago.HarmonyPatches.GameState
                 UnityEngine.Object.Destroy(existing.gameObject);
         }
 
-        private static void CreateArchipelagoButtons(Transform controlsTransform, ButtonConfig config)
+        private static void CreateArchipelagoButtons(Transform controlsTransform, ref ButtonConfig config)
         {
+            var templateTransform = config.TemplateTransform;
+            var templateRect = config.TemplateRect;
+            var buttonSpacing = config.ButtonSpacing;
+            var startIndex = config.StartChildIndex;
+
             CreateCustomButton(
-                config.TemplateTransform,
+                templateTransform,
                 controlsTransform,
                 "ArchipelagoButton",
                 "Archipelago",
-                config.TemplateTransform.GetComponent<RectTransform>(),
-                config.ButtonSpacing,
-                config.StartChildIndex
+                templateRect,
+                buttonSpacing,
+                startIndex
             );
 
             CreateCustomButton(
-                config.TemplateTransform,
+                templateTransform,
                 controlsTransform,
                 "ToggleAct3Button",
                 "Toggle Act 3",
-                config.TemplateTransform.GetComponent<RectTransform>(),
-                config.ButtonSpacing,
-                config.StartChildIndex + 1
+                templateRect,
+                buttonSpacing,
+                startIndex + 1
             );
         }
 
