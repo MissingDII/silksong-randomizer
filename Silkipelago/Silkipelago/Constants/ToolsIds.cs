@@ -4,8 +4,6 @@ namespace Silkipelago.Constants
 {
     public static class ToolsIds
     {
-        // Eva Upgrade
-        public const string SYLPHSONG = "White Ring";
         //silk abilities
         public const string SILK_SPEAR = "Silk Spear";
         public const string THREAD_STORM = "Thread Sphere";
@@ -22,6 +20,10 @@ namespace Silkipelago.Constants
             SHARP_DART,
             RUNE_RAGE,
             PALE_NAILS
+        ];
+
+        public static readonly List<string> TOOLs =
+        [
         ];
     }
 }

@@ -54,16 +54,6 @@ namespace Silkipelago
                 var questName = "Courier Delivery Bonebottom";
                 _logger.LogInfo("trying to add quest");
                 var fullQuestBase = QuestManager.GetQuest(questName);
-                var completion = fullQuestBase.Completion;
-                if (!completion.IsAccepted)
-                {
-                    completion.IsAccepted = true;
-                    completion.HasBeenSeen = true;
-                }
-                fullQuestBase.Completion = completion;
-                var rewardItem = fullQuestBase.rewardItem;
-                rewardItem.Get();
-                var test = rewardItem.GetSavedAmount();
                 return;
             }
             if (Input.GetKeyDown(KeyCode.Keypad3))

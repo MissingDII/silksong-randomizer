@@ -71,7 +71,7 @@ namespace Silkipelago.HarmonyPatches.Item
 
 
         private static bool IsCrestField(string fieldName)
-            => PlayerDataIds.CREST.Contains(fieldName);
+            => PlayerDataIds.EVA_UPGRADES.Contains(fieldName);
 
         private static bool IsChapelField(string fieldName)
             => PlayerDataIds.CHAPELS.Contains(fieldName);

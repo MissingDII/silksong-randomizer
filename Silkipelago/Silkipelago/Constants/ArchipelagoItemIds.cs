@@ -60,6 +60,7 @@ namespace Silkipelago.Constants
          { "Memory Locket", CollectablesIds.MEMORY_LOCKET },
          { "Craft Metal", CollectablesIds.CRAFT_METAL },
          //abilities
+         { "Sylphsong", PlayerDataIds.SYLPHSONG },
          { "Drifter's Cloak", PlayerDataIds.HAS_DRIFTER_CLOAK },
          { "Cling Grip", PlayerDataIds.HAS_WALL_JUMP },
          { "Swift Step", PlayerDataIds.HAS_DASH },

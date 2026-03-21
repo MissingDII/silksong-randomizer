@@ -32,9 +32,6 @@ namespace Silkipelago.HarmonyPatches.Tools
             if (IsBossLockedTool(tool) && locationChecker.LocationExists(PlayerDataIds.FIRST_WEAVER_DEFEATED))
                 return true;
 
-            if (IsEvaLockedTool(tool) && locationChecker.LocationExists(LocationConstants.EvaUpgradeLocation))
-                return true;
-
             if (IsSilkAbility(tool))
                 return CheckAndTrackSilkAbilityLocation(tool, locationChecker);
 
@@ -43,9 +40,6 @@ namespace Silkipelago.HarmonyPatches.Tools
 
         private static bool IsBossLockedTool(ToolItem tool)
             => tool.name is ToolsIds.RUNE_RAGE or ToolsIds.CROSS_STITCH;
-
-        private static bool IsEvaLockedTool(ToolItem tool)
-            => tool.name == ToolsIds.SYLPHSONG;
 
         private static bool IsSilkAbility(ToolItem tool)
             => ToolsIds.SILK_ABILITIES.Contains(tool.name);

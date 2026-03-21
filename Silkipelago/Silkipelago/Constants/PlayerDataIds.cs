@@ -8,14 +8,16 @@ namespace Silkipelago.Constants
     public static class PlayerDataIds
     {
         public const string SILK_HEART = "silkRegenMax";
-        //Crest upgrades
+        //Eva upgrades
         public const string YELLOW_VESTICREST = "UnlockedExtraYellowSlot";
         public const string BLUE_VESTICREST = "UnlockedExtraBlueSlot";
+        public const string SYLPHSONG = "HasBoundCrestUpgrader";
 
-        public static readonly List<string> CREST =
+        public static readonly List<string> EVA_UPGRADES =
         [
             YELLOW_VESTICREST,
-            BLUE_VESTICREST
+            BLUE_VESTICREST,
+            SYLPHSONG
         ];
         //chapels
         public const string REAPER_CHAPEL = "chapelClosed_reaper";

@@ -38,11 +38,11 @@ namespace Silkipelago.Archipelago.ItemHandlers
                 if (PlayerDataIds.ABILITIES.Contains(inGameName) ||
                     PlayerDataIds.KEYS.Contains(inGameName) ||
                     PlayerDataIds.MELODIES.Contains(inGameName) ||
-                    PlayerDataIds.CREST.Contains(inGameName))
+                    PlayerDataIds.EVA_UPGRADES.Contains(inGameName))
                     PlayerDataHandler.ChangeBooleanValue(inGameName, true);
                 else if (PlayerDataIds.SILK_HEART.Equals(inGameName))
                     PlayerDataHandler.AddToIntValue(inGameName);
-                else if (ToolsIds.SILK_ABILITIES.Contains(inGameName))
+                else if (ToolsIds.SILK_ABILITIES.Contains(inGameName) || ToolsIds.TOOLs.Contains(inGameName))
                     ToolItemHandler.unlockTool(inGameName);
                 else if (CrestIds.CRESTS.Contains(inGameName))
                     CrestHandler.UnlockCrest(inGameName);
