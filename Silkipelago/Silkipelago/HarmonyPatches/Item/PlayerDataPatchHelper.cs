@@ -49,18 +49,21 @@ namespace Silkipelago.HarmonyPatches.Item
                 return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
 
             if (IsSilkAbility(fieldName))
+            {
+                TrackLocation(fieldName, locationChecker);
                 return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
+            }
 
             if (IsTrackableLocation(fieldName))
             {
-                TrackLocation(fieldName, locationChecker, useLocationIds: false);
+                TrackLocation(fieldName, locationChecker);
                 return MethodPrefix.RUN_ORIGINAL_METHOD;
             }
 
             // Track randomized abilities, keys, melodies
             if (IsRandomizableContent(fieldName))
             {
-                if (TrackLocation(fieldName, locationChecker, useLocationIds: true))
+                if (TrackLocation(fieldName, locationChecker))
                     return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
             }
 
@@ -87,11 +90,9 @@ namespace Silkipelago.HarmonyPatches.Item
                PlayerDataIds.KEYS.Contains(fieldName) ||
                PlayerDataIds.MELODIES.Contains(fieldName);
 
-        private static bool TrackLocation(string fieldName, SilksongLocationChecker locationChecker, bool useLocationIds)
+        private static bool TrackLocation(string fieldName, SilksongLocationChecker locationChecker)
         {
-            var locationId = useLocationIds
-                ? ArchipelagoItemIds.GetArchipelagoName(fieldName)
-                : ArchipelagoLocationIds.GetArchipelagoName(fieldName);
+            var locationId = ArchipelagoLocationIds.GetArchipelagoName(fieldName);
 
             if (locationChecker.LocationExists(locationId))
             {

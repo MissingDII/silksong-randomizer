@@ -44,6 +44,7 @@ namespace Silkipelago.HarmonyPatches.Quest
     [HarmonyPatch(nameof(FullQuestBase.SilentlyComplete))]
     public static class QuestManagerSilentPatch
     {
+        // patch upgrade Quest for both final soul snare quest and bell quest
         public static bool Prefix(FullQuestBase __instance)
         {
             return BasePatch.SafeExecute(

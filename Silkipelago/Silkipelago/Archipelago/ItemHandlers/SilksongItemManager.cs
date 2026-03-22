@@ -25,6 +25,9 @@ namespace Silkipelago.Archipelago.ItemHandlers
 
                 var itemName = receivedItem.ItemName;
 
+                // Display item notification
+                ArchipelagoPlugin.App.UIContext.ItemNotification.ShowItemNotification(itemName);
+
                 if (itemName.EndsWith("Rosaries")) { PlayerDataHandler.AddRosary(itemName); return; }
                 if (itemName.EndsWith("Shell Shards")) { PlayerDataHandler.addShards(itemName); return; }
 
@@ -34,6 +37,7 @@ namespace Silkipelago.Archipelago.ItemHandlers
                     Logger.LogWarning($"Unrecognised Item name: {itemName}");
                     return;
                 }
+                
 
                 if (PlayerDataIds.ABILITIES.Contains(inGameName) ||
                     PlayerDataIds.KEYS.Contains(inGameName) ||

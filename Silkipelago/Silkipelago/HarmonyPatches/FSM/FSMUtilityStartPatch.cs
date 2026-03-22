@@ -1,7 +1,7 @@
 using HarmonyLib;
 using HutongGames.PlayMaker;
-using System;
 using Silkipelago.Constants.FSM;
+using System;
 
 namespace Silkipelago.HarmonyPatches.FSM
 {
@@ -28,7 +28,7 @@ namespace Silkipelago.HarmonyPatches.FSM
                 return;
 
             // Only track Crest Upgrade Shrine Dialogue FSM
-            if (fsmInstance.Name != EvaDialogueConstants.DialogueFsmName || 
+            if (fsmInstance.Name != EvaDialogueConstants.DialogueFsmName ||
                 playMakerFsm.gameObject.name != EvaDialogueConstants.OwnerName)
                 return;
 
@@ -36,14 +36,12 @@ namespace Silkipelago.HarmonyPatches.FSM
             var fsmId = playMakerFsm.GetInstanceID();
             if (!RedirectedFsms.Contains(fsmId))
             {
-                RedirectBindPrepareTransition(fsmInstance);
-                RedirectSetPreDlgTransition(fsmInstance);
-                RedirectUpgradeSlot1PreDlgTransition(fsmInstance);
+                RedirectCheckUpgrade(fsmInstance);
                 RedirectedFsms.Add(fsmId);
             }
         }
 
-        private static void RedirectBindPrepareTransition(Fsm fsmInstance)
+        private static void RedirectCheckUpgrade(Fsm fsmInstance)
         {
             try
             {
@@ -71,71 +69,7 @@ namespace Silkipelago.HarmonyPatches.FSM
             }
             catch (Exception ex)
             {
-                BasePatch.Logger.LogErrorException(nameof(FSMUtilityStartPatch), nameof(RedirectBindPrepareTransition), ex);
-            }
-        }
-
-        private static void RedirectSetPreDlgTransition(Fsm fsmInstance)
-        {
-            try
-            {
-                var setPreDlgState = fsmInstance.GetState(EvaDialogueConstants.SetPreDlgName);
-                if (setPreDlgState == null)
-                    return;
-
-                var transitions = setPreDlgState.Transitions;
-                if (transitions == null || transitions.Length == 0)
-                    return;
-
-                foreach (var transition in transitions)
-                {
-                    if (transition.ToState == EvaDialogueConstants.CheckCombo1Transition)
-                    {
-                        transition.ToState = EvaDialogueConstants.EndDialogueName;
-                        var endDialogueState = fsmInstance.GetState(EvaDialogueConstants.EndDialogueName);
-                        if (endDialogueState != null)
-                        {
-                            transition.ToFsmState = endDialogueState;
-                        }
-                        return;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                BasePatch.Logger.LogErrorException(nameof(FSMUtilityStartPatch), nameof(RedirectSetPreDlgTransition), ex);
-            }
-        }
-
-        private static void RedirectUpgradeSlot1PreDlgTransition(Fsm fsmInstance)
-        {
-            try
-            {
-                var upgradeSlot1State = fsmInstance.GetState(EvaDialogueConstants.UpgradeSlot1PreDlgName);
-                if (upgradeSlot1State == null)
-                    return;
-
-                var transitions = upgradeSlot1State.Transitions;
-                if (transitions == null || transitions.Length == 0)
-                    return;
-
-                foreach (var transition in transitions)
-                {
-                    if (transition.ToState == EvaDialogueConstants.UpgradeSequence2Transition)
-                    {
-                        transition.ToState = EvaDialogueConstants.EndDialogueName;
-                        var endDialogueState = fsmInstance.GetState(EvaDialogueConstants.EndDialogueName);
-                        if (endDialogueState != null)
-                        {
-                            transition.ToFsmState = endDialogueState;
-                        }
-                        return;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                BasePatch.Logger.LogErrorException(nameof(FSMUtilityStartPatch), nameof(RedirectUpgradeSlot1PreDlgTransition), ex);
+                BasePatch.Logger.LogErrorException(nameof(FSMUtilityStartPatch), nameof(RedirectCheckUpgrade), ex);
             }
         }
     }

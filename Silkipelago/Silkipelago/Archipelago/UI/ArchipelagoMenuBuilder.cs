@@ -122,7 +122,7 @@ namespace Silkipelago.Archipelago.UI
 
             var txt = go.AddComponent<UIText>();
             txt.text = label;
-            txt.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+            txt.font = ArchipelagoUIStyle.GetUIFont();
             txt.fontSize = size;
             txt.alignment = anchor;
             txt.color = ArchipelagoUIStyle.SilksongTextPrimary;
@@ -175,7 +175,7 @@ namespace Silkipelago.Archipelago.UI
             textGO.transform.SetParent(inputGO.transform, false);
 
             var txt = textGO.AddComponent<UIText>();
-            txt.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+            txt.font = ArchipelagoUIStyle.GetUIFont();
             txt.fontSize = 14;
             txt.color = ArchipelagoUIStyle.SilksongTextSecondary;
             txt.alignment = TextAnchor.MiddleLeft;
@@ -196,7 +196,7 @@ namespace Silkipelago.Archipelago.UI
 
             var ph = placeholderGO.AddComponent<UIText>();
             ph.text = label;
-            ph.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+            ph.font = ArchipelagoUIStyle.GetUIFont();
             ph.fontSize = 14;
             ph.color = new Color(0.6f, 0.55f, 0.48f, 0.7f);
             ph.alignment = TextAnchor.MiddleLeft;
@@ -261,7 +261,7 @@ namespace Silkipelago.Archipelago.UI
 
             var txt = textGO.AddComponent<UIText>();
             txt.text = label;
-            txt.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+            txt.font = ArchipelagoUIStyle.GetUIFont();
             txt.fontSize = 15;
             txt.alignment = TextAnchor.MiddleCenter;
             txt.color = ArchipelagoUIStyle.SilksongTextPrimary;

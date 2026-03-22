@@ -5,6 +5,8 @@ namespace Silkipelago.Archipelago.UI
 {
     public class ArchipelagoUIStyle
     {
+        private static Font _uiFont;
+
         // Silksong aesthetic colors
         public static readonly Color SilksongBackground = new Color(0.02f, 0.02f, 0.02f, 0.95f);
         public static readonly Color SilksongPanelBackground = new Color(0.06f, 0.06f, 0.07f, 0.9f);
@@ -14,6 +16,17 @@ namespace Silkipelago.Archipelago.UI
         public static readonly Color SilksongButtonBackground = new Color(0.10f, 0.10f, 0.11f, 1f);
         public static readonly Color SilksongButtonHover = new Color(0.16f, 0.16f, 0.17f, 1f);
         public static readonly Color SilksongAccent = new Color(0.90f, 0.90f, 0.92f, 1f);
+
+        /// <summary>
+        /// Gets the Arial font for UI text elements.
+        /// </summary>
+        public static Font GetUIFont()
+        {
+            if (_uiFont == null)
+                _uiFont = Resources.GetBuiltinResource<Font>("Arial.ttf");
+
+            return _uiFont;
+        }
 
         public static void CreateCornerOrnamentalFrame(Transform parent)
         {

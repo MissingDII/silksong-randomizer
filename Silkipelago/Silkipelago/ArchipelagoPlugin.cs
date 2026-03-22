@@ -49,6 +49,9 @@ namespace Silkipelago
 
         public void Update()
         {
+            // Update item notifications
+            App.UIContext.ItemNotification.Update();
+
             if (Input.GetKeyDown(KeyCode.Keypad1))
             {
                 var questName = "Courier Delivery Bonebottom";

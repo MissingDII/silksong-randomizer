@@ -1,7 +1,7 @@
 using HarmonyLib;
 using HutongGames.PlayMaker;
-using System;
 using Silkipelago.Constants.FSM;
+using System;
 
 namespace Silkipelago.HarmonyPatches.FSM
 {
@@ -25,15 +25,16 @@ namespace Silkipelago.HarmonyPatches.FSM
                 return;
 
             // Only track Crest Upgrade Shrine Dialogue FSM
-            if (fsmInstance.Name != EvaDialogueConstants.DialogueFsmName || 
+            if (fsmInstance.Name != EvaDialogueConstants.DialogueFsmName ||
                 playMakerFsm.gameObject.name != EvaDialogueConstants.OwnerName)
                 return;
 
             var currentState = fsmInstance.ActiveStateName ?? "";
-
-            BasePatch.Logger.LogInfo($"[FSM State Change] Crest Upgrade Shrine Dialogue: {currentState}");
-
-            HandleEvaUpgradeInteraction(currentState);
+            if (currentState != "Pause" && currentState != "Idle")
+            {
+                BasePatch.Logger.LogInfo($"[FSM State Change] Crest Upgrade Shrine Dialogue: {currentState}");
+                HandleEvaUpgradeInteraction(currentState);
+            }
         }
 
         private static void HandleEvaUpgradeInteraction(string currentState)
@@ -53,10 +54,11 @@ namespace Silkipelago.HarmonyPatches.FSM
 
         private static bool IsDialogueInteractionState(string state)
         {
-            return state is EvaDialogueConstants.MeetDlgState or 
-                          EvaDialogueConstants.RepeatDlgState or 
-                          EvaDialogueConstants.GetUpgradePointsState or 
-                          EvaDialogueConstants.UpgradeSlot1PreDlgName;
+            return state is EvaDialogueConstants.MeetDlgState or
+                          EvaDialogueConstants.RepeatDlgState or
+                          EvaDialogueConstants.GetUpgradePointsState or
+                          EvaDialogueConstants.UpgradeSlot1PreDlgName or
+                          EvaDialogueConstants.CrestUpgrade1dlg;
         }
 
         private static int CountUnlockedCrestSlots()

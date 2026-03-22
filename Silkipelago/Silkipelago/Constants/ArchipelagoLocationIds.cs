@@ -40,10 +40,10 @@ namespace Silkipelago.Constants
         { "Learn: Architect's Melody", PlayerDataIds.ARCHITECT_MELODY },
         { "Learn: Vaultkeeper's Melody", PlayerDataIds.VAULTKEEPER_MELODY },
         //Tools skill
-        { "Weaver Spire: Silkspear", ToolsIds.SILK_SPEAR },
-        { "Weaver Spire: Thread Storm",ToolsIds.THREAD_STORM  },
-        { "Weaver Spire: Sharpdart", ToolsIds.SHARP_DART },
-        { "Acquire Pale Nails", ToolsIds.PALE_NAILS },
+        { "Weaver Spire: Silkspear", PlayerDataIds.SILK_SPEAR },
+        { "Weaver Spire: Thread Storm", PlayerDataIds.THREAD_STORM  },
+        { "Weaver Spire: Sharpdart", PlayerDataIds.SHARP_DART },
+        { "Acquire Pale Nails", PlayerDataIds.PALE_NAILS },
         //Cutscenes
         { "Bound the Needle", PlayerDataIds.BIND_CUTSCENE },
             //Shrines
