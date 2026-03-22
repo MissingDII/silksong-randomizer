@@ -18,16 +18,16 @@ namespace Silkipelago.Archipelago.UI
 
         // Layout
         private const int MAX_NOTIFICATIONS = 10;
-        private const float NOTIFICATION_HEIGHT = 75f;
+        private const float NOTIFICATION_HEIGHT = 50f;
         private const float NOTIFICATION_WIDTH = 300f;
         private const float TOP_PADDING = 20f;
         private const float RIGHT_PADDING = 20f;
-        private const float NOTIFICATION_SPACING = 5f;
+        private const float NOTIFICATION_SPACING = 3f;
         private const float TEXT_HORIZONTAL_PADDING = 10f;
         private const float HEADER_SPACING = 10f;
 
         // Styling
-        private const int FONT_SIZE = 16;
+        private const int FONT_SIZE = 18;
         private const int OUTLINE_DISTANCE = 1;
 
         // Alpha
@@ -50,7 +50,7 @@ namespace Silkipelago.Archipelago.UI
 
         // Text properties
         private static readonly Color TEXT_COLOR = Color.white;
-        private const string HEADER_TEXT = "<-- received items -->";
+        private const string HEADER_TEXT = "<-- Received Items -->";
 
         public ItemNotificationUI()
         {
