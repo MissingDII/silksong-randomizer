@@ -13,12 +13,12 @@ namespace Silkipelago.Archipelago.UI
         private readonly Queue<string> _pendingNotifications = new();
 
         // Timing
-        private const float DISPLAY_DURATION = 7f;
+        private const float DISPLAY_DURATION = 10f;
         private const float FADE_START_TIME = 0.8f;
 
         // Layout
         private const int MAX_NOTIFICATIONS = 10;
-        private const float NOTIFICATION_HEIGHT = 50f;
+        private const float NOTIFICATION_HEIGHT = 30f;
         private const float NOTIFICATION_WIDTH = 300f;
         private const float TOP_PADDING = 20f;
         private const float RIGHT_PADDING = 20f;
@@ -28,6 +28,7 @@ namespace Silkipelago.Archipelago.UI
 
         // Styling
         private const int FONT_SIZE = 18;
+        private const int HEADER_FONT_SIZE = 20;
         private const int OUTLINE_DISTANCE = 1;
 
         // Alpha
@@ -50,7 +51,7 @@ namespace Silkipelago.Archipelago.UI
 
         // Text properties
         private static readonly Color TEXT_COLOR = Color.white;
-        private const string HEADER_TEXT = "<-- Received Items -->";
+        private const string HEADER_TEXT = "Received Items";
 
         public ItemNotificationUI()
         {
@@ -103,7 +104,7 @@ namespace Silkipelago.Archipelago.UI
             var headerText = _headerGO.AddComponent<Text>();
             headerText.text = HEADER_TEXT;
             headerText.font = _cachedFont;
-            headerText.fontSize = FONT_SIZE;
+            headerText.fontSize = HEADER_FONT_SIZE;
             headerText.fontStyle = FontStyle.Bold;
             headerText.alignment = TextAnchor.MiddleLeft;
             headerText.color = TEXT_COLOR;
