@@ -1,32 +1,47 @@
 ﻿using KaitoKid.Utilities.Interfaces;
 using Silkipelago.Constants;
+using System.Linq;
 
 namespace Silkipelago.Archipelago.ItemHandlers
 {
     public static class ShrineBellHandler
     {
+        private const int MAX_BELLS = 5;
         private static ILogger Logger => ArchipelagoPlugin.App.Logger;
-        public static void addBell(string shrineBellName)
+
+        public static void AddBell(string shrineBellName)
         {
-            var bellCount = ArchipelagoPlugin.App.ArchipelagoClient.GetReceivedItemCount("Grand Gate Bell");
-            Logger.LogInfo($"Received bell number {bellCount}/5");
+            var bellCount = CountReceivedBells();
+            Logger.LogInfo($"Received bell number {bellCount}/{MAX_BELLS}");
             PlayerDataHandler.ChangeBooleanValue(shrineBellName, true);
-            var fullquestBase = QuestManager.GetQuest(QuestIds.GRAND_GATE_BELLSHRINES);
-            var completion = fullquestBase.Completion;
-            if (!completion.IsAccepted)
+            UpdateQuestCompletion(bellCount);
+        }
+
+        private static int CountReceivedBells()
+        {
+            return PlayerDataIds.SHRINES
+                .Select(bell => ArchipelagoItemIds.GetArchipelagoName(bell))
+                .Count(itemId => ArchipelagoPlugin.App.ArchipelagoClient.GetReceivedItemCount(itemId) > 0);
+        }
+
+        private static void UpdateQuestCompletion(int bellCount)
+        {
+            var quest = QuestManager.GetQuest(QuestIds.GRAND_GATE_BELLSHRINES);
+            var completion = quest.Completion;
+
+            if (completion.IsAccepted)
+            {
+                if (bellCount >= MAX_BELLS)
+                {
+                    completion.SetCompleted();
+                }
+            }
+            else
             {
                 completion.IsAccepted = true;
                 completion.HasBeenSeen = true;
             }
-            if (bellCount >= 5)
-            {
-                completion.SetCompleted();
-            }
-            fullquestBase.Completion = completion;
-
-
-
-
+            quest.Completion = completion;
         }
     }
 }

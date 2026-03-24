@@ -133,10 +133,15 @@ namespace Silkipelago.Constants
             SKULL_KING
         ];
 
+        public static readonly List<string> FORCIBLY_STARTED_QUEST = [
+            GRAND_GATE_BELLSHRINES
+        ];
+
         public static readonly List<string> LOCKED_QUEST =
        [
             SILK_DEFEAT_SNARE,
-            BLACK_THREAD_PT6_FLOWER
+            BLACK_THREAD_PT6_FLOWER,
+            GRAND_GATE_BELLSHRINES
        ];
 
     }

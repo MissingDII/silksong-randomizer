@@ -1,28 +1,48 @@
-﻿using Silkipelago.Archipelago.ItemHandlers;
+﻿using HarmonyLib;
+using KaitoKid.Utilities.Interfaces;
+using Silkipelago.Archipelago.ItemHandlers;
 using Silkipelago.Constants;
-using System;
-using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Silkipelago.HarmonyPatches
 {
+    [HarmonyPatch(typeof(GameManager))]
+    [HarmonyPatch(nameof(GameManager.BeginSceneTransition))]
     public static class SceneEventPatch
     {
-        public static void addSceneEvent()
+        public static ILogger Logger => ArchipelagoPlugin.App.Logger;
+
+        public static void Prefix(GameManager.SceneLoadInfo info)
         {
-            SceneManager.sceneLoaded += OnSceneLoaded;
+            BasePatch.SafeExecuteVoid(() => HandleSceneLoading(info), nameof(SceneEventPatch), nameof(Prefix));
         }
 
-        private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        private static void HandleSceneLoading(GameManager.SceneLoadInfo sceneInfo)
         {
-            BasePatch.SafeExecuteVoid(() => HandleSceneLoaded(scene), nameof(SceneEventPatch), nameof(OnSceneLoaded));
-        }
-
-        private static void HandleSceneLoaded(Scene scene)
-        {
-            if (scene.name == "Coral_Judge_Arena")
+            var sceneName = sceneInfo.SceneName;
+            Logger.LogInfo($"Loading scene for {sceneName}");
+            if (sceneName == "Coral_Judge_Arena")
             {
-                HandleCoralJudgeArena();
+                //TODO rewrite
+                //HandleCoralJudgeArena();
+            }
+            //force lace to appear
+            Logger.LogInfo($"{SceneNames.Bone_East_12}");
+            if (sceneName.Equals(SceneNames.Bone_East_12))
+            {
+                ForceLaceNotLeftDocks();
+            }
+        }
+
+        private static void ForceLaceNotLeftDocks()
+        {
+            var location = ArchipelagoLocationIds.GetArchipelagoName(PlayerDataIds.LACE_DEFEATED);
+            var locationChecker = ArchipelagoPlugin.App.LocationChecker;
+            if (!locationChecker.IsLocationChecked(location))
+            {
+                PlayerData.instance.laceLeftDocks = false;
+                PlayerData.instance.defeatedLace1 = false;
+                PlayerData.instance.encounteredLace1Grotto = false;
+                PlayerData.instance.visitedCitadel = false;
             }
         }
 
