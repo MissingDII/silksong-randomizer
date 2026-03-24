@@ -2,13 +2,15 @@
 using KaitoKid.Utilities.Interfaces;
 using Silkipelago.Archipelago.ItemHandlers;
 using Silkipelago.Constants;
+using System.Linq;
 
-namespace Silkipelago.HarmonyPatches
+namespace Silkipelago.HarmonyPatches.Scenes
 {
     [HarmonyPatch(typeof(GameManager))]
     [HarmonyPatch(nameof(GameManager.BeginSceneTransition))]
     public static class SceneEventPatch
     {
+        private const int MAX_BELLS = 5;
         public static ILogger Logger => ArchipelagoPlugin.App.Logger;
 
         public static void Prefix(GameManager.SceneLoadInfo info)
@@ -22,14 +24,25 @@ namespace Silkipelago.HarmonyPatches
             Logger.LogInfo($"Loading scene for {sceneName}");
             if (sceneName == "Coral_Judge_Arena")
             {
-                //TODO rewrite
-                //HandleCoralJudgeArena();
+                HandleCoralJudgeArena();
             }
-            //force lace to appear
             Logger.LogInfo($"{SceneNames.Bone_East_12}");
             if (sceneName.Equals(SceneNames.Bone_East_12))
             {
                 ForceLaceNotLeftDocks();
+            }
+        }
+
+        private static void ForceMoorwingToAppear()
+        {
+            var location = ArchipelagoLocationIds.GetArchipelagoName(PlayerDataIds.VAMPIRE_GNAT_BOSS_DEFEATED);
+            var locationChecker = ArchipelagoPlugin.App.LocationChecker;
+            if (!locationChecker.IsLocationChecked(location))
+            {
+                PlayerData.instance.visitedBellhart = false;
+                PlayerData.instance.visitedBellhartHaunted = false;
+                PlayerData.instance.visitedBellhartSaved = false;
+
             }
         }
 
@@ -63,6 +76,33 @@ namespace Silkipelago.HarmonyPatches
                 }
                 i++;
             }
+        }
+        private static int CountReceivedBells()
+        {
+            return PlayerDataIds.SHRINES
+                .Select(bell => ArchipelagoItemIds.GetArchipelagoName(bell))
+                .Count(itemId => ArchipelagoPlugin.App.ArchipelagoClient.GetReceivedItemCount(itemId) > 0);
+        }
+
+        private static void UpdateBellQuestCompletion()
+        {
+            var bellCount = CountReceivedBells();
+            var quest = QuestManager.GetQuest(QuestIds.GRAND_GATE_BELLSHRINES);
+            var completion = quest.Completion;
+
+            if (completion.IsAccepted)
+            {
+                if (bellCount >= MAX_BELLS)
+                {
+                    completion.SetCompleted();
+                }
+            }
+            else
+            {
+                completion.WasEverCompleted = false;
+                completion.IsCompleted = false;
+            }
+            quest.Completion = completion;
         }
     }
 }

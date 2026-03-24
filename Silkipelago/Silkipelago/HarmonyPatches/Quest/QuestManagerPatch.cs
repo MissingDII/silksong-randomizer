@@ -57,11 +57,6 @@ namespace Silkipelago.HarmonyPatches.Quest
         private static bool HandleSilentCompletion(FullQuestBase quest)
         {
             BasePatch.Logger.LogInfo($"[Quest] SilentlyComplete called for: {quest.name}");
-            if (QuestIds.FORCIBLY_STARTED_QUEST.Contains(quest.name))
-            {
-                //in the case we started a quest ourselves we dont want all the previous ones to complete
-                return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
-            }
             if (QuestIds.ALL_QUESTS.Contains(quest.name))
             {
                 var locationId = ArchipelagoLocationIds.GetArchipelagoName(quest.name);

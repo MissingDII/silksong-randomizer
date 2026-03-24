@@ -36,11 +36,6 @@ namespace Silkipelago.Archipelago.ItemHandlers
                     completion.SetCompleted();
                 }
             }
-            else
-            {
-                completion.IsAccepted = true;
-                completion.HasBeenSeen = true;
-            }
             quest.Completion = completion;
         }
     }

@@ -37,7 +37,7 @@ namespace Silkipelago.Archipelago.ItemHandlers
                     Logger.LogWarning($"Unrecognised Item name: {itemName}");
                     return;
                 }
-                
+
 
                 if (PlayerDataIds.ABILITIES.Contains(inGameName) ||
                     PlayerDataIds.KEYS.Contains(inGameName) ||
@@ -55,7 +55,7 @@ namespace Silkipelago.Archipelago.ItemHandlers
                     CollectablesIds.ITEMS.Contains(inGameName))
                     CollectiblesHandler.addOneCollectible(inGameName);
                 else if (PlayerDataIds.SHRINES.Contains(inGameName))
-                    ShrineBellHandler.addBell(inGameName);
+                    ShrineBellHandler.AddBell(inGameName);
                 else
                     Logger.LogWarning($"No handler for item: {inGameName}");
             }
