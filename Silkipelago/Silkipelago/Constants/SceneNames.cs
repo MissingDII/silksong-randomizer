@@ -42,7 +42,6 @@ namespace Silkipelago.Constants
         public const string Aqueduct_06 = "Aqueduct_06";
         public const string Aqueduct_07 = "Aqueduct_07";
         public const string Aqueduct_08 = "Aqueduct_08";
-        public const string Aueduct_04 = "Aueduct_04";
 
         // Arborium
         public const string Arborium_01 = "Arborium_01";
@@ -278,9 +277,6 @@ namespace Silkipelago.Constants
         public const string Dust_Maze_crossing = "Dust_Maze_crossing";
         public const string Dust_Shack = "Dust_Shack";
 
-        // Global
-        public const string GLOBAL_SHARED = "GLOBAL_SHARED";
-
         // Greymoor
         public const string Greymoor_01 = "Greymoor_01";
         public const string Greymoor_02 = "Greymoor_02";
@@ -382,7 +378,7 @@ namespace Silkipelago.Constants
         public const string Peak_Mask_Maker = "Peak_Mask_Maker";
 
         // Pilgrims
-        public const string Pilgrims_Rest = "Pilgrims Rest";
+        //public const string Pilgrims_Rest = "Pilgrims Rest";
 
         // Room
         public const string Room_CrowCourt = "Room_CrowCourt";
@@ -502,7 +498,6 @@ namespace Silkipelago.Constants
         public const string Song_Enclave = "Song_Enclave";
         public const string Song_Enclave_Tube = "Song_Enclave_Tube";
         public const string Song_Tower_Destroyed = "Song_Tower_Destroyed";
-        public const string Song_lever_side = "Song_lever_side";
 
         // Sprintmaster
         public const string Sprintmaster_Cave = "Sprintmaster_Cave";
@@ -586,7 +581,7 @@ namespace Silkipelago.Constants
         {
             Abandoned_town, Abyss_03, Abyss_04, Abyss_05, Abyss_06, Abyss_07, Abyss_08, Abyss_09, Abyss_11, Abyss_13, Abyss_Cocoon,
             Ant_02, Ant_04, Ant_04_left, Ant_04_mid, Ant_05b, Ant_05c, Ant_08, Ant_09, Ant_17, Ant_19, Ant_20, Ant_21, Ant_Merchant, Ant_Queen,
-            Aqueduct_01, Aqueduct_02, Aqueduct_03, Aqueduct_04, Aqueduct_05, Aqueduct_06, Aqueduct_07, Aqueduct_08, Aueduct_04,
+            Aqueduct_01, Aqueduct_02, Aqueduct_03, Aqueduct_04, Aqueduct_05, Aqueduct_06, Aqueduct_07, Aqueduct_08,
             Arborium_01, Arborium_02, Arborium_03, Arborium_04, Arborium_05, Arborium_06, Arborium_07, Arborium_08, Arborium_09, Arborium_10, Arborium_11,
             Aspid_01,
             Bellshrine, Bellshrine_02, Bellshrine_03, Bellshrine_05, Bellshrine_Coral, Bellshrine_Enclave,
@@ -603,7 +598,6 @@ namespace Silkipelago.Constants
             Crawl_01, Crawl_02, Crawl_03, Crawl_03b, Crawl_05, Crawl_06, Crawl_07, Crawl_08, Crawl_09, Crawl_10,
             Dock_01, Dock_02, Dock_02b, Dock_03, Dock_03b, Dock_03c, Dock_03d, Dock_04, Dock_05, Dock_06_Church, Dock_08, Dock_09, Dock_10, Dock_11, Dock_12, Dock_13, Dock_14, Dock_15, Dock_16,
             Dust_01, Dust_02, Dust_03, Dust_04, Dust_05, Dust_06, Dust_09, Dust_10, Dust_11, Dust_12, Dust_Chef, Dust_Maze_01, Dust_Maze_02, Dust_Maze_04, Dust_Maze_05, Dust_Maze_07, Dust_Maze_08, Dust_Maze_08_completed, Dust_Maze_crossing, Dust_Shack,
-            GLOBAL_SHARED,
             Greymoor_01, Greymoor_02, Greymoor_03, Greymoor_04, Greymoor_05, Greymoor_06, Greymoor_07, Greymoor_08, Greymoor_10, Greymoor_11, Greymoor_12, Greymoor_13, Greymoor_15, Greymoor_15b, Greymoor_16, Greymoor_17, Greymoor_20b, Greymoor_20c, Greymoor_21, Greymoor_22, Greymoor_24,
             Halfway_01,
             Hang_01, Hang_02, Hang_03, Hang_03_top, Hang_04, Hang_06, Hang_06_bank, Hang_07, Hang_08, Hang_09, Hang_10, Hang_12, Hang_13, Hang_14, Hang_15, Hang_16, Hang_17b,
@@ -612,13 +606,13 @@ namespace Silkipelago.Constants
             Mosstown_01, Mosstown_02, Mosstown_02c, Mosstown_03,
             Organ_01,
             Peak_01, Peak_02, Peak_04, Peak_04c, Peak_04d, Peak_05, Peak_05c, Peak_05d, Peak_05e, Peak_06, Peak_07, Peak_08, Peak_08b, Peak_10, Peak_Mask_Maker,
-            Pilgrims_Rest,
+            //Pilgrims_Rest,
             Room_CrowCourt, Room_CrowCourt_02, Room_Diving_Bell_Abyss, Room_Forge, Room_Huntress, Room_Pinstress, Room_Witch,
             Shadow_01, Shadow_02, Shadow_03, Shadow_04, Shadow_04b, Shadow_05, Shadow_08, Shadow_09, Shadow_10, Shadow_11, Shadow_12, Shadow_13, Shadow_14, Shadow_15, Shadow_16, Shadow_18, Shadow_19, Shadow_20, Shadow_21, Shadow_22, Shadow_23, Shadow_25, Shadow_26, Shadow_27, Shadow_28, Shadow_Bilehaven_Room, Shadow_Weavehome,
             Shellgrave,
             Shellwood_01, Shellwood_01b, Shellwood_02, Shellwood_03, Shellwood_04b, Shellwood_04c, Shellwood_08c, Shellwood_10, Shellwood_11, Shellwood_11b, Shellwood_11b_Memory, Shellwood_13, Shellwood_14, Shellwood_15, Shellwood_16, Shellwood_18, Shellwood_20, Shellwood_25, Shellwood_26,
             Slab_01, Slab_02, Slab_03, Slab_04, Slab_05, Slab_06, Slab_07, Slab_08, Slab_10b, Slab_10c, Slab_12, Slab_13, Slab_14, Slab_15, Slab_16, Slab_16b, Slab_17, Slab_18, Slab_19b, Slab_20, Slab_21, Slab_22, Slab_23, Slab_Cell_Creature, Slab_Cell_Quiet,
-            Song_01, Song_01b, Song_02, Song_03, Song_04, Song_05, Song_07, Song_08, Song_09, Song_09b, Song_10, Song_11, Song_12, Song_13, Song_14, Song_15, Song_17, Song_18, Song_19_entrance, Song_20, Song_20b, Song_24, Song_25, Song_26, Song_27, Song_28, Song_29, Song_Enclave, Song_Enclave_Tube, Song_Tower_Destroyed, Song_lever_side,
+            Song_01, Song_01b, Song_02, Song_03, Song_04, Song_05, Song_07, Song_08, Song_09, Song_09b, Song_10, Song_11, Song_12, Song_13, Song_14, Song_15, Song_17, Song_18, Song_19_entrance, Song_20, Song_20b, Song_24, Song_25, Song_26, Song_27, Song_28, Song_29, Song_Enclave, Song_Enclave_Tube, Song_Tower_Destroyed,
             Sprintmaster_Cave,
             Tube_Hub,
             Tut_01, Tut_01b, Tut_02, Tut_03, Tut_04, Tut_05,

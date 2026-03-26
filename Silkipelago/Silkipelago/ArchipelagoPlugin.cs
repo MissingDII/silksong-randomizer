@@ -1,13 +1,11 @@
 ﻿using BepInEx;
 using GlobalEnums;
 using HarmonyLib;
-using Newtonsoft.Json;
 using Newtonsoft.Json.UnityConverters;
 using Silkipelago.context;
 using Silkipelago.Logging;
 using Silkipelago.Utils;
 using System.IO;
-using System.Linq;
 using UnityEngine;
 using ILogger = KaitoKid.Utilities.Interfaces.ILogger;
 
@@ -85,13 +83,7 @@ namespace Silkipelago
             }
             if (Input.GetKeyDown(KeyCode.Keypad9))
             {
-                var items = ToolItemManager.GetAllTools()
-                    .Select(x => x.name)
-                    .ToList();
-                var json = JsonConvert.SerializeObject(items, Formatting.Indented);
-                var filePath = System.IO.Path.Combine(Paths.PluginPath, "quests.json");
-                System.IO.File.WriteAllText(filePath, json);
-                _logger.LogInfo($"quests exported to: {filePath}");
+                StartCoroutine(SceneHealthManagerScanner.ScanAllScenesForHealthManagers());
                 return;
             }
             return;
