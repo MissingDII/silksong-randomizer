@@ -33,7 +33,7 @@ namespace Silkipelago.HarmonyPatches.FSM
             if (currentState != "Pause" && currentState != "Idle")
             {
                 BasePatch.Logger.LogInfo($"[FSM State Change] Crest Upgrade Shrine Dialogue: {currentState}");
-                HandleEvaUpgradeInteraction(currentState);
+                // HandleEvaUpgradeInteraction(currentState);
             }
         }
 

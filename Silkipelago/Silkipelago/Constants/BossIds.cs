@@ -14,7 +14,11 @@ namespace Silkipelago.Constants
 
         public static readonly List<string> BOSSES =
         [
-            BELL_BEAST
+            BELL_BEAST,
+            LACE,
+            MOORWING,
+            WIDOW,
+            CRAGGLER
         ];
     }
 }

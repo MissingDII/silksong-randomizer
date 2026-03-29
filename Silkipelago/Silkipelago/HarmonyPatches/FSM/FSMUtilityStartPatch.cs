@@ -36,8 +36,8 @@ namespace Silkipelago.HarmonyPatches.FSM
             var fsmId = playMakerFsm.GetInstanceID();
             if (!RedirectedFsms.Contains(fsmId))
             {
-                RedirectCheckUpgrade(fsmInstance);
-                RedirectedFsms.Add(fsmId);
+                // RedirectCheckUpgrade(fsmInstance);
+                // RedirectedFsms.Add(fsmId);
             }
         }
 
