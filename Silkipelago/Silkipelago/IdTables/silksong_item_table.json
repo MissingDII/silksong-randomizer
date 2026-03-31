@@ -94,7 +94,7 @@
         },
         "Bind": {
             "code": 41604,
-            "classification": "useful"
+            "classification": "progression"
         },
         "Progressive Hunter Crest": {
             "code": 634340146116406,
@@ -102,11 +102,11 @@
         },
         "Upslash": {
             "code": 6686227946,
-            "classification": "useful"
+            "classification": "progression"
         },
         "Downslash": {
             "code": 963065707690,
-            "classification": "useful"
+            "classification": "progression"
         },
         "Leftslash": {
             "code": 2548183842602,
@@ -294,6 +294,70 @@
         },
         "Twisted Bud": {
             "code": 698458970400590,
+            "classification": "progression"
+        },
+        "Lost Flea": {
+            "code": 2632479822051,
+            "classification": "progression"
+        },
+        "Kratt": {
+            "code": 5344320,
+            "classification": "progression"
+        },
+        "Giant Lost Flea": {
+            "code": 594270532223203,
+            "classification": "progression"
+        },
+        "Vog": {
+            "code": 15269,
+            "classification": "progression"
+        },
+        "Bell Beast - The Marrow": {
+            "code": 784107648129445,
+            "classification": "progression"
+        },
+        "Bell Beast - Bone Bottom": {
+            "code": 997708915235635,
+            "classification": "progression"
+        },
+        "Bell Beast - Bellhart": {
+            "code": 983678660915276,
+            "classification": "progression"
+        },
+        "Bell Beast - Bilewater": {
+            "code": 805879284186140,
+            "classification": "progression"
+        },
+        "Bell Beast - Blasted Steps": {
+            "code": 795349902089143,
+            "classification": "progression"
+        },
+        "Bell Beast - Deep Docks": {
+            "code": 696632907776181,
+            "classification": "progression"
+        },
+        "Bell Beast - Far Fields": {
+            "code": 706737140957379,
+            "classification": "progression"
+        },
+        "Bell Beast - Greymoor": {
+            "code": 983722758739564,
+            "classification": "progression"
+        },
+        "Bell Beast - Shellwood": {
+            "code": 809419228589758,
+            "classification": "progression"
+        },
+        "Bell Beast - The Slab": {
+            "code": 983824042546276,
+            "classification": "progression"
+        },
+        "Bell Beast - Choral Chambers": {
+            "code": 75629960671067,
+            "classification": "progression"
+        },
+        "Bell Beast - Putrified Ducts": {
+            "code": 905522773595791,
             "classification": "progression"
         }
     }

@@ -146,7 +146,7 @@
         "Hunt Wish: Flexile Spines": {
             "code": 1074201506514901,
             "region": "Far Fields - Seamstress",
-            "groups": ["MOVEMENT_ABILITY", "ACT_1"]
+            "groups": ["MOVEMENT_ABILITY", "WISH", "ACT_1"]
         },
         "Weaver Spire: Cling Grip": {
             "code": 1103479261177466,
@@ -193,9 +193,14 @@
             "region": "Moss Grotto",
             "groups": ["BOSS_FIGHT", "ACT_1"]
         },
+        "Defeat Double Moss Mother": {
+            "code": 605815209193060,
+            "region": "Weavenest Atla - Moss Mothers",
+            "groups": ["BOSS_FIGHT", "ACT_1"]
+        },
         "Defeat Bell Beast": {
             "code": 960949321963534,
-            "region": "The Marrow - Bellway Station",
+            "region": "The Marrow - Bell Beast Fight",
             "groups": ["SILK_OTHER_ABILITY", "BOSS_FIGHT", "ACT_1"]
         },
         "Defeat Lace": {
@@ -275,7 +280,7 @@
         },
         "Defeat Voltvyrm": {
             "code": 66541017066453,
-            "region": "Sands Of Karak",
+            "region": "Sands Of Karak - Voltnest",
             "groups": ["BOSS_FIGHT", "ACT_2"]
         },
         "Defeat Second Sentinel": {
@@ -320,12 +325,12 @@
         },
         "Defeat Watcher at the Edge": {
             "code": 76194457692339,
-            "region": "Sands Of Karak",
+            "region": "Sands Of Karak - Vertical Shaft",
             "groups": ["BOSS_FIGHT", "ACT_3"]
         },
         "Defeat Crawfather": {
             "code": 969009457150948,
-            "region": "Greymoor - Craw Lake",
+            "region": "Greymoor - Craw Lake (Act 3)",
             "groups": ["BOSS_FIGHT", "ACT_3"]
         },
         "Defeat Shakra": {
@@ -365,7 +370,7 @@
         },
         "Defeat Raging Conchfly": {
             "code": 845244129032089,
-            "region": "Sands Of Karak",
+            "region": "Sands Of Karak - Upper Left",
             "groups": ["BOSS_FIGHT", "ACT_2"]
         },
         "Defeat First Sinner": {
@@ -390,27 +395,32 @@
         },
         "Defeat Bell Eater": {
             "code": 960949323276636,
-            "region": "Choral Chambers",
+            "region": "Choral Chambers (Act 3)",
             "groups": ["OBJECTIVE", "BOSS_FIGHT", "ACT_3"]
+        },
+        "Defeat Black Thread Moss Mother": {
+            "code": 105373783375460,
+            "region": "Moss Grotto (Act 3)",
+            "groups": ["BOSS_FIGHT", "ACT_3"]
         },
         "Defeat Crust King Khann": {
             "code": 1095905603744462,
-            "region": "Citadel",
+            "region": "Sands Of Karak - Coral Tower Dream",
             "groups": ["OBJECTIVE", "BOSS_FIGHT", "ACT_3"]
         },
         "Defeat Nyleth": {
             "code": 121682208645492,
-            "region": "Citadel",
+            "region": "Choral Chambers (Act 3)",
             "groups": ["OBJECTIVE", "BOSS_FIGHT", "ACT_3"]
         },
         "Defeat Skarrsinger Karmelita": {
             "code": 373413017461789,
-            "region": "Citadel",
+            "region": "Choral Chambers (Act 3)",
             "groups": ["OBJECTIVE", "BOSS_FIGHT", "ACT_3"]
         },
         "Defeat Clover Dancers": {
             "code": 969046747743379,
-            "region": "Citadel",
+            "region": "Choral Chambers (Act 3)",
             "groups": ["OBJECTIVE", "BOSS_FIGHT", "ACT_3"]
         },
         "Defeat Lost Lace": {
@@ -700,7 +710,7 @@
         },
         "Memory locket - Sands of Karak": {
             "code": 459441490585861,
-            "region": "Sands Of Karak",
+            "region": "Sands Of Karak - Vertical Shaft",
             "groups": ["MEMORY_LOCKET", "ACT_2"]
         },
         "Memory locket - Halfway Home": {
@@ -787,6 +797,216 @@
             "code": 1005098815096654,
             "region": "Upper Bilewater",
             "groups": ["UNIQUE_PICKUPS", "ACT_2"]
+        },
+        "Lost Flea - Wormways - Carried by Aknid": {
+            "code": 189688706529134,
+            "region": "Wormways - Upper",
+            "groups": ["LOST_FLEA", "ACT_1"]
+        },
+        "Lost Flea - The Marrow - Stuck In Vines": {
+            "code": 106400148573909,
+            "region": "The Marrow - North After Bellway",
+            "groups": ["LOST_FLEA", "ACT_1"]
+        },
+        "Lost Flea - Hunter's March - Cage": {
+            "code": 826883772154743,
+            "region": "Hunter's March",
+            "groups": ["LOST_FLEA", "ACT_1"]
+        },
+        "Lost Flea - Deep Docks - Lava Falls Room": {
+            "code": 1049905652024287,
+            "region": "Deep Docks - Bellway Flea Room",
+            "groups": ["LOST_FLEA", "ACT_1"]
+        },
+        "Lost Flea - Deep Docks - Stuck Above Swift Step": {
+            "code": 972210445286234,
+            "region": "Deep Docks - Above Swift Step",
+            "groups": ["LOST_FLEA", "ACT_1"]
+        },
+        "Lost Flea - Deep Docks - Underground After Arena": {
+            "code": 503096256840833,
+            "region": "Deep Docks - Diving Bell",
+            "groups": ["LOST_FLEA", "ACT_1"]
+        },
+        "Lost Flea - Far Fields - Pressure Plate Cage": {
+            "code": 848930069236471,
+            "region": "Far Fields - Entrance",
+            "groups": ["LOST_FLEA", "ACT_1"]
+        },
+        "Lost Flea - Far Fields - Pilgrim's Rest Behind Rhinogrund": {
+            "code": 494581240108164,
+            "region": "Far Fields - Rhinogrund Cave Behind Pilgrim's Rest",
+            "groups": ["LOST_FLEA", "ACT_1"]
+        },
+        "Lost Flea - Greymoor - Stuck Above Craw Lake": {
+            "code": 34289973818695,
+            "region": "Greymoor - Craw Lake",
+            "groups": ["LOST_FLEA", "ACT_1"]
+        },
+        "Lost Kratt - Greymoor": {
+            "code": 24328158996076,
+            "region": "Greymoor - Spires Above Halfway Home",
+            "groups": ["LOST_FLEA", "ACT_1"]
+        },
+        "Lost Flea - Greymoor - Top Of Left Tower": {
+            "code": 841965777049960,
+            "region": "Greymoor - Above Spires",
+            "groups": ["LOST_FLEA", "ACT_1"]
+        },
+        "Lost Flea - Bellhart - Stuck In Bells": {
+            "code": 995248762831459,
+            "region": "Upper Bellhart",
+            "groups": ["LOST_FLEA", "ACT_1"]
+        },
+        "Lost Flea - Shellwood - Stuck In Vines": {
+            "code": 233761213599445,
+            "region": "Shellwood",
+            "groups": ["LOST_FLEA", "ACT_1"]
+        },
+        "Lost Flea - Blasted Steps - Top Of Shaft": {
+            "code": 940742046352324,
+            "region": "Blasted Steps - Vertical Shaft",
+            "groups": ["LOST_FLEA", "ACT_1"]
+        },
+        "Lost Flea - Sinner's Road - Cage": {
+            "code": 646615162107255,
+            "region": "Sinner's Road",
+            "groups": ["LOST_FLEA", "ACT_1"]
+        },
+        "Lost Flea - Bilewater - Hiding From Snitchflies": {
+            "code": 166947119165785,
+            "region": "Bilewater",
+            "groups": ["LOST_FLEA", "ACT_1"]
+        },
+        "Lost Flea - Exhaust Organ - Stuck In Vines": {
+            "code": 785317035855573,
+            "region": "Exhaust Organ",
+            "groups": ["LOST_FLEA", "ACT_1"]
+        },
+        "Lost Flea - Bilewater - Stuck In Vines": {
+            "code": 89132192059093,
+            "region": "Upper Bilewater",
+            "groups": ["LOST_FLEA", "ACT_2"]
+        },
+        "Lost Flea - The Slab - Round Cage": {
+            "code": 769358643344087,
+            "region": "The Slab - With Indolent Key",
+            "groups": ["LOST_FLEA", "ACT_2"]
+        },
+        "Lost Flea - The Slab - Hiding Above Bench": {
+            "code": 997732258905078,
+            "region": "The Slab - Above Bench",
+            "groups": ["LOST_FLEA", "ACT_2"]
+        },
+        "Lost Flea - Mount Fay - Frozen": {
+            "code": 473247807672944,
+            "region": "Mount Fay - Ceiling Cave",
+            "groups": ["LOST_FLEA", "ACT_2"]
+        },
+        "Lost Flea - Choral Chambers - Fancy Cage": {
+            "code": 562481222148791,
+            "region": "Choral Chambers",
+            "groups": ["LOST_FLEA", "ACT_2"]
+        },
+        "Lost Flea - Choral Chambers - Vertical Vent": {
+            "code": 484756893508452,
+            "region": "Choral Chambers - Vent",
+            "groups": ["LOST_FLEA", "ACT_2"]
+        },
+        "Lost Flea - Whispering Vaults - Fancy Cage": {
+            "code": 68975983420087,
+            "region": "Whispering Vaults",
+            "groups": ["LOST_FLEA", "ACT_2"]
+        },
+        "Lost Flea - Songclave - Alcove Outside": {
+            "code": 657457920459977,
+            "region": "Choral Chambers - Outside Alcove",
+            "groups": ["LOST_FLEA", "ACT_2"]
+        },
+        "Lost Flea - Underworks - Stuck Under Spool Fragment": {
+            "code": 276061901152716,
+            "region": "Underworks - The Cauldron",
+            "groups": ["LOST_FLEA", "ACT_2"]
+        },
+        "Lost Flea - Underworks - Stuck After Saw Room": {
+            "code": 183221334301215,
+            "region": "Underworks - From Wisp Thicket",
+            "groups": ["LOST_FLEA", "ACT_2"]
+        },
+        "Giant Lost Flea - Memorium": {
+            "code": 213486321704595,
+            "region": "Memorium - Giant Flea",
+            "groups": ["LOST_FLEA", "ACT_2"]
+        },
+        "Lost Vog - Putrified Ducts": {
+            "code": 625921832621711,
+            "region": "Putrified Ducts - Vog's Camp",
+            "groups": ["LOST_FLEA", "ACT_2"]
+        },
+        "Lost Flea - Sands Of Karak - Stuck In Spikes": {
+            "code": 330201634284905,
+            "region": "Sands Of Karak - Lower Right",
+            "groups": ["LOST_FLEA", "ACT_2"]
+        },
+        "Unlock Marrow Bell Beast": {
+            "code": 600912145715214,
+            "region": "The Marrow - Bellway Station",
+            "groups": ["BELLWAY", "ACT_1"]
+        },
+        "Unlock Bone Bottom Bell Beast": {
+            "code": 740211958988814,
+            "region": "Bone Bottom - Bellway",
+            "groups": ["BELLWAY", "ACT_1"]
+        },
+        "Unlock Bellhart Bell Beast": {
+            "code": 381532353669134,
+            "region": "Bellhart - Bellway",
+            "groups": ["BELLWAY", "ACT_1"]
+        },
+        "Unlock Bilewater Bell Beast": {
+            "code": 688480178513934,
+            "region": "Bilewater - Bellway",
+            "groups": ["BELLWAY", "ACT_1"]
+        },
+        "Unlock Blasted Steps Bell Beast": {
+            "code": 184537650454542,
+            "region": "Blasted Steps - Bellway",
+            "groups": ["BELLWAY", "ACT_1"]
+        },
+        "Unlock Deep Docks Bell Beast": {
+            "code": 451516853850126,
+            "region": "Deep Docks - Bellway",
+            "groups": ["BELLWAY", "ACT_1"]
+        },
+        "Unlock Far Fields Bell Beast": {
+            "code": 412504271765518,
+            "region": "Far Fields - Bellway",
+            "groups": ["BELLWAY", "ACT_1"]
+        },
+        "Unlock Greymoor Bell Beast": {
+            "code": 423154817050638,
+            "region": "Greymoor - Bellway",
+            "groups": ["BELLWAY", "ACT_1"]
+        },
+        "Unlock Shellwood Bell Beast": {
+            "code": 295628907608078,
+            "region": "Shellwood - Bellway",
+            "groups": ["BELLWAY", "ACT_1"]
+        },
+        "Unlock The Slab Bell Beast": {
+            "code": 460107572897806,
+            "region": "The Slab - Bellway",
+            "groups": ["BELLWAY", "ACT_1"]
+        },
+        "Unlock Choral Chambers Bell Beast": {
+            "code": 394158141472782,
+            "region": "Choral Chambers - Bellway",
+            "groups": ["BELLWAY", "ACT_2"]
+        },
+        "Unlock Putrified Ducts Bell Beast": {
+            "code": 1037326085005326,
+            "region": "Putrified Ducts - Bellway",
+            "groups": ["BELLWAY", "ACT_2"]
         }
     }
 }
