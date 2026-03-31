@@ -5,10 +5,10 @@
         public static void unlockTool(string inGameName)
         {
             var tool = ToolItemManager.GetToolByName(inGameName);
-            SilksongItemManager.ItemToReceive++;
+            SilksongItemManager.ItemToReceive += 50;
             tool.SetUnlockedTestsComplete();
-            SilksongItemManager.ItemToReceive++;
             tool.Unlock();
+            SilksongItemManager.ItemToReceive = 0;
         }
     }
 }

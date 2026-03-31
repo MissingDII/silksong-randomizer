@@ -1,6 +1,6 @@
 ﻿using HarmonyLib;
 using KaitoKid.ArchipelagoUtilities.Net.Constants;
-using Silkipelago.Constants;
+using Silkipelago.Archipelago.ItemHandlers;
 using System;
 using TeamCherry.SharedUtils;
 using ILogger = KaitoKid.Utilities.Interfaces.ILogger;
@@ -19,8 +19,12 @@ namespace Silkipelago.HarmonyPatches.Item
             {
                 if (obj != PlayerData.instance)
                     return MethodPrefix.RUN_ORIGINAL_METHOD;
-
-                return PlayerDataPatchHelper.HandlePlayerDataFieldChange(fieldName, ArchipelagoPlugin.App.LocationChecker);
+                if (SilksongItemManager.ItemToReceive == 0)
+                {
+                    return PlayerDataPatchHelper.HandlePlayerDataFieldChange(fieldName, ArchipelagoPlugin.App.LocationChecker);
+                }
+                SilksongItemManager.ItemToReceive--;
+                return MethodPrefix.RUN_ORIGINAL_METHOD;
             }, MethodPrefix.RUN_ORIGINAL_METHOD);
         }
     }
