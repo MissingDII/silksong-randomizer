@@ -948,65 +948,85 @@
             "region": "Sands Of Karak - Lower Right",
             "groups": ["LOST_FLEA", "ACT_2"]
         },
-        "Unlock Marrow Bell Beast": {
-            "code": 600912145715214,
-            "region": "The Marrow - Bellway Station",
-            "groups": ["BELLWAY", "ACT_1"]
-        },
-        "Unlock Bone Bottom Bell Beast": {
-            "code": 740211958988814,
-            "region": "Bone Bottom - Bellway",
-            "groups": ["BELLWAY", "ACT_1"]
-        },
-        "Unlock Bellhart Bell Beast": {
-            "code": 381532353669134,
+        "Unlock Bellhart Bellway": {
+            "code": 75419078501423,
             "region": "Bellhart - Bellway",
             "groups": ["BELLWAY", "ACT_1"]
         },
-        "Unlock Bilewater Bell Beast": {
-            "code": 688480178513934,
+        "Unlock Bilewater Bellway": {
+            "code": 638450554893359,
             "region": "Bilewater - Bellway",
             "groups": ["BELLWAY", "ACT_1"]
         },
-        "Unlock Blasted Steps Bell Beast": {
-            "code": 184537650454542,
+        "Unlock Blasted Steps Bellway": {
+            "code": 1044491495206703,
             "region": "Blasted Steps - Bellway",
             "groups": ["BELLWAY", "ACT_1"]
         },
-        "Unlock Deep Docks Bell Beast": {
-            "code": 451516853850126,
+        "Unlock Deep Docks Bellway": {
+            "code": 150884490128687,
             "region": "Deep Docks - Bellway",
             "groups": ["BELLWAY", "ACT_1"]
         },
-        "Unlock Far Fields Bell Beast": {
-            "code": 412504271765518,
+        "Unlock Far Fields Bellway": {
+            "code": 703454675827503,
             "region": "Far Fields - Bellway",
             "groups": ["BELLWAY", "ACT_1"]
         },
-        "Unlock Greymoor Bell Beast": {
-            "code": 423154817050638,
+        "Unlock Greymoor Bellway": {
+            "code": 621011427673135,
             "region": "Greymoor - Bellway",
             "groups": ["BELLWAY", "ACT_1"]
         },
-        "Unlock Shellwood Bell Beast": {
-            "code": 295628907608078,
+        "Unlock Shellwood Bellway": {
+            "code": 222813808940591,
             "region": "Shellwood - Bellway",
             "groups": ["BELLWAY", "ACT_1"]
         },
-        "Unlock The Slab Bell Beast": {
-            "code": 460107572897806,
+        "Unlock The Slab Bellway": {
+            "code": 800186381712431,
             "region": "The Slab - Bellway",
             "groups": ["BELLWAY", "ACT_1"]
         },
-        "Unlock Choral Chambers Bell Beast": {
-            "code": 394158141472782,
-            "region": "Choral Chambers - Bellway",
+        "Unlock Choral Chambers Bellway": {
+            "code": 123207765136175,
+            "region": "Choral Chambers - Grand Bellway",
             "groups": ["BELLWAY", "ACT_2"]
         },
-        "Unlock Putrified Ducts Bell Beast": {
-            "code": 1037326085005326,
+        "Unlock Putrified Ducts Bellway": {
+            "code": 992011685513007,
             "region": "Putrified Ducts - Bellway",
             "groups": ["BELLWAY", "ACT_2"]
+        },
+        "Unlock Memorium Ventrica": {
+            "code": 133288755507235,
+            "region": "Memorium - Ventrica",
+            "groups": ["VENTRICA", "ACT_2"]
+        },
+        "Unlock High Halls Ventrica": {
+            "code": 167893246038051,
+            "region": "High Halls - Ventrica",
+            "groups": ["VENTRICA", "ACT_2"]
+        },
+        "Unlock First Shrine Ventrica": {
+            "code": 342962934154275,
+            "region": "First Shrine - Ventrica",
+            "groups": ["VENTRICA", "ACT_2"]
+        },
+        "Unlock Choral Chambers Ventrica": {
+            "code": 951762743394339,
+            "region": "Choral Chambers - Ventrica",
+            "groups": ["VENTRICA", "ACT_2"]
+        },
+        "Unlock Grand Bellway Ventrica": {
+            "code": 896288163465251,
+            "region": "Grand Bellway - Ventrica",
+            "groups": ["VENTRICA", "ACT_2"]
+        },
+        "Unlock Underworks Ventrica": {
+            "code": 1041645381245987,
+            "region": "Underworks - Ventrica",
+            "groups": ["VENTRICA", "ACT_2"]
         }
     }
 }

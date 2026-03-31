@@ -312,52 +312,68 @@
             "code": 15269,
             "classification": "progression"
         },
-        "Bell Beast - The Marrow": {
-            "code": 784107648129445,
+        "Bellway Station - Bellhart": {
+            "code": 317174423240780,
             "classification": "progression"
         },
-        "Bell Beast - Bone Bottom": {
-            "code": 997708915235635,
+        "Bellway Station - Bilewater": {
+            "code": 365267707288604,
             "classification": "progression"
         },
-        "Bell Beast - Bellhart": {
-            "code": 983678660915276,
+        "Bellway Station - Blasted Steps": {
+            "code": 1063325867498423,
             "classification": "progression"
         },
-        "Bell Beast - Bilewater": {
-            "code": 805879284186140,
+        "Bellway Station - Deep Docks": {
+            "code": 499730976866485,
             "classification": "progression"
         },
-        "Bell Beast - Blasted Steps": {
-            "code": 795349902089143,
+        "Bellway Station - Far Fields": {
+            "code": 509835210047683,
             "classification": "progression"
         },
-        "Bell Beast - Deep Docks": {
-            "code": 696632907776181,
+        "Bellway Station - Greymoor": {
+            "code": 317218521065068,
             "classification": "progression"
         },
-        "Bell Beast - Far Fields": {
-            "code": 706737140957379,
+        "Bellway Station - Shellwood": {
+            "code": 368807651692222,
             "classification": "progression"
         },
-        "Bell Beast - Greymoor": {
-            "code": 983722758739564,
+        "Bellway Station - The Slab": {
+            "code": 317319804871780,
             "classification": "progression"
         },
-        "Bell Beast - Shellwood": {
-            "code": 809419228589758,
+        "Bellway Station - Choral Chambers": {
+            "code": 1083397482524507,
             "classification": "progression"
         },
-        "Bell Beast - The Slab": {
-            "code": 983824042546276,
+        "Bellway Station - Putrified Ducts": {
+            "code": 787390388606607,
             "classification": "progression"
         },
-        "Bell Beast - Choral Chambers": {
-            "code": 75629960671067,
+        "Ventrica Station - Memorium": {
+            "code": 816337451607699,
             "classification": "progression"
         },
-        "Bell Beast - Putrified Ducts": {
-            "code": 905522773595791,
+        "Ventrica Station - High Halls": {
+            "code": 126799395429027,
+            "classification": "progression"
+        },
+        "Ventrica Station - First Shrine": {
+            "code": 751283044339557,
+            "classification": "progression"
+        },
+        "Ventrica Station - Choral Chambers": {
+            "code": 702031498620763,
+            "classification": "progression"
+        },
+        "Ventrica Station - Grand Bellway": {
+            "code": 323993547271215,
+            "classification": "progression"
+        },
+        "Ventrica Station - Underworks": {
+            "code": 198403037778305,
             "classification": "progression"
         }
     }
