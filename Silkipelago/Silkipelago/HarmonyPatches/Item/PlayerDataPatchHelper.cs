@@ -37,7 +37,7 @@ namespace Silkipelago.HarmonyPatches.Item
 
         public static bool HandlePlayerDataFieldChange(string fieldName, SilksongLocationChecker locationChecker)
         {
-
+            Logger.LogInfo(fieldName);
             if (IsSilkHeart(fieldName) && locationChecker.LocationExists(ArchipelagoLocationIds.GetArchipelagoName(BossIds.BELL_BEAST)))
             {
                 return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;

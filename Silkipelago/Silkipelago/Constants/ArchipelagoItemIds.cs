@@ -8,6 +8,26 @@ namespace Silkipelago.Constants
     {
         public static Dictionary<string, string> ArchipelagoIdsToGameIds { get; } = new Dictionary<string, string>
     {
+         //Stations
+         { "Station: Docks", PlayerDataIds.DOCK_STATION },
+         { "Station: Far Fields", PlayerDataIds.FAR_FIELDS_STATION },
+         { "Station: Greymoor", PlayerDataIds.GREYMOOR_STATION },
+         { "Station: Bellhart", PlayerDataIds.BELLHART_STATION },
+         { "Station: Shellwood", PlayerDataIds.SHELLWOOD_STATION },
+         { "Station: Blasted Steps", PlayerDataIds.BLASTED_STEPS_STATION },
+         { "Station: Slab", PlayerDataIds.SLAB_STATION },
+         { "Station: Grand Bellway", PlayerDataIds.GRAND_BELLWAY_STATION },
+         { "Station: Bilewater", PlayerDataIds.BILEWATER_STATION },
+         { "Station: Aqueduct", PlayerDataIds.AQUEDUCT_STATION },
+
+         //Tubes
+         { "Tube: Memorium", PlayerDataIds.MEMORIUM_TUBE },
+         { "Tube: High Halls", PlayerDataIds.HIGH_HALLS_TUBE },
+         { "Tube: Shrine", PlayerDataIds.SHRINE_TUBE },
+         { "Tube: Chambers", PlayerDataIds.CHAMBERS_TUBE },
+         { "Tube: Grand Bellway", PlayerDataIds.GRAND_BELLWAY_TUBE },
+         { "Tube: Underwork", PlayerDataIds.UNDERWORK_TUBE },
+
          //Crest
          { "Progressive Hunter Crest", CrestIds.HUNTER },
          { "Reaper Crest", CrestIds.REAPER },

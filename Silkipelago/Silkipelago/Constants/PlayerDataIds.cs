@@ -7,6 +7,49 @@ namespace Silkipelago.Constants
     /// </summary>
     public static class PlayerDataIds
     {
+        //stations
+        public const string DOCK_STATION = "UnlockedDocksStation";
+        public const string FAR_FIELDS_STATION = "UnlockedBoneforestEastStation";
+        public const string GREYMOOR_STATION = "UnlockedGreymoorStation";
+        public const string BELLHART_STATION = "UnlockedBelltownStation";
+        public const string SHELLWOOD_STATION = "UnlockedShellwoodStation";
+        public const string BLASTED_STEPS_STATION = "UnlockedCoralTowerStation";
+        public const string SLAB_STATION = "UnlockedPeakStation";
+        public const string GRAND_BELLWAY_STATION = "UnlockedCityStation";
+        public const string BILEWATER_STATION = "UnlockedShadowStation";
+        public const string AQUEDUCT_STATION = "UnlockedAqueductStation";
+        public static readonly List<string> STATION =
+        [
+            DOCK_STATION,
+            FAR_FIELDS_STATION,
+            GREYMOOR_STATION,
+            BELLHART_STATION,
+            SHELLWOOD_STATION,
+            BLASTED_STEPS_STATION,
+            SLAB_STATION,
+            GRAND_BELLWAY_STATION,
+            BILEWATER_STATION,
+            AQUEDUCT_STATION
+
+        ];
+        //tubes
+        public const string MEMORIUM_TUBE = "UnlockedArboriumTube";
+        public const string HIGH_HALLS_TUBE = "UnlockedHangTube";
+        public const string SHRINE_TUBE = "UnlockedEnclaveTube";
+        public const string CHAMBERS_TUBE = "UnlockedSongTube";
+        public const string GRAND_BELLWAY_TUBE = "UnlockedCityBellwayTube";
+        public const string UNDERWORK_TUBE = "UnlockedUnderTube";
+
+        public static readonly List<string> TUBES =
+        [
+            MEMORIUM_TUBE,
+            HIGH_HALLS_TUBE,
+            SHRINE_TUBE,
+            CHAMBERS_TUBE,
+            GRAND_BELLWAY_TUBE,
+            UNDERWORK_TUBE,
+        ];
+
         public const string SILK_HEART = "silkRegenMax";
         //Eva upgrades
         public const string YELLOW_VESTICREST = "UnlockedExtraYellowSlot";

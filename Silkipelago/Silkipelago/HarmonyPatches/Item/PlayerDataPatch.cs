@@ -16,7 +16,6 @@ namespace Silkipelago.HarmonyPatches.Item
         {
             return PlayerDataPatchHelper.ExecutePatchLogic(nameof(PlayerDataPatch), nameof(Prefix), () =>
             {
-                Logger.LogInfo(boolName);
                 Logger.LogDebugPatchIsRunning(nameof(PlayerData), nameof(PlayerData.SetBool), nameof(PlayerDataPatch), nameof(Prefix));
 
                 if (SilksongItemManager.ItemToReceive == 0)
