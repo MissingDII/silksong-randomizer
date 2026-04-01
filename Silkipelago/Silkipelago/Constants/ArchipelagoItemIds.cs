@@ -9,24 +9,24 @@ namespace Silkipelago.Constants
         public static Dictionary<string, string> ArchipelagoIdsToGameIds { get; } = new Dictionary<string, string>
     {
          //Stations
-         { "Station: Docks", PlayerDataIds.DOCK_STATION },
-         { "Station: Far Fields", PlayerDataIds.FAR_FIELDS_STATION },
-         { "Station: Greymoor", PlayerDataIds.GREYMOOR_STATION },
-         { "Station: Bellhart", PlayerDataIds.BELLHART_STATION },
-         { "Station: Shellwood", PlayerDataIds.SHELLWOOD_STATION },
-         { "Station: Blasted Steps", PlayerDataIds.BLASTED_STEPS_STATION },
-         { "Station: Slab", PlayerDataIds.SLAB_STATION },
-         { "Station: Grand Bellway", PlayerDataIds.GRAND_BELLWAY_STATION },
-         { "Station: Bilewater", PlayerDataIds.BILEWATER_STATION },
-         { "Station: Aqueduct", PlayerDataIds.AQUEDUCT_STATION },
+         { "Bellway Station - Deep Docks", PlayerDataIds.DOCK_STATION },
+         { "Bellway Station - Far Fields", PlayerDataIds.FAR_FIELDS_STATION },
+         { "Bellway Station - Greymoor", PlayerDataIds.GREYMOOR_STATION },
+         { "Bellway Station - Bellhart", PlayerDataIds.BELLHART_STATION },
+         { "Bellway Station - Shellwood", PlayerDataIds.SHELLWOOD_STATION },
+         { "Bellway Station - Blasted Steps", PlayerDataIds.BLASTED_STEPS_STATION },
+         { "Bellway Station - The Slab", PlayerDataIds.SLAB_STATION },
+         { "Bellway Station - Choral Chambers", PlayerDataIds.GRAND_BELLWAY_STATION },
+         { "Bellway Station - Bilewater", PlayerDataIds.BILEWATER_STATION },
+         { "Bellway Station - Putrified Ducts", PlayerDataIds.AQUEDUCT_STATION },
 
          //Tubes
-         { "Tube: Memorium", PlayerDataIds.MEMORIUM_TUBE },
-         { "Tube: High Halls", PlayerDataIds.HIGH_HALLS_TUBE },
-         { "Tube: Shrine", PlayerDataIds.SHRINE_TUBE },
-         { "Tube: Chambers", PlayerDataIds.CHAMBERS_TUBE },
-         { "Tube: Grand Bellway", PlayerDataIds.GRAND_BELLWAY_TUBE },
-         { "Tube: Underwork", PlayerDataIds.UNDERWORK_TUBE },
+         { "Ventrica Station - Memorium", PlayerDataIds.MEMORIUM_TUBE },
+         { "Ventrica Station - High Halls", PlayerDataIds.HIGH_HALLS_TUBE },
+         { "Ventrica Station - First Shrine", PlayerDataIds.SHRINE_TUBE },
+         { "Ventrica Station - Choral Chambers", PlayerDataIds.CHAMBERS_TUBE },
+         { "Ventrica Station - Grand Bellway", PlayerDataIds.GRAND_BELLWAY_TUBE },
+         { "Ventrica Station - Underworks", PlayerDataIds.UNDERWORK_TUBE },
 
          //Crest
          { "Progressive Hunter Crest", CrestIds.HUNTER },

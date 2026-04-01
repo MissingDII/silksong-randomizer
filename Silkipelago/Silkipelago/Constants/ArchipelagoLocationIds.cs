@@ -8,24 +8,24 @@ namespace Silkipelago.Constants
         public static Dictionary<string, string> ArchipelagoIdsToGameIds { get; } = new Dictionary<string, string>
     {
         //Stations
-        { "Station: Docks", PlayerDataIds.DOCK_STATION },
-        { "Station: Far Fields", PlayerDataIds.FAR_FIELDS_STATION },
-        { "Station: Greymoor", PlayerDataIds.GREYMOOR_STATION },
-        { "Station: Bellhart", PlayerDataIds.BELLHART_STATION },
-        { "Station: Shellwood", PlayerDataIds.SHELLWOOD_STATION },
-        { "Station: Blasted Steps", PlayerDataIds.BLASTED_STEPS_STATION },
-        { "Station: Slab", PlayerDataIds.SLAB_STATION },
-        { "Station: Grand Bellway", PlayerDataIds.GRAND_BELLWAY_STATION },
-        { "Station: Bilewater", PlayerDataIds.BILEWATER_STATION },
-        { "Station: Aqueduct", PlayerDataIds.AQUEDUCT_STATION },
+        { "Unlock Deep Docks Bellway", PlayerDataIds.DOCK_STATION },
+        { "Unlock Far Fields Bellway", PlayerDataIds.FAR_FIELDS_STATION },
+        { "Unlock Greymoor Bellway", PlayerDataIds.GREYMOOR_STATION },
+        { "Unlock Bellhart Bellway", PlayerDataIds.BELLHART_STATION },
+        { "Unlock Shellwood Bellway", PlayerDataIds.SHELLWOOD_STATION },
+        { "Unlock Blasted Steps Bellway", PlayerDataIds.BLASTED_STEPS_STATION },
+        { "Unlock The Slab Bellway", PlayerDataIds.SLAB_STATION },
+        { "Unlock Choral Chambers Bellway", PlayerDataIds.GRAND_BELLWAY_STATION },
+        { "Unlock Bilewater Bellway", PlayerDataIds.BILEWATER_STATION },
+        { "Unlock Putrified Ducts Bellway", PlayerDataIds.AQUEDUCT_STATION },
 
         //Tubes
-        { "Tube: Memorium", PlayerDataIds.MEMORIUM_TUBE },
-        { "Tube: High Halls", PlayerDataIds.HIGH_HALLS_TUBE },
-        { "Tube: Shrine", PlayerDataIds.SHRINE_TUBE },
-        { "Tube: Chambers", PlayerDataIds.CHAMBERS_TUBE },
-        { "Tube: Grand Bellway", PlayerDataIds.GRAND_BELLWAY_TUBE },
-        { "Tube: Underwork", PlayerDataIds.UNDERWORK_TUBE },
+        { "Unlock Memorium Ventrica", PlayerDataIds.MEMORIUM_TUBE },
+        { "Unlock High Halls Ventrica", PlayerDataIds.HIGH_HALLS_TUBE },
+        { "Unlock First Shrine Ventrica", PlayerDataIds.SHRINE_TUBE },
+        { "Unlock Choral Chambers Ventrica", PlayerDataIds.CHAMBERS_TUBE },
+        { "Unlock Grand Bellway Ventrica", PlayerDataIds.GRAND_BELLWAY_TUBE },
+        { "Unlock Underworks Ventrica", PlayerDataIds.UNDERWORK_TUBE },
 
          //Objectives
         { "Save: The Threadspun Town", QuestIds.THREADSPUN_TOWN },
