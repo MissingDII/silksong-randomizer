@@ -190,17 +190,17 @@
         },
         "Defeat Moss Mother": {
             "code": 697635750362724,
-            "region": "Moss Grotto",
+            "region": "Moss Mother After Defeated",
             "groups": ["BOSS_FIGHT", "ACT_1"]
         },
         "Defeat Double Moss Mother": {
             "code": 605815209193060,
-            "region": "Weavenest Atla - Moss Mothers",
+            "region": "Double Moss Mother After Defeated",
             "groups": ["BOSS_FIGHT", "ACT_1"]
         },
         "Defeat Bell Beast": {
             "code": 960949321963534,
-            "region": "The Marrow - Bell Beast Fight",
+            "region": "Bell Beast After Defeated",
             "groups": ["SILK_OTHER_ABILITY", "BOSS_FIGHT", "ACT_1"]
         },
         "Defeat Lace": {
@@ -521,17 +521,17 @@
         "Eva: 18 Slots": {
             "code": 492998555549255,
             "region": "Eva - 18 Crest Slot",
-            "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_1"]
+            "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_2"]
         },
         "Eva: 19 Slots": {
             "code": 492998864465031,
             "region": "Eva - 19 Crest Slot",
-            "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_1"]
+            "groups": ["EVA_EXTRA_LOCATIONS", "EVA", "ACT_2"]
         },
         "Eva: 20 Slots": {
             "code": 493004116033223,
             "region": "Eva - 20 Crest Slot",
-            "groups": ["CREST_UPGRADE", "EVA_REWARD", "EVA", "ACT_1"]
+            "groups": ["CREST_UPGRADE", "EVA_REWARD", "EVA", "ACT_2"]
         },
         "Eva: 21 Slots": {
             "code": 493004424948999,
@@ -743,6 +743,31 @@
             "region": "Far Fields - Fields",
             "groups": ["MEMORY_LOCKET", "ACT_3"]
         },
+        "Wayfarer Wish: The Lost Fleas": {
+            "code": 1055761300946721,
+            "region": "The Marrow - Flea Caravan With 5 Fleas",
+            "groups": ["RED_TOOL", "WISH", "ACT_1"]
+        },
+        "Sharpened Needle Upgrade": {
+            "code": 797076547948689,
+            "region": "Bellhart - Pinmaster Home",
+            "groups": ["NEEDLE_UPGRADE", "ACT_1"]
+        },
+        "Wayfarer Wish: Pinmaster's Oil": {
+            "code": 104433746628386,
+            "region": "Bellhart - Pinmaster Home With 1 Pale Oil",
+            "groups": ["WISH", "NEEDLE_UPGRADE", "ACT_2"]
+        },
+        "Hivesteel Needle Upgrade": {
+            "code": 316834449313937,
+            "region": "Bellhart - Pinmaster Home With 2 Pale Oils",
+            "groups": ["NEEDLE_UPGRADE", "ACT_2"]
+        },
+        "Pale Steel Needle Upgrade": {
+            "code": 913774342951057,
+            "region": "Bellhart - Pinmaster Home With 3 Pale Oils",
+            "groups": ["NEEDLE_UPGRADE", "ACT_3"]
+        },
         "Wayfarer Wish: My Missing Courier": {
             "code": 204926552232600,
             "region": "Bellhart Wish - My Missing Courier",
@@ -763,6 +788,26 @@
             "region": "Choral Chambers",
             "groups": ["WISH", "ACT_2"]
         },
+        "Wayfarer Wish: Ecstasy Of The End": {
+            "code": 26930453667828,
+            "region": "Fleatopia - Festival of the Flea",
+            "groups": ["WISH", "ACT_3"]
+        },
+        "Gather Wish: Great Taste of Pharloom": {
+            "code": 648114845307343,
+            "region": "Choral Chambers - Great Gourmand Room with 5 Delicacies",
+            "groups": ["WISH", "ACT_2"]
+        },
+        "Donate Wish: Restoration of Bellhart": {
+            "code": 527416586577484,
+            "region": "Bellhart Wishwall - One Needle Upgrade and One Relic",
+            "groups": ["WISH", "ACT_1"]
+        },
+        "Pickup Pale Oil (Choral Chambers)": {
+            "code": 670243240267527,
+            "region": "Choral Chambers - Pale Oil Room",
+            "groups": ["UNIQUE_PICKUPS", "ACT_2"]
+        },
         "Twelfth Architect: Architect Key": {
             "code": 37188490783239,
             "region": "Underworks - Twelfth Architect",
@@ -776,12 +821,12 @@
         "Pickup Key of Indolent": {
             "code": 682748754543364,
             "region": "The Slab",
-            "groups": ["UNIQUE_PICKUPS", "ACT_1"]
+            "groups": ["UNIQUE_PICKUPS", "ACT_2"]
         },
         "Pickup Key of Heretic": {
             "code": 1065551379562565,
             "region": "The Slab",
-            "groups": ["UNIQUE_PICKUPS", "ACT_1"]
+            "groups": ["UNIQUE_PICKUPS", "ACT_2"]
         },
         "Pickup Key of Apostate": {
             "code": 682685250554593,
@@ -826,7 +871,7 @@
         "Lost Flea - Deep Docks - Underground After Arena": {
             "code": 503096256840833,
             "region": "Deep Docks - Diving Bell",
-            "groups": ["LOST_FLEA", "ACT_1"]
+            "groups": ["LOST_FLEA", "ACT_2"]
         },
         "Lost Flea - Far Fields - Pressure Plate Cage": {
             "code": 848930069236471,
@@ -948,6 +993,11 @@
             "region": "Sands Of Karak - Lower Right",
             "groups": ["LOST_FLEA", "ACT_2"]
         },
+        "Obtain Egg of Flealia": {
+            "code": 392788345583507,
+            "region": "Fleatopia",
+            "groups": ["LOST_FLEA", "BLUE_TOOL", "ACT_2"]
+        },
         "Unlock Bellhart Bellway": {
             "code": 75419078501423,
             "region": "Bellhart - Bellway",
@@ -986,7 +1036,7 @@
         "Unlock The Slab Bellway": {
             "code": 800186381712431,
             "region": "The Slab - Bellway",
-            "groups": ["BELLWAY", "ACT_1"]
+            "groups": ["BELLWAY", "ACT_2"]
         },
         "Unlock Choral Chambers Bellway": {
             "code": 123207765136175,

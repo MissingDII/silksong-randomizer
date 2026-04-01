@@ -98,7 +98,7 @@
         },
         "Progressive Hunter Crest": {
             "code": 634340146116406,
-            "classification": "useful"
+            "classification": "progression|useful"
         },
         "Upslash": {
             "code": 6686227946,
@@ -256,6 +256,14 @@
             "code": 966718139888010,
             "classification": "progression"
         },
+        "Flea Brew": {
+            "code": 1350871370833,
+            "classification": "progression"
+        },
+        "Needle Upgrade": {
+            "code": 607204883353745,
+            "classification": "progression"
+        },
         "Progressive Tipp and Pill": {
             "code": 949576945864712,
             "classification": "progression"
@@ -266,6 +274,14 @@
         },
         "Soul Snare": {
             "code": 106464599393885,
+            "classification": "progression"
+        },
+        "Pale Oil": {
+            "code": 128961625506,
+            "classification": "progression"
+        },
+        "Bellhart Restored": {
+            "code": 20551953921094,
             "classification": "progression"
         },
         "Architect Key": {
@@ -310,6 +326,10 @@
         },
         "Vog": {
             "code": 15269,
+            "classification": "progression"
+        },
+        "Egg of Flealia": {
+            "code": 794646465312659,
             "classification": "progression"
         },
         "Bellway Station - Bellhart": {
