@@ -100,20 +100,20 @@
             "code": 634340146116406,
             "classification": "progression|useful"
         },
-        "Upslash": {
-            "code": 6686227946,
+        "Leftslash": {
+            "code": 2548183842602,
             "classification": "progression"
         },
         "Downslash": {
             "code": 963065707690,
             "classification": "progression"
         },
-        "Leftslash": {
-            "code": 2548183842602,
-            "classification": "useful"
-        },
         "Rightslash": {
             "code": 99669450322346,
+            "classification": "useful"
+        },
+        "Upslash": {
+            "code": 6686227946,
             "classification": "useful"
         },
         "Grand Gate - Marrow Bell": {
