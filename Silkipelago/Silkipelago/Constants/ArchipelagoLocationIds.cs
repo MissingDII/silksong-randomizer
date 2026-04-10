@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Silkipelago.Constants.GameObject;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Silkipelago.Constants
@@ -7,6 +8,13 @@ namespace Silkipelago.Constants
     {
         public static Dictionary<string, string> ArchipelagoIdsToGameIds { get; } = new Dictionary<string, string>
     {
+        // Tutorial Vine Cluster
+        { "Tutorial: Breakable Walls 1", Tut_01.VINE_CLUSTER },
+        { "Tutorial: Breakable Walls 2", Tut_01.VINE_CLUSTER_1 },
+        { "Tutorial: Breakable Walls 3", Tut_01.VINE_CLUSTER_3 },
+        //Tutorial Mobs
+        { "Tutorial: Mossgrub", MonsterIds.MOSSGRUB },
+        { "Tutorial: Mossmir", MonsterIds.MOSSMIR },
         //Stations
         { "Unlock Deep Docks Bellway", PlayerDataIds.DOCK_STATION },
         { "Unlock Far Fields Bellway", PlayerDataIds.FAR_FIELDS_STATION },
@@ -125,7 +133,7 @@ namespace Silkipelago.Constants
         { "Defeat Savage Beastfly (Beast)", PlayerDataIds.BONE_FLYER_GIANT_DEFEATED },
         { "Defeat Savage Beastfly (Wish)", PlayerDataIds.BONE_FLYER_GIANT_GOLEM_SCENE_DEFEATED },
         { "Defeat Skull Tyrant (Bone Bottom)", PlayerDataIds.ROCK_ROLLER_BONE_01_DEFEATED },
-        { "Defeat Phantom", PlayerDataIds.PHANTOM_DEFEATED },
+        { "Defeat Phantom",BossIds.PHANTOM },
         { "Defeat First Sinner", PlayerDataIds.FIRST_WEAVER_DEFEATED },
         { "Defeat Lace", BossIds.LACE},
         { "Defeat Lace (Cradle)", PlayerDataIds.LACE_TOWER_DEFEATED },

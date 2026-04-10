@@ -11,6 +11,7 @@ namespace Silkipelago.Constants
         public const string MOORWING = "Vampire Gnat";
         public const string WIDOW = "Spinner Boss";
         public const string CRAGGLER = "Roof Crab";
+        public const string PHANTOM = "Phantom";
 
         public static readonly List<string> BOSSES =
         [
@@ -18,7 +19,8 @@ namespace Silkipelago.Constants
             LACE,
             MOORWING,
             WIDOW,
-            CRAGGLER
+            CRAGGLER,
+            PHANTOM
         ];
     }
 }

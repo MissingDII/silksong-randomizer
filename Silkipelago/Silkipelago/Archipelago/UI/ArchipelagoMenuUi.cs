@@ -92,6 +92,11 @@ namespace Silkipelago.Archipelago.UI
             var connected = ArchipelagoPlugin.App.UIContext.ConnectionHandler.ConnectToArchipelago(APConnectionInfo);
             if (connected)
             {
+                var archipelagoClient = ArchipelagoPlugin.App.ArchipelagoClient;
+                if (archipelagoClient.SlotData.DeathLink)
+                {
+                    archipelagoClient.ToggleDeathlink();
+                }
                 Hide();
                 if (shouldLaunchStartCutscene)
                 {

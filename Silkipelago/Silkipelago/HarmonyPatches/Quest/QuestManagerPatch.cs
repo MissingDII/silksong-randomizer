@@ -101,6 +101,7 @@ namespace Silkipelago.HarmonyPatches.Quest
         }
     }
 
+
     /// <summary>
     /// Patches for quest completion property setter.
     /// </summary>

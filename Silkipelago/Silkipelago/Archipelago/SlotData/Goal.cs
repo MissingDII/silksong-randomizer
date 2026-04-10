@@ -1,4 +1,4 @@
-﻿namespace Silkipelago.Archipelago
+﻿namespace Silkipelago.Archipelago.SlotData
 {
     public enum Goal
     {

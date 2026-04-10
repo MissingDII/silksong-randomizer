@@ -28,10 +28,11 @@ namespace Silkipelago.HarmonyPatches.Tools
 
         private static bool ShouldBlockCompletion(ToolItem tool, SilksongLocationChecker locationChecker)
         {
-            if (IsBossLockedTool(tool) && locationChecker.LocationExists(PlayerDataIds.FIRST_WEAVER_DEFEATED))
+            var archipelagoClient = ArchipelagoPlugin.App.ArchipelagoClient;
+            if (IsBossLockedTool(tool) && archipelagoClient.SlotData.CombatAbilitiesRandomized)
                 return true;
 
-            if (IsSilkAbility(tool) && locationChecker.LocationExists(ArchipelagoLocationIds.GetArchipelagoName(tool.name)))
+            if (IsSilkAbility(tool) && archipelagoClient.SlotData.CombatAbilitiesRandomized)
                 return true;
 
             return false;

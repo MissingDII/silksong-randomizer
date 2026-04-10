@@ -2,9 +2,8 @@
 using HutongGames.PlayMaker.Actions;
 using KaitoKid.ArchipelagoUtilities.Net.Client;
 using KaitoKid.ArchipelagoUtilities.Net.Constants;
-using Silkipelago.Archipelago;
+using Silkipelago.Archipelago.SlotData;
 using Silkipelago.Constants;
-using System;
 
 namespace Silkipelago.HarmonyPatches.GameState
 {

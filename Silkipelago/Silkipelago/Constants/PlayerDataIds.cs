@@ -18,7 +18,7 @@ namespace Silkipelago.Constants
         public const string GRAND_BELLWAY_STATION = "UnlockedCityStation";
         public const string BILEWATER_STATION = "UnlockedShadowStation";
         public const string AQUEDUCT_STATION = "UnlockedAqueductStation";
-        public static readonly List<string> STATION =
+        public static readonly List<string> STATIONS =
         [
             DOCK_STATION,
             FAR_FIELDS_STATION,

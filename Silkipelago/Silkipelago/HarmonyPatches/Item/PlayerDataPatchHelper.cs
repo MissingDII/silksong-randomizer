@@ -1,6 +1,7 @@
 using KaitoKid.ArchipelagoUtilities.Net.Constants;
 using KaitoKid.Utilities.Interfaces;
 using Silkipelago.Archipelago;
+using Silkipelago.Archipelago.ItemHandlers;
 using Silkipelago.Constants;
 using System;
 
@@ -38,6 +39,22 @@ namespace Silkipelago.HarmonyPatches.Item
         public static bool HandlePlayerDataFieldChange(string fieldName, SilksongLocationChecker locationChecker)
         {
             Logger.LogInfo(fieldName);
+            if (PlayerDataIds.BIND_CUTSCENE.Equals(fieldName))
+            {
+                if (ArchipelagoPlugin.App.ArchipelagoClient.SlotData.StartingCrestRandomized)
+                {
+                    //force equip current crest for starting crest randomizer
+                    var currentCrestId = PlayerData.instance.CurrentCrestID;
+                    SilksongItemManager.ItemToReceive++;
+                    ToolItemManager.AutoEquip(ToolItemManager.GetCrestByName(CrestIds.HUNTER), false, true);
+                    SilksongItemManager.ItemToReceive++;
+                    ToolItemManager.AutoEquip(ToolItemManager.GetCrestByName(currentCrestId), false, true);
+                }
+            }
+            if (IsBellShrine(fieldName))
+            {
+                return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
+            }
             if (IsSilkHeart(fieldName) && locationChecker.LocationExists(ArchipelagoLocationIds.GetArchipelagoName(BossIds.BELL_BEAST)))
             {
                 return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
@@ -48,10 +65,10 @@ namespace Silkipelago.HarmonyPatches.Item
             if (IsChapelField(fieldName) && locationChecker.LocationExists(ArchipelagoLocationIds.GetArchipelagoName(CrestIds.REAPER)))
                 return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
 
-            if (IsSilkAbility(fieldName))
+            if (IsSilkAbility(fieldName) || IsStationOrTube(fieldName) || IsRandomizableContent(fieldName))
             {
-                TrackLocation(fieldName, locationChecker);
-                return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
+                if (TrackLocation(fieldName, locationChecker))
+                    return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
             }
 
             if (IsTrackableLocation(fieldName))
@@ -60,15 +77,12 @@ namespace Silkipelago.HarmonyPatches.Item
                 return MethodPrefix.RUN_ORIGINAL_METHOD;
             }
 
-            // Track randomized abilities, keys, melodies
-            if (IsRandomizableContent(fieldName))
-            {
-                if (TrackLocation(fieldName, locationChecker))
-                    return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
-            }
-
             return MethodPrefix.RUN_ORIGINAL_METHOD;
         }
+        private static bool IsBellShrine(string fieldName)
+         => PlayerDataIds.SHRINES.Contains(fieldName);
+        private static bool IsStationOrTube(string fieldName)
+            => PlayerDataIds.STATIONS.Contains(fieldName) || PlayerDataIds.TUBES.Contains(fieldName);
         private static bool IsSilkHeart(string fieldName)
             => PlayerDataIds.SILK_HEART.Equals(fieldName);
 

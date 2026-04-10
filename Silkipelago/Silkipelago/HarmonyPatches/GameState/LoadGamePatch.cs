@@ -25,7 +25,7 @@ namespace Silkipelago.HarmonyPatches.GameState
             BasePatch.Logger.LogDebugPatchIsRunning(nameof(GameManager), nameof(GameManager.SetLoadedGameData), nameof(LoadGamePatch), nameof(Prefix));
             ArchipelagoPlugin.App.SettingsContext.saveSettingsData = SaveSettings.LoadSaveDataSettings(saveSlot);
             var saveSettingsData = ArchipelagoPlugin.App.SettingsContext.saveSettingsData;
-            var APConnectionInfo = new ArchipelagoConnectionInfo(saveSettingsData.HostName, saveSettingsData.Port, saveSettingsData.SlotName, false);
+            var APConnectionInfo = new ArchipelagoConnectionInfo(saveSettingsData.HostName, saveSettingsData.Port, saveSettingsData.SlotName, saveSettingsData.DeathLink);
             ArchipelagoPlugin.App.UIContext.ConnectionHandler.ConnectToArchipelago(APConnectionInfo);
             return MethodPrefix.RUN_ORIGINAL_METHOD;
         }

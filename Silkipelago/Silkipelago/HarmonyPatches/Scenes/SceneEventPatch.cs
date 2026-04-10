@@ -33,19 +33,6 @@ namespace Silkipelago.HarmonyPatches.Scenes
             }
         }
 
-        private static void ForceMoorwingToAppear()
-        {
-            var location = ArchipelagoLocationIds.GetArchipelagoName(PlayerDataIds.VAMPIRE_GNAT_BOSS_DEFEATED);
-            var locationChecker = ArchipelagoPlugin.App.LocationChecker;
-            if (!locationChecker.IsLocationChecked(location))
-            {
-                PlayerData.instance.visitedBellhart = false;
-                PlayerData.instance.visitedBellhartHaunted = false;
-                PlayerData.instance.visitedBellhartSaved = false;
-
-            }
-        }
-
         private static void ForceLaceNotLeftDocks()
         {
             var location = ArchipelagoLocationIds.GetArchipelagoName(PlayerDataIds.LACE_DEFEATED);

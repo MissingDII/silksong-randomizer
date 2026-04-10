@@ -1,4 +1,6 @@
 ﻿using HarmonyLib;
+using KaitoKid.ArchipelagoUtilities.Net.Constants;
+using Silkipelago.Archipelago.ItemHandlers;
 using Silkipelago.Constants;
 
 namespace Silkipelago.HarmonyPatches.Crest
@@ -14,13 +16,16 @@ namespace Silkipelago.HarmonyPatches.Crest
         /// </summary>
         static bool Prefix(ToolCrest crest, bool markTemp, bool removeTools)
         {
-            return BasePatch.SafeExecute(
-                () => ShouldBlockCrestAutoEquip(crest) 
-                    ? KaitoKid.ArchipelagoUtilities.Net.Constants.MethodPrefix.DONT_RUN_ORIGINAL_METHOD 
-                    : KaitoKid.ArchipelagoUtilities.Net.Constants.MethodPrefix.RUN_ORIGINAL_METHOD,
+            if (SilksongItemManager.ItemToReceive == 0)
+            {
+                return BasePatch.SafeExecute(
+                () => !ShouldBlockCrestAutoEquip(crest),
                 nameof(CrestEquipPatch),
                 nameof(Prefix)
             );
+            }
+            SilksongItemManager.ItemToReceive--;
+            return MethodPrefix.RUN_ORIGINAL_METHOD;
         }
 
         /// <summary>
@@ -38,7 +43,7 @@ namespace Silkipelago.HarmonyPatches.Crest
         private static bool IsEvaCrestUpgradeRandomized(ToolCrest crest)
         {
             var locationChecker = ArchipelagoPlugin.App.LocationChecker;
-            return locationChecker.LocationExists(LocationConstants.EvaUpgradeLocation) 
+            return locationChecker.LocationExists(LocationConstants.EvaUpgradeLocation)
                 && CrestIds.CRESTS_UPGRADE.Contains(crest.name);
         }
 

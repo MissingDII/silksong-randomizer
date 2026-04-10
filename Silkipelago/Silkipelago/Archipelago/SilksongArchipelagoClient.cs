@@ -6,6 +6,7 @@ using KaitoKid.ArchipelagoUtilities.Net.Client;
 using KaitoKid.ArchipelagoUtilities.Net.Interfaces;
 using KaitoKid.ArchipelagoUtilities.Net.Json;
 using KaitoKid.Utilities.Interfaces;
+using Silkipelago.Archipelago.SlotData;
 using Silkipelago.IdTables;
 using System;
 using System.Collections.Generic;
@@ -47,7 +48,40 @@ namespace Silkipelago.Archipelago
 
         protected override void KillPlayerDeathLink(DeathLink deathLinkOptions)
         {
+            var heroController = HeroController.instance;
+            if (heroController == null)
+            {
+                Logger.LogError("HeroController instance not found!");
+                return;
+            }
+
             Logger.LogInfo($"Receiving Death Link from {deathLinkOptions.Source} ({deathLinkOptions.Cause})");
+
+            // Kill the player by dealing massive damage through the proper damage system
+            // This ensures all game logic (health reduction, death detection, animations, etc.) is triggered
+            try
+            {
+                // Use reflection to call TakeDamage with the correct parameters
+                var takeDamageMethod = typeof(HeroController).GetMethod("TakeDamage");
+                if (takeDamageMethod != null)
+                {
+                    takeDamageMethod.Invoke(heroController, new object[] { 9999, null, 0, null, -1 });
+                }
+                else
+                {
+                    // Fallback: directly set health and trigger death
+                    PlayerData.instance.health = 0;
+                    heroController.StartCoroutine(heroController.Die(false, false));
+                    Logger.LogInfo("Used fallback death method");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogErrorException(nameof(SilksongArchipelagoClient), nameof(KillPlayerDeathLink), ex);
+                // Fallback if something goes wrong
+                PlayerData.instance.health = 0;
+                heroController.StartCoroutine(heroController.Die(false, false));
+            }
         }
     }
 }

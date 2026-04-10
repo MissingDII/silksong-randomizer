@@ -141,7 +141,6 @@ namespace Silkipelago.Constants
        [
             SILK_DEFEAT_SNARE,
             BLACK_THREAD_PT6_FLOWER,
-            GRAND_GATE_BELLSHRINES
        ];
 
     }

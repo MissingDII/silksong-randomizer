@@ -2,6 +2,7 @@
 using KaitoKid.ArchipelagoUtilities.Net.Client;
 using KaitoKid.Utilities.Interfaces;
 using Silkipelago.Archipelago.ItemHandlers;
+using Silkipelago.HarmonyPatches.Hero;
 using Silkipelago.Settings;
 using System;
 
@@ -44,6 +45,17 @@ namespace Silkipelago.Archipelago
             locationChecker.VerifyNewLocationChecksWithArchipelago();
             locationChecker.SendAllLocationChecks();
             ArchipelagoPlugin.App.ArchipelagoContext._archipelago._shouldDoInitialLoad = true;
+
+            // Initialize cached randomization checks after connection is established
+            InitializeCachedLocationChecks();
+        }
+
+        private void InitializeCachedLocationChecks()
+        {
+            // Initialize slash direction randomization check
+            BlockSlashPatch.InitializeCachedValues();
+            CanBindPatch.InitializeCachedValues();
+            // remove cross stitch extra unlock condition
         }
 
         private bool ConnectToArchipelago(Action actionAfterConnection, ArchipelagoConnectionInfo connectionInfo)
@@ -61,7 +73,6 @@ namespace Silkipelago.Archipelago
                 Logger.LogMessage($"Tried to connect, but already connected!");
                 return false;
             }
-
             var connectionResult = archipelago.ConnectToMultiworld(connectionInfo);
             if (!connectionResult.Success || !archipelago.IsConnected)
             {
@@ -79,6 +90,7 @@ namespace Silkipelago.Archipelago
             saveSettingData.HostName = connectionInfo.HostUrl;
             saveSettingData.Port = connectionInfo.Port;
             saveSettingData.SlotName = connectionInfo.SlotName;
+            saveSettingData.DeathLink = archipelago.SlotData.DeathLink;
             ArchipelagoPlugin.App.SettingsContext.saveSettingsData = saveSettingData;
             actionAfterConnection?.Invoke();
             return true;

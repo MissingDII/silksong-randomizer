@@ -2,7 +2,6 @@
 using KaitoKid.ArchipelagoUtilities.Net.Constants;
 using KaitoKid.Utilities.Interfaces;
 using Silkipelago.Constants;
-using Silkipelago.HarmonyPatches.Item;
 
 namespace Silkipelago.HarmonyPatches.Hero
 {
@@ -14,7 +13,7 @@ namespace Silkipelago.HarmonyPatches.Hero
 
         public static bool Prefix(HeroController __instance, int amount)
         {
-            return BasePatch.SafeExecute(() => HandleAddingSilkHeart(__instance, amount), nameof(CollectableItemPatch), nameof(Prefix));
+            return BasePatch.SafeExecute(() => HandleAddingSilkHeart(__instance, amount), nameof(AddSilkHeartPatch), nameof(Prefix));
         }
 
         private static bool HandleAddingSilkHeart(HeroController instance, int amount)
@@ -38,7 +37,7 @@ namespace Silkipelago.HarmonyPatches.Hero
 
         public static bool Prefix(HeroController __instance, bool isBlocked)
         {
-            return BasePatch.SafeExecute(() => HandleBlockingSilkHeart(__instance, isBlocked), nameof(CollectableItemPatch), nameof(Prefix));
+            return BasePatch.SafeExecute(() => HandleBlockingSilkHeart(__instance, isBlocked), nameof(BlockSilkHeartPatch), nameof(Prefix));
         }
 
         private static bool HandleBlockingSilkHeart(HeroController instance, bool isBlocked)
