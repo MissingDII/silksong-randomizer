@@ -7,6 +7,7 @@ namespace Silkipelago.Constants
     /// </summary>
     public static class PlayerDataIds
     {
+
         //stations
         public const string DOCK_STATION = "UnlockedDocksStation";
         public const string FAR_FIELDS_STATION = "UnlockedBoneforestEastStation";
@@ -306,5 +307,72 @@ namespace Silkipelago.Constants
             COGWORK_DANCERS_DEFEATED,
             CLOVER_DANCERS_DEFEATED
         ];
+
+        // Fleas
+        public const string FLEA_BONE_06 = "SavedFlea_Bone_06";
+        public const string FLEA_DOCK_16 = "SavedFlea_Dock_16";
+        public const string FLEA_BONE_EAST_05 = "SavedFlea_Bone_East_05";
+        public const string FLEA_BONE_EAST_17B = "SavedFlea_Bone_East_17b";
+        public const string FLEA_ANT_03 = "SavedFlea_Ant_03";
+        public const string FLEA_GREYMOOR_15B = "SavedFlea_Greymoor_15b";
+        public const string FLEA_GREYMOOR_06 = "SavedFlea_Greymoor_06";
+        public const string FLEA_SHELLWOOD_03 = "SavedFlea_Shellwood_03";
+        public const string FLEA_BONE_EAST_10_CHURCH = "SavedFlea_Bone_East_10_Church";
+        public const string FLEA_CORAL_35 = "SavedFlea_Coral_35";
+        public const string FLEA_DUST_12 = "SavedFlea_Dust_12";
+        public const string FLEA_DUST_09 = "SavedFlea_Dust_09";
+        public const string FLEA_BELLTOWN_04 = "SavedFlea_Belltown_04";
+        public const string FLEA_CRAWL_06 = "SavedFlea_Crawl_06";
+        public const string FLEA_SLAB_CELL = "SavedFlea_Slab_Cell";
+        public const string FLEA_SHADOW_28 = "SavedFlea_Shadow_28";
+        public const string FLEA_DOCK_03D = "SavedFlea_Dock_03d";
+        public const string FLEA_UNDER_23 = "SavedFlea_Under_23";
+        public const string FLEA_SHADOW_10 = "SavedFlea_Shadow_10";
+        public const string FLEA_SONG_14 = "SavedFlea_Song_14";
+        public const string FLEA_CORAL_24 = "SavedFlea_Coral_24";
+        public const string FLEA_PEAK_05C = "SavedFlea_Peak_05c";
+        public const string FLEA_LIBRARY_09 = "SavedFlea_Library_09";
+        public const string FLEA_SONG_11 = "SavedFlea_Song_11";
+        public const string FLEA_LIBRARY_01 = "SavedFlea_Library_01";
+        public const string FLEA_UNDER_21 = "SavedFlea_Under_21";
+        public const string FLEA_SLAB_06 = "SavedFlea_Slab_06";
+        public const string FLEA_MEMORIUM_GIANT = "SavedFlea_Memorium_Giant";
+        public const string FLEA_VOG_PUTRIFIED = "SavedFlea_Vog_Putrified";
+        public const string KRAT_SAVED = "CaravanLechSaved";
+
+        public static readonly List<string> FLEAS =
+        [
+            FLEA_BONE_06,
+            FLEA_DOCK_16,
+            FLEA_BONE_EAST_05,
+            FLEA_BONE_EAST_17B,
+            FLEA_ANT_03,
+            FLEA_GREYMOOR_15B,
+            FLEA_GREYMOOR_06,
+            FLEA_SHELLWOOD_03,
+            FLEA_BONE_EAST_10_CHURCH,
+            FLEA_CORAL_35,
+            FLEA_DUST_12,
+            FLEA_DUST_09,
+            FLEA_BELLTOWN_04,
+            FLEA_CRAWL_06,
+            FLEA_SLAB_CELL,
+            FLEA_SHADOW_28,
+            FLEA_DOCK_03D,
+            FLEA_UNDER_23,
+            FLEA_SHADOW_10,
+            FLEA_SONG_14,
+            FLEA_CORAL_24,
+            FLEA_PEAK_05C,
+            FLEA_LIBRARY_09,
+            FLEA_SONG_11,
+            FLEA_LIBRARY_01,
+            FLEA_UNDER_21,
+            FLEA_SLAB_06,
+            FLEA_MEMORIUM_GIANT,
+            FLEA_VOG_PUTRIFIED,
+            KRAT_SAVED
+        ];
     }
+
 }

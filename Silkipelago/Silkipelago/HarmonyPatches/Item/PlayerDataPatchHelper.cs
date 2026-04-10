@@ -51,6 +51,11 @@ namespace Silkipelago.HarmonyPatches.Item
                     ToolItemManager.AutoEquip(ToolItemManager.GetCrestByName(currentCrestId), false, true);
                 }
             }
+            if (IsFlea(fieldName) && ArchipelagoPlugin.App.ArchipelagoClient.SlotData.FleasRandomized)
+            {
+                TrackLocation(fieldName, locationChecker);
+                return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
+            }
             if (IsBellShrine(fieldName))
             {
                 return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
@@ -79,6 +84,8 @@ namespace Silkipelago.HarmonyPatches.Item
 
             return MethodPrefix.RUN_ORIGINAL_METHOD;
         }
+        private static bool IsFlea(string fieldName)
+ => PlayerDataIds.FLEAS.Contains(fieldName);
         private static bool IsBellShrine(string fieldName)
          => PlayerDataIds.SHRINES.Contains(fieldName);
         private static bool IsStationOrTube(string fieldName)

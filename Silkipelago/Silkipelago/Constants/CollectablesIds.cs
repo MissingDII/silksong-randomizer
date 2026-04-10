@@ -37,6 +37,12 @@ namespace Silkipelago.Constants
             EVERBLOOM,
             SOUL_SNARE
         ];
+
+        // Memory Locket location
+        public static readonly List<string> MEMORY_LOCKETS_SCENES =
+        [
+           ""
+        ];
     }
 }
 

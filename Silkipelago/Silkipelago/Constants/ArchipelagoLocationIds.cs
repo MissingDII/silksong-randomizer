@@ -8,6 +8,7 @@ namespace Silkipelago.Constants
     {
         public static Dictionary<string, string> ArchipelagoIdsToGameIds { get; } = new Dictionary<string, string>
     {
+
         // Tutorial Vine Cluster
         { "Tutorial: Breakable Walls 1", Tut_01.VINE_CLUSTER },
         { "Tutorial: Breakable Walls 2", Tut_01.VINE_CLUSTER_1 },
@@ -140,7 +141,39 @@ namespace Silkipelago.Constants
         { "Defeat Grand Mother Silk", SaveSlotCompletionIcons.CompletionState.Act2Regular.ToString() },
         { "Defeat Crust King Khann", PlayerDataIds.CORAL_KING_DEFEATED },
         { "Defeat Nyleth", PlayerDataIds.FLOWER_QUEEN_DEFEATED },
-        { "Defeat Skarrsinger Karmelita", PlayerDataIds.ANT_QUEEN_DEFEATED }
+        { "Defeat Skarrsinger Karmelita", PlayerDataIds.ANT_QUEEN_DEFEATED },
+
+        // Lost Fleas
+        { "Lost Flea - Wormways - Carried by Aknid", PlayerDataIds.FLEA_CRAWL_06 },
+        { "Lost Flea - The Marrow - Stuck In Vines", PlayerDataIds.FLEA_BONE_06 },
+        { "Lost Flea - Hunter's March - Cage", PlayerDataIds.FLEA_ANT_03 },
+        { "Lost Flea - Deep Docks - Lava Falls Room", PlayerDataIds.FLEA_DOCK_16 },
+        { "Lost Flea - Deep Docks - Stuck Above Swift Step", PlayerDataIds.FLEA_BONE_EAST_05 },
+        { "Lost Flea - Deep Docks - Underground After Arena", PlayerDataIds.FLEA_DOCK_03D },
+        { "Lost Flea - Far Fields - Pressure Plate Cage", PlayerDataIds.FLEA_BONE_EAST_17B },
+        { "Lost Flea - Far Fields - Pilgrim's Rest Behind Rhinogrund", PlayerDataIds.FLEA_BONE_EAST_10_CHURCH },
+        { "Lost Flea - Greymoor - Stuck Above Craw Lake", PlayerDataIds.FLEA_GREYMOOR_15B },
+        { "Lost Kratt - Greymoor", PlayerDataIds.KRAT_SAVED },
+        { "Lost Flea - Greymoor - Top Of Left Tower", PlayerDataIds.FLEA_GREYMOOR_06 },
+        { "Lost Flea - Bellhart - Stuck In Bells", PlayerDataIds.FLEA_BELLTOWN_04 },
+        { "Lost Flea - Shellwood - Stuck In Vines", PlayerDataIds.FLEA_SHELLWOOD_03 },
+        { "Lost Flea - Blasted Steps - Top Of Shaft", PlayerDataIds.FLEA_CORAL_35 },
+        { "Lost Flea - Sinner's Road - Cage", PlayerDataIds.FLEA_DUST_12 },
+        { "Lost Flea - Bilewater - Hiding From Snitchflies", PlayerDataIds.FLEA_SHADOW_28 },
+        { "Lost Flea - Exhaust Organ - Stuck In Vines", PlayerDataIds.FLEA_DUST_09 },
+        { "Lost Flea - Bilewater - Stuck In Vines", PlayerDataIds.FLEA_SHADOW_10 },
+        { "Lost Flea - The Slab - Round Cage", PlayerDataIds.FLEA_SLAB_CELL },
+        { "Lost Flea - The Slab - Hiding Above Bench", PlayerDataIds.FLEA_SLAB_06 },
+        { "Lost Flea - Mount Fay - Frozen", PlayerDataIds.FLEA_PEAK_05C },
+        { "Lost Flea - Choral Chambers - Fancy Cage", PlayerDataIds.FLEA_SONG_14 },
+        { "Lost Flea - Choral Chambers - Vertical Vent", PlayerDataIds.FLEA_SONG_11 },
+        { "Lost Flea - Whispering Vaults - Fancy Cage", PlayerDataIds.FLEA_LIBRARY_01 },
+        { "Lost Flea - Songclave - Alcove Outside", PlayerDataIds.FLEA_LIBRARY_09 },
+        { "Lost Flea - Underworks - Stuck Under Spool Fragment", PlayerDataIds.FLEA_UNDER_21 },
+        { "Lost Flea - Underworks - Stuck After Saw Room", PlayerDataIds.FLEA_UNDER_23 },
+        { "Giant Lost Flea - Memorium", PlayerDataIds.FLEA_MEMORIUM_GIANT },
+        { "Lost Vog - Putrified Ducts", PlayerDataIds.FLEA_VOG_PUTRIFIED },
+        { "Lost Flea - Sands Of Karak - Stuck In Spikes", PlayerDataIds.FLEA_CORAL_24 }
     };
 
         public static Dictionary<string, string> GameIdsToArchipelagoIds = ArchipelagoIdsToGameIds.ToDictionary(keyValuePair => keyValuePair.Value, keyValuePair => keyValuePair.Key);

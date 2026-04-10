@@ -50,6 +50,11 @@ namespace Silkipelago.Archipelago.ItemHandlers
         /// </summary>
         private bool TryHandleSpecialItem(string itemName)
         {
+            if (itemName.Equals("Lost Flea") || itemName.Equals("Kratt") || itemName.Equals("Giant Lost Flea") || itemName.Equals("Vog"))
+            {
+                FleaHandler.AddFlea();
+                return true;
+            }
             if (itemName.EndsWith("Rosaries"))
             {
                 PlayerDataHandler.AddRosary(itemName);

@@ -15,6 +15,7 @@ namespace Silkipelago.Archipelago.SlotData
         private const string STARTING_CREST_RANDOMIZED = "random_starting_crests";
         private const string STARTING_BIND = "starting_bind";
         private const string COMBAT_ABILITIES_RANDOMIZED = "randomize_combat_abilities";
+        private const string FLEAS_RANDOMIZED = "randomize_lost_fleas";
 
         private Dictionary<string, object> _slotDataFields;
         private ILogger _logger;
@@ -31,6 +32,9 @@ namespace Silkipelago.Archipelago.SlotData
 
         public bool CombatAbilitiesRandomized { get; private set; }
 
+        public bool FleasRandomized { get; private set; }
+
+
         public SilksongSlotData(string slotName, Dictionary<string, object> slotDataFields, ILogger logger)
         {
             SlotName = slotName;
@@ -44,6 +48,7 @@ namespace Silkipelago.Archipelago.SlotData
             StartingBind = GetSlotSetting(STARTING_BIND, true);
             StartingCrestRandomized = GetSlotSetting(STARTING_CREST_RANDOMIZED, true);
             CombatAbilitiesRandomized = GetSlotSetting(COMBAT_ABILITIES_RANDOMIZED, false);
+            FleasRandomized = GetSlotSetting(FLEAS_RANDOMIZED, false);
             MultiworldVersion = GetSlotSetting(MULTIWORLD_VERSION_KEY, MyPluginInfo.PLUGIN_VERSION);
         }
 

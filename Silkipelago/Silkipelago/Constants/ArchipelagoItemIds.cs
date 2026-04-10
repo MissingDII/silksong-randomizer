@@ -8,6 +8,7 @@ namespace Silkipelago.Constants
     {
         public static Dictionary<string, string> ArchipelagoIdsToGameIds { get; } = new Dictionary<string, string>
     {
+
          //Stations
          { "Bellway Station - Deep Docks", PlayerDataIds.DOCK_STATION },
          { "Bellway Station - Far Fields", PlayerDataIds.FAR_FIELDS_STATION },

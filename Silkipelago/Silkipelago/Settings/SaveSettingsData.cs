@@ -19,6 +19,8 @@ namespace Silkipelago.Settings
         public bool RightSlash { get; set; }
 
         public bool Bind { get; set; }
+
+        public int SavedFleas { get; set; }
     }
 
 }

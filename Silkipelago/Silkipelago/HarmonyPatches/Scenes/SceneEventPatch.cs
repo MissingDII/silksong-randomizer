@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using KaitoKid.Utilities.Interfaces;
-using Silkipelago.Archipelago.ItemHandlers;
 using Silkipelago.Constants;
 using System.Linq;
 
@@ -22,16 +21,43 @@ namespace Silkipelago.HarmonyPatches.Scenes
         {
             var sceneName = sceneInfo.SceneName;
             Logger.LogInfo($"Loading scene for {sceneName}");
-            if (sceneName == "Coral_Judge_Arena")
+            if (sceneName == SceneNames.Coral_Judge_Arena)
             {
-                HandleCoralJudgeArena();
+                var isLastJudgeDefeated = PlayerData.instance.defeatedLastJudge;
+                var fleacount = ArchipelagoPlugin.App.SettingsContext.saveSettingsData.SavedFleas;
+                if (fleacount >= 12 && isLastJudgeDefeated)
+                {
+                    PlayerData.instance.CaravanTroupeLocation = GlobalEnums.CaravanTroupeLocations.CoralJudge;
+                }
             }
             Logger.LogInfo($"{SceneNames.Bone_East_12}");
             if (sceneName.Equals(SceneNames.Bone_East_12))
             {
                 ForceLaceNotLeftDocks();
             }
+            if (sceneName.Equals(SceneNames.Bone_10))
+            {
+                PlayerData.instance.CaravanTroupeLocation = GlobalEnums.CaravanTroupeLocations.Bone;
+            }
+            if (sceneName.Equals(SceneNames.Greymoor_08))
+            {
+                var fleacount = ArchipelagoPlugin.App.SettingsContext.saveSettingsData.SavedFleas;
+                if (fleacount >= 5)
+                {
+                    PlayerData.instance.CaravanTroupeLocation = GlobalEnums.CaravanTroupeLocations.Greymoor;
+                }
+            }
+            if (sceneName.Equals(SceneNames.Aqueduct_05))
+            {
+                var fleacount = ArchipelagoPlugin.App.SettingsContext.saveSettingsData.SavedFleas;
+                if (fleacount >= 22)
+                {
+                    PlayerData.instance.CaravanTroupeLocation = GlobalEnums.CaravanTroupeLocations.Aqueduct;
+                }
+            }
         }
+
+
 
         private static void ForceLaceNotLeftDocks()
         {
@@ -43,25 +69,6 @@ namespace Silkipelago.HarmonyPatches.Scenes
                 PlayerData.instance.defeatedLace1 = false;
                 PlayerData.instance.encounteredLace1Grotto = false;
                 PlayerData.instance.visitedCitadel = false;
-            }
-        }
-
-        private static void HandleCoralJudgeArena()
-        {
-            var bellcount = ArchipelagoPlugin.App.ArchipelagoClient.GetReceivedItemCount("Grand Gate Bell");
-            var i = 1;
-            foreach (var shrineName in PlayerDataIds.SHRINES)
-            {
-                if (i <= bellcount)
-                {
-                    SilksongItemManager.ItemToReceive++;
-                    PlayerData.instance.SetBool(shrineName, true);
-                }
-                else
-                {
-                    PlayerData.instance.SetBool(shrineName, false);
-                }
-                i++;
             }
         }
         private static int CountReceivedBells()
