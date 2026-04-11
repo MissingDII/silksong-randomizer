@@ -16,6 +16,7 @@ namespace Silkipelago.Constants
         ];
 
         //Keys
+        public const string SLAB_KEY_RING = "Slab Key";
         public const string WHITE_KEY = "Ward Key";
         public const string WHITE_BOSS_KEY = "Ward Boss Key";
         public const string ARCHITECT_KEY = "Architect Key";

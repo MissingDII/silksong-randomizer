@@ -1,4 +1,5 @@
 ﻿using KaitoKid.Utilities.Interfaces;
+using Silkipelago.Constants;
 using System;
 
 namespace Silkipelago.Archipelago.ItemHandlers
@@ -9,6 +10,10 @@ namespace Silkipelago.Archipelago.ItemHandlers
         public static void ChangeBooleanValue(string booleanName, Boolean newValue)
         {
             var instance = PlayerData.instance;
+            if (booleanName.Contains("HasSlabKey") && !instance.Collectables.GetValidNames().Contains(CollectablesIds.SLAB_KEY_RING))
+            {
+                CollectiblesHandler.addOneCollectible(CollectablesIds.SLAB_KEY_RING);
+            }
             SilksongItemManager.ItemToReceive++;
             instance.SetBool(booleanName, newValue);
         }

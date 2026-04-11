@@ -190,6 +190,7 @@ namespace Silkipelago.Constants
         public const string SONG_GOLEM_DEFEATED = "defeatedSongGolem";
         public const string LACE_DEFEATED = "defeatedLace1";
         public const string CROW_COURT_DEFEATED = "defeatedCrowCourt";
+        //to keep this checks works
         public const string WISP_PYRE_EFFIGY_DEFEATED = "defeatedWispPyreEffigy";
         public const string SPINNER_DEFEATED = "spinnerDefeated";
         public const string SPINNER_DEFEATED_AFTER_TIME = "SpinnerDefeatedTimePassed";

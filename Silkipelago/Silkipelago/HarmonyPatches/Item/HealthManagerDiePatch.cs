@@ -39,23 +39,33 @@ namespace Silkipelago.HarmonyPatches.Item
             var baseName = ExtractBaseName(gameObjectName);
 
             BasePatch.Logger?.LogInfo($"[HealthManager.Die] {gameObjectName} (base: {baseName}) died from attack type: {attackType}");
+            if (BossIds.GREAT_CONCHFLY.Equals(baseName) || BossIds.GREAT_CONCHFLY_2.Equals(baseName))
+            {
+                //in case of great confly send check no matter which you kill
+                var locationId = ArchipelagoLocationIds.GetArchipelagoName(BossIds.GREAT_CONCHFLY);
+                ArchipelagoPlugin.App.LocationChecker.AddCheckedLocation(locationId);
+                return true;
+            }
             if (BossIds.WIDOW.Equals(baseName))
             {
                 //in case of widow defeat we send moorwing check as well
                 var locationId = ArchipelagoLocationIds.GetArchipelagoName(BossIds.MOORWING);
                 ArchipelagoPlugin.App.LocationChecker.AddCheckedLocation(locationId);
+                return true;
             }
 
             if (BossIds.BOSSES.Contains(baseName))
             {
                 var locationId = ArchipelagoLocationIds.GetArchipelagoName(baseName);
                 ArchipelagoPlugin.App.LocationChecker.AddCheckedLocation(locationId);
+                return true;
             }
 
             if (MonsterIds.MONSTERS.Contains(baseName))
             {
                 var locationId = ArchipelagoLocationIds.GetArchipelagoName(baseName);
                 ArchipelagoPlugin.App.LocationChecker.AddCheckedLocation(locationId);
+                return true;
             }
             return true;
         }
