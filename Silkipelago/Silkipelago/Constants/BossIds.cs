@@ -19,6 +19,18 @@ namespace Silkipelago.Constants
         public const string BROODMOTHER = "Slab Fly Broodmother";
         public const string COG_DANCERS = "Dancer B";
         public const string CHEF_LUGOLI = "Roachkeeper Chef";
+        public const string FIRST_SINNER = "First Weaver";
+        public const string GARMOND = "Garmond Fighter";
+        public const string GROAL = "Swamp Shaman";
+        public const string LACE_CRADLE = "Lace Boss2 New";
+        public const string RAGING_CONCHFLY = "Coral Conch Driller Giant Solo";
+        public const string FOURTH_CHORUS = "SG_head";
+        public const string SAVAGE_BEASTFLY_WISH = "Bone Flyer Giant2";
+        public const string SECOND_SENTINEL = "Song Knight";
+        public const string SHAKRA = "Mapper Spar NPC";
+        public const string UNRAVELLED = "Unravelled"; // TODO check
+        public const string TROBBIO = "Trobbio";
+        public const string VOLTWYRM = "Zap Core Enemy";
 
         public static readonly List<string> BOSSES =
         [
@@ -32,7 +44,19 @@ namespace Silkipelago.Constants
             GREAT_CONCHFLY_2,
             SAVAGE_BEASTFLY,
             SPLINTER_QUEEN,
-            BROODMOTHER
+            BROODMOTHER,
+            FIRST_SINNER,
+            GARMOND,
+            GROAL,
+            LACE_CRADLE,
+            RAGING_CONCHFLY,
+            FOURTH_CHORUS,
+            SAVAGE_BEASTFLY_WISH,
+            SECOND_SENTINEL,
+            SHAKRA,
+            UNRAVELLED,
+            TROBBIO,
+            VOLTWYRM
         ];
     }
 }

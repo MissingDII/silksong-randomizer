@@ -85,7 +85,7 @@ namespace Silkipelago.HarmonyPatches.Item
             return MethodPrefix.RUN_ORIGINAL_METHOD;
         }
         private static bool IsFlea(string fieldName)
- => PlayerDataIds.FLEAS.Contains(fieldName);
+ => PlayerDataIds.ALL_FLEAS.Contains(fieldName);
         private static bool IsBellShrine(string fieldName)
          => PlayerDataIds.SHRINES.Contains(fieldName);
         private static bool IsStationOrTube(string fieldName)

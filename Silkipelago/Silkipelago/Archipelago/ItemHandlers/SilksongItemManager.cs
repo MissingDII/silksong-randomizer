@@ -52,7 +52,7 @@ namespace Silkipelago.Archipelago.ItemHandlers
         {
             if (itemName.Equals("Lost Flea") || itemName.Equals("Kratt") || itemName.Equals("Giant Lost Flea") || itemName.Equals("Vog"))
             {
-                FleaHandler.AddFlea();
+                FleaHandler.AddFlea(itemName);
                 return true;
             }
             if (itemName.EndsWith("Rosaries"))

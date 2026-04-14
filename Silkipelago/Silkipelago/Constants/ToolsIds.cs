@@ -22,8 +22,11 @@ namespace Silkipelago.Constants
             PALE_NAILS
         ];
 
+        public const string FLEA_BREW = "Flea Brew";
+
         public static readonly List<string> TOOLs =
         [
+            FLEA_BREW
         ];
     }
 }

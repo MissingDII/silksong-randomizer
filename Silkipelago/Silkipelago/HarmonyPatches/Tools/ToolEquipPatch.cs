@@ -23,12 +23,17 @@ namespace Silkipelago.HarmonyPatches.Tools
 
             if (ToolsIds.CROSS_STITCH.Equals(tool.name) && archipelagoClient.SlotData.CombatAbilitiesRandomized)
             {
-                var parryToolSaveData = ToolItemManager.GetToolByName(ToolsIds.CROSS_STITCH).SavedData;
-                parryToolSaveData.IsUnlocked = false;
-                parryToolSaveData.HasBeenSeen = false;
-                ToolItemManager.GetToolByName(ToolsIds.CROSS_STITCH).alternateUnlockedTest = new PlayerDataTest();
-                PlayerData.instance.SetToolData(ToolsIds.CROSS_STITCH, parryToolSaveData);
-                //lock cross stitch again
+                var archipelagoName = ArchipelagoItemIds.GetArchipelagoName(ToolsIds.CROSS_STITCH);
+                var hasReceivedCrossStitch = ArchipelagoPlugin.App.ArchipelagoClient.HasReceivedItem(archipelagoName);
+                if (!hasReceivedCrossStitch)
+                {
+                    //lock cross stitch again if not unlocked
+                    var parryToolSaveData = ToolItemManager.GetToolByName(ToolsIds.CROSS_STITCH).SavedData;
+                    parryToolSaveData.IsUnlocked = false;
+                    parryToolSaveData.HasBeenSeen = false;
+                    ToolItemManager.GetToolByName(ToolsIds.CROSS_STITCH).alternateUnlockedTest = new PlayerDataTest();
+                    PlayerData.instance.SetToolData(ToolsIds.CROSS_STITCH, parryToolSaveData);
+                }
                 SetPhantomFsmState();
                 return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
             }

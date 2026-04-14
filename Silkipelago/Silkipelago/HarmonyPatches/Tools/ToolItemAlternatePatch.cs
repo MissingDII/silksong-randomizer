@@ -29,6 +29,10 @@ namespace Silkipelago.HarmonyPatches.Tools
         private static bool ShouldBlockCompletion(ToolItem tool, SilksongLocationChecker locationChecker)
         {
             var archipelagoClient = ArchipelagoPlugin.App.ArchipelagoClient;
+            if (isNormalTool(tool))
+            {
+                return true;
+            }
             if (IsBossLockedTool(tool) && archipelagoClient.SlotData.CombatAbilitiesRandomized)
                 return true;
 
@@ -37,7 +41,8 @@ namespace Silkipelago.HarmonyPatches.Tools
 
             return false;
         }
-
+        private static bool isNormalTool(ToolItem tool)
+            => ToolsIds.TOOLs.Contains(tool.name);
         private static bool IsBossLockedTool(ToolItem tool)
             => tool.name is ToolsIds.RUNE_RAGE or ToolsIds.CROSS_STITCH;
 

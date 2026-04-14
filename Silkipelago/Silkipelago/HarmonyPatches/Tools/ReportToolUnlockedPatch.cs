@@ -12,7 +12,9 @@ namespace Silkipelago.HarmonyPatches.Tools
         static bool Prefix(ToolItemType type)
         {
             var currentScene = SceneManager.GetActiveScene().name;
-            if (SceneNames.Organ_01.Equals(currentScene))
+            var archipelagoName = ArchipelagoItemIds.GetArchipelagoName(ToolsIds.CROSS_STITCH);
+            var hasReceivedCrossStitch = ArchipelagoPlugin.App.ArchipelagoClient.HasReceivedItem(archipelagoName);
+            if (SceneNames.Organ_01.Equals(currentScene) && !hasReceivedCrossStitch)
             {
                 var parryToolSaveData = ToolItemManager.GetToolByName(ToolsIds.CROSS_STITCH).SavedData;
                 parryToolSaveData.IsUnlocked = false;

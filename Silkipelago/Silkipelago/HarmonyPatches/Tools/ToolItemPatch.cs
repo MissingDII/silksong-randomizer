@@ -30,22 +30,27 @@ namespace Silkipelago.HarmonyPatches.Tools
         private static bool ShouldBlockUnlock(ToolItem tool, SilksongLocationChecker locationChecker)
         {
             var archipelagoClient = ArchipelagoPlugin.App.ArchipelagoClient;
+            if (isNormalTool(tool))
+            {
+                return CheckAndTrackLocation(tool, locationChecker);
+            }
             if (IsBossLockedTool(tool) && archipelagoClient.SlotData.CombatAbilitiesRandomized)
                 return true;
 
             if (IsSilkAbility(tool))
-                return CheckAndTrackSilkAbilityLocation(tool, locationChecker);
+                return CheckAndTrackLocation(tool, locationChecker);
 
             return false;
         }
-
+        private static bool isNormalTool(ToolItem tool)
+           => ToolsIds.TOOLs.Contains(tool.name);
         private static bool IsBossLockedTool(ToolItem tool)
             => tool.name is ToolsIds.RUNE_RAGE or ToolsIds.CROSS_STITCH;
 
         private static bool IsSilkAbility(ToolItem tool)
             => ToolsIds.SILK_ABILITIES.Contains(tool.name);
 
-        private static bool CheckAndTrackSilkAbilityLocation(ToolItem tool, SilksongLocationChecker locationChecker)
+        private static bool CheckAndTrackLocation(ToolItem tool, SilksongLocationChecker locationChecker)
         {
             var locationId = ArchipelagoLocationIds.GetArchipelagoName(tool.name);
 

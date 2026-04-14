@@ -341,7 +341,7 @@ namespace Silkipelago.Constants
         public const string FLEA_VOG_PUTRIFIED = "SavedFlea_Vog_Putrified";
         public const string KRAT_SAVED = "CaravanLechSaved";
 
-        public static readonly List<string> FLEAS =
+        public static readonly List<string> ALL_FLEAS =
         [
             FLEA_BONE_06,
             FLEA_DOCK_16,
@@ -373,6 +373,37 @@ namespace Silkipelago.Constants
             FLEA_MEMORIUM_GIANT,
             FLEA_VOG_PUTRIFIED,
             KRAT_SAVED
+        ];
+
+        public static readonly List<string> BASIC_FLEAS =
+        [
+            FLEA_BONE_06,
+            FLEA_DOCK_16,
+            FLEA_BONE_EAST_05,
+            FLEA_BONE_EAST_17B,
+            FLEA_ANT_03,
+            FLEA_GREYMOOR_15B,
+            FLEA_GREYMOOR_06,
+            FLEA_SHELLWOOD_03,
+            FLEA_BONE_EAST_10_CHURCH,
+            FLEA_CORAL_35,
+            FLEA_DUST_12,
+            FLEA_DUST_09,
+            FLEA_BELLTOWN_04,
+            FLEA_CRAWL_06,
+            FLEA_SLAB_CELL,
+            FLEA_SHADOW_28,
+            FLEA_DOCK_03D,
+            FLEA_UNDER_23,
+            FLEA_SHADOW_10,
+            FLEA_SONG_14,
+            FLEA_CORAL_24,
+            FLEA_PEAK_05C,
+            FLEA_LIBRARY_09,
+            FLEA_SONG_11,
+            FLEA_LIBRARY_01,
+            FLEA_UNDER_21,
+            FLEA_SLAB_06,
         ];
     }
 
