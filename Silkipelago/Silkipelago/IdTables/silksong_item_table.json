@@ -110,11 +110,11 @@
         },
         "Rightslash": {
             "code": 99669450322346,
-            "classification": "useful"
+            "classification": "progression"
         },
         "Upslash": {
             "code": 6686227946,
-            "classification": "useful"
+            "classification": "progression"
         },
         "Grand Gate - Marrow Bell": {
             "code": 524164951994856,
@@ -278,10 +278,6 @@
         },
         "Pale Oil": {
             "code": 128961625506,
-            "classification": "progression"
-        },
-        "Bellhart Restored": {
-            "code": 20551953921094,
             "classification": "progression"
         },
         "Architect Key": {
