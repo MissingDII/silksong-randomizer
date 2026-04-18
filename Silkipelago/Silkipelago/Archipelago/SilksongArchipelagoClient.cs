@@ -7,6 +7,7 @@ using KaitoKid.ArchipelagoUtilities.Net.Interfaces;
 using KaitoKid.ArchipelagoUtilities.Net.Json;
 using KaitoKid.Utilities.Interfaces;
 using Silkipelago.Archipelago.SlotData;
+using Silkipelago.HarmonyPatches.Hero;
 using Silkipelago.IdTables;
 using System;
 using System.Collections.Generic;
@@ -61,6 +62,7 @@ namespace Silkipelago.Archipelago
             // This ensures all game logic (health reduction, death detection, animations, etc.) is triggered
             try
             {
+                DiePatch.receivedDeathLink = true;
                 // Use reflection to call TakeDamage with the correct parameters
                 var takeDamageMethod = typeof(HeroController).GetMethod("TakeDamage");
                 if (takeDamageMethod != null)

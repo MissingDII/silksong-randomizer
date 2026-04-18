@@ -5,8 +5,9 @@ namespace Silkipelago.HarmonyPatches.Hero
 {
     [HarmonyPatch(typeof(HeroController))]
     [HarmonyPatch(nameof(HeroController.Die), new Type[] { typeof(bool), typeof(bool) })]
-    public class DiePatch
+    public static class DiePatch
     {
+        public static bool receivedDeathLink = false;
         /// <summary>
         /// Sends a death link to archipelago when the player dies.
         /// Uses "Skill issue" as the cause of death.
@@ -19,17 +20,18 @@ namespace Silkipelago.HarmonyPatches.Hero
         private static void HandleDeath(bool nonLethal, bool frostDeath)
         {
             var deathlink = ArchipelagoPlugin.App.ArchipelagoClient.DeathLink;
-            if (!nonLethal && deathlink)
+            if (!receivedDeathLink && !nonLethal && deathlink)
             {
                 try
                 {
-                    ArchipelagoPlugin.App.ArchipelagoClient.SendDeathLink("Skill issue");
+                    ArchipelagoPlugin.App.ArchipelagoClient.SendDeathLink("Silk issue");
                 }
                 catch (Exception ex)
                 {
                     BasePatch.Logger.LogErrorException(nameof(DiePatch), nameof(HandleDeath), ex);
                 }
             }
+            receivedDeathLink = false;
         }
     }
 }

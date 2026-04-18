@@ -16,7 +16,7 @@ namespace Silkipelago
     {
         private ILogger _logger;
         private Harmony _harmony;
-        private bool debugAppFeatures = false;
+        private bool debugAppFeatures = true;
         public static RandomizerApp App { get; private set; }
 
 
