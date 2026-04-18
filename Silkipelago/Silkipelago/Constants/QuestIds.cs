@@ -78,13 +78,13 @@ namespace Silkipelago.Constants
         public const string HUNTRESS_QUEST = "Huntress Quest";
         public const string HUNTRESS_QUEST_RUNT = "Huntress Quest Runt";
         public const string SHAKRA_FINAL_QUEST = "Shakra Final Quest";
+        public const string GREAT_GOURMAND = "Great Gourmand";
 
         // Combat/Boss Quests
         public const string ROCK_ROLLERS = "Rock Rollers";
         public const string SKULL_KING = "Skull King";
         public const string ROACH_KILLING = "Roach Killing";
         public const string BROODMOTHER_HUNT = "Broodmother Hunt";
-        public const string GREAT_GOURMAND = "Great Gourmand";
         public const string PINSTRESS_BATTLE_PRE = "Pinstress Battle Pre";
         public const string PINSTRESS_BATTLE = "Pinstress Battle";
         public const string SPRINTMASTER_RACE = "Sprintmaster Race";
@@ -130,7 +130,8 @@ namespace Silkipelago.Constants
             DOCTOR_CURSE_CURE,
             SOUL_SNARE,
             ROCK_ROLLERS,
-            SKULL_KING
+            SKULL_KING,
+            GREAT_GOURMAND
         ];
 
         public static readonly List<string> FORCIBLY_STARTED_QUEST = [

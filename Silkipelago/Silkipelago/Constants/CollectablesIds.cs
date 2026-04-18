@@ -31,13 +31,17 @@ namespace Silkipelago.Constants
         public const string TWISTED_BUD = "Wood Witch Item";
         public const string EVERBLOOM = "White Flower";
         public const string SOUL_SNARE = "Soul Snare";
+        public const string PALE_OIL = "Pale_Oil";
 
         public static readonly List<string> ITEMS =
         [
             TWISTED_BUD,
             EVERBLOOM,
-            SOUL_SNARE
+            SOUL_SNARE,
+            PALE_OIL
         ];
+
+        public const string PALE_OIL_CHAMBERS = "Pale_Oil-Library_03";
 
         //Memory Locket Constants
         public const string MEMORY_LOCKET_CHAPEL_BEAST = "Crest-Ant_20";

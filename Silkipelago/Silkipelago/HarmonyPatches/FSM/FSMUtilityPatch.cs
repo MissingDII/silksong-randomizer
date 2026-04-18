@@ -55,24 +55,9 @@ namespace Silkipelago.HarmonyPatches.FSM
             var gameObjectName = playMakerFsm.gameObject.name;
             var currentState = fsmInstance.ActiveStateName ?? "";
 
-            // Track this state for this FSM
-            if (!fsmStates.ContainsKey(gameObjectName))
-            {
-                fsmStates[gameObjectName] = new HashSet<string>();
-                BasePatch.Logger.LogInfo($"[FSM Tracking] Started tracking FSM states for: {gameObjectName}");
-            }
-
-            // Add the current state if we haven't seen it before
-            if (fsmStates[gameObjectName].Add(currentState))
-            {
-                BasePatch.Logger.LogInfo($"[FSM State] Found new state '{currentState}' for {gameObjectName}");
-                BasePatch.Logger.LogInfo($"[FSM States] {gameObjectName} states: {string.Join(", ", fsmStates[gameObjectName])}");
-            }
-
             // Handle the End state as a location check
             if (currentState.Equals("End"))
             {
-                BasePatch.Logger.LogInfo($"[FSM State Change] Vine Cluster Destroyed: {gameObjectName}");
                 var archipelagoId = ArchipelagoLocationIds.GetArchipelagoName(gameObjectName);
                 if (!string.IsNullOrEmpty(archipelagoId))
                 {

@@ -10,17 +10,16 @@ namespace Silkipelago.Settings
         public string HostName { get; set; }
         public int Port { get; set; }
         public string SlotName { get; set; }
-
         public bool DeathLink { get; set; }
-
         public bool DownSlash { get; set; }
         public bool UpSlash { get; set; }
         public bool LeftSlash { get; set; }
         public bool RightSlash { get; set; }
-
         public bool Bind { get; set; }
-
         public int SavedFleas { get; set; }
+        public bool Tipp { get; set; }
+        public bool Pill { get; set; }
+
     }
 
 }

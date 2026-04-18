@@ -51,6 +51,15 @@ namespace Silkipelago.HarmonyPatches.Item
                     ToolItemManager.AutoEquip(ToolItemManager.GetCrestByName(currentCrestId), false, true);
                 }
             }
+            if (PlayerDataIds.NEEDLE_UPGRADE.Equals(fieldName))
+            {
+                var paleOilCount = ArchipelagoPlugin.App.ArchipelagoClient.GetReceivedItemCount(ArchipelagoItemIds.GetArchipelagoName(CollectablesIds.PALE_OIL));
+                for (var i = paleOilCount; i >= 0; i--)
+                {
+                    var inGameName = $"Needle_{i}";
+                    locationChecker.AddCheckedLocation(ArchipelagoLocationIds.GetArchipelagoName(inGameName));
+                }
+            }
             if (IsFlea(fieldName) && ArchipelagoPlugin.App.ArchipelagoClient.SlotData.FleasRandomized)
             {
                 TrackLocation(fieldName, locationChecker);

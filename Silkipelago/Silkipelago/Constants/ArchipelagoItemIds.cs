@@ -9,6 +9,9 @@ namespace Silkipelago.Constants
         public static Dictionary<string, string> ArchipelagoIdsToGameIds { get; } = new Dictionary<string, string>
     {
 
+         //needle upgrades
+         {"Needle Upgrade",PlayerDataIds.NEEDLE_UPGRADE },
+         {"Pale Oil", CollectablesIds.PALE_OIL },
          //Stations
          { "Bellway Station - Deep Docks", PlayerDataIds.DOCK_STATION },
          { "Bellway Station - Far Fields", PlayerDataIds.FAR_FIELDS_STATION },

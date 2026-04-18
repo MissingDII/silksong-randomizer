@@ -55,6 +55,10 @@ namespace Silkipelago.Archipelago.ItemHandlers
                 FleaHandler.AddFlea(itemName);
                 return true;
             }
+            if (itemName.Equals("Progressive Tipp and Pill"))
+            {
+                NPCHandler.ActivateNpc(itemName);
+            }
             if (itemName.EndsWith("Rosaries"))
             {
                 PlayerDataHandler.AddRosary(itemName);
@@ -94,7 +98,7 @@ namespace Silkipelago.Archipelago.ItemHandlers
                 return true;
             }
 
-            if (IsSilkHeart(inGameName))
+            if (IsSilkHeart(inGameName) || isNeedleUpgrade(inGameName))
             {
                 PlayerDataHandler.AddToIntValue(inGameName);
                 return true;
@@ -137,6 +141,8 @@ namespace Silkipelago.Archipelago.ItemHandlers
 
         private bool IsSilkHeart(string inGameName) =>
             PlayerDataIds.SILK_HEART.Equals(inGameName);
+        private bool isNeedleUpgrade(string inGameName) =>
+            PlayerDataIds.NEEDLE_UPGRADE.Equals(inGameName);
 
         private bool IsToolItem(string inGameName) =>
             ToolsIds.SILK_ABILITIES.Contains(inGameName) ||

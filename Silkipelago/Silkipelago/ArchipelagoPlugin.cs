@@ -16,6 +16,7 @@ namespace Silkipelago
     {
         private ILogger _logger;
         private Harmony _harmony;
+        private bool debugAppFeatures = false;
         public static RandomizerApp App { get; private set; }
 
 
@@ -49,44 +50,47 @@ namespace Silkipelago
         {
             // Update item notifications
             App.UIContext.ItemNotification.Update();
+            if (debugAppFeatures)
+            {
 
-            if (Input.GetKeyDown(KeyCode.Keypad1))
-            {
-                var questName = "Courier Delivery Bonebottom";
-                _logger.LogInfo("trying to add quest");
-                var fullQuestBase = QuestManager.GetQuest(questName);
+                if (Input.GetKeyDown(KeyCode.Keypad1))
+                {
+                    var questName = "Courier Delivery Bonebottom";
+                    _logger.LogInfo("trying to add quest");
+                    var fullQuestBase = QuestManager.GetQuest(questName);
+                    return;
+                }
+                if (Input.GetKeyDown(KeyCode.Keypad3))
+                {
+                    var questName = "Courier Delivery Bonebottom";
+                    _logger.LogInfo("trying to add quest");
+                    var fullQuestBase = QuestManager.GetQuest(questName);
+                    return;
+                }
+                if (Input.GetKeyDown(KeyCode.Keypad2))
+                {
+                    _logger.LogInfo("Teleport somewhere");
+                    var playerData = PlayerData.instance;
+                    var location = "Library_07";
+                    var entry = "left1";
+                    var gateLocation = GatePosition.left;
+                    Logger.LogInfo("about to teleport");
+                    SceneLoader.LoadScene(location, entry, gateLocation);
+                    return;
+                }
+                if (Input.GetKeyDown(KeyCode.Keypad5))
+                {
+                    _logger.LogInfo("Show UI button");
+                    App.UIContext.MenuUI.Toggle();
+                    return;
+                }
+                if (Input.GetKeyDown(KeyCode.Keypad9))
+                {
+                    StartCoroutine(SceneHealthManagerScanner.ScanAllScenesForHealthManagers());
+                    return;
+                }
                 return;
             }
-            if (Input.GetKeyDown(KeyCode.Keypad3))
-            {
-                var questName = "Courier Delivery Bonebottom";
-                _logger.LogInfo("trying to add quest");
-                var fullQuestBase = QuestManager.GetQuest(questName);
-                return;
-            }
-            if (Input.GetKeyDown(KeyCode.Keypad2))
-            {
-                _logger.LogInfo("Teleport somewhere");
-                var playerData = PlayerData.instance;
-                var location = "Bellshrine_02";
-                var entry = "left1";
-                var gateLocation = GatePosition.left;
-                Logger.LogInfo("about to teleport");
-                SceneLoader.LoadScene(location, entry, gateLocation);
-                return;
-            }
-            if (Input.GetKeyDown(KeyCode.Keypad5))
-            {
-                _logger.LogInfo("Show UI button");
-                App.UIContext.MenuUI.Toggle();
-                return;
-            }
-            if (Input.GetKeyDown(KeyCode.Keypad9))
-            {
-                StartCoroutine(SceneHealthManagerScanner.ScanAllScenesForHealthManagers());
-                return;
-            }
-            return;
         }
     }
 }

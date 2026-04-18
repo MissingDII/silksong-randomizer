@@ -8,7 +8,13 @@ namespace Silkipelago.Constants
     {
         public static Dictionary<string, string> ArchipelagoIdsToGameIds { get; } = new Dictionary<string, string>
     {
-
+        //needle upgrades
+        { "Sharpened Needle Upgrade", "Needle_0" },
+        { "Wayfarer Wish: Pinmaster's Oil", "Needle_1" },
+        { "Hivesteel Needle Upgrade", "Needle_2" },
+        { "Pale Steel Needle Upgrade", "Needle_3" },
+        //pale oil
+        { "Pickup Pale Oil (Choral Chambers)", CollectablesIds.PALE_OIL_CHAMBERS },
         // Tutorial Vine Cluster
         { "Tutorial: Breakable Walls 1", Tut_01.VINE_CLUSTER },
         { "Tutorial: Breakable Walls 2", Tut_01.VINE_CLUSTER_1 },
@@ -75,6 +81,9 @@ namespace Silkipelago.Constants
         { "Wayfarer Wish: Infestation Operation", QuestIds.DOCTOR_CURSE_CURE },
         { "Wayfarer Wish: Silk and Soul", QuestIds.SOUL_SNARE },
         { "Defeat Skull Tyrant (Wish)", QuestIds.SKULL_KING },
+        { "Gather Wish: Great Taste of Pharloom", QuestIds.GREAT_GOURMAND },
+        { "Donate Wish: Restoration of Bellhart",QuestIds.BELLTOWN_HOUSE_START},
+        {"Wayfarer Wish: Ecstasy Of The End",QuestIds.FLEA_GAMES },
         //crest
         { "Bound the Crest of Reaper",CrestIds.REAPER },
         { "Bound the Crest of Wanderer",CrestIds.WANDERER },

@@ -18,6 +18,18 @@ namespace Silkipelago.HarmonyPatches.Item
         private static bool HandleAddItem(CollectableItem item)
         {
             BasePatch.Logger.LogDebugPatchIsRunning(nameof(CollectableItemManager), nameof(CollectableItemManager.AddItem), nameof(CollectableItemPatch), nameof(Prefix));
+            if (item.name.Equals(CollectablesIds.PALE_OIL))
+            {
+                var scene = SceneManager.GetActiveScene().name;
+                var locationChecker = ArchipelagoPlugin.App.LocationChecker;
+                var inGameName = $"Pale_Oil-{scene}";
+                var locationId = ArchipelagoLocationIds.GetArchipelagoName(inGameName);
+                if (locationId != null && locationChecker.LocationExists(locationId))
+                {
+                    locationChecker.AddCheckedLocation(locationId);
+                    return MethodPrefix.DONT_RUN_ORIGINAL_METHOD;
+                }
+            }
             if (item.name.Equals(CollectablesIds.MEMORY_LOCKET))
             {
                 var scene = SceneManager.GetActiveScene().name;

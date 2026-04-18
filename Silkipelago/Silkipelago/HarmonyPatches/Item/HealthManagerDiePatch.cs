@@ -75,7 +75,6 @@ namespace Silkipelago.HarmonyPatches.Item
                 //in case of widow defeat we send moorwing check as well
                 var locationId = ArchipelagoLocationIds.GetArchipelagoName(BossIds.MOORWING);
                 ArchipelagoPlugin.App.LocationChecker.AddCheckedLocation(locationId);
-                return MethodPrefix.RUN_ORIGINAL_METHOD;
             }
 
             if (BossIds.BOSSES.Contains(baseName))

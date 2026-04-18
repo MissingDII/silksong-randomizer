@@ -7,6 +7,8 @@ namespace Silkipelago.Constants
     /// </summary>
     public static class PlayerDataIds
     {
+        //needle upgrades
+        public const string NEEDLE_UPGRADE = "nailUpgrades";
 
         //stations
         public const string DOCK_STATION = "UnlockedDocksStation";
